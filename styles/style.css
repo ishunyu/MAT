@@ -1,20 +1,20 @@
 body {
   margin-top: 0px;
   margin-bottom: 0px;
-  background-color: #D8D8D8;
+  background-color: white;
 }
 
 body,p,h1,h2,h3,h4,table,td,th,ul,ol
 {
-font-family:verdana,helvetica,arial,sans-serif;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
 table.main {
   margin-top: 0px;
   border-style: solid;
   border-width: 1px;
-  border-color: black;
-  background-color: white;
+  border-color: grey;
+  background-color: grey;
   margin-top: 100px;
   width: 900px;
   height: 700px;
@@ -22,6 +22,55 @@ table.main {
   border-radius: 15px;
 }
 
-td {
-  vertical-align:top;
+table.registerAndLogin {
+  margin-top: 0px;
+  border-style: solid;
+  border-width: 0px;
+  border-color: red;
+  height:550px;
+  width:100%;
 }
+
+td {
+  border-style:solid;
+  border-width: 1px;
+  border-color: purple;
+}
+
+
+td.welcomeMessageBox{
+  vertical-align:top;
+  border-bottom-style: thick;
+  border-bottom-width: 6px;
+  border-bottom-color: white;
+  height: 120px;
+}
+
+
+td.loginMessageBox {
+  text-align:center;
+  vertical-align:bottom;
+  color:white;
+  height:25px;
+ }
+
+ td.loginTitle, td.registerTitle {
+  height:25px;
+  color:white;
+  font-size:25px;
+  width:50%;
+  
+}
+
+td.loginBox {
+  border-right-style: thick;
+  border-right-width: 6px;
+  border-right-color: white;
+} 
+
+.welcomeMessage {
+  font-size:50px;
+  color:white;
+  font-weight:bold;
+}
+
