@@ -17,6 +17,7 @@ table.main {
   width: 900px;
   height: 500px;
   -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 
@@ -29,22 +30,26 @@ table.registerAndLogin {
   width:100%;
 }
 
-td.td_register_wrapper {
-  text-align: center;
-}
-
-
 
 form.loginForm , form.registerForm{
-  text-align:center;
-  width:300;
   margin-left:auto;
   margin-right:auto;
+  border-style: solid;
+  border-width: 0px;
+  border-color: yellow;
 }
 
-td {
+form.loginForm {
+  margin-top:35px;
+}
+
+form.registerForm {
+  margin-top:35px;
+}
+
+td,th {
   border-style:solid;
-  border-width: 0px;
+  border-width:0px;
   border-color: purple;
 }
 
@@ -69,6 +74,10 @@ td.rightAlign {
   text-align:right;
 }
 
+td.leftAlign {
+  text-align:left;
+}
+
 td.loginTitle, td.registerTitle {
   height:25px;
   color:white;
@@ -81,11 +90,27 @@ td.loginBox {
   border-right-style: thick;
   border-right-width: 6px;
   border-right-color: white;
-  text-align: center;
+  vertical-align:top;
+}
+
+td.registerBox {
+  vertical-align:top;
+}
+
+td.loginBoxSpacer {
+  width: 68px;
+}
+
+td.registerBoxSpacer {
+  width:35px;
 }
 
 span {
   color:white;
+}
+
+span.tryAgain {
+  font-weight:normal;
 }
 
 span.welcomeMessage {
