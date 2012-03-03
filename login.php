@@ -16,7 +16,7 @@ if(count($_POST) == 2) {
   // MySQL injection prevention
   //$accountName = stripslashes($accountName);
   //$password = stripslashes($password);
-  $accountName = md5(mysql_real_escape_string($accountName));
+  $accountName = md5(mysql_real_escape_string(strtolower($accountName)));
   $password = md5(mysql_real_escape_string($password));
 
   // Debug

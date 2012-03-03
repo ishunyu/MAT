@@ -5,6 +5,7 @@ $result_insert="";
 
 //echo count($_POST);
 
+// Used for signalling try again messages
 if(count($_POST) != 5) {
   $registerSuccess = TRUE;
 }
@@ -14,7 +15,7 @@ if(count($_POST) == 5) {
   $lastName = mysql_real_escape_string($_POST['lastName']);
   $password1 = md5(mysql_real_escape_string($_POST['password1']));
   $password2 = md5(mysql_real_escape_string($_POST['password2']));
-  $accountName = md5(mysql_real_escape_string($_POST['accountName']));
+  $accountName = md5(mysql_real_escape_string(strtolower($_POST['accountName'])));
   
   $query = "SELECT * FROM $tableName WHERE Account='$accountName'";
   $result = mysql_query($query);
