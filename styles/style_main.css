@@ -1,0 +1,14 @@
+body {
+  margin-top: 3px;
+  margin-bottom: 0px;
+  margin-left: 3px;
+  background-color: white;
+}
+
+body,p,h1,h2,h3,h4,table,td,th,ul,ol,span{
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+span.welcomeMemberMessage {
+  font-size: 20px;
+}

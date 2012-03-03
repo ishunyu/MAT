@@ -10,11 +10,11 @@ ob_end_flush();
 <html>
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style_index.css">
   </head>
   
   <body>
-    <table align="center" class="main">
+    <table  align="" class="main">
       <tr>
         <td class="welcomeMessageBox">
           </br>

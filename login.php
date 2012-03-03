@@ -32,7 +32,6 @@ if(count($_POST) == 2) {
   if($count == 1) {
     session_start();
     $_SESSION['accountName'] = $accountName;
-    $_SESSION['password'] = $password;
     $loginSuccess = TRUE;
     header("location:main.php");
   }

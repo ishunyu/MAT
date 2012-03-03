@@ -1,0 +1,382 @@
+{"GCT":{
+  "3LetterCode":"Ala",
+  "fullname":"Alanine",
+  "1LetterCode":"A"
+},
+
+"GCC":{
+  "3LetterCode":"Ala",
+  "fullname":"Alanine",
+  "1LetterCode":"A"
+},
+
+"GCA":{
+  "3LetterCode":"Ala",
+  "fullname":"Alanine",
+  "1LetterCode":"A"
+},
+
+"GCG":{
+  "3LetterCode":"Ala",
+  "fullname":"Alanine",
+  "1LetterCode":"A"
+},
+
+"CGT":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"CGC":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"CGA":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"CGG":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"AGA":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"AGG":{
+  "3LetterCode":"Arg",
+  "fullname":"Arginine",
+  "1LetterCode":"R"
+},
+
+"AAT":{
+  "3LetterCode":"Asn",
+  "fullname":"Asparagine",
+  "1LetterCode":"N"
+},
+
+"AAC":{
+  "3LetterCode":"Asn",
+  "fullname":"Asparagine",
+  "1LetterCode":"N"
+},
+
+"GAT":{
+  "3LetterCode":"Asp",
+  "fullname":"Aspartate",
+  "1LetterCode":"D"
+},
+
+"GAC":{
+  "3LetterCode":"Asp",
+  "fullname":"Aspartate",
+  "1LetterCode":"D"
+},
+
+"TGT":{
+  "3LetterCode":"Cys",
+  "fullname":"Cysteine",
+  "1LetterCode":"C"
+},
+
+"TGC":{
+  "3LetterCode":"Cys",
+  "fullname":"Cysteine",
+  "1LetterCode":"C"
+},
+
+"CAA":{
+  "3LetterCode":"Gln",
+  "fullname":"Glutamine",
+  "1LetterCode":"Q"
+},
+
+"CAG":{
+  "3LetterCode":"Gln",
+  "fullname":"Glutamine",
+  "1LetterCode":"Q"
+},
+
+"GAA":{
+  "3LetterCode":"Glu",
+  "fullname":"Glutamate",
+  "1LetterCode":"E"
+},
+
+"GAG":{
+  "3LetterCode":"Glu",
+  "fullname":"Glutamate",
+  "1LetterCode":"E"
+},
+
+"GGT":{
+  "3LetterCode":"Gly",
+  "fullname":"Glycine",
+  "1LetterCode":"G"
+},
+
+"GGC":{
+  "3LetterCode":"Gly",
+  "fullname":"Glycine",
+  "1LetterCode":"G"
+},
+
+"GGA":{
+  "3LetterCode":"Gly",
+  "fullname":"Glycine",
+  "1LetterCode":"G"
+},
+
+"GGG":{
+  "3LetterCode":"Gly",
+  "fullname":"Glycine",
+  "1LetterCode":"G"
+},
+
+"CAT":{
+  "3LetterCode":"His",
+  "fullname":"Histidine",
+  "1LetterCode":"H"
+},
+
+"CAC":{
+  "3LetterCode":"His",
+  "fullname":"Histidine",
+  "1LetterCode":"H"
+},
+
+"ATT":{
+  "3LetterCode":"Ile",
+  "fullname":"Isoleucine",
+  "1LetterCode":"I"
+},
+
+"ATC":{
+  "3LetterCode":"Ile",
+  "fullname":"Isoleucine",
+  "1LetterCode":"I"
+},
+
+"ATA":{
+  "3LetterCode":"Ile",
+  "fullname":"Isoleucine",
+  "1LetterCode":"I"
+},
+
+"TTA":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"TTG":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"CTT":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"CTC":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"CTA":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"CTG":{
+  "3LetterCode":"Leu",
+  "fullname":"Leucine",
+  "1LetterCode":"L"
+},
+
+"AAA":{
+  "3LetterCode":"Lys",
+  "fullname":"Lysine",
+  "1LetterCode":"K"
+},
+
+"AAG":{
+  "3LetterCode":"Lys",
+  "fullname":"Lysine",
+  "1LetterCode":"K"
+},
+
+"ATG":{
+  "3LetterCode":"Met",
+  "fullname":"Methionine",
+  "1LetterCode":"M"
+},
+
+"TTT":{
+  "3LetterCode":"Phe",
+  "fullname":"Phenylalanine",
+  "1LetterCode":"F"
+},
+
+"TTC":{
+  "3LetterCode":"Phe",
+  "fullname":"Phenylalanine",
+  "1LetterCode":"F"
+},
+
+"CCT":{
+  "3LetterCode":"Pro",
+  "fullname":"Proline",
+  "1LetterCode":"P"
+},
+
+"CCC":{
+  "3LetterCode":"Pro",
+  "fullname":"Proline",
+  "1LetterCode":"P"
+},
+
+"CCA":{
+  "3LetterCode":"Pro",
+  "fullname":"Proline",
+  "1LetterCode":"P"
+},
+
+"CCG":{
+  "3LetterCode":"Pro",
+  "fullname":"Proline",
+  "1LetterCode":"P"
+},
+
+"TCT":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"TCC":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"TCA":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"TCG":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"AGT":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"AGC":{
+  "3LetterCode":"Ser",
+  "fullname":"Serine",
+  "1LetterCode":"S"
+},
+
+"ACT":{
+  "3LetterCode":"Thr",
+  "fullname":"Threonine",
+  "1LetterCode":"T"
+},
+
+"ACC":{
+  "3LetterCode":"Thr",
+  "fullname":"Threonine",
+  "1LetterCode":"T"
+},
+
+"ACA":{
+  "3LetterCode":"Thr",
+  "fullname":"Threonine",
+  "1LetterCode":"T"
+},
+
+"ACG":{
+  "3LetterCode":"Thr",
+  "fullname":"Threonine",
+  "1LetterCode":"T"
+},
+
+"TGG":{
+  "3LetterCode":"Trp",
+  "fullname":"Tryptophan",
+  "1LetterCode":"W"
+},
+
+"TAT":{
+  "3LetterCode":"Tyr",
+  "fullname":"Tyrosine",
+  "1LetterCode":"Y"
+},
+
+"TAC":{
+  "3LetterCode":"Tyr",
+  "fullname":"Tyrosine",
+  "1LetterCode":"Y"
+},
+
+"GTT":{
+  "3LetterCode":"Val",
+  "fullname":"Valine",
+  "1LetterCode":"V"
+},
+
+"GTC":{
+  "3LetterCode":"Val",
+  "fullname":"Valine",
+  "1LetterCode":"V"
+},
+
+"GTA":{
+  "3LetterCode":"Val",
+  "fullname":"Valine",
+  "1LetterCode":"V"
+},
+
+"GTG":{
+  "3LetterCode":"Val",
+  "fullname":"Valine",
+  "1LetterCode":"V"
+},
+
+"TAG":{
+  "3LetterCode":"X",
+  "fullname":"Stop",
+  "1LetterCode":"X"
+},
+
+"TGA":{
+  "3LetterCode":"X",
+  "fullname":"Stop",
+  "1LetterCode":"X"
+},
+
+"TAA":{
+  "3LetterCode":"X",
+  "fullname":"Stop",
+  "1LetterCode":"X"}}
