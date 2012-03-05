@@ -121,3 +121,8 @@ span.welcomeMessage {
   font-weight:bold;
 }
 
+th.tryAgainMessageBox {
+  height:28px;
+}
+
+
