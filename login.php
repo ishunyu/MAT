@@ -11,6 +11,7 @@ else {
   session_destroy();
 }
 
+//echo var_dump($_POST);
 
 if(count($_POST) != 2) {
   $loginSuccess = TRUE;

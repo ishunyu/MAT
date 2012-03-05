@@ -2,7 +2,7 @@
 // uploader.php
 
 include "dbConfig.php";
-include "session.php";
+include "checkSession.php";
 
 $geneName = $_POST['nameOfDNA'];
 

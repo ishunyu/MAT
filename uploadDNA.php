@@ -1,6 +1,6 @@
 <?php
 include "dbConfig.php";
-include "session.php";
+include "checkSession.php";
 
 $query = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";
 $result = mysql_query($query);

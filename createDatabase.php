@@ -1,43 +1,25 @@
 <?php
 include "globalVariables.php";
 
-// If the database doesn't exist, make the database
-$query_createDatabase = "CREATE DATABASE IF NOT EXISTS $databaseName_geneMutationDatabase";
-$result_createDatabase = mysql_query($query_createDatabase);
-if(!$result_createDatabase) {
-  die("Database $databaseName_geneMutationDatabase could not be created.");
-} 
+// Connecting to mysql
+  $connection = mysql_connect($hostName, $userName, $password)or die("Cannot connect to SQL");
 
-// If a table is not present, make it
-$query_accountstable = "CREATE TABLE IF NOT EXISTS $tableName_accountstable(
-ID INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-Account varchar(32),
-Password varchar(32),
-Firstname varchar(225),
-Lastname varchar(225),
-Lastlogin DATETIME
-)";
+// Create out database
+  mysql_query($query_createDatabase) or die("Database $databaseName_geneMutationDatabase could not be created.");
 
-$result_accountstable = mysql_query($query_accountstable);
+// Connect to our datatbase
+  mysql_select_db($databaseName_geneMutationDatabase)
+    or die("Cannot establish connection with database");
 
+// Create table $tableName_accountstable
+  mysql_query($query_accountstable)
+    or die("Cannot create table $tableName_accountstable");
 
-// CREATE genelisttable
-$query_genelisttable = "CREATE TABLE IF NOT EXISTS $tableName_genelisttable(
-ID INT NOT NULL AUTO_INCREMENT,
-GeneName varchar(225),
-MemberID INT NOT NULL,
-AddedTime DATETIME,
-PRIMARY KEY(ID),
-FOREIGN KEY(MemberID) REFERENCES $tableName_accountstable(ID)
-)";
+// Create table $tableName_genelisttable
+  mysql_query($query_genelisttable)
+    or die("Cannot create table $tableName_genelisttable");
 
-$result_genelisttable = mysql_query($query_genelisttable);
-
-if($result_accountstable && $result_genelisttable) {
+// If they all succeed, redirect to index.php
   header("location:index.php");
-}
-else {
-  die("Cannot establish connection or create required tables);
-}
+
 ?>
