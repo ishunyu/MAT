@@ -13,63 +13,7 @@ ob_end_flush();
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
     <link rel="stylesheet" type="text/css" href="styles/style_index.css">
-    <script type="text/javascript">
-      function checkRegForm() {      
-        var firstName = document.getElementById("reg_firstName").value;
-        var lastName = document.getElementById("reg_lastName").value; 
-        var password1 = document.getElementById("reg_password1").value;
-        var password2 = document.getElementById("reg_password2").value;
-        var accountname = document.getElementById("reg_accountName").value;
-        var returnValue = false;
-        
-        // Check to see if all fields are filled
-        if(!(firstName.match(/\S/) &&
-        lastName.match(/\S/) &&
-        password1.match(/\S/) &&
-        password2.match(/\S/) &&
-        accountname.match(/\S/))) {
-          showError("Please fill in all forms please!");       
-          return false;
-        }
-        
-        if(/\W/g.test(firstName) ||
-        /\W/g.test(lastName) ||
-        /\W/g.test(password1) ||
-        /\W/g.test(password2) ||
-        /\W/g.test(accountname)
-        ) {
-          showError("Form fields cannot contain illegal characters!");     
-          return false;
-        }
-        
-        // Check to see if pass words match
-        if(password1 != password2) {
-          showError("Passwords don't match!");          
-          return false;
-        }
-        
-        
-        if(password1 == accountname) {
-          showError("Password is same as Account Name!");
-          return false;       
-        }
-        
-        if(password1.search(firstName) || password1.search(lastName)) {
-          showError("Password contains First/Last name!");
-          return false;
-        }
-        
-        document.getElementById("submitButton").value="YES!";
-        return returnValue;
-      }
-      
-      function showError(s) {
-        document.getElementById("inputErrorMessage").innerHTML = s;
-        document.getElementById("inputErrorMessage").style.color = "orange";
-        document.getElementById("inputErrorMessage").style.fontWeight = "bold";
-        document.getElementById("inputErrorMessage").style.fontSize = "14px";
-      }
-    </script>
+    <script type="text/javascript" src="scripts/formCheck.js"></script>
   </head>
   
   <body>
