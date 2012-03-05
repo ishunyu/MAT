@@ -1,5 +1,4 @@
 <?php
-include "dbConfig.php";
 $registerSuccess = FALSE; // Variable used for displaying retry message
 $result_insert="";
 
@@ -49,6 +48,4 @@ if(count($_POST) == 5) {
   else
     die('Shouldn\t be here!');  
 }
-
-mysql_close($connection);
 ?>
