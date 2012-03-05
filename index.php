@@ -27,12 +27,8 @@ ob_end_flush();
         <td>
           <table class="registerAndLogin">
             <tr>
-              <td class="loginTitle">
-                <center></br><u>Login</u></center>
-              </td>
-              <td class="registerTitle">
-                <center></br><u>Register</u></center>
-              </td>
+              <td class="loginTitle"><center></br><u>Login</u></center></td>
+              <td class="registerTitle"><center></br><u>Register</u></center></td>
             </tr>
             <tr>
               <td class="loginBox">
@@ -52,26 +48,16 @@ ob_end_flush();
                             </th>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Account Name:</span>
-                            </td>
-                            <td class="leftAlign">
-                              <input type="text" name="accountName"> </br>
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Account Name:</span></td>
+                            <td class="leftAlign"><input type="text" name="accountName"></br></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Password:</span>
-                            </td>
-                            <td class="leftAlign">
-                              <input type="password" name="password">
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Password:</span></td>
+                            <td class="leftAlign"><input type="password" name="password"></td>
                           </tr>
                           <tr>
                             <td></td>
-                            <td>
-                              <input type="submit" value="Start" />
-                            </td>
+                            <td><input type="submit" value="Start" /></td>
                           </tr>
                         </table>
                       </form>
@@ -97,50 +83,28 @@ ob_end_flush();
                             </th>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">First Name:</span>
-                            </td>
-                            <td>
-                              <input type="text" name="firstName">
-                            </td>
+                            <td class="rightAlign"><span class="regularText">First Name:</span></td>
+                            <td><input type="text" name="firstName"></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Last Name:</span>
-                            </td>
-                            <td>
-                              <input type="text" name="lastName">
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Last Name:</span></td>
+                            <td><input type="text" name="lastName"></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Password:</span>
-                            </td>
-                            <td>
-                              <input type="password" name="password1">
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Password:</span></td>
+                            <td><input type="password" name="password1"></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Repeat Password:</span>
-                            </td>
-                            <td>
-                              <input type="password" name="password2">              
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Repeat Password:</span></td>
+                            <td><input type="password" name="password2"></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign">
-                              <span class="regularText">Account Name:</span>
-                            </td>
-                            <td>
-                              <input type="text" name="accountName">
-                            </td>
+                            <td class="rightAlign"><span class="regularText">Account Name:</span></td>
+                            <td><input type="text" name="accountName"></td>
                           </tr>
                           <tr>
                             <td></td>
-                            <td>
-                              <input type="submit" value="Create" />
-                            </td>
+                            <td><input type="submit" value="Create" /></td>
                           </tr>
                         </table>
                       </form>
@@ -155,7 +119,7 @@ ob_end_flush();
       </tr> 
       <tr>
         <td class="loginMessageBox">
-          Copyright C Shun Yu 2012-2012
+          Copyright &copy; Shun Yu 2012-2012
         </td>
       </tr>
     </table>

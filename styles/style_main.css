@@ -12,3 +12,12 @@ body,p,h1,h2,h3,h4,table,td,th,ul,ol,span{
 span.welcomeMemberMessage {
   font-size: 20px;
 }
+
+a.topLinkSelected {
+  font-weight:bold;
+}
+
+td.topAlign {
+  vertical-align:top;
+
+}

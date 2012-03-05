@@ -2,7 +2,13 @@
 include "dbConfig.php";
 $loginSuccess = FALSE; // Variable used for displaying retry message
 
-//echo count($_POST);
+session_start();
+if(isset($_SESSION['accountName'])) {
+  echo $_SESSION['accountName'];
+  echo "what?";
+  //header("location:uploadDNA.php");
+}
+session_destroy();
 
 if(count($_POST) != 2) {
   $loginSuccess = TRUE;
@@ -14,8 +20,6 @@ if(count($_POST) == 2) {
   $password = $_POST['password'];
 
   // MySQL injection prevention
-  //$accountName = stripslashes($accountName);
-  //$password = stripslashes($password);
   $accountName = md5(mysql_real_escape_string(strtolower($accountName)));
   $password = md5(mysql_real_escape_string($password));
 
@@ -24,7 +28,7 @@ if(count($_POST) == 2) {
   //echo $password."</br>";
 
   // Query to the database
-  $query = "SELECT * FROM $tableName WHERE Account='$accountName' and Password='$password'";
+  $query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName' and Password='$password'";
   $result = mysql_query($query);
   $count = mysql_num_rows($result);
 
@@ -33,7 +37,7 @@ if(count($_POST) == 2) {
     session_start();
     $_SESSION['accountName'] = $accountName;
     $loginSuccess = TRUE;
-    header("location:main.php");
+    header("location:uploadDNA.php");
   }
   else {
     //echo "Wrong user name or password!";  //Debug
