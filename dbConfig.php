@@ -3,15 +3,37 @@
 $hostName="localhost";
 $userName="root";
 $password="canttouchthis";
-$databaseName_exampleaccountsdatabase="exampleaccountsdatabase";
-$tableName_accountstable="accountstable";
-$tableName_genelisttable="genelisttable";
+$databaseName_geneMutationDatabase="database_genemutation";
+$tableName_accountstable="table_accounts";
+$tableName_genelisttable="table_genelist";
 $bool_accountstable = FALSE;
 $bool_genelisttable = FALSE;
 
 // Connecting to database
 $connection = mysql_connect($hostName, $userName, $password)or die("Cannot connect to SQL");
-$databaseStatus = mysql_select_db($databaseName_exampleaccountsdatabase)or die("Cannot select the correct Database");
+
+// Query to get existing database
+$exists_geneMutationDatabase = FALSE;
+$query_showDatabases = "SHOW DATABASES";
+$result_showDatabases = mysql_query($query_showDatabases);
+while($row_showDatabases = mysql_fetch_assoc($result_showDatabases)) {
+  if($row_showDatabases['Database'] == $databaseName_geneMutationDatabase) {
+    $exists_geneMutationDatabase = TRUE;
+  }
+  //var_dump($row_showDatabases);
+}
+
+// If the database doesn't exist, make the database
+if(!$exists_geneMutationDatabase) {
+  $query_createDatabase = "CREATE DATABASE $databaseName_geneMutationDatabase";
+  $result_createDatabase = mysql_query($query_createDatabase);
+  if(!$result_createDatabase) {
+    die("Database $databaseName_geneMutationDatabase could not be created.");
+  } 
+}
+
+// Connect to our database
+$databaseStatus = mysql_select_db($databaseName_geneMutationDatabase)or die("Cannot select the correct Database");
 
 // Query to get the existing tables
 $query_showtables = "SHOW TABLES";

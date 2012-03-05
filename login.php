@@ -4,8 +4,6 @@ $loginSuccess = FALSE; // Variable used for displaying retry message
 
 session_start();
 if(isset($_SESSION['accountName'])) {
-  echo $_SESSION['accountName'];
-  echo "what?";
   //header("location:uploadDNA.php");
 }
 session_destroy();

@@ -14,7 +14,8 @@ table.main {
   border-width: 1px;
   border-color: grey;
   background-color: grey;
-
+  margin-left:auto;
+  margin-right:auto;
   width: 700px;
   height: 500px;
   -moz-border-radius: 15px;

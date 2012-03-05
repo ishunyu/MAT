@@ -1,7 +1,7 @@
 body {
-  margin-top: 3px;
+  margin-top: 1px;
   margin-bottom: 0px;
-  margin-left: 3px;
+  margin-left: 1px;
   background-color: white;
 }
 
@@ -9,15 +9,72 @@ body,p,h1,h2,h3,h4,table,td,th,ul,ol,span{
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
+span {
+  color: white;
+}
+
 span.welcomeMemberMessage {
   font-size: 20px;
+  font-weight: bold;
+}
+
+a {
+  color:white;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
 }
 
 a.topLinkSelected {
   font-weight:bold;
 }
 
+table.uploadDNAMainTable{
+  width: 700px;
+  height: 500px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: grey;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+table.uploadDNAInputTable {
+  color: white;
+}
+
+textarea.DNAinput {
+  max-width:250px;
+  max-height:350px;
+  min-width:250px;
+  min-height:350px;
+}
+
+td {
+  border-style: solid;
+  border-color: purple;
+  border-width: 0px;
+}
+
+td.sideBar {
+  vertical-align:top;
+  border-right-style: thick;
+  border-right-width: 4px;
+  border-right-color: white;
+}
+
+td.inputFieldLabel {
+  width:130px;
+}
+
 td.topAlign {
   vertical-align:top;
 
+}
+
+td.rightAlign {
+  text-align:right;
 }
