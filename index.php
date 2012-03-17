@@ -1,16 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
-
-<?php
-include "dbConfig.php";
-include "login.php";
-//include "register.php";
-
-mysql_close($connection);
-ob_end_flush();
-?>
-
 <html>
   <head>
+    <? include "php_index.php"; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
     <link rel="stylesheet" type="text/css" href="styles/style_index.css">
     <script type="text/javascript" src="scripts/formCheck.js"></script>
@@ -44,11 +35,7 @@ ob_end_flush();
                         <table>
                           <tr>
                             <th colspan="2">&nbsp
-                          <?php
-                            if(!$loginSuccess) {
-                              echo "<span class=\"tryAgain\">Please try again~ :D</span>";
-                            }
-                          ?>
+                              <? showLoginMessage($loginSuccess) ?>
                             </th>
                           </tr>
                           <tr>
@@ -75,15 +62,12 @@ ob_end_flush();
                   <tr>
                     <td class="registerBoxSpacer"></td>
                     <td>
-                      <form name="input_register" method="POST" class="registerForm" onsubmit="return checkRegForm()">
+                      <form name="input_register"  action="index.php" class="registerForm" onsubmit="return checkRegForm()" method="POST">
                         <table class="table_register">
                           <tr>
-                            <th colspan="2" class="tryAgainMessageBox"><span id="inputErrorMessage" class="tryAgain">&nbsp
-                              <?php
-                                //if(!$registerSuccess) {
-                                  //echo "Please Choose Another Account Name!";
-                                //}
-                              ?>
+                            <th colspan="2" class="tryAgainMessageBox">
+                              <span id="inputErrorMessage" class="tryAgain">&nbsp
+                                <? showRegisterMessage($registerSuccess); ?>
                               </span>
                             </th>
                           </tr>

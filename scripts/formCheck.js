@@ -60,9 +60,6 @@ function checkRegForm() {
     showRegError(accountname.search(/[A-z_]/));
     return false;
   }
-  
-  
-  return returnValue;
 }
 
 function showRegError(s) {

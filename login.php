@@ -4,7 +4,7 @@ $loginSuccess = FALSE; // Variable used for displaying retry message
 session_start();
 if(isset($_SESSION['accountName'])) {
   //echo $_SESSION['accountName']."</br>";
-  header("location:uploadDNA.php");
+  header("location:upload_dna.php");
 }
 else {
   //echo "Not Logged on"."</br>";
@@ -40,10 +40,11 @@ if(count($_POST) == 2) {
     session_start();
     $_SESSION['accountName'] = $accountName;
     $loginSuccess = TRUE;
-    header("location:uploadDNA.php");
+    header("location:upload_dna.php");
   }
   else {
     //echo "Wrong user name or password!";  //Debug
   }
 }
+
 ?>
