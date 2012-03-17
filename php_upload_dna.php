@@ -1,10 +1,5 @@
 <?php
-include "db_config.php";
 include "check_session.php";
-
-$query = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";
-$result = mysql_query($query);
-$row = mysql_fetch_assoc($result);
 
 // Create the new account directory
 $rootDirectory = "data";

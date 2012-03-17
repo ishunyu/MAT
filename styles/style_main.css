@@ -1,3 +1,4 @@
+/* */
 body {
   margin-top: 1px;
   margin-bottom: 0px;
@@ -5,10 +6,19 @@ body {
   background-image: url('../images/background.jpg');
 }
 
-body,p,h1,h2,h3,h4,table,td,th,ul,ol,span{
+body,p,h1,h2,h3,h4,table,td,th,ul,ol,span,text-area,input{
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
+hr {
+  color:white;
+  background-color:white;
+  height:2px;
+  border:none;
+
+}
+
+/* */
 ul#nav_bar {
   list-style-type: none;
   margin: 0px;
@@ -33,14 +43,13 @@ a.nav_bar_items {
   background-color: grey;
   display: block;
   
-  width: 100%;
+  width: 100%;  
   
-  font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
   color: white;
   text-decoration: none;
   text-align:center;
-  padding: 15px;
+  padding: 10px;
   
   border-style: solid;
   border-color: white;
@@ -52,27 +61,38 @@ a.nav_bar_items {
   border-radius: 15px 15px 0px 0px;
 }
 
-a.nav_bar_items:hover, a.nav_bar_items:active {
+a.nav_bar_items:hover {
   background-color: DimGrey;
-
 }
+
+a.nav_bar_items:active {
+  background-color: grey;
+  color: white;
+}
+
+
 
 a#selected {
-  background-color: DimGrey;
+  background-color: white;
   border-style: solid;
   border-bottom-style: none;
+  color: DimGrey;
 }
 
-a#selected:hover, a#selected:active {
-  background-color: grey;
+
+a#selected:hover, a#selected:active  {
+  background-color: white;
+  color: DimGrey;
 }
 
+
+/* Main portion */
 #background_transparent {
   position: absolute;
   padding: 0px;
   margin: 0px;
   
-  height: 100%;
+  height: 1300px;
   width: 100%;
   
   background-color: white;
@@ -100,7 +120,7 @@ a#selected:hover, a#selected:active {
   position:relative;
   width: 100%;
   height: 140px;
-  background-color: grey;
+  background-color: DimGrey;
   
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;  
@@ -108,9 +128,9 @@ a#selected:hover, a#selected:active {
 }
 
 #div_welcome_message {
+  position: absolute;
   width: 250px;
-  top: 0px;
-  right: 0px;
+  top: 15px;
   margin-left: 20px;
   
   font-size: 30px;
@@ -127,18 +147,181 @@ a#selected:hover, a#selected:active {
   left: -35px;
 }
 
-#div_logout {
-  position: absolute;
-  
-  top: 18px;
-  left: 270px;
-  
-  font-size: 12px;
+div.top_bar_options_selected {
+  font-weight: bold;
 }
 
+#div_logout {
+  position: absolute;
+  font-size: 12px;
+  left: 270px;
+  top: 33px;
+}
+#div_account {
+  position: absolute;
+  font-size: 12px;  
+  left: 320px;
+  top: 20px;
+}
+#div_upload {
+  position: absolute;
+  font-size: 12px;
+  left: 380px;
+  top: 33px;
+}
+#div_choose {
+  position: absolute;
+  font-size: 12px;
+  left: 430px;
+  top: 20px;
+}
+
+
+/* Content */
 #div_content_box {
+  position: absolute;
+  height: 1000px;
+  width: 700px;
+  background-color: DimGrey;
+  margin-top: 3px;
+  
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;  
   border-radius: 15px;
 }
+
+#div_content_box_main {
+  position: relative;
+  height: 300px;
+  width:680px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+#div_content_box_main_A {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+#div_content_box_main_A1 {
+  position: absolute;
+  height: 150px;
+  width: 300px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+}
+
+#div_content_box_main_A2 {
+  position: absolute;
+  height: 150px;
+  width: 300px;
+  margin-top: 150px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+}
+
+
+
+#div_content_box_main_B {
+  position: absolute;
+  height: 500px;
+  width: 370px;
+  margin-left: 310px;
+  
+  border-style: solid;
+  border-color: red;
+  border-width: 0px;
+}
+
+#div_content_box_main_B1 {
+  position: absolute;
+  height: 200px;
+  width: 370px;
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+#div_content_box_main_B2{
+  position: absolute;
+  height: 40px;
+  width: 100px;
+  margin-top: 200px;
+  margin-left:250px;
+  
+  text-align: right;
+  
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+.content_title_format {
+  font-size: 40px;
+  color: white;  
+}
+
+.content_detail_format {
+  font-size: 15px;
+  color: white;
+}
+
+#dna_notes {
+  width: 350px;
+  height: 100px;
+  font-size: 15px;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+#dna_name {
+  font-size: 20px;
+}
+
+#upload_file_button {
+
+}
+
+input#submit_button {
+  width: 100px;
+  height: 40px;
+  
+  font-size: 20px;
+  color: white;
+  
+  background-color: grey;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+    
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;  
+  border-radius: 10px 10px 10px 10px;
+}
+
+input#submit_button:hover {
+  background-color: DimGrey;
+}
+
+input#submit_button:active {
+  background-color: pink;
+  color: white;
+}
+
 

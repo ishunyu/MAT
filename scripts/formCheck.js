@@ -69,3 +69,8 @@ function showRegError(s) {
   document.getElementById("inputErrorMessage").style.fontSize = "14px";
   document.getElementById("submitButton").value="NO!";
 }
+
+
+function check_upload() {
+  return true;
+}
