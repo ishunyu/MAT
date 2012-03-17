@@ -1,80 +1,144 @@
 body {
   margin-top: 1px;
   margin-bottom: 0px;
-  margin-left: 1px;
-  background-color: white;
+  margin-left: 0px;
+  background-image: url('../images/background.jpg');
 }
 
 body,p,h1,h2,h3,h4,table,td,th,ul,ol,span{
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
-span {
-  color: white;
+ul#nav_bar {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  width: 700px;
 }
 
-span.welcomeMemberMessage {
-  font-size: 20px;
-  font-weight: bold;
+li.nav_bar_items {
+  display: list-item;
+  width: 179px;
+  float: left;
+  margin-left: 40px;
 }
 
 a {
-  color:white;
-  text-decoration:none;
+  color: white;
+  text-decoration: none;
 }
 
-a:hover {
-  text-decoration:underline;
+a.nav_bar_items {
+  background-color: grey;
+  display: block;
+  
+  width: 100%;
+  
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  text-align:center;
+  padding: 15px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  border-bottom-style: none;
+  
+  -moz-border-radius: 15px 15px 0px 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;  
+  border-radius: 15px 15px 0px 0px;
 }
 
-a.topLinkSelected {
-  font-weight:bold;
+a.nav_bar_items:hover, a.nav_bar_items:active {
+  background-color: DimGrey;
+
 }
 
-table.uploadDNAMainTable{
+a#selected {
+  background-color: DimGrey;
+  border-style: solid;
+  border-bottom-style: none;
+}
+
+a#selected:hover, a#selected:active {
+  background-color: grey;
+}
+
+#background_transparent {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  
+  height: 100%;
+  width: 100%;
+  
+  background-color: white;
+  opacity:0.8;
+  filter:alpha(opacity=80);
+}
+
+#div_main {
   width: 700px;
-  height: 500px;
+  height: auto;
   margin-left:auto;
   margin-right:auto;
-  background-color: grey;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
+  border-bottom-style: none;
+  
   -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
+  -webkit-border-radius: 15px;  
   border-radius: 15px;
 }
 
-table.uploadDNAInputTable {
+#div_top_bar {
+  position:relative;
+  width: 100%;
+  height: 140px;
+  background-color: grey;
+  
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;  
+  border-radius: 15px;
+}
+
+#div_welcome_message {
+  width: 250px;
+  top: 0px;
+  right: 0px;
+  margin-left: 20px;
+  
+  font-size: 30px;
+  font-weight: bold;
   color: white;
+
+  padding: 0px;
 }
 
-textarea.DNAinput {
-  max-width:250px;
-  max-height:350px;
-  min-width:250px;
-  min-height:350px;
+#div_nav {
+  position: absolute;
+  margin-left: 20px;
+  bottom: 0px;
+  left: -35px;
 }
 
-td {
-  border-style: solid;
-  border-color: purple;
-  border-width: 0px;
+#div_logout {
+  position: absolute;
+  
+  top: 18px;
+  left: 270px;
+  
+  font-size: 12px;
 }
 
-td.sideBar {
-  vertical-align:top;
-  border-right-style: thick;
-  border-right-width: 4px;
-  border-right-color: white;
+#div_content_box {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;  
+  border-radius: 15px;
 }
 
-td.inputFieldLabel {
-  width:130px;
-}
-
-td.topAlign {
-  vertical-align:top;
-
-}
-
-td.rightAlign {
-  text-align:right;
-}

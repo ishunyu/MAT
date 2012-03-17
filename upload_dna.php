@@ -7,53 +7,28 @@
   </head>
   
   <body>
-    <table class="uploadDNAMainTable">
-      <tr>
-        <td colspan="2">
-          <span class="welcomeMemberMessage">&nbsp;&nbsp;Welcome <? echo $row['Firstname']; ?>!</span>
-        </td>
-      </tr>
-      <tr>
-        <td class = "sideBar">
-          <table>
-            <tr><td><a class="topLink" href="">Replacement</a></tr></td>
-            <tr><td><a class="topLink" href="">Insertion</a></tr></td>
-            <tr><td> <a class="topLink" href="">Deletion</a></td>
-            <tr><td>&nbsp;</tr></td>
-            <tr><td><a class="topLink" href="">Select DNA</a></tr></td>
-            <tr><td><a class="topLinkSelected" href="uploadDNA.php">Upload DNA</a></tr></td>
-            <tr><td>&nbsp;</tr></td>
-            <tr><td><a class="topLink" href="">Account</a></tr></td>
-            <tr><td><a class="topLink" href="logout.php">Logout</a></tr></td>
-          </table>
-        </td>
-        <td>
-          <form enctype="multipart/form-data" method="POST" action="uploader.php">
-            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-            <table class="uploadDNAInputTable">
-              <tr>
-                <td class="inputFieldLabel">Name your DNA:</td>
-                <td><input type="text" name="nameOfDNA" /></td>
-              </tr>
-              <tr>
-                  <td>Upload DNA File:</td>
-                  <td><input type="file" name="uploadedFile" /></td>
-              </tr>
-              <tr>
-                <th colspan="2">OR</th>
-              </tr>
-              <tr>
-                  <td class="topAlign">Input your DNA:</td>
-                  <td><textarea class="DNAinput"></textarea></td>
-              </tr>
-              <tr>
-                  <td></td>
-                  <td><input type="submit" value="Submit!" /></td>
-              </tr>
-            </table>
-          </form>
-        </td>
-      </tr>
-    </table>
+    <div id="background_transparent"></div>
+      <!-- MAIN-->
+      <div id="div_main">
+        <!-- TOP BAR-->
+        <div id="div_top_bar">
+          <div id="div_welcome_message">Welcome, <? echo $row['Firstname']; ?>!</div>
+          <div id="div_logout"><a href="logout.php">Logout</a></div>
+          <!-- NAV BAR-->
+          <div id="div_nav">
+            <nav>
+              <ul id="nav_bar">
+                <li class="nav_bar_items"><a class="nav_bar_items" id="selected" href="">Substitution</a></li>
+                <li class="nav_bar_items"><a class="nav_bar_items" href="">Insertion</a></li>
+                <li class="nav_bar_items"><a class="nav_bar_items" href="">Deletion</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- CONTENT-->
+        <div id="div_content_box">
+        </div>
+      </div>
+
   </body>
 </html>

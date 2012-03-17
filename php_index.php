@@ -1,11 +1,11 @@
 <?php
-  include "dbConfig.php";
+  include "db_config.php";
   include "login.php";
   include "register.php";
   
   function showLoginMessage($input) {
-    if(!$loginSuccess) {
-      echo "<span class=\"tryAgain\">Please try again~ :D</span>";
+    if(!$input) {
+      echo "<span class=\"tryAgain\">Please try again! :)</span>";
     }
   }
   

@@ -16,6 +16,7 @@ table.main {
   background-color: grey;
   margin-left:auto;
   margin-right:auto;
+  margin-top: 150px;
   width: 700px;
   height: 500px;
   -moz-border-radius: 15px;
