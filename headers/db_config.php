@@ -1,5 +1,5 @@
 <?php
-include "globalVariables.php";
+include "global_variables.php";
 
 // Connecting to mysql
   $connection = mysql_connect($hostName, $userName, $password)
@@ -8,7 +8,7 @@ include "globalVariables.php";
 // Connect to our database
   mysql_select_db($databaseName_geneMutationDatabase)
   // If cannot connect to database, then try creating database
-    or header("location:createDatabase.php");
+    or header("location:headers/create_database.php");
 
 
 

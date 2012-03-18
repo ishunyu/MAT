@@ -1,5 +1,5 @@
 <?php
-include "globalVariables.php";
+include "global_variables.php";
 
 // Connecting to mysql
   $connection = mysql_connect($hostName, $userName, $password)or die("Cannot connect to SQL");
@@ -20,6 +20,6 @@ include "globalVariables.php";
     or die("Cannot create table $tableName_genelisttable");
 
 // If they all succeed, redirect to index.php
-  header("location:index.php");
+  header("location:../index.php");
 
 ?>

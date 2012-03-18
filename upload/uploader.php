@@ -1,10 +1,12 @@
 <?php
 // uploader.php
 
-include "dbConfig.php";
-include "checkSession.php";
+include "../headers/db_config.php";
+include "../headers/check_session.php";
+include "../file_processors/file_processor.php";
 
 $geneName = $_POST['nameOfDNA'];
+$DNANote = $_POST['dnaNotes'];
 
 // Looking for member ID
 $query_memberID = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";
@@ -15,25 +17,35 @@ if(!$result_memberID) {
 $assoc_memberID = mysql_fetch_assoc($result_memberID);
 $memberID = $assoc_memberID["ID"];
 
-// Check to see if there's a gene with the same name
+// Query the gene list
 $query_getGenes = "SELECT * FROM $tableName_genelisttable WHERE GeneName='$geneName' AND MemberID='$memberID'";
 $result_getGenes = mysql_query($query_getGenes);
-  // Checks to see if the query was successful
+// Checks to see if the query was successful
 if(!$result_getGenes) {
   die("Fetching member's gene information unsuccessful.");
 }
 
+// Check to see if there's a gene with the same name
 if(mysql_num_rows($result_getGenes) > 0) {
   echo "$geneName is already in your profile."."</br>";
 }
 else {
+  // Handles input right away
+  $fileData = getDataFromTempFile($_FILES['uploadedFile']['tmp_name']);
+  echo $fileData."<hr>";
+  $cleanData = cleanUploadedData($fileData);
+  echo $cleanData;
+
   // Store information into genelisttable
-  $query_insertGene = "INSERT INTO $tableName_genelisttable(ID, GeneName, MemberID, AddedTime)
-  VALUES(NULL, '$geneName', '$memberID', NOW())";
+  $query_insertGene = "INSERT INTO $tableName_genelisttable(ID, GeneName, DNANote, DNAOriginal, DNAFormatted, DNA, MemberID, AddedTime)
+  VALUES(NULL, '$geneName', '$DNANote', '$fileData', '$cleanData', '$cleanData', '$memberID', NOW())";
+
   $result_insertGene = mysql_query($query_insertGene);
   if(!$result_insertGene) {
     die("Inserting gene information unsuccessful.");
   }
+  
+  /*
   // Creates the new client directory
   $rootDirectory = "data";
   $accountName = $_SESSION['accountName'];
@@ -44,7 +56,7 @@ else {
   // Check to see if the file path exists
   if(!file_exists($newDirPath)) {
     mkdir($newDirPath);
-    echo "here!";
+    echo "Made new client directory!".PHP_EOL;
   }
 
   // Move file to the correct directory
@@ -53,8 +65,8 @@ else {
   }
   else {
     echo "There was an error uploading the file, please try again";
-    //header("location:uploadDNA.php");
-  }
+    //header("location:upload_dna.php");
+  }*/
 }
 
 mysql_close($connection);
