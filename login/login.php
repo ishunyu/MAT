@@ -4,7 +4,7 @@ $loginSuccess = FALSE; // Variable used for displaying retry message
 session_start();
 if(isset($_SESSION['accountName'])) {
   //echo $_SESSION['accountName']."</br>";
-  header("location:upload_dna.php");
+  header("location:upload/upload_dna.php");
 }
 else {
   //echo "Not Logged on"."</br>";
@@ -23,7 +23,7 @@ if(count($_POST) == 2) {
   $password = $_POST['password'];
 
   // MySQL injection prevention
-  $accountName = md5(mysql_real_escape_string(strtolower($accountName)));
+  $accountName = mysql_real_escape_string(strtolower($accountName));
   $password = md5(mysql_real_escape_string($password));
 
   // Debug
@@ -33,14 +33,16 @@ if(count($_POST) == 2) {
   // Query to the database
   $query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName' and Password='$password'";
   $result = mysql_query($query);
+  $row = mysql_fetch_assoc($result);
   $count = mysql_num_rows($result);
 
   // Processing Code
   if($count == 1) {
     session_start();
     $_SESSION['accountName'] = $accountName;
+    $_SESSION['ID'] = $row['ID'];
     $loginSuccess = TRUE;
-    header("location:upload_dna.php");
+    header("location:upload/upload_dna.php");
   }
   else {
     //echo "Wrong user name or password!";  //Debug

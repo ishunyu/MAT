@@ -1,7 +1,7 @@
 <?php
-  include "db_config.php";
-  include "login.php";
-  include "register.php";
+  include "headers/db_config.php";
+  include "login/login.php";
+  include "register/register.php";
   
   function showLoginMessage($input) {
     if(!$input) {

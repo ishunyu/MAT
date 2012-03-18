@@ -20,6 +20,6 @@ include "global_variables.php";
     or die("Cannot create table $tableName_genelisttable");
 
 // If they all succeed, redirect to index.php
-  header("location:index.php");
+  header("location:../index.php");
 
 ?>

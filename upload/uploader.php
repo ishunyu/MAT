@@ -1,10 +1,12 @@
 <?php
 // uploader.php
 
-include "db_config.php";
-include "check_session.php";
+include "../headers/db_config.php";
+include "../headers/check_session.php";
+include "../file_processors/file_processor.php";
 
 $geneName = $_POST['nameOfDNA'];
+$DNANote = $_POST['dnaNotes'];
 
 // Looking for member ID
 $query_memberID = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";
@@ -28,15 +30,22 @@ if(mysql_num_rows($result_getGenes) > 0) {
   echo "$geneName is already in your profile."."</br>";
 }
 else {
+  // Handles input right away
+  $fileData = getDataFromTempFile($_FILES['uploadedFile']['tmp_name']);
+  echo $fileData."<hr>";
+  $cleanData = cleanUploadedData($fileData);
+  echo $cleanData;
+
   // Store information into genelisttable
-  $query_insertGene = "INSERT INTO $tableName_genelisttable(ID, GeneName, MemberID, AddedTime)
-  VALUES(NULL, '$geneName', '$memberID', NOW())";
-  
+  $query_insertGene = "INSERT INTO $tableName_genelisttable(ID, GeneName, DNANote, DNAOriginal, DNAFormatted, DNA, MemberID, AddedTime)
+  VALUES(NULL, '$geneName', '$DNANote', '$fileData', '$cleanData', '$cleanData', '$memberID', NOW())";
+
   $result_insertGene = mysql_query($query_insertGene);
   if(!$result_insertGene) {
     die("Inserting gene information unsuccessful.");
   }
   
+  /*
   // Creates the new client directory
   $rootDirectory = "data";
   $accountName = $_SESSION['accountName'];
@@ -57,7 +66,7 @@ else {
   else {
     echo "There was an error uploading the file, please try again";
     //header("location:upload_dna.php");
-  }
+  }*/
 }
 
 mysql_close($connection);

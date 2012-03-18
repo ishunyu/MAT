@@ -15,7 +15,7 @@ if(!isset($_SESSION['accountName'])) {
   session_destroy();
   
   // Redirect to main page
-  header("location:index.php");
+  header("location:../index.php");
 }
 
 $query = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";

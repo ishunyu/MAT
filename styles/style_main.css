@@ -92,7 +92,7 @@ a#selected:hover, a#selected:active  {
   padding: 0px;
   margin: 0px;
   
-  height: 1300px;
+  height: 800px;
   width: 100%;
   
   background-color: white;
@@ -177,10 +177,13 @@ div.top_bar_options_selected {
 }
 
 
+
+
+
 /* Content */
-#div_content_box {
+#div_content_box_upload {
   position: absolute;
-  height: 1000px;
+  height: 500px;
   width: 700px;
   background-color: DimGrey;
   margin-top: 3px;
@@ -190,11 +193,42 @@ div.top_bar_options_selected {
   border-radius: 15px;
 }
 
+#div_content_box {
+  position: absolute;
+  height: 500px;
+  width: 700px;
+  background-color: DimGrey;
+  margin-top: 3px;
+  
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;  
+  border-radius: 15px;
+}
+
+#div_introduction_box {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 680px;
+  margin-top: 40px;
+  
+  font: 25px;
+  font-weight: bold;
+  vertical-align: bottom;
+  color: white;
+
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
 #div_content_box_main {
   position: relative;
-  height: 300px;
+  height: 310px;
   width:680px;
-  margin-top: 5px;
+
   margin-left: auto;
   margin-right: auto;
   
@@ -205,7 +239,7 @@ div.top_bar_options_selected {
 
 #div_content_box_main_A {
   position: absolute;
-  height: 300px;
+  height: 310px;
   width: 300px;
   
   border-style: solid;
@@ -215,8 +249,19 @@ div.top_bar_options_selected {
 
 #div_content_box_main_A1 {
   position: absolute;
-  height: 150px;
+  height: 120px;
   width: 300px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+}
+
+#div_content_box_main_A11 {
+  position: absolute;
+  height: 30px;
+  width: 300px;
+  margin-top: 120px;
   
   border-style: solid;
   border-color: white;
@@ -225,7 +270,7 @@ div.top_bar_options_selected {
 
 #div_content_box_main_A2 {
   position: absolute;
-  height: 150px;
+  height: 130px;
   width: 300px;
   margin-top: 150px;
   
@@ -234,7 +279,16 @@ div.top_bar_options_selected {
   border-width: 0px;
 }
 
-
+#div_content_box_main_A21 {
+  position: absolute;
+  height: 30px;
+  width: 300px;
+  margin-top: 280px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+}
 
 #div_content_box_main_B {
   position: absolute;
@@ -261,7 +315,7 @@ div.top_bar_options_selected {
   position: absolute;
   height: 40px;
   width: 100px;
-  margin-top: 200px;
+  margin-top: 250px;
   margin-left:250px;
   
   text-align: right;
@@ -271,6 +325,20 @@ div.top_bar_options_selected {
   border-color: blue;
   border-width: 0px;
 }
+
+#div_content_box_main_B2_wordcount {
+  position: absolute;
+  height: 40px;
+  width: 250px;
+  margin-top: 250px;
+  margin-left:0px;
+   
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
 
 .content_title_format {
   font-size: 40px;
@@ -284,13 +352,16 @@ div.top_bar_options_selected {
 
 #dna_notes {
   width: 350px;
-  height: 100px;
+  height: 150px;
+  max-width: 350px;
+  max-height: 150px;
   font-size: 15px;
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
 #dna_name {
   font-size: 20px;
+  maxlength: 30;
 }
 
 #upload_file_button {
