@@ -18,6 +18,16 @@ hr {
 
 }
 
+.shadow {
+-moz-box-shadow: 0px 0px 10px 2px #111;
+-webkit-box-shadow: 0px 0px 10px 2px #111;
+box-shadow: 0px 0px 10px 2px #111;
+}
+
+.text_shadow {
+  text-shadow: 0px 0px 7px #111;
+}
+
 /* */
 ul#nav_bar {
   list-style-type: none;
@@ -77,6 +87,7 @@ a#selected {
   border-style: solid;
   border-bottom-style: none;
   color: DimGrey;
+
 }
 
 
@@ -92,16 +103,16 @@ a#selected:hover, a#selected:active  {
   padding: 0px;
   margin: 0px;
   
-  height: 800px;
+  height: 100%;
   width: 100%;
   
-  background-color: white;
+  background-color: SkyBlue;
   opacity:0.8;
   filter:alpha(opacity=80);
 }
 
 #div_main {
-  width: 700px;
+  width: 970px;
   height: auto;
   margin-left:auto;
   margin-right:auto;
@@ -129,14 +140,14 @@ a#selected:hover, a#selected:active  {
 
 #div_welcome_message {
   position: absolute;
-  width: 250px;
+  width: 450px;
   top: 15px;
   margin-left: 20px;
   
   font-size: 30px;
   font-weight: bold;
   color: white;
-
+  
   padding: 0px;
 }
 
@@ -154,31 +165,27 @@ div.top_bar_options_selected {
 #div_logout {
   position: absolute;
   font-size: 12px;
-  left: 270px;
+  left: 470px;
   top: 33px;
 }
 #div_account {
   position: absolute;
   font-size: 12px;  
-  left: 320px;
+  left: 520px;
   top: 20px;
 }
 #div_upload {
   position: absolute;
   font-size: 12px;
-  left: 380px;
+  left: 580px;
   top: 33px;
 }
-#div_choose {
+#div_manage {
   position: absolute;
   font-size: 12px;
-  left: 430px;
+  left: 630px;
   top: 20px;
 }
-
-
-
-
 
 /* Content */
 #div_content_box_upload {
@@ -186,7 +193,7 @@ div.top_bar_options_selected {
   height: 500px;
   width: 700px;
   background-color: DimGrey;
-  margin-top: 3px;
+  margin-top: 5px;
   
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;  
@@ -195,10 +202,10 @@ div.top_bar_options_selected {
 
 #div_content_box {
   position: absolute;
-  height: 500px;
+  height: auto;
   width: 700px;
   background-color: DimGrey;
-  margin-top: 3px;
+  margin-top: 5px;
   
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;  
@@ -342,7 +349,7 @@ div.top_bar_options_selected {
 
 .content_title_format {
   font-size: 40px;
-  color: white;  
+  color: white;
 }
 
 .content_detail_format {
@@ -380,6 +387,10 @@ input#submit_button {
   border-style: solid;
   border-color: white;
   border-width: 1px;
+  
+  -moz-box-shadow: 0px 0px 7px 0px #111;
+  -webkit-box-shadow: 0px 0px 7px 0px #111;
+  box-shadow: 0px 0px 7px 0px #111;
     
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;  
@@ -394,5 +405,6 @@ input#submit_button:active {
   background-color: pink;
   color: white;
 }
+
 
 

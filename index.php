@@ -1,15 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
-  <head>
-    <? include "php_index.php"; ?>
+<head>
+	<? include "php_index.php"; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
     <link rel="stylesheet" type="text/css" href="styles/style_index.css">
     <script type="text/javascript" src="scripts/formCheck.js"></script>
-  </head>
-  
-  <body>
     
-    <table class="main">
+</head>
+  
+  <body alink="#F0F0F0">
+    
+<table class="main">
       <tr>
         <td class="welcomeMessageBox">
           </br>

@@ -30,7 +30,7 @@ if(count($_POST) == 2) {
   //echo $accountName."</br>";
   //echo $password."</br>";
 
-  // Query to the database
+  // Query to the database for account info
   $query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName' and Password='$password'";
   $result = mysql_query($query);
   $row = mysql_fetch_assoc($result);
@@ -39,8 +39,10 @@ if(count($_POST) == 2) {
   // Processing Code
   if($count == 1) {
     session_start();
-    $_SESSION['accountName'] = $accountName;
+    $_SESSION['Account'] = $accountName;
     $_SESSION['ID'] = $row['ID'];
+    $_SESSION['LastDNAID'] = $row['LastDNAID'];
+    $_SESSION['Firstname'] = $row['Firstname'];
     $loginSuccess = TRUE;
     header("location:upload/upload_dna.php");
   }

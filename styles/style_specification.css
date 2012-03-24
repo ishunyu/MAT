@@ -1,0 +1,57 @@
+
+#div_specification_title {
+  position: relative;
+  margin-left:auto;
+  margin-right:auto;
+  
+  width: 700px;
+  height: 90px;
+  top: 15px;
+  
+  border-style: solid;
+  border-width: 0px;
+  border-color: blue;
+}
+
+#div_content_box_specification {
+  position: absolute;
+  height: auto;
+  width: 700px;
+  background-color: DimGrey;
+  margin-top: 5px;
+  
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;  
+  border-radius: 15px;
+
+
+}
+
+.div_content_box_specification_A {
+  position: relative;
+  margin-left:auto;
+  margin-right:auto;
+  
+  width: 700px;
+  height: 90px;
+  top: 15px;
+  
+  border-style: solid;
+  border-width: 1px;
+  border-color: blue;
+}
+
+.div_content_box_specification_B {
+  position: relative;
+  margin-left:auto;
+  margin-right:auto;
+  
+  width: 700px;
+  height: 40px;
+  top: 15px;
+  
+  border-style: solid;
+  border-width: 1px;
+  border-color: blue;
+
+}

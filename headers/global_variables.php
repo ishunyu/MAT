@@ -17,17 +17,19 @@ Account varchar(32),
 Password varchar(32),
 Firstname varchar(225),
 Lastname varchar(225),
+LastDNAID INT,
 LastPage varchar(225),
 Lastlogin DATETIME
 )";
 
 $query_genelisttable = "CREATE TABLE IF NOT EXISTS $tableName_genelisttable(
 ID INT NOT NULL AUTO_INCREMENT,
-GeneName varchar(225),
+DNAName varchar(225),
 DNANote text,
 DNAOriginal mediumtext,
 DNAFormatted mediumtext,
 DNA mediumtext,
+Spec text,
 MemberID INT NOT NULL,
 AddedTime DATETIME,
 PRIMARY KEY(ID),

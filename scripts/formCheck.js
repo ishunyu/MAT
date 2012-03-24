@@ -57,7 +57,7 @@ function checkRegForm() {
   
  
   if(!(accountname.search(/[A-z_]/) == 0)) {
-    showRegError(accountname.search(/[A-z_]/));
+    showRegError("Account Name needs to start with a letter!");
     return false;
   }
 }
@@ -76,7 +76,7 @@ function check_upload() { // Checks for file upload
   var titleName = document.getElementById("dna_name").value;  // Get the dna title
   var fileName = document.getElementById("upload_file_button").value; // Get the file name
   var ext = fileName.split('.').pop();
-  var returnValue = false;
+
   
   if(titleName.length < 6 || fileName.length < 1 || (ext != "txt")) { // check to see if title is in range and filename is okay
     if(titleName.length < 6) {
@@ -94,8 +94,9 @@ function check_upload() { // Checks for file upload
     }
     return false;
   }
+
     
-  
+  // AJAX please work!!
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -105,24 +106,24 @@ function check_upload() { // Checks for file upload
   
   xmlhttp.onreadystatechange=function() { // the Call back function
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      var responseText = xmlhttp.responseText;
-      
+      var responseText = xmlhttp.responseText;   
+    
       if(responseText == "true") { // if there is a gene with the same name!
         responseText = titleName + " already exists!";
-        returnValue = false;
       }
-      else if(responseText == "false") {        
-        returnValue = true;
-      }
-      
+      else {
+         responseText = "";
+         document.getElementById("upload_dna_form").submit();
+      }      
       document.getElementById("div_content_box_main_A11").innerHTML=responseText;
-      return returnValue;
     }
   }
   
   xmlhttp.open("POST","upload_checker.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("titleName="+titleName);
+  
+  return false;
 }
 
 function word_count() {
