@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
     <link rel="stylesheet" type="text/css" href="../styles/style_main.css">
     <link rel="stylesheet" type="text/css" href="../styles/style_specification.css">
-    <script type="text/javascript" src="../scripts/formCheck.js"></script>
+    <script type="text/javascript" src="../scripts/functional.js"></script>
   </head>
   
   <body>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <!-- CONTENT-->
-        <div id="div_content_box" class="shadow text_shadow ">
+        <div id="div_content_box_specification" class="shadow text_shadow ">
           <div id="div_specification_title" >
             <span class="content_title_format"><? echo $DNATitle;?></span>
             </br>
@@ -39,12 +39,42 @@
           </div>
 
           <hr>
-          <div class="div_content_box_specification_A">
+          <div id="div_content_box_specification_top">
+            <div id="div_content_box_specification_top1">
+              Type
+            </div>
+            <div id="div_content_box_specification_top2">
+              Start
+            </div>
+            <div id="div_content_box_specification_top3">
+              End
+            </div>
+          </div>          
+          <form id="specification_form" >
+            <div class="div_content_box_specification_row">
+              <div class="div_content_box_specification_A1">
+                <select name="type1" class="dna_type" id="type1">
+                  <option value="promoter">promoter</option>
+                  <option value="5URT">5'URT</option>
+                  <option value="exon">Exon</option>
+                  <option value="intron">Intron</option>
+                  <option value="3URT">3URT</option>
+                  <option value="other">other</option>
+                </select>
+              </div>
+              <div class="div_content_box_specification_A2">
+                <input type="text" name="start1" class="dna_start_end" id="start1"/>
+              </div>
+              <div class="div_content_box_specification_A3">
+                <input type="text" name="end1" class="dna_start_end" id="end1"/>
+              </div>
+            </div>
+            <div class="div_content_box_specification_B" id="submit_box">
+              <input type="button" value="Add Row" onclick="addRow()" />
+              <input type="button" value="Delete Row" onclick="delRow()" />
+            </div>
             
-          </div>
-          <div class="div_content_box_specification_B">
-            
-          </div>
+          </form>
         </div>
       </div>
 
