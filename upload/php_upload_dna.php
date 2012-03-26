@@ -1,15 +1,16 @@
 <?php
 include "../headers/check_session.php";
-
+/*
 // Create the new account directory
 $rootDirectory = "data";
 $accountName = $_SESSION['accountName'];
 $newDirPath = $rootDirectory."\\".$accountName;
 
+
 if(!file_exists($newDirPath)) {
   mkdir($newDirPath);
   echo "Made new client directory!".PHP_EOL;
-}
+}*/
 
 function check_num_genes($my_tableName) {
   $memberID = $_SESSION['ID'];
@@ -21,6 +22,7 @@ function check_num_genes($my_tableName) {
   if(!$result_getGenes) {
     die("Fetching member's gene information unsuccessful.");
   }
+  
   //echo var_dump($result_getGenes);
   // Check to see if there's a gene with the same name
   if(mysql_num_rows($result_getGenes) == 0) {

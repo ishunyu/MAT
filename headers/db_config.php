@@ -9,7 +9,4 @@ include "global_variables.php";
   mysql_select_db($databaseName_geneMutationDatabase)
   // If cannot connect to database, then try creating database
     or header("location:headers/create_database.php");
-
-
-
 ?>
