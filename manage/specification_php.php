@@ -2,28 +2,33 @@
 include "../headers/check_session.php";
 
 //Variables for display
-$dna0to30 = "";
-$dnaTitle = "Upload a new DNA";
+$gene0to30 = "";
+$geneTitle = "Upload a new Gene";
 
-if(isset($_SESSION['lastDnaId'])) {
-  $dnaId = $_SESSION['lastDnaId'];	// The latest DNA being worked on
+if(isset($_SESSION['lastGeneId'])) {
+  $geneId = $_SESSION['lastGeneId'];	// The latest Gene being worked on
   
-  // Query for the working DNA
-  $dnaQuery = 
-    "SELECT * 
+  // Query for the working Gene
+  $geneQuery = 
+    "SELECT geneName, gene 
      FROM $tableName_genelisttable
-     WHERE id='$dnaId'";
-  $dnaQuery = mysql_query($dnaQuery);
-  $dnaQuery = mysql_fetch_assoc($dnaQuery);
+     WHERE id='$geneId'";
+  $geneQuery = mysql_query($geneQuery);
+  $geneQuery = mysql_fetch_assoc($geneQuery);
   
-  $dna = $dnaQuery['dna'];
-  $dnaTitle = $dnaQuery['dnaName'];
-  $dna0to30 = substr($dna, 0, 30);
-  $dna0to30 = $dna0to30."...";
+  $gene = $geneQuery['gene'];
+  $geneTitle = $geneQuery['geneName'];
+  if(strlen($gene) > 30) {
+    $gene0to30 = substr($gene, 0, 30);
+    $gene0to30 = $gene0to30."...";
+  }
+  else {
+    $gene0to30 = $gene;
+  }
 }
 
-function hidden_value($dnaId) {
-echo "<input type=\"hidden\" name=\"dnaId\" value=\"$dnaId\" />";
+function hidden_value($geneId) {
+echo "<input type=\"hidden\" name=\"geneId\" value=\"$geneId\" />";
 }
 
 ?>

@@ -41,7 +41,7 @@
                   <span class="content_title_format text_shadow">NAME</span></br>
                   <span class="content_detail_format text_shadow">Please enter a name for your DNA</span>
                   <hr>
-                  <input type="text" name="dnaName" id="dna_name"  maxlength="30" />
+                  <input type="text" name="geneName" id="geneName"  maxlength="30" />
                 </div>
                 <div id="div_content_box_main_A11" class="content_detail_format text_shadow">
                 </div>                
@@ -59,7 +59,7 @@
                     <span class="content_title_format text_shadow">NOTES</span></br>
                     <span class="content_detail_format text_shadow">Jot down any notes for yourself</span>
                     <hr>
-                    <textarea id="dna_notes" name="dnaNotes" maxlength="65535" onkeyup="word_count();"></textarea>
+                    <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count();"></textarea>
                   </div>
                   <div id="div_content_box_main_B2_wordcount" class="content_detail_format text_shadow" >                  
                   </div>

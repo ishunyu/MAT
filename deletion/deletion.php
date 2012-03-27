@@ -15,7 +15,7 @@
           <div id="div_welcome_message">Welcome, <? echo $row['Firstname']; ?>!</div>
           <div class="text_shadow" id="div_logout"><a href="logout.php">Logout</a></div>
           <div class="text_shadow" id="div_account"><a href="">Account</a></div>
-          <div class="text_shadow" id="div_upload"><a href="../upload/upload_dna.php">Upload</a></div>
+          <div class="text_shadow" id="div_upload"><a href="../upload/upload.php">Upload</a></div>
           <div class="text_shadow" id="div_manage"><a href="">Manage</a></div>
           <!-- NAV BAR-->
           <div id="div_nav">

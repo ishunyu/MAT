@@ -87,6 +87,19 @@
   border-color: blue;
 }
 
+#div_content_box_specification_top4 {
+  position: absolute;
+  margin-left: 500px;
+  
+  width: 100px;
+  height: 100%;
+  padding-top: 10px;
+  
+  border-style: solid;
+  border-width: 0px;
+  border-color: blue;
+}
+
 .div_content_box_specification_row {
   position: relative;
   margin-left:20px;
@@ -151,7 +164,19 @@
   border-color: blue;
 }
 
-.dna_type {
+.div_content_box_specification_A4 {
+  position: absolute;
+  margin-left: 500px;  
+  
+  width: 100px;
+  height: 100%;
+  
+  border-style: solid;
+  border-width: 0px;
+  border-color: blue;
+}
+
+.gene_type {
   width: 100px;
   height: 30px;
   
@@ -162,12 +187,17 @@
   background-color: Dimgrey;
 }
 
-.dna_start_end {
+.gene_start_end {
   height: 30px;
   width: 150px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+}
+
+.gene_keep {
+  width: 30px;
+  height: 30px;
 }
 
 #submit_button_specification {

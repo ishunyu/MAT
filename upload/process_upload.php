@@ -5,8 +5,8 @@ include "../headers/db_config.php";
 include "../headers/check_session.php";
 include "../classes/class_files.php";
 
-$dnaName = $_POST['dnaName'];
-$dnaNotes = $_POST['dnaNotes'];
+$geneName = $_POST['geneName'];
+$geneNotes = $_POST['geneNotes'];
 
 // Looking for member ID
 $idQuery =
@@ -17,15 +17,15 @@ $idQuery = mysql_fetch_assoc($idQuery);
 $id = $idQuery["id"];
 
 // Query the gene list
-$dnaListQuery =
+$geneListQuery =
   "SELECT *
    FROM $tableName_genelisttable
-   WHERE dnaName='$dnaName' AND memberID='$id'";
-$dnaListQuery = mysql_query($dnaListQuery) or die("Fetching member's gene information unsuccessful.");
+   WHERE geneName='$geneName' AND memberID='$id'";
+$geneListQuery = mysql_query($geneListQuery) or die("Fetching member's gene information unsuccessful.");
 
 // Check to see if there's a gene with the same name
-if(mysql_num_rows($dnaListQuery) > 0) {
-  echo "$dnaName is already in your profile."."</br>";
+if(mysql_num_rows($geneListQuery) > 0) {
+  echo "$geneName is already in your profile."."</br>";
 }
 else {
   // Retrieving file from server space
@@ -34,27 +34,27 @@ else {
 
   // Store information into genelisttable
   $insertDnaQuery =
-    "INSERT INTO $tableName_genelisttable(id, dnaName, dnaNotes, dnaOriginal, dnaFormatted, dna, spec, memberId, addedTime)
-     VALUES(NULL, '$dnaName', '$dnaNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW())";
+    "INSERT INTO $tableName_genelisttable(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, addedTime)
+     VALUES(NULL, '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW())";
   $insertDnaQuery = mysql_query($insertDnaQuery)or die("Inserting gene information unsuccessful.");
   
    // Retrive DNA ID
-  $dnaIdQuery =
+  $geneIdQuery =
     "SELECT id
      FROM $tableName_genelisttable
-     WHERE dnaName='$dnaName' AND memberId='$id'";
-  $dnaIdQuery = mysql_query($dnaIdQuery);
-  $dnaIdQuery = mysql_fetch_assoc($dnaIdQuery);
-  $dnaId = $dnaIdQuery['id'];
+     WHERE geneName='$geneName' AND memberId='$id'";
+  $geneIdQuery = mysql_query($geneIdQuery);
+  $geneIdQuery = mysql_fetch_assoc($geneIdQuery);
+  $geneId = $geneIdQuery['id'];
   
-  // update User's lastDnaId
-  $lastDnaIdQuery =
+  // update User's lastGeneId
+  $lastGeneIdQuery =
     "UPDATE $tableName_accountstable
-     SET lastDnaId='$dnaId'
+     SET lastGeneId='$geneId'
      WHERE id='$id'";
-  $lastDnaIdQuery = mysql_query($lastDnaIdQuery) or die("Updating lastDnaId unsuccessful!"."</br>");
+  $lastGeneIdQuery = mysql_query($lastGeneIdQuery) or die("Updating lastGeneId unsuccessful!"."</br>");
   
-  $_SESSION['lastDnaId'] = $dnaId; // Store lastDnaId into as a session variable
+  $_SESSION['lastGeneId'] = $geneId; // Store lastGeneId into as a session variable
   
   header("location:../manage/specification.php");  
   
@@ -78,7 +78,7 @@ else {
   }
   else {
     echo "There was an error uploading the file, please try again";
-    //header("location:upload_dna.php");
+    //header("location:upload.php");
   }*/
 }
 

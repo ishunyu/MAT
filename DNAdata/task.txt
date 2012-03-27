@@ -1,2 +1,0 @@
-- selecting the exon parts and stitching them together (mRNA sequence)
-- hgvs.org nomenclature

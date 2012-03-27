@@ -19,7 +19,7 @@ $query_accountstable =
     password varchar(32),
     firstName varchar(225),
     lastName varchar(225),
-    lastDnaId INT,
+    lastGeneId INT,
     lastPage varchar(225),
     lastlogin DATETIME,
     startTime DATETIME
@@ -28,11 +28,11 @@ $query_accountstable =
 $query_genelisttable =
   "CREATE TABLE IF NOT EXISTS $tableName_genelisttable(
     id INT NOT NULL AUTO_INCREMENT,
-    dnaName varchar(225),
-    dnaNotes text,
-    dnaOriginal mediumtext,
-    dnaFormatted mediumtext,
-    dna mediumtext,
+    geneName varchar(225),
+    geneNotes text,
+    geneOriginal mediumtext,
+    geneFormatted mediumtext,
+    gene mediumtext,
     spec text,
     memberId INT NOT NULL,
     startTime DATETIME,

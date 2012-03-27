@@ -1,27 +1,48 @@
 <?php
 include "../headers/check_session.php";
+include "../classes/class_GENE.php";
 
-// show the variables
-foreach ($_POST as $key => $value) {
-    echo "Key: $key; Value: $value<br />";
+foreach($_POST as $key => $value) {
+  echo $key.": ".$value."</br>";
 }
 
-$encoded_spec = json_encode($_POST);  // Encode the spec array into json, LOVE ITTTT~
+$encodedSpec = json_encode($_POST);  // Encode the spec array into json, LOVE ITTTT~
 
 // Store the specifications
 $specQuery =
   "UPDATE $tableName_genelisttable
-  SET Spec = '$encoded_spec'
-  WHERE id = '$_POST[dnaId]' AND memberid='$_SESSION[id]'";
+   SET spec = '$encodedSpec'
+   WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $specQuery = mysql_query($specQuery) or die("Specifications could not be stored");
 
-// Process the specifications
-$dnaQuery =
-  "SELECT DNA FROM $tableName_genelisttable
-   WHERE id = '$_POST[dnaId]' AND memberid='$_SESSION[id]'";
-$dnaQuery = mysql_query($dnaQuery);
-$dnaQuery = mysql_fetch_assoc($dnaQuery);
+// Retrieving the gene
+$geneQuery =
+  "SELECT geneFormatted
+   FROM $tableName_genelisttable
+   WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
+$geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
+$gene = $geneQuery['geneFormatted'];
 
-$dna = $dnaQuery['dna'];
+$gene = new gene($gene);
+$gene->spec($_POST);
+$gene = $gene->getGene();
 
+$updateGeneQuery = 
+  "UPDATE $tableName_genelisttable
+   SET gene = '$gene'
+   WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
+
+$updateGeneQuery = mysql_query($updateGeneQuery) or die("Gene could not be stored");
 ?>
+
+
+
+
+
+
+
+
+
+
+
+

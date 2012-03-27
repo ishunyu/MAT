@@ -357,7 +357,7 @@ div.top_bar_options_selected {
   color: white;
 }
 
-#dna_notes {
+#geneNotes {
   width: 350px;
   height: 150px;
   max-width: 350px;
@@ -366,7 +366,7 @@ div.top_bar_options_selected {
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
-#dna_name {
+#geneName {
   font-size: 20px;
   maxlength: 30;
 }

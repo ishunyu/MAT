@@ -3,7 +3,7 @@ $loginSuccess = FALSE; // Variable used for displaying retry message
 
 session_start();
 if(isset($_SESSION['userName'])) {
-  header("location:upload/upload_dna.php");
+  header("location:upload/upload.php");
 }
 else {
   //echo "Not Logged on"."</br>";
@@ -40,7 +40,7 @@ if(count($_POST) == 2) {
     session_start();
     $_SESSION['userName'] = $userName;
     $_SESSION['id'] = $userQuery['ID'];
-    $_SESSION['lastDnaId'] = $userQuery['lastDnaId'];
+    $_SESSION['lastGeneId'] = $userQuery['lastGeneId'];
     $_SESSION['firstName'] = $userQuery['firstName'];
     $loginSuccess = TRUE;
     header("location:upload/upload.php");

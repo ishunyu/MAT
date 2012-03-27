@@ -24,7 +24,7 @@ if(count($_POST) == 5) {
   
   
   if($count == 0) {
-    $query_insert = "INSERT INTO $tableName_accountstable(id, userName, password, firstName, lastName, lastDnaId, lastPage, loginTime, startTime)
+    $query_insert = "INSERT INTO $tableName_accountstable(id, userName, password, firstName, lastName, lastGeneId, lastPage, loginTime, startTime)
     VALUES(NULL, '$userName', '$password1', '$firstName', '$lastName', NULL, NULL, NOW(), NOW())";
     //echo $query_insert;
     $result_insert = mysql_query($query_insert);

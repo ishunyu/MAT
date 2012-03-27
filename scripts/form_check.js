@@ -73,20 +73,20 @@ function showRegError(s) {
 
 function check_upload() { // Checks for file upload
   var xmlhttp;
-  var dnaName = document.getElementById("dna_name").value;  // Get the dna title
-  var dnaFile = document.getElementById("upload_file_button").value; // Get the file name
-  var ext = dnaFile.split('.').pop();
+  var geneName = document.getElementById("geneName").value;  // Get the dna title
+  var geneFile = document.getElementById("upload_file_button").value; // Get the file name
+  var ext = geneFile.split('.').pop();
 
   
-  if(dnaName.length < 6 || dnaFile.length < 1 || (ext != "txt")) { // check to see if title is in range and filename is okay
-    if(dnaName.length < 6) {
+  if(geneName.length < 6 || geneFile.length < 1 || (ext != "txt")) { // check to see if title is in range and filename is okay
+    if(geneName.length < 6) {
       document.getElementById("div_content_box_main_A11").innerHTML = "Name needs to be at least 6 characters!";
     }
     else {
       document.getElementById("div_content_box_main_A11").innerHTML = "";
     }
     
-    if(dnaFile.length < 1 || (ext != "txt")) {
+    if(geneFile.length < 1 || (ext != "txt")) {
       document.getElementById("div_content_box_main_A21").innerHTML = "Please choose a file with valid name and extension.";
     }
     else {
@@ -109,7 +109,7 @@ function check_upload() { // Checks for file upload
       var responseText = xmlhttp.responseText;   
     
       if(responseText == "true") { // if there is a gene with the same name!
-        responseText = dnaName + " already exists!";
+        responseText = geneName + " already exists!";
       }
       else {
          responseText = "";
@@ -119,16 +119,16 @@ function check_upload() { // Checks for file upload
     }
   }
   
-  xmlhttp.open("POST","dna_exists.php",true);
+  xmlhttp.open("POST","gene_exists.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("dnaName="+dnaName);
+  xmlhttp.send("geneName="+geneName);
   
   return false;
 }
 
 function word_count() {
-  var x = document.getElementById("dna_notes").value.length;
-  x = document.getElementById("dna_notes").getAttribute("maxlength") - x;
+  var x = document.getElementById("geneNotes").value.length;
+  x = document.getElementById("geneNotes").getAttribute("maxlength") - x;
   document.getElementById("div_content_box_main_B2_wordcount").innerHTML= x + " characters left";;
 }
 
