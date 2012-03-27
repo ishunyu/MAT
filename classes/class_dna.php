@@ -1,5 +1,5 @@
 <?php
-//$LUT = json_decode(file_get_contents("DNAdata\LUT.json"), true);
+//$LUT = json_decode(file_get_contents("classes\LUT.json"), true);
 class DNA_FILE {
   private $formattedFileName = "formatted";
   private $ownerDirectory = "../data\1\\";  //Directory of the member

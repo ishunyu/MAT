@@ -12,35 +12,34 @@ if(count($_POST) == 5) {
   $lastName = mysql_real_escape_string($_POST['lastName']);
   $password1 = md5(mysql_real_escape_string($_POST['password1']));
   $password2 = md5(mysql_real_escape_string($_POST['password2']));
-  $accountName = mysql_real_escape_string(strtolower($_POST['accountName']));
+  $userName = mysql_real_escape_string(strtolower($_POST['userName']));
   
   
-  $query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName'";
+  $query =
+    "SELECT *
+     FROM $tableName_accountstable
+     WHERE userName='$userName'";
   $result = mysql_query($query);
   $count = mysql_num_rows($result);
   
   
   if($count == 0) {
-    $query_insert = "INSERT INTO $tableName_accountstable(ID, Account, Password, Firstname, Lastname, LastDNAID, LastPage, Lastlogin)
-    VALUES(NULL, '$accountName', '$password1', '$firstName', '$lastName', NULL, NULL, NOW())";
+    $query_insert = "INSERT INTO $tableName_accountstable(id, userName, password, firstName, lastName, lastDnaId, lastPage, loginTime, startTime)
+    VALUES(NULL, '$userName', '$password1', '$firstName', '$lastName', NULL, NULL, NOW(), NOW())";
     //echo $query_insert;
     $result_insert = mysql_query($query_insert);
 
-    if($result_insert) {
-      echo "Success!";
-      
-      $get_query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName' and Password='$password1'";
+    if($result_insert) {      
+      $get_query = "SELECT * FROM $tableName_accountstable WHERE userName='$userName' and Password='$password1'";
       $get_result = mysql_query($get_query);
       $row = mysql_fetch_assoc($get_result);
       
       session_start();
-      $_SESSION['Account'] = $accountName;
-      $_SESSION['ID'] = $row['ID'];
-      $_SESSION['Firstname'] = $row['Firstname'];
+      $_SESSION['userName'] = $userName;
+      $_SESSION['id'] = $row['ID'];
+      $_SESSION['firstName'] = $row['firstName'];
 
-      header("location:upload/upload_dna.php");
-      
-      echo "HI!";
+      header("location:upload/upload.php");
     }
     else {
       echo "Failed!";

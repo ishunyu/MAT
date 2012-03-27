@@ -169,3 +169,7 @@
   font-weight: bold;
   text-align: center;
 }
+
+#submit_button_specification {
+  margin-left: 250px;
+}

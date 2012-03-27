@@ -1,7 +1,7 @@
 <?php
 // DNA Lookup Table! :D
 
-$path = "Book1.csv";
+$path = "LUT.csv";
 $fh = fopen($path, "r");
 $LUT = array();
 $labels = array("codon", "3LetterCode", "fullname", "1LetterCode");

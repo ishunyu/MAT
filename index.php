@@ -4,11 +4,11 @@
 	<? include "php_index.php"; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
     <link rel="stylesheet" type="text/css" href="styles/style_index.css">
-    <script type="text/javascript" src="scripts/formCheck.js"></script>
+    <script type="text/javascript" src="scripts/form_check.js"></script>
     
 </head>
   
-  <body alink="#F0F0F0">
+<body alink="#F0F0F0">
     
 <table class="main">
       <tr>
@@ -40,8 +40,8 @@
                             </th>
                           </tr>
                           <tr>
-                            <td class="rightAlign"><span class="regularText">Account Name:</span></td>
-                            <td class="leftAlign"><input type="text" name="accountName"></br></td>
+                            <td class="rightAlign"><span class="regularText">User Name:</span></td>
+                            <td class="leftAlign"><input type="text" name="userName"></br></td>
                           </tr>
                           <tr>
                             <td class="rightAlign"><span class="regularText">Password:</span></td>
@@ -89,8 +89,8 @@
                             <td><input id="reg_password2" type="password" name="password2"></td>
                           </tr>
                           <tr>
-                            <td class="rightAlign"><span class="regularText">Account Name:</span></td>
-                            <td><input id="reg_accountName" type="text" name="accountName"></td>
+                            <td class="rightAlign"><span class="regularText">User Name:</span></td>
+                            <td><input id="reg_accountName" type="text" name="userName"></td>
                           </tr>
                           <tr>
                             <td></td>

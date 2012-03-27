@@ -2,8 +2,7 @@
 $loginSuccess = FALSE; // Variable used for displaying retry message
 
 session_start();
-if(isset($_SESSION['accountName'])) {
-  //echo $_SESSION['accountName']."</br>";
+if(isset($_SESSION['userName'])) {
   header("location:upload/upload_dna.php");
 }
 else {
@@ -19,32 +18,32 @@ if(count($_POST) != 2) {
 
 if(count($_POST) == 2) {
   // username and password sent from form
-  $accountName = $_POST['accountName'];
+  $userName = $_POST['userName'];
   $password = $_POST['password'];
 
   // MySQL injection prevention
-  $accountName = mysql_real_escape_string(strtolower($accountName));
+  $userName = mysql_real_escape_string(strtolower($userName));
   $password = md5(mysql_real_escape_string($password));
 
   // Debug
-  //echo $accountName."</br>";
+  //echo $userName."</br>";
   //echo $password."</br>";
 
   // Query to the database for account info
-  $query = "SELECT * FROM $tableName_accountstable WHERE Account='$accountName' and Password='$password'";
-  $result = mysql_query($query);
-  $row = mysql_fetch_assoc($result);
-  $count = mysql_num_rows($result);
-
+  $userQuery = "SELECT * FROM $tableName_accountstable WHERE userName='$userName' and password='$password'";
+  $userQuery = mysql_query($userQuery) or die("User info query unsuccessful");
+  $count = mysql_num_rows($userQuery);
+  $userQuery = mysql_fetch_assoc($userQuery);
+  
   // Processing Code
   if($count == 1) {
     session_start();
-    $_SESSION['Account'] = $accountName;
-    $_SESSION['ID'] = $row['ID'];
-    $_SESSION['LastDNAID'] = $row['LastDNAID'];
-    $_SESSION['Firstname'] = $row['Firstname'];
+    $_SESSION['userName'] = $userName;
+    $_SESSION['id'] = $userQuery['ID'];
+    $_SESSION['lastDnaId'] = $userQuery['lastDnaId'];
+    $_SESSION['firstName'] = $userQuery['firstName'];
     $loginSuccess = TRUE;
-    header("location:upload/upload_dna.php");
+    header("location:upload/upload.php");
   }
   else {
     //echo "Wrong user name or password!";  //Debug

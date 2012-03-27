@@ -1,10 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
   <head>
-    <? include "php_upload_dna.php" ?>
+    <? include "upload_php.php" ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
     <link rel="stylesheet" type="text/css" href="../styles/style_main.css">
-    <script type="text/javascript" src="../scripts/formCheck.js"></script>
+    <script type="text/javascript" src="../scripts/form_check.js"></script>
   </head>
   
   <body>
@@ -13,7 +13,7 @@
       <div id="div_main">
         <!-- TOP BAR-->
         <div id="div_top_bar" class="shadow">
-          <div id="div_welcome_message" class="text_shadow">Welcome, <? echo $_SESSION['Firstname'] ?>!</div>
+          <div id="div_welcome_message" class="text_shadow">Welcome, <? echo $_SESSION['firstName'] ?>!</div>
           <div class="text_shadow" id="div_logout"><a href="../logout/logout.php">Logout</a></div>
           <div class="text_shadow" id="div_account"><a href="">Account</a></div>
           <div class="text_shadow top_bar_options_selected" id="div_upload"><a href="">Upload</a></div>
@@ -34,14 +34,14 @@
           <div id="div_introduction_box" class="text_shadow">
           <? check_num_genes($tableName_genelisttable); ?>
           </div>
-          <form enctype="multipart/form-data" method="POST" action="uploader.php" onsubmit="return check_upload();" id="upload_dna_form">
+          <form enctype="multipart/form-data" method="POST" action="process_upload.php" onsubmit="return check_upload();" id="upload_dna_form">
             <div id="div_content_box_main">
               <div id="div_content_box_main_A">
                 <div id="div_content_box_main_A1">
                   <span class="content_title_format text_shadow">NAME</span></br>
                   <span class="content_detail_format text_shadow">Please enter a name for your DNA</span>
                   <hr>
-                  <input type="text" name="nameOfDNA" id="dna_name"  maxlength="30" />
+                  <input type="text" name="dnaName" id="dna_name"  maxlength="30" />
                 </div>
                 <div id="div_content_box_main_A11" class="content_detail_format text_shadow">
                 </div>                

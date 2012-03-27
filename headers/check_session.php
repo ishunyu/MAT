@@ -8,7 +8,7 @@ session_start();
 
 
 // If there's not accountName variables, then user is not logged on
-if(!isset($_SESSION['Account'])) {
+if(!isset($_SESSION['userName'])) {
   session_unset();
   
   // Equivalent to logout, clears all sessions
@@ -17,8 +17,5 @@ if(!isset($_SESSION['Account'])) {
   // Redirect to main page
   header("location:../index.php");
 }
-/*
-$query = "SELECT * FROM $tableName_accountstable WHERE Account='$_SESSION[accountName]'";
-$result = mysql_query($query);
-$row = mysql_fetch_assoc($result);*/
+
 ?>

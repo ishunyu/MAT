@@ -8,31 +8,35 @@ $databaseName_geneMutationDatabase="shunyu_database_genemutation"; // Our databa
 $tableName_accountstable="shunyu_table_accounts";  // Table for storing account information
 $tableName_genelisttable="shunyu_table_genes";  // Table for storing gene information
 
-$query_createDatabase = "CREATE DATABASE IF NOT EXISTS $databaseName_geneMutationDatabase";
+$query_createDatabase =
+  "CREATE DATABASE IF NOT EXISTS $databaseName_geneMutationDatabase";
 
-$query_accountstable = "CREATE TABLE IF NOT EXISTS $tableName_accountstable(
-ID INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-Account varchar(32),
-Password varchar(32),
-Firstname varchar(225),
-Lastname varchar(225),
-LastDNAID INT,
-LastPage varchar(225),
-Lastlogin DATETIME
-)";
+$query_accountstable =
+  "CREATE TABLE IF NOT EXISTS $tableName_accountstable(
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    userName varchar(32),
+    password varchar(32),
+    firstName varchar(225),
+    lastName varchar(225),
+    lastDnaId INT,
+    lastPage varchar(225),
+    lastlogin DATETIME,
+    startTime DATETIME
+  )";
 
-$query_genelisttable = "CREATE TABLE IF NOT EXISTS $tableName_genelisttable(
-ID INT NOT NULL AUTO_INCREMENT,
-DNAName varchar(225),
-DNANote text,
-DNAOriginal mediumtext,
-DNAFormatted mediumtext,
-DNA mediumtext,
-Spec text,
-MemberID INT NOT NULL,
-AddedTime DATETIME,
-PRIMARY KEY(ID),
-FOREIGN KEY(MemberID) REFERENCES $tableName_accountstable(ID)
-)";
+$query_genelisttable =
+  "CREATE TABLE IF NOT EXISTS $tableName_genelisttable(
+    id INT NOT NULL AUTO_INCREMENT,
+    dnaName varchar(225),
+    dnaNotes text,
+    dnaOriginal mediumtext,
+    dnaFormatted mediumtext,
+    dna mediumtext,
+    spec text,
+    memberId INT NOT NULL,
+    startTime DATETIME,
+    PRIMARY KEY(id),
+    FOREIGN KEY(memberId) REFERENCES $tableName_accountstable(id)
+  )";
 ?>

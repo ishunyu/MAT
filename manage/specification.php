@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
   <head>
-    <? include "php_specification.php" ?>
+    <? include "specification_php.php" ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
     <link rel="stylesheet" type="text/css" href="../styles/style_main.css">
     <link rel="stylesheet" type="text/css" href="../styles/style_specification.css">
@@ -14,10 +14,10 @@
       <div id="div_main">
         <!-- TOP BAR-->
         <div id="div_top_bar" class="shadow">
-          <div id="div_welcome_message" class="text_shadow">Welcome, <? echo $_SESSION['Firstname']; ?>!</div>
+          <div id="div_welcome_message" class="text_shadow">Welcome, <? echo $_SESSION['userName']; ?>!</div>
           <div class="text_shadow" id="div_logout"><a href="../logout/logout.php">Logout</a></div>
           <div class="text_shadow" id="div_account"><a href="">Account</a></div>
-          <div class="text_shadow" id="div_upload"><a href="../upload/upload_dna.php">Upload</a></div>
+          <div class="text_shadow" id="div_upload"><a href="../upload/upload.php">Upload</a></div>
           <div class="text_shadow top_bar_options_selected" id="div_manage"><a href="">Manage</a></div>
           <!-- NAV BAR-->
           <div id="div_nav">
@@ -33,9 +33,9 @@
         <!-- CONTENT-->
         <div id="div_content_box_specification" class="shadow text_shadow ">
           <div id="div_specification_title" >
-            <span class="content_title_format"><? echo $DNATitle;?></span>
+            <span class="content_title_format"><? echo $dnaTitle;?></span>
             </br>
-            <span class="content_detail_format"><? echo $showDNA; ?></span>
+            <span class="content_detail_format"><? echo $dna0to30; ?></span>
           </div>
 
           <hr>
@@ -50,7 +50,8 @@
               End
             </div>
           </div>          
-          <form id="specification_form" >
+          <form id="specification_form" method="POST" action="specification_commit_php.php">
+            <? hidden_value($_SESSION['lastDnaId']); ?>
             <div class="div_content_box_specification_row">
               <div class="div_content_box_specification_A1">
                 <select name="type1" class="dna_type" id="type1">
@@ -72,8 +73,8 @@
             <div class="div_content_box_specification_B" id="submit_box">
               <input type="button" value="Add Row" onclick="addRow()" />
               <input type="button" value="Delete Row" onclick="delRow()" />
-            </div>
-            
+              <input type="submit" value="Submit" id="submit_button_specification"/>
+            </div>            
           </form>
         </div>
       </div>

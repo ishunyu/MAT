@@ -73,20 +73,20 @@ function showRegError(s) {
 
 function check_upload() { // Checks for file upload
   var xmlhttp;
-  var titleName = document.getElementById("dna_name").value;  // Get the dna title
-  var fileName = document.getElementById("upload_file_button").value; // Get the file name
-  var ext = fileName.split('.').pop();
+  var dnaName = document.getElementById("dna_name").value;  // Get the dna title
+  var dnaFile = document.getElementById("upload_file_button").value; // Get the file name
+  var ext = dnaFile.split('.').pop();
 
   
-  if(titleName.length < 6 || fileName.length < 1 || (ext != "txt")) { // check to see if title is in range and filename is okay
-    if(titleName.length < 6) {
+  if(dnaName.length < 6 || dnaFile.length < 1 || (ext != "txt")) { // check to see if title is in range and filename is okay
+    if(dnaName.length < 6) {
       document.getElementById("div_content_box_main_A11").innerHTML = "Name needs to be at least 6 characters!";
     }
     else {
       document.getElementById("div_content_box_main_A11").innerHTML = "";
     }
     
-    if(fileName.length < 1 || (ext != "txt")) {
+    if(dnaFile.length < 1 || (ext != "txt")) {
       document.getElementById("div_content_box_main_A21").innerHTML = "Please choose a file with valid name and extension.";
     }
     else {
@@ -109,7 +109,7 @@ function check_upload() { // Checks for file upload
       var responseText = xmlhttp.responseText;   
     
       if(responseText == "true") { // if there is a gene with the same name!
-        responseText = titleName + " already exists!";
+        responseText = dnaName + " already exists!";
       }
       else {
          responseText = "";
@@ -119,9 +119,9 @@ function check_upload() { // Checks for file upload
     }
   }
   
-  xmlhttp.open("POST","upload_checker.php",true);
+  xmlhttp.open("POST","dna_exists.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("titleName="+titleName);
+  xmlhttp.send("dnaName="+dnaName);
   
   return false;
 }
