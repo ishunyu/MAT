@@ -1,17 +1,17 @@
 <?php
 // uploader.php
 
-include "../headers/db_config.php";
-include "../headers/check_session.php";
-include "../classes/class_files.php";
+require_once "../headers/databaseConfig.php";
+require_once "../headers/checkSession.php";
+require_once "../classes/class_files.php";
 
 $geneName = $_POST['geneName'];
 $geneNotes = $_POST['geneNotes'];
 
 // Looking for member ID
 $idQuery =
-  "SELECT * FROM $tableName_accountstable
-   WHERE userName='$_SESSION[userName]'";
+  "SELECT * FROM $accountsTableName
+   WHERE username='$_SESSION[username]'";
 $idQuery = mysql_query($idQuery) or die("Fetching member information unsuccessful.");
 $idQuery = mysql_fetch_assoc($idQuery);
 $id = $idQuery["id"];
@@ -19,7 +19,7 @@ $id = $idQuery["id"];
 // Query the gene list
 $geneListQuery =
   "SELECT *
-   FROM $tableName_genelisttable
+   FROM $geneListTableName
    WHERE geneName='$geneName' AND memberID='$id'";
 $geneListQuery = mysql_query($geneListQuery) or die("Fetching member's gene information unsuccessful.");
 
@@ -34,14 +34,14 @@ else {
 
   // Store information into genelisttable
   $insertDnaQuery =
-    "INSERT INTO $tableName_genelisttable(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, addedTime)
+    "INSERT INTO $geneListTableName(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime)
      VALUES(NULL, '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW())";
   $insertDnaQuery = mysql_query($insertDnaQuery)or die("Inserting gene information unsuccessful.");
   
-   // Retrive DNA ID
+   // Retrive gene ID
   $geneIdQuery =
     "SELECT id
-     FROM $tableName_genelisttable
+     FROM $geneListTableName
      WHERE geneName='$geneName' AND memberId='$id'";
   $geneIdQuery = mysql_query($geneIdQuery);
   $geneIdQuery = mysql_fetch_assoc($geneIdQuery);
@@ -49,7 +49,7 @@ else {
   
   // update User's lastGeneId
   $lastGeneIdQuery =
-    "UPDATE $tableName_accountstable
+    "UPDATE $accountsTableName
      SET lastGeneId='$geneId'
      WHERE id='$id'";
   $lastGeneIdQuery = mysql_query($lastGeneIdQuery) or die("Updating lastGeneId unsuccessful!"."</br>");

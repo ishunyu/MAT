@@ -1,5 +1,5 @@
 <?php
-include "../headers/check_session.php";
+include "../headers/checkSession.php";
 
 //Variables for display
 $gene0to30 = "";
@@ -11,7 +11,7 @@ if(isset($_SESSION['lastGeneId'])) {
   // Query for the working Gene
   $geneQuery = 
     "SELECT geneName, gene 
-     FROM $tableName_genelisttable
+     FROM $geneListTableName
      WHERE id='$geneId'";
   $geneQuery = mysql_query($geneQuery);
   $geneQuery = mysql_fetch_assoc($geneQuery);

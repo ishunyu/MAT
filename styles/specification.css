@@ -13,21 +13,6 @@
   border-color: blue;
 }
 
-#div_content_box_specification {
-  position: absolute;
-  height: auto;
-  width: 700px;
-  background-color: DimGrey;
-  margin-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px; 
-  
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;  
-  border-radius: 15px;
-
-
-}
 
 #div_content_box_specification_top {
   position: relative;

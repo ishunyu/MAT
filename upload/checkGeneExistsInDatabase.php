@@ -1,11 +1,11 @@
 <?php
-include "../headers/check_session.php";
+require_once "../headers/checkSession.php";
 
 $geneName = $_POST['geneName'];
 $id = $_SESSION['id'];
 
 $geneListQuery =
-  "SELECT * FROM $tableName_genelisttable
+  "SELECT * FROM $geneListTableName
    WHERE geneName='$geneName' AND memberId='$id'";
 $geneListQuery = mysql_query($geneListQuery) or die("Fetching member's gene information unsuccessful.");
 

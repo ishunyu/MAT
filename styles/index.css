@@ -1,0 +1,26 @@
+/* Style for index.php*/
+
+
+
+
+form#loginForm {
+  position: relative;
+  width: 300px;
+  
+  margin-left: auto;
+  margin-right: auto;
+
+  border-style: solid;
+  border-width: 0px;
+  border-color: white;
+}
+
+a#notRegistered {
+  float: right;
+}
+
+input#indexSubmitButton {
+  position: relative;
+  margin-left: 100px;
+}
+

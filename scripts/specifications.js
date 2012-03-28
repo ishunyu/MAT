@@ -1,3 +1,6 @@
+// ----- Specifications -----
+
+// Adding a row at the bottom of the specifications page
 function addRow() {
   var f = document.getElementById("specification_form");
   var num = 0;
@@ -97,6 +100,7 @@ function addRow() {
   f.insertBefore(divA,l);
 }
 
+// Beta add row function
 function addRowTest() {
   var f = document.getElementById("specification_form");
   var specRow = document.getElementById("specRow");
@@ -109,6 +113,7 @@ function addRowTest() {
   f.insertBefore(newRow,l);
 }
 
+// Deletes the last row of specifications
 function delRow(){
   var f = document.getElementById("specification_form");
   var num = 0;
@@ -127,7 +132,7 @@ function delRow(){
   }
 }
 
-
+// Automtically checks/unchecks the keep box depending on the type of gene
 function checkCheckbox(row) {
   var keepId = "keep"+row.id.substr(row.id.search(/\d/)); // Getting the id of the checkbox
   var selection = row.options[row.selectedIndex].value; // Getting the value of the dropdown list item
@@ -146,10 +151,19 @@ function checkCheckbox(row) {
   }
 }
 
-function checkNumberInput(keyStroke) {
+// Prevents non-numbers from typing
+function checkInputForNumber(keyStroke) {
   //alert(keyStroke.keyCode);
 
   if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58) && keyStroke.keyCode != 8 && keyStroke.keyCode != 46) {
+     if (keyStroke.preventDefault) {
+         keyStroke.preventDefault();
+     }    
     return false;
   }
 }
+
+
+
+
+

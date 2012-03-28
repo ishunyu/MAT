@@ -1,56 +1,49 @@
-<?php
-$registerSuccess = FALSE; // Variable used for displaying retry message
-$result_insert="";
-
-// Used for signalling try again messages
-if(count($_POST) != 5) {
-  $registerSuccess = TRUE;
-}
-
-if(count($_POST) == 5) {
-  $firstName = mysql_real_escape_string($_POST['firstName']);
-  $lastName = mysql_real_escape_string($_POST['lastName']);
-  $password1 = md5(mysql_real_escape_string($_POST['password1']));
-  $password2 = md5(mysql_real_escape_string($_POST['password2']));
-  $userName = mysql_real_escape_string(strtolower($_POST['userName']));
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
   
+  <link rel="stylesheet" type="text/css" href="../styles/main.css">
+  <link rel="stylesheet" type="text/css" href="../styles/register.css">
+  <script type="text/javascript" src="../scripts/register.js"></script>    
+</head>
   
-  $query =
-    "SELECT *
-     FROM $tableName_accountstable
-     WHERE userName='$userName'";
-  $result = mysql_query($query);
-  $count = mysql_num_rows($result);
+<body class="textShadow"> 
+  <div class="pageTitle">Register
+    <br/>
+    <a href="../index.php" id="login" class="smallLink">Click Here to Login</a>
+    <hr id="divider" class="">
+  </div>
   
+  <div id="inputErrorMessage"></div>
   
-  if($count == 0) {
-    $query_insert = "INSERT INTO $tableName_accountstable(id, userName, password, firstName, lastName, lastGeneId, lastPage, loginTime, startTime)
-    VALUES(NULL, '$userName', '$password1', '$firstName', '$lastName', NULL, NULL, NOW(), NOW())";
-    //echo $query_insert;
-    $result_insert = mysql_query($query_insert);
-
-    if($result_insert) {      
-      $get_query = "SELECT * FROM $tableName_accountstable WHERE userName='$userName' and Password='$password1'";
-      $get_result = mysql_query($get_query);
-      $row = mysql_fetch_assoc($get_result);
-      
-      session_start();
-      $_SESSION['userName'] = $userName;
-      $_SESSION['id'] = $row['ID'];
-      $_SESSION['firstName'] = $row['firstName'];
-
-      header("location:upload/upload.php");
-    }
-    else {
-      echo "Failed!";
-    }
+  <form id="registerForm" name="registerForm"  action="registerCheck.php" onsubmit="return checkRegForm()" method="POST">
+    <div class="formLabel">First Name</div>
+    <input class="inputBoxStyle" id="reg_firstName" type="text" name="firstName" maxlength="255"/>
+    <br/><br/>
     
-  }
-  else if($count == 1) {
-    $registerSuccess = FALSE;
-  }
-  else
-    die('Shouldn\t be here!');  
-}
+    <div class="formLabel">Last Name</div>
+    <input class="inputBoxStyle" id="reg_lastName" type="text" name="lastName" maxlength="225"/>
+    <br/><br/>
+    
+    <div class="formLabel">Password</div>
+    <input class="inputBoxStyle" id="reg_password1" type="password" name="password1" maxlength="225"/>
+    <br/><br/>
+    
+    <div class="formLabel">Repeat Password</div>
+    <input class="inputBoxStyle" id="reg_password2" type="password" name="password2" maxlength="225"/>
+    <br/><br/>
+    
+    <div class="formLabel">Username</div>
+    <td><input class="inputBoxStyle" id="reg_username" type="text" name="username" maxlength="225"/>
+    <br/><br/>
+    
+    <input id="registerSubmitButton" class="submitButton" type="submit" value="Create"/>
+  </form>
+</body>
+</html>
 
-?>
+
+

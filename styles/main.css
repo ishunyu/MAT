@@ -1,9 +1,10 @@
 /* */
 body {
-  margin-top: 1px;
+  margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  background-image: url('../images/background.jpg');
+  background-color: #2298B8; /*Blue hue*/
+  /* background-image: url('../images/background.jpg'); */
 }
 
 body,p,h1,h2,h3,h4,table,td,th,ul,ol,span,text-area,input{
@@ -15,7 +16,21 @@ hr {
   background-color:white;
   height:2px;
   border:none;
+}
 
+input.inputBoxStyle{
+  color: DimGrey;
+  font-size: 25px;
+  width: 300px;
+  
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;  
+  border-radius: 5px 5px 5px 5px;
+}
+
+div.formLabel {
+  font-size:20px;
+  color:white;
 }
 
 .shadow {
@@ -24,24 +39,14 @@ hr {
 box-shadow: 0px 0px 10px 2px #111;
 }
 
-.text_shadow {
+.textShadow {
   text-shadow: 0px 0px 7px #111;
 }
 
-/* */
-ul#nav_bar {
-  list-style-type: none;
-  margin: 0px;
-  padding: 0px;
-  display: block;
-  width: 700px;
-}
-
-li.nav_bar_items {
-  display: list-item;
-  width: 179px;
-  float: left;
-  margin-left: 40px;
+.roundCorners {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;  
+  border-radius: 15px;
 }
 
 a {
@@ -49,66 +54,52 @@ a {
   text-decoration: none;
 }
 
-a.nav_bar_items {
-  background-color: grey;
-  display: block;
+
+
+a.smallLink {
+  position: relative;
+  font-weight: normal;
   
-  width: 100%;  
+  font-size: 12px;
+}
+
+a.smallLink:hover {
+  text-decoration: underline;
+}
+
+div.pageTitle {
+  position: relative;
+  width: 700px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
   
-  font-size: 25px;
-  color: white;
-  text-decoration: none;
-  text-align:center;
-  padding: 10px;
+  text-align: center;
+  font-size:50px;  
+  font-weight:bold;
+  color:white;
   
   border-style: solid;
+  border-width: 0px;
   border-color: white;
-  border-width: 1px;
-  border-bottom-style: none;
-  
-  -moz-border-radius: 15px 15px 0px 0px;
-  -webkit-border-radius: 15px 15px 0px 0px;  
-  border-radius: 15px 15px 0px 0px;
 }
-
-a.nav_bar_items:hover {
-  background-color: DimGrey;
-}
-
-a.nav_bar_items:active {
-  background-color: grey;
-  color: white;
-}
-
-
-
-a#selected {
-  background-color: white;
-  border-style: solid;
-  border-bottom-style: none;
-  color: DimGrey;
-
-}
-
-
-a#selected:hover, a#selected:active  {
-  background-color: white;
-  color: DimGrey;
-}
-
 
 /* Main portion */
-#background_transparent {
+div.topBarBackground {
   position: absolute;
   padding: 0px;
   margin: 0px;
   
-  height: 100%;
+  height: 78px;
   width: 100%;
   
-  background-color: SkyBlue;
-  opacity:0.8;
-  filter:alpha(opacity=80);
+  border-bottom-style:solid;
+  border-bottom-color:yellow;
+  border-bottom-width:4px;
+  
+  background-color: black;
+  opacity:.3;
+  filter:alpha(opacity=30);
 }
 
 #div_main {
@@ -116,100 +107,27 @@ a#selected:hover, a#selected:active  {
   height: auto;
   margin-left:auto;
   margin-right:auto;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 3px;
-  border-bottom-style: none;
-  
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;  
-  border-radius: 15px;
 }
 
-#div_top_bar {
-  position:relative;
-  width: 100%;
-  height: 140px;
-  background-color: DimGrey;
-  
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;  
-  border-radius: 15px;
-}
 
-#div_welcome_message {
-  position: absolute;
-  width: 450px;
-  top: 15px;
-  margin-left: 20px;
-  
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-  
-  padding: 0px;
-}
-
-#div_nav {
-  position: absolute;
-  margin-left: 20px;
-  bottom: 0px;
-  left: -35px;
-}
-
-div.top_bar_options_selected {
-  font-weight: bold;
-}
-
-#div_logout {
-  position: absolute;
-  font-size: 12px;
-  left: 470px;
-  top: 33px;
-}
-#div_account {
-  position: absolute;
-  font-size: 12px;  
-  left: 520px;
-  top: 20px;
-}
-#div_upload {
-  position: absolute;
-  font-size: 12px;
-  left: 580px;
-  top: 33px;
-}
-#div_manage {
-  position: absolute;
-  font-size: 12px;
-  left: 630px;
-  top: 20px;
-}
 
 /* Content */
 #div_content_box_upload {
   position: absolute;
   height: 500px;
   width: 700px;
-  background-color: DimGrey;
   margin-top: 5px;
-  
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;  
-  border-radius: 15px;
 }
 
-#div_content_box {
+div.contentContainer {
   position: absolute;
   height: auto;
   width: 700px;
-  background-color: DimGrey;
   margin-top: 5px;
   
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;  
-  border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
 }
 
 #div_introduction_box {
@@ -375,7 +293,7 @@ div.top_bar_options_selected {
 
 }
 
-input#submit_button {
+input.submitButton {
   width: 100px;
   height: 40px;
   
@@ -397,12 +315,12 @@ input#submit_button {
   border-radius: 10px 10px 10px 10px;
 }
 
-input#submit_button:hover {
-  background-color: DimGrey;
+input.submitButton:hover {
+  background-color: #2298B8;
 }
 
-input#submit_button:active {
-  background-color: pink;
+input.submitButton:active {
+  background-color: grey;
   color: white;
 }
 
