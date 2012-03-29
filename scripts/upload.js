@@ -10,17 +10,17 @@ function check_upload() {
   
   if(geneName.length == 0 || geneFile.length < 4 || (ext != "txt")) { // check to see if title is in range and filename is okay
     if(geneName.length == 0) {
-      document.getElementById("div_content_box_main_A11").innerHTML = "Name needs to be at least 6 characters!";
+      document.getElementById("geneNameWarning").innerHTML = "Name needs to be at least 6 characters!";
     }
     else {
-      document.getElementById("div_content_box_main_A11").innerHTML = "";
+      document.getElementById("geneNameWarning").innerHTML = "";
     }
     
     if(geneFile.length < 4 || (ext != "txt")) {
-      document.getElementById("div_content_box_main_A21").innerHTML = "Please choose a file with valid name and extension.";
+      document.getElementById("uploadFileWarning").innerHTML = "Please choose a file with valid name and extension.";
     }
     else {
-      document.getElementById("div_content_box_main_A21").innerHTML = "";
+      document.getElementById("uploadFileWarning").innerHTML = "";
     }
     return false;
   }
@@ -42,9 +42,9 @@ function check_upload() {
       }
       else {
          responseText = "";
-         document.getElementById("upload_dna_form").submit();
+         document.getElementById("geneUploadForm").submit();
       }      
-      document.getElementById("div_content_box_main_A11").innerHTML=responseText;
+      document.getElementById("geneNameWarning").innerHTML=responseText;
     }
   }
   
@@ -59,5 +59,5 @@ function check_upload() {
 function word_count() {
   var length = document.getElementById("geneNotes").value.length;
   length = document.getElementById("geneNotes").getAttribute("maxlength") - length;
-  document.getElementById("div_content_box_main_B2_wordcount").innerHTML= length + " characters left";;
+  document.getElementById("wordCount").innerHTML= length + " characters left";;
 }

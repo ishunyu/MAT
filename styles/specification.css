@@ -5,8 +5,8 @@
   margin-right:auto;
   
   width: 700px;
-  height: 90px;
-  top: 15px;
+
+  top: 0px;
   
   border-style: solid;
   border-width: 0px;
@@ -14,7 +14,7 @@
 }
 
 
-#div_content_box_specification_top {
+div.specificationLabel {
   position: relative;
   margin-left:20px;
   margin-right:auto;
@@ -33,7 +33,7 @@
   border-color: blue;
 }
 
-#div_content_box_specification_top1 {
+div.specificationLabelA {
   position: absolute;
   margin-left: 0px;
   
@@ -46,7 +46,7 @@
   border-color: blue;
 }
 
-#div_content_box_specification_top2 {
+div.specificationLabelB {
   position: absolute;
   margin-left: 100px;
   
@@ -59,7 +59,7 @@
   border-color: blue;
 }
 
-#div_content_box_specification_top3 {
+div.specificationLabelC {
   position: absolute;
   margin-left: 300px;
   
@@ -72,7 +72,7 @@
   border-color: blue;
 }
 
-#div_content_box_specification_top4 {
+div.specificationLabelD {
   position: absolute;
   margin-left: 500px;
   
@@ -85,7 +85,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_row {
+div.specRow {
   position: relative;
   margin-left:20px;
   margin-right:auto;
@@ -99,7 +99,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_B {
+.specRowB {
   position: relative;
   margin-left:20px;
   margin-right:auto;
@@ -112,7 +112,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_A1 {
+div.specRowA1 {
   position: absolute;
   margin-left: 0px;
   
@@ -125,7 +125,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_A2 {
+div.specRowA2 {
   position: absolute;
   margin-left: 100px;
   
@@ -137,7 +137,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_A3 {
+div.specRowA3 {
   position: absolute;
   margin-left: 300px;
   
@@ -149,7 +149,7 @@
   border-color: blue;
 }
 
-.div_content_box_specification_A4 {
+div.specRowA4 {
   position: absolute;
   margin-left: 500px;  
   
@@ -161,30 +161,34 @@
   border-color: blue;
 }
 
-.gene_type {
+select.geneType {
   width: 100px;
   height: 30px;
   
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: DimGrey;
   
-  background-color: Dimgrey;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;  
+  border-radius: 5px 5px 5px 5px;
+  
+ /*  background-color: #176A81; */
 }
 
-.gene_start_end {
+input.geneStartAndEndMarker {
   height: 30px;
   width: 150px;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  text-align: right;
 }
 
-.gene_keep {
+input.geneCheckbox {
   width: 30px;
   height: 30px;
 }
 
-#submit_button_specification {
+input#specificationSubmitBotton {
   margin-left: 250px;
 }

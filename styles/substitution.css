@@ -1,0 +1,13 @@
+input.substitutionSubmitButton {
+  width: 75px;
+}
+
+input.substitutionInputBox {
+  width: 150px;
+  font-weight: bold;
+  text-align: right;
+}
+
+span#geneAtPosition {
+  
+}

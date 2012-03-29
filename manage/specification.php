@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
   <head>
-    <? include "specificationInc.php" ?>
+    <? require_once "specificationInc.php";
+       require_once "../headers/geneDisplay.php" ?>
     <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
     <link rel="stylesheet" type="text/css" href="../styles/main.css">
     <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
@@ -27,39 +28,40 @@
             <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../insertion/insertion.php">Insertion</a></td>
             <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../deletion/deletion.php">Deletion</a></td>
             <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../upload/upload.php">Upload</a></td>
-            <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../manage/specification.php">Database</a></td>
+            <td class="navBarItem selectedNavBarItem"><a class="navBarItem textShadow" id=""href="../manage/specification.php">Database</a></td>
           </tr>
         </table>
       </div>
 
       <!-- CONTENT-->
-      <div class="contentContainer roundCorners">
-        <div id="div_specification_title" >
-          <span class="content_title_format"><? echo $geneTitle;?></span>
-          </br>
-          <span class="content_detail_format"><? echo $gene0to30; ?></span>
-        </div>
-
+      <div class="generalContentContainer roundCorners">
+        <!-- GENE DISPLAY-->
+        <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
+        <br/>
+        <span class="detailFormat textShadow" ><? echo $gene0to30; ?></span>
         <hr>
-        <div id="div_content_box_specification_top">
-          <div id="div_content_box_specification_top1">
+        
+        <!-- LABEL -->
+        <div class="specificationLabel">
+          <div class="specificationLabelA textShadow">
             Type
           </div>
-          <div id="div_content_box_specification_top2">
+          <div class="specificationLabelB textShadow">
             Start
           </div>
-          <div id="div_content_box_specification_top3">
+          <div class="specificationLabelC textShadow">
             End
           </div>
-          <div id="div_content_box_specification_top4">
+          <div class="specificationLabelD textShadow">
             Keep
           </div>
         </div>          
+        <!-- FORM -->
         <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
           <? hidden_value($_SESSION['lastGeneId']); ?>
-          <div class="div_content_box_specification_row" id="specRow">
-            <div class="div_content_box_specification_A1">
-              <select name="type1" class="gene_type" id="type1" onchange="checkCheckbox(this)">
+          <div class="specRow" id="specRow">
+            <div class="specRowA1">
+              <select name="type1" class="geneType" id="type1" onchange="checkCheckbox(this)">
                 <option value="1">m7G Cap</option>
                 <option value="1">promoter</option>
                 <option value="1">5'URT</option>
@@ -70,20 +72,21 @@
                 <option value="1">other</option>
               </select>
             </div>
-            <div class="div_content_box_specification_A2">
-              <input type="text" name="start1" class="gene_start_end" id="start1" onkeydown="return checkInputForNumber(event)"/>
+            <div class="specRowA2">
+              <input type="text" name="start1" class="geneStartAndEndMarker inputBoxStyle" id="start1" onkeydown="return checkInputForNumber(event)"/>
             </div>
-            <div class="div_content_box_specification_A3">
-              <input type="text" name="end1" class="gene_start_end" id="end1" onkeydown="return checkInputForNumber(event)"/>
+            <div class="specRowA3">
+              <input type="text" name="end1" class="geneStartAndEndMarker inputBoxStyle" id="end1" onkeydown="return checkInputForNumber(event)"/>
             </div>
-            <div class="div_content_box_specification_A4">
-              <input type="checkbox" name="keep1" class="gene_keep" id="keep1" checked="true"/>
+            <div class="specRowA4">
+              <input type="checkbox" name="keep1" class="geneCheckbox" id="keep1" checked="true"/>
             </div>
           </div>
-          <div class="div_content_box_specification_B" id="submit_box">
+          <div class="specRowB" id="submit_box">
             <input type="button" value="Add Row" onclick="addRow()" />
             <input type="button" value="Delete Row" onclick="delRow()" />
-            <input type="submit" value="Submit" id="submit_button_specification"/>
+            <input type="button" value="Clear" onclick="clearRows()" />
+            <input type="submit" value="Submit" id="specificationSubmitBotton"/>
           </div>            
         </form>
       </div>

@@ -1,0 +1,44 @@
+input#uploadSubmitButton {
+  position: relative;
+  margin-top: 7px;
+}
+
+div#uploadTitleBox {
+  position: relative;
+  
+  font: 25px;
+  color: white;
+  margin-top: 5px;
+
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+textarea#geneNotes {
+  width: 350px;
+  height: 150px;
+  max-width: 350px;
+  max-height: 150px;
+  font-size: 15px;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+form#geneUploadForm  {
+  position: relative;
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}
+
+
+span#wordCount {
+  position: relative;
+
+  
+  border-style: solid;
+  border-color: blue;
+  border-width: 0px;
+}

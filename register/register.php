@@ -11,6 +11,7 @@
 </head>
   
 <body class="textShadow"> 
+  <!-- TITLES -->
   <div class="pageTitle">Register
     <br/>
     <a href="../index.php" id="login" class="smallLink">Click Here to Login</a>
@@ -18,25 +19,25 @@
   </div>
   
   <div id="inputErrorMessage"></div>
-  
+  <!-- FORM -->
   <form id="registerForm" name="registerForm"  action="registerCheck.php" onsubmit="return checkRegForm()" method="POST">
-    <div class="formLabel">First Name</div>
+    <span class="formLabel">First Name</span>
     <input class="inputBoxStyle" id="reg_firstName" type="text" name="firstName" maxlength="255"/>
     <br/><br/>
     
-    <div class="formLabel">Last Name</div>
+    <span class="formLabel">Last Name</span>
     <input class="inputBoxStyle" id="reg_lastName" type="text" name="lastName" maxlength="225"/>
     <br/><br/>
     
-    <div class="formLabel">Password</div>
+    <span class="formLabel">Password</span>
     <input class="inputBoxStyle" id="reg_password1" type="password" name="password1" maxlength="225"/>
     <br/><br/>
     
-    <div class="formLabel">Repeat Password</div>
+    <span class="formLabel">Repeat Password</span>
     <input class="inputBoxStyle" id="reg_password2" type="password" name="password2" maxlength="225"/>
     <br/><br/>
     
-    <div class="formLabel">Username</div>
+    <span class="formLabel">Username</span>
     <td><input class="inputBoxStyle" id="reg_username" type="text" name="username" maxlength="225"/>
     <br/><br/>
     

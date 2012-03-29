@@ -18,21 +18,6 @@ hr {
   border:none;
 }
 
-input.inputBoxStyle{
-  color: DimGrey;
-  font-size: 25px;
-  width: 300px;
-  
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;  
-  border-radius: 5px 5px 5px 5px;
-}
-
-div.formLabel {
-  font-size:20px;
-  color:white;
-}
-
 .shadow {
 -moz-box-shadow: 0px 0px 10px 2px #111;
 -webkit-box-shadow: 0px 0px 10px 2px #111;
@@ -53,8 +38,6 @@ a {
   color: white;
   text-decoration: none;
 }
-
-
 
 a.smallLink {
   position: relative;
@@ -112,185 +95,49 @@ div.topBarBackground {
 
 
 /* Content */
-#div_content_box_upload {
-  position: absolute;
-  height: 500px;
-  width: 700px;
-  margin-top: 5px;
-}
-
-div.contentContainer {
+div.generalContentContainer {
   position: absolute;
   height: auto;
   width: 700px;
   margin-top: 5px;
+  
+  padding-left: 7px;
+  padding-right: 7px;
   
   border-style: solid;
   border-width: 1px;
   border-color: white;
 }
 
-#div_introduction_box {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  height: 40px;
-  width: 680px;
-  margin-top: 40px;
-  
-  font: 25px;
-  font-weight: bold;
-  vertical-align: bottom;
-  color: white;
 
-  
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
-}
-
-#div_content_box_main {
-  position: relative;
-  height: 310px;
-  width:680px;
-
-  margin-left: auto;
-  margin-right: auto;
-  
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
-}
-
-#div_content_box_main_A {
-  position: absolute;
-  height: 310px;
+input.inputBoxStyle{
+  color: DimGrey;
+  font-size: 25px;
   width: 300px;
   
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;  
+  border-radius: 5px 5px 5px 5px;
 }
 
-#div_content_box_main_A1 {
-  position: absolute;
-  height: 120px;
-  width: 300px;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 0px;
+span.formLabel {
+  font-size:20px;
+  color:white;
 }
 
-#div_content_box_main_A11 {
-  position: absolute;
-  height: 30px;
-  width: 300px;
-  margin-top: 120px;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 0px;
-}
-
-#div_content_box_main_A2 {
-  position: absolute;
-  height: 130px;
-  width: 300px;
-  margin-top: 150px;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 0px;
-}
-
-#div_content_box_main_A21 {
-  position: absolute;
-  height: 30px;
-  width: 300px;
-  margin-top: 280px;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 0px;
-}
-
-#div_content_box_main_B {
-  position: absolute;
-  height: 500px;
-  width: 370px;
-  margin-left: 310px;
-  
-  border-style: solid;
-  border-color: red;
-  border-width: 0px;
-}
-
-#div_content_box_main_B1 {
-  position: absolute;
-  height: 200px;
-  width: 370px;
-  
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
-}
-
-#div_content_box_main_B2{
-  position: absolute;
-  height: 40px;
-  width: 100px;
-  margin-top: 250px;
-  margin-left:250px;
-  
-  text-align: right;
-  
-  
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
-}
-
-#div_content_box_main_B2_wordcount {
-  position: absolute;
-  height: 40px;
-  width: 250px;
-  margin-top: 250px;
-  margin-left:0px;
-   
-  
-  border-style: solid;
-  border-color: blue;
-  border-width: 0px;
-}
-
-
-.content_title_format {
+span.titleFormat {
   font-size: 40px;
   color: white;
 }
 
-.content_detail_format {
+span.detailFormat {
   font-size: 15px;
   color: white;
 }
 
-#geneNotes {
-  width: 350px;
-  height: 150px;
-  max-width: 350px;
-  max-height: 150px;
-  font-size: 15px;
-  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-}
-
-#geneName {
-  font-size: 20px;
-  maxlength: 30;
-}
-
-#upload_file_button {
-
+span.warningFormat {
+  font-size: 18px;
+  color: white;
 }
 
 input.submitButton {

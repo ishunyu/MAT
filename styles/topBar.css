@@ -29,21 +29,9 @@ a.navBarItem:hover {
   font-size: 24px;
 }
 
-
-a#selected {
-  background-color: white;
-  border-style: solid;
-  border-bottom-style: none;
-  color: DimGrey;
-
+td.selectedNavBarItem {
+  background-color: #2298B8;
 }
-
-
-a#selected:hover, a#selected:active  {
-  background-color: white;
-  color: DimGrey;
-}
-
 
 div.topBar {
   position:relative;

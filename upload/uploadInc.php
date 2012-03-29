@@ -13,7 +13,7 @@ function checkIfGenesExist($my_tableName) {
   
   // Check to see if there's a gene with the same name
   if(mysql_num_rows($geneListQuery) == 0) {
-    echo "Let's get started with a new gene";
+    echo "&nbsp;&nbsp;Let's get started with a new gene!<hr>";
   }
   else {
 

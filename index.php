@@ -15,14 +15,16 @@
 </head>
   
 <body class="textShadow" onload="indexPageLoads();">
+  <!-- TITLE -->
   <div class="pageTitle">Mutation Analysis Tool<hr id="divider" class=""></div>
-
+  
+  <!-- FORM -->
   <form name="inputLogin" action="login/loginCheck.php" method="POST" id="loginForm">
-    <div class="formLabel">Username</div>
+    <span class="formLabel">Username</span>
     <input class="inputBoxStyle" id="username" type="text" name="username" onkeydown="clearIndexPageInputs()"/>
     <br/><br/>
     
-    <div class="formLabel">Password</div>
+    <span class="formLabel">Password</span>
     <input class="inputBoxStyle" id="password" type="password" name="password" onkeydown="clearIndexPageInputs()"/>
     <br/><br/>
     

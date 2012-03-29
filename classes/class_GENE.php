@@ -2,14 +2,21 @@
 //$LUT = json_decode(file_get_contents("classes\LUT.json"), true);
 class gene {
   private $sequence;  // Stores the Gene sequence
+  private $originalSequence;
+  private $lut;
   
   // Constructor with directory link passed in
   function __construct($gene) {
     $this->sequence = $gene;
+    $this->lut = json_decode(file_get_contents("..\classes\LUT.json"), true);
   }
   
   function getGene() {
     return $this->sequence;
+  }
+  
+  function getLut() {
+    return $this->lut;
   }
   
   function getBaseAtIndex($indexOfBase) {
@@ -21,6 +28,11 @@ class gene {
     return $this->sequence[$indexOfBase-1];
   }
   
+  function mutateAtPositionWithNucleotide($position, $nucleotide) {
+    
+  }
+  
+  // Finds the codon with the 
   function getCodonAtIndex($indexOfCodon) {  
     if($indexOfCodon > (strlen($this->sequence)/3) || $indexOfCodon < 1) {
       echo "indexOfCodon out of range";
