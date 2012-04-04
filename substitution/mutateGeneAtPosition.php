@@ -9,11 +9,33 @@ $geneQuery =
 $geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
 $geneQuery = mysql_fetch_assoc($geneQuery);
 
-
+$index = $_POST["index"];
+$base = $_POST["base"];
 $gene = new GENE($geneQuery["gene"]);
-echo $gene->getGene();
-echo var_dump($gene->getLut());
-//echo $_POST["nucleotide"];
+
+$newCodon = $oldCodon = $gene->getCodonAtBaseIndex($index);
+$newCodon[$gene->positionInCodonOfBaseIndex($index) - 1] = $base;
+$rnaMutation = $gene->rnaMutationAtBaseIndexWithBase($index, $base);
+$proteinMutation = $gene->proteinMutationAtBaseIndexWithBase($index, $base);
+
+if($rnaMutation && $proteinMutation) {
+  echo "Position: ".$index."<br/>";
+  echo "Old codon: ".$oldCodon."<br/>";
+  echo "New codon: ".$newCodon."<br/>";
+  echo "Nucleic acid level: ".$rnaMutation."<br/>";
+  echo "Protein level: ".$proteinMutation."<br/>";
+}
+else {
+  echo "Position: <br/>";
+  echo "Old codon: <br/>";
+  echo "New codon: <br/>";
+  echo "Nucleic acid level: <br/>";
+  echo "Protein level: <br/>";
+}
+
+
+//echo var_dump($gene->getLut());
+//echo $_POST["base"];
 
 
 ?>

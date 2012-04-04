@@ -62,7 +62,7 @@ function addRow() {
     textInput1.name = "start" + num;
     textInput1.id = "start" + num;
     textInput1.className = "geneStartAndEndMarker inputBoxStyle";
-    textInput1.type = "text" + num;
+    textInput1.type = "text";
   var textInput2 = document.createElement("input");
     textInput2.onkeydown = function(){return checkInputForNumber(event);};
     textInput2.name = "end" + num;
@@ -75,7 +75,7 @@ function addRow() {
     checkBox.id = "keep" + num;
     checkBox.className = "geneCheckbox";
     checkBox.type = "checkbox";
-    checkBox.checked = true;
+    checkBox.checked = (sel.options[sel.selectedIndex].value == 0) ? false : true;
   
   // ROW ELEMENTS
   var divA1 = document.createElement("div");
@@ -168,5 +168,17 @@ function clearRows() {
   }
 }
 
+function pressedKey(keyStroke) {
+  if(keyStroke.shiftKey && keyStroke.keyCode == "A".charCodeAt(0)) {
+    addRow();
+  }  
+  else if(keyStroke.shiftKey && keyStroke.keyCode == "D".charCodeAt(0)) {
+    delRow();
+  }  
+  else if(keyStroke.shiftKey && keyStroke.keyCode == "C".charCodeAt(0)) {
+    clearRows();
+  }
+}
 
+document.onkeydown = function(){pressedKey(window.event)};
 

@@ -1,30 +1,31 @@
 // Shows the gene info
-function showGeneInfoWithOptionalMutation(keyStroke) {
+function showGeneInfoWithOptionalMutation(keyCode) {
   var input = document.getElementById("subsitutionPositionInput");
   
   // If there's a value in the box
   if(input.value != "") {
     // Number
-    if(keyStroke.keyCode >= 48 && keyStroke.keyCode <= 58) {
-     
+    if(keyCode >= 48 && keyCode <= 58) {
+      resetButton();
     }
-    else if(keyStroke.keyCode ==  "a".charCodeAt(0) || 
-            keyStroke.keyCode ==  "t".charCodeAt(0) ||
-            keyStroke.keyCode ==  "g".charCodeAt(0) ||
-            keyStroke.keyCode ==  "c".charCodeAt(0) ||
-            keyStroke.keyCode ==  "A".charCodeAt(0) ||
-            keyStroke.keyCode ==  "T".charCodeAt(0) ||
-            keyStroke.keyCode ==  "G".charCodeAt(0) ||
-            keyStroke.keyCode ==  "C".charCodeAt(0)){   // Mutation info   
-       
-      setButton(String.fromCharCode(keyStroke.keyCode));
-      sendAjaxForPosition(input.value, String.fromCharCode(keyStroke.keyCode));
+    else if(keyCode ==  "a".charCodeAt(0) || 
+            keyCode ==  "t".charCodeAt(0) ||
+            keyCode ==  "g".charCodeAt(0) ||
+            keyCode ==  "c".charCodeAt(0) ||
+            keyCode ==  "A".charCodeAt(0) ||
+            keyCode ==  "T".charCodeAt(0) ||
+            keyCode ==  "G".charCodeAt(0) ||
+            keyCode ==  "C".charCodeAt(0)){   // Mutation info   
+      
+      resetButton();
+      setButton(String.fromCharCode(keyCode));
+      sendAjaxForPosition(input.value, String.fromCharCode(keyCode));
     }
   }
 }
 
-// Prevents non-numbers from typing
-function sendAjaxForPosition(position, nucleotide) {  
+// Sends the Ajax request
+function sendAjaxForPosition(index, base) {  
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -39,7 +40,7 @@ function sendAjaxForPosition(position, nucleotide) {
     }
   }
   
-  var POSTMessage = "position="+position+"&"+"nucleotide="+nucleotide;
+  var POSTMessage = "index="+index+"&"+"base="+base;
   
   xmlhttp.open("POST","mutateGeneAtPosition.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -48,8 +49,6 @@ function sendAjaxForPosition(position, nucleotide) {
 
 // Prevents non-numbers from typing
 function checkInputForNumber(keyStroke) {
-  resetButton();
-  
   if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58) && keyStroke.keyCode != 8 && keyStroke.keyCode != 46) {
      if (keyStroke.preventDefault) {
          keyStroke.preventDefault();
@@ -59,11 +58,12 @@ function checkInputForNumber(keyStroke) {
   return true;
 }
 
-function setButton(nucleotide) {
+// Sets the button to be shown blue
+function setButton(base) {
   var buttonArray = document.getElementsByTagName("input");
   
   for(i = 0; i < buttonArray.length; i++) {
-    if(buttonArray[i].value == nucleotide) {
+    if(buttonArray[i].value == base) {
       buttonArray[i].style.backgroundColor = "#2298B8";
     }
   }

@@ -21,7 +21,7 @@
 <body>
   <div class="topBarBackground"></div>
   <!-- MAIN-->
-  <div id="div_main">
+  <div id="div_main" >
     <!-- TOP BAR-->
     <div class="topBar" class="">
       <div class="textShadow welcome">Welcome, <? echo $_SESSION['firstName'] ?>!</div>
@@ -49,15 +49,21 @@
       <div class="ContentContainer">
         <form>
         <span class="formLabel"> Choose Position: </span>
-        <input type="text" id="subsitutionPositionInput" name="subsitutionPositionInput" class="inputBoxStyle substitutionInputBox" onkeydown="return checkInputForNumber(event)" onkeyup="showGeneInfoWithOptionalMutation(event)"/>
+        <input type="text" id="subsitutionPositionInput" name="subsitutionPositionInput" class="inputBoxStyle substitutionInputBox" onkeydown="return checkInputForNumber(event)" onkeyup="showGeneInfoWithOptionalMutation(event.keyCode)"/>
         &nbsp;&nbsp;&nbsp;
-        <input type="button" class="submitButton substitutionSubmitButton" value="A" />
-        <input type="button" class="submitButton substitutionSubmitButton" value="T" />
-        <input type="button" class="submitButton substitutionSubmitButton" value="G" />
-        <input type="button" class="submitButton substitutionSubmitButton" value="C" />
+        <input type="button" class="submitButton substitutionSubmitButton" value="A" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+        <input type="button" class="submitButton substitutionSubmitButton" value="T" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+        <input type="button" class="submitButton substitutionSubmitButton" value="G" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+        <input type="button" class="submitButton substitutionSubmitButton" value="C" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
         </form>
       </div>
-      <span id="showInfoAboutGeneAtPosition" class="formLabel">&nbsp;hii<div>
+      <span id="showInfoAboutGeneAtPosition" class="formLabel">
+          Position: <br/>
+          Old codon: <br/>
+          New codon: <br/>
+          Nucleic acid level: <br/>
+          Protein level: <br/>
+      <span>
     </div>
   </div>
 </body>

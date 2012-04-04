@@ -38,11 +38,12 @@ if($userQuery) { // Login success
     "UPDATE $accountsTableName
      SET lastLoginTime=NOW()
      WHERE id='$userQuery[id]'";
-  
-  //die($updateLoginTime);
-  
   $updateLoginTime = mysql_query($updateLoginTime) or die("Update login time unsuccessful");
   
+  // Set cookies
+  //setcookie($username, );
+  
+  // Redirect the user
   $redirectPath =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
     "location:https://localhost/MAT/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/MAT/upload/upload.php";

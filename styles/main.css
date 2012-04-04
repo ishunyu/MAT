@@ -26,6 +26,8 @@ box-shadow: 0px 0px 10px 2px #111;
 
 .textShadow {
   text-shadow: 0px 0px 7px #111;
+
+  
 }
 
 .roundCorners {
@@ -111,7 +113,6 @@ div.generalContentContainer {
 
 
 input.inputBoxStyle{
-  color: DimGrey;
   font-size: 25px;
   width: 300px;
   
