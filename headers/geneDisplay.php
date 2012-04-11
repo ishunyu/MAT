@@ -23,6 +23,7 @@ if(isset($_SESSION['lastGeneId'])) {
   else {
     $gene0to30 = $gene;
   }
+  $gene0to30 = "(".$gene0to30.")";
 }
 
 function hidden_value($geneId) {

@@ -5,5 +5,5 @@ require_once "globalVariables.php";
   $connection = mysql_connect($hostName, $username, $password) or die("Cannot connect to SQL");
 
 // Connect to our database
-  mysql_select_db($MATDatabaseName) or die("Cannot create databse</br>");
+  mysql_select_db($MATDatabaseName) or die("Cannot create database</br>");
 ?>

@@ -29,7 +29,7 @@ if(mysql_num_rows($geneListQuery) > 0) {
 }
 else {
   // Retrieving file from server space
-  $fileData = getDataFromTempFile($_FILES['uploadedFile']['tmp_name']);
+  $fileData = getDataFromTempFile($_FILES['uploadedFile']['tmp_name'], pathinfo($_FILES['uploadedFile']['name'], PATHINFO_EXTENSION));
   $cleanData = cleanUploadedData($fileData);
 
   // Store information into genelisttable
@@ -56,7 +56,7 @@ else {
   
   $_SESSION['lastGeneId'] = $geneId; // Store lastGeneId into as a session variable
   
-  header("location:../manage/specification.php");  
+  header("location:../manage/database.php");  
   
   /*
   // Creates the new client directory

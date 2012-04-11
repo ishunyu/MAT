@@ -26,42 +26,42 @@
         <!-- NAV BAR-->
         <table class="navBar">
           <tr>
+            <td class="navBarItem selectedNavBarItem"><a class="navBarItem textShadow" id=""href="../upload/upload.php">Upload</a></td>
             <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../substitution/substitution.php">Substitution</a></td>
             <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../insertion/insertion.php">Insertion</a></td>
             <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../deletion/deletion.php">Deletion</a></td>
-            <td class="navBarItem selectedNavBarItem"><a class="navBarItem textShadow" id=""href="../upload/upload.php">Upload</a></td>
-            <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../manage/specification.php">Database</a></td>
+            <td class="navBarItem"><a class="navBarItem textShadow" id=""href="../manage/database.php">Database</a></td>
           </tr>
         </table>
       </div>
       <!-- CONTENT-->
       <div class="generalContentContainer roundCorners">
-        <span id="uploadTitleBox" class="textShadow">
+        <span id="uploadTitleBox" class="warningFormat textShadow">
         <? checkIfGenesExist($geneListTableName); ?>
         </span>
         <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="processUserFile.php" onsubmit="return check_upload();">
-          <span class="titleFormat textShadow">NAME</span><br/>
-          <span class="detailFormat textShadow">Please enter a name for your DNA</span>
+          <span class="titleFormat textShadow">Sequence Identifier</span><br/>
+          <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence. This is for your reference only.</span>
           <hr>
           <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30" />            
           <span id="geneNameWarning" class="warningFormat textShadow"></span>
           <br/><br/>
           
-          <span class="titleFormat textShadow">UPLOAD</span><br/>
-          <span class="detailFormat textShadow">Please upload the DNA sequence in ".txt" format</span>
+          <span class="titleFormat textShadow">Upload</span><br/>
+          <span class="detailFormat textShadow">Currently accepted sequence file format: TXT, FASTA</span>
           <hr>
           <input type="file" name="uploadedFile" id="uploadedFile"/>
           <span id="uploadFileWarning" class="warningFormat textShadow"></span>
           <br/><br/>
           
-          <span class="titleFormat textShadow">NOTES</span><br/>
+          <span class="titleFormat textShadow">Notes</span><br/>
           <span class="detailFormat textShadow">Jot down any notes for yourself</span>
           <hr>
-          <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count();"></textarea>
+          <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count_popup(event);"></textarea>
           <br/>
           
-          <span id="wordCount" class="detailFormat textShadow" >65535 characters left</span><br/>
-          <input type="submit" value="Submit!" id="uploadSubmitButton" class="submitButton"/>         
+          <!--span id="wordCount" class="detailFormat textShadow" >65535 characters left</span><br/-->
+          <input type="submit" value="Save" id="uploadSubmitButton" class="submitButton"/>         
         </form>
         
       </div>

@@ -6,9 +6,9 @@ function check_upload() {
   var geneName = document.getElementById("geneName").value;  // Get the dna title
   var geneFile = document.getElementById("uploadedFile").value; // Get the file name
   var ext = geneFile.split('.').pop();
-
+  ext = ext.toLowerCase();
   
-  if(geneName.length == 0 || geneFile.length < 4 || (ext != "txt")) { // check to see if title is in range and filename is okay
+  if(geneName.length == 0 || geneFile.length < 4 || !(ext == "txt" || ext == "fasta")) { // check to see if title is in range and filename is okay
     if(geneName.length == 0) {
       document.getElementById("geneNameWarning").innerHTML = "Name needs to be at least 6 characters!";
     }
@@ -60,4 +60,18 @@ function word_count() {
   var length = document.getElementById("geneNotes").value.length;
   length = document.getElementById("geneNotes").getAttribute("maxlength") - length;
   document.getElementById("wordCount").innerHTML= length + " characters left";;
+}
+
+function word_count_popup(event) {
+  var length = document.getElementById("geneNotes").value.length;
+  var maxlength = document.getElementById("geneNotes").getAttribute("maxlength");
+  if(length == maxlength) {
+    if(event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    
+    if(event.keyCode < 37  || event.keyCode > 40) {
+      alert("Sorry! The max number of characters is " + maxlength + ".");
+    }
+  }
 }

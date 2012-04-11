@@ -121,7 +121,7 @@ input.inputBoxStyle{
   border-radius: 5px 5px 5px 5px;
 }
 
-span.formLabel {
+.formLabel {
   font-size:20px;
   color:white;
 }

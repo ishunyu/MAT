@@ -1,8 +1,12 @@
 <?php
-	function getDataFromTempFile($path) {
-		$fileHandle = fopen($path, "r");	// Creates the file pointer
+	function getDataFromTempFile($path, $extension) {
+		$fileHandle = fopen($path, "r");	// Creates the file pointer		
+
+    if(strtolower($extension) == "fasta") { // The case where the extension is .fasta
+      fgets($fileHandle);
+    }
 		$fileData = fread($fileHandle, fileSize($path));	// Imports the data from file
-		
+
 		return $fileData;
 	}
 	

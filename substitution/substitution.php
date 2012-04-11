@@ -29,11 +29,11 @@
       <!-- NAV BAR-->
       <table class="navBar">
         <tr>
+          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../upload/upload.php">Upload</a></td>
           <td class="navBarItem selectedNavBarItem"><a class="navBarItem textShadow" id="" href="../substitution/substitution.php">Substitution</a></td>
           <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../insertion/insertion.php">Insertion</a></td>
           <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../deletion/deletion.php">Deletion</a></td>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../upload/upload.php">Upload</a></td>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../manage/specification.php">Database</a></td>
+          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../manage/database.php">Database</a></td>
         </tr>
       </table>
     </div>

@@ -149,7 +149,18 @@ function checkCheckbox(row) {
 function checkInputForNumber(keyStroke) {
   //alert(keyStroke.keyCode);
 
-  if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58) && keyStroke.keyCode != 8 && keyStroke.keyCode != 46) {
+  if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58)
+     && keyStroke.keyCode != 8 // Backspace
+     && keyStroke.keyCode != 46 // Delete
+     && keyStroke.keyCode != 9  // Tab
+     && !(keyStroke.ctrlKey && 
+          (keyStroke.keyCode == 65 // ctrl + A
+          || keyStroke.keyCode == 67 // ctrl + C
+          || keyStroke.keyCode == 88 // ctrl + X
+          || keyStroke.keyCode == 86 // ctrl + V
+          )
+         )
+    ) {
      if (keyStroke.preventDefault) {
          keyStroke.preventDefault();
      }    
