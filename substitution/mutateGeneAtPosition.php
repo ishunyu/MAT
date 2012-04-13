@@ -22,6 +22,7 @@ if($rnaMutation && $proteinMutation) {
   echo "Position: ".$index."<br/>";
   echo "Old codon: ".$oldCodon."<br/>";
   echo "New codon: ".$newCodon."<br/>";
+  echo "<hr>";
   echo "Nucleic acid level: ".$rnaMutation."<br/>";
   echo "Protein level: ".$proteinMutation."<br/>";
 }

@@ -60,7 +60,7 @@
       <span id="showInfoAboutGeneAtPosition" class="formLabel">
           Position: <br/>
           Old codon: <br/>
-          New codon: <br/>
+          New codon: <br/><hr>
           Nucleic acid level: <br/>
           Protein level: <br/>
       <span>
