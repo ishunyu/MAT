@@ -39,11 +39,8 @@
       <!-- GENE DISPLAY-->
       <span class="titleFormat textShadow" >Sequences</span>
       <hr>
-      <table>
+      <table id="catalogTable">
       <!-- LABEL -->
-        <tr>
-          <td class="formLabel textShadow centeredTable">Name</td>
-        </tr>
         <? drawRows(); ?>
       </table>
     </div>

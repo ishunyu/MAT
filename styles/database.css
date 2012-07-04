@@ -2,3 +2,12 @@ td.centeredTable {
   vertical-align: center;
   text-align: center;
 }
+
+td.labelColumn {
+  width: 80%;
+}
+
+table#catalogTable {
+	width: 100%;
+	
+}
