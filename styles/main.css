@@ -141,6 +141,11 @@ span.warningFormat {
   color: white;
 }
 
+.rightAligned {
+  margin-left: 50px;  
+  position: relative;
+}
+
 input.submitButton {
   width: 100px;
   height: 40px;

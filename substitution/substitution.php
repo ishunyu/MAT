@@ -2,7 +2,8 @@
 <html>
 <head>
   <? require_once "../headers/checkSession.php";
-     require_once "../headers/geneDisplay.php" ?>
+     require_once "../headers/geneDisplay.php";
+     require_once "../headers/topBar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   
   <!-- FAVICON -->
@@ -22,21 +23,7 @@
   <div class="topBarBackground"></div>
   <!-- MAIN-->
   <div id="div_main" >
-    <!-- TOP BAR-->
-    <div class="topBar" class="">
-      <div class="textShadow welcome">Welcome, <? echo $_SESSION['firstName'] ?>!</div>
-      <a href="../logout/logout.php" class="textShadow smallLink logout">Logout</a>
-      <!-- NAV BAR-->
-      <table class="navBar">
-        <tr>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../upload/upload.php">Upload</a></td>
-          <td class="navBarItem selectedNavBarItem"><a class="navBarItem textShadow" id="" href="../substitution/substitution.php">Substitution</a></td>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../insertion/insertion.php">Insertion</a></td>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../deletion/deletion.php">Deletion</a></td>
-          <td class="navBarItem"><a class="navBarItem textShadow" id="" href="../manage/database.php">Database</a></td>
-        </tr>
-      </table>
-    </div>
+  <? topBar("substitution"); ?> 
     
     <!-- CONTENT-->
     <div class="generalContentContainer roundCorners">
