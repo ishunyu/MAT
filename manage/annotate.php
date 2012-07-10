@@ -12,7 +12,7 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
-  <script type="text/javascript" src="../scripts/specifications.js"></script>
+  <script type="text/javascript" src="../scripts/annotation.js"></script>
 </head>
 
 <body>
