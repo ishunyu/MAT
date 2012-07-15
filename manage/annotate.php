@@ -43,7 +43,8 @@
         <div class="specificationLabelD textShadow">
           Keep
         </div>
-      </div>          
+      </div> 
+		<? //echo $_GET['geneID']?>
       <!-- FORM -->
       <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
         <? hidden_value($_SESSION['lastGeneId']); ?>

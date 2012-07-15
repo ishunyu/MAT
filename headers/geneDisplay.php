@@ -3,8 +3,8 @@
 $gene0to30 = "";
 $geneTitle = "Upload a new Gene";
 
-if(isset($_SESSION['lastGeneId'])) {
-  $geneId = $_SESSION['lastGeneId'];	// The latest Gene being worked on
+if(isset($_GET['geneID'])) {
+  $geneId = $_GET['geneID'];	// The latest Gene being worked on
   
   // Query for the working Gene
   $geneQuery = 
