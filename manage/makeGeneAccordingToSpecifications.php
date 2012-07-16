@@ -36,6 +36,8 @@ $updateGeneQuery =
 $updateGeneQuery = mysql_query($updateGeneQuery) or die("Gene could not be stored");
 
 echo $gene;
+
+header("location:success.php"); 
 ?>
 
 

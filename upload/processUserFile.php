@@ -56,7 +56,7 @@ else {
   
   $_SESSION['lastGeneId'] = $geneId; // Store lastGeneId into as a session variable
   
-  header("location:../manage/database.php");  
+  header("location:../manage/catalog.php");  
   
   /*
   // Creates the new client directory
