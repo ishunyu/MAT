@@ -1,5 +1,9 @@
 *.xls
 log
-projectTask.txt
-temp
-mat_test
+MAT.pdf
+.settings/
+.project
+.classpath
+src/
+WebContent/
+test
