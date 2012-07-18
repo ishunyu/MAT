@@ -30,20 +30,25 @@
       <hr>
       
       <!-- LABEL -->
-      <div class="specificationLabel">
-        <div class="specificationLabelA textShadow">
-          Feature
-        </div>
-        <div class="specificationLabelB textShadow">
-          Start
-        </div>
-        <div class="specificationLabelC textShadow">
-          End
-        </div>
-        <div class="specificationLabelD textShadow">
-          Keep
-        </div>
-      </div> 
+      <table class="specificationLabel">
+      	<tr>
+	        <td class="specificationLabelA textShadow">
+	          Feature
+	        </td>
+	        <td class="specificationLabelB textShadow">
+	          Id
+	        </td>
+	        <td class="specificationLabelC textShadow">
+	          Start
+	        </td>
+	        <td class="specificationLabelD textShadow">
+	          End
+	        </td>
+	        <td class="specificationLabelE textShadow">
+	          Keep
+	        </td>
+        </tr>
+      </table> 
 
       <!-- FORM -->
       <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">

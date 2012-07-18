@@ -1,4 +1,3 @@
-
 #div_specification_title {
   position: relative;
   margin-left:auto;
@@ -14,11 +13,7 @@
 }
 
 
-div.specificationLabel {
-  position: relative;
-  margin-left:20px;
-  margin-right:auto;
-  
+table.specificationLabel {
   width: 700px;
   height: 40px;
   color: white;

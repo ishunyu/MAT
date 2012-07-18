@@ -7,8 +7,8 @@
 		  <!-- NAV BAR-->
 		  <table class="navBar">
 			<tr>
-			  <td class="navBarItem <? if($page == "catalog") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../manage/catalog.php">Catalog</a></td>
-			  <td class="navBarItem <? if($page == "annotate") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../manage/annotate.php">Annotate</a></td>
+			  <td class="navBarItem <? if($page == "catalog") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../catalog/catalog.php">Catalog</a></td>
+			  <td class="navBarItem <? if($page == "annotate") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../annotate/annotate.php">Annotate</a></td>
 			  <td class="navBarItem <? if($page == "mutate") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../mutate/mutate.php">Mutate</a></td>			  
 			</tr>
 		  </table>

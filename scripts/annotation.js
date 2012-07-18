@@ -5,7 +5,7 @@ function addRow() {
   // RETRIEVE NUMBER OF ROWS
   var f = document.getElementById("specification_form");
   var num = 0;
-  for(i = 0; i < f.length; i++) {
+  for(var i = 0; i < f.length; i++) {
     if(f.childNodes[i] && f.childNodes[i].tagName == "DIV"){
       num++;
     }    
@@ -174,7 +174,7 @@ function checkInputForNumber(keyStroke) {
 function clearRows() {
   var x = document.getElementsByTagName("input");
   
-  for(i = 0; i < x.length; i++) {
+  for(var i = 0; i < x.length; i++) {
     if(x[i].type == "text") {
       x[i].value = "";
     }
@@ -193,5 +193,5 @@ function pressedKey(keyStroke) {
   }
 }
 
-document.onkeydown = function(){pressedKey(window.event)};
+document.onkeydown = function(){pressedKey(window.event);};
 
