@@ -20,13 +20,13 @@
   <!-- MAIN-->
   <div id="div_main">
     <!-- TOP BAR-->      
-    <? topBar("catalog") ?>
+    <? topBar("annotate") ?>
 
     <!-- CONTENT-->
     <div class="generalContentContainer roundCorners">
-      <!-- GENE DISPLAY-->
-      <span class="titleFormat textShadow" >Annotations</span>      
-      <span class="detailFormat textShadow rightAligned" ><? echo $geneTitle;?> <? echo $gene0to30; ?></span>
+    <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
+      <!-- GENE DISPLAY-->     
+      <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
       <hr>
       
       <!-- LABEL -->
@@ -44,7 +44,7 @@
           Keep
         </div>
       </div> 
-		<? //echo $_GET['geneID']?>
+
       <!-- FORM -->
       <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
         <? hidden_value($_SESSION['lastGeneId']); ?>
@@ -78,6 +78,11 @@
           <input type="submit" value="Submit" id="specificationSubmitBotton"/>
         </div>            
       </form>
+      <? }
+         else { ?>
+          <a class="normalLink" href="../upload/upload.php">
+            <span class="titleFormat textShadow" >Please upload a DNA Sequence</span> </a>
+      <? } ?>
     </div>
   </div>
 </body>

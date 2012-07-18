@@ -7,11 +7,9 @@
 		  <!-- NAV BAR-->
 		  <table class="navBar">
 			<tr>
-			  <td class="navBarItem <? if($page == "upload") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../upload/upload.php">Upload</a></td>
-			  <td class="navBarItem <? if($page == "substitution") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../substitution/substitution.php">Substitution</a></td>
-			  <td class="navBarItem <? if($page == "insertion") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../insertion/insertion.php">Insertion</a></td>
-			  <td class="navBarItem <? if($page == "deletion") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../deletion/deletion.php">Deletion</a></td>
 			  <td class="navBarItem <? if($page == "catalog") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../manage/catalog.php">Catalog</a></td>
+			  <td class="navBarItem <? if($page == "annotate") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../manage/annotate.php">Annotate</a></td>
+			  <td class="navBarItem <? if($page == "mutate") echo "selectedNavBarItem" ?>"><a class="navBarItem textShadow" id="" href="../mutate/mutate.php">Mutate</a></td>			  
 			</tr>
 		  </table>
 		</div>

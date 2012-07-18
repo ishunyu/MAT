@@ -2,10 +2,15 @@
 //Variables for display
 $gene0to30 = "";
 $geneTitle = "Upload a new Gene";
+$geneId = "";
 
-if(isset($_GET['geneID'])) {
+if(isset($_GET['geneID']))
   $geneId = $_GET['geneID'];	// The latest Gene being worked on
+
+if(isset($_SESSION['lastGeneId']))
+  $geneId = $_SESSION['lastGeneId'];  
   
+if($geneId != "") {
   // Query for the working Gene
   $geneQuery = 
     "SELECT geneName, gene 

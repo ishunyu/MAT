@@ -1,0 +1,14 @@
+input.mutateButton {
+  width: 120px;
+  margin-left: 5px;
+  margin-top: 7px;
+  background-color: #2298B8;
+}
+
+input.mutateButton:hover {
+  background-color: grey;
+}
+
+input.mutateButtonActive {
+  background-color: grey;
+}

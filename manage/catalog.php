@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
-  <link rel="stylesheet" type="text/css" href="../styles/database.css">
+  <link rel="stylesheet" type="text/css" href="../styles/catalog.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
@@ -25,7 +25,8 @@
     <div class="generalContentContainer roundCorners">
       <!-- GENE DISPLAY-->
       <span class="titleFormat textShadow" >Sequences</span>
-      <hr>
+      <a href="../upload/upload.php">
+        <input class="submitButton normalButton" id="" type = "button" value = "Upload" /> </a>
       <table id="catalogTable">
       <!-- LABEL -->
         <? drawRows(); ?>

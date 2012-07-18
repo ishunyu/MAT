@@ -20,14 +20,15 @@
     <div class="topBarBackground"></div>
     <!-- MAIN-->
     <div id="div_main">
-      <? topBar("upload"); ?> 
+      <? topBar("catalog"); ?> 
       <!-- CONTENT-->
       <div class="generalContentContainer roundCorners">
-        <span id="uploadTitleBox" class="warningFormat textShadow">
-        <? checkIfGenesExist($geneListTableName); ?>
-        </span>
+        
         <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="processUserFile.php" onsubmit="return check_upload();">
-          <span class="titleFormat textShadow">Sequence Identifier</span><br/>
+          <span class="titleFormat textShadow">Sequence Identifier</span>
+          <a href="../manage/catalog.php">
+            <input class="submitButton normalButton" id="" type = "button" value = "Catalog" /> </a>
+          <br/>
           <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence. This is for your reference only.</span>
           <hr>
           <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30" />            
