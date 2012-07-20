@@ -16,10 +16,10 @@ $gene = new GENE($geneQuery["gene"]);
 $newCodon = $oldCodon = $gene->getCodonAtBaseIndex($index);
 $newCodon[$gene->positionInCodonOfBaseIndex($index) - 1] = $base;
 $rnaMutation = $gene->rnaMutationAtBaseIndexWithBase($index, $base);
-$proteinMutation = $gene->proteinMutationAtBaseIndexWithBase($index, $base);
+$proteinMutation = $gene->proteinMutationAtBaseIndexWithBase($index, $base);  
 
 if($rnaMutation && $proteinMutation) {
-  echo "Position: ".$index."<br/>";
+  echo "Base: ".$index."<br/>";
   echo "Old codon: ".$oldCodon."<br/>";
   echo "New codon: ".$newCodon."<br/>";
   echo "<hr>";
@@ -27,7 +27,7 @@ if($rnaMutation && $proteinMutation) {
   echo "Protein level: ".$proteinMutation."<br/>";
 }
 else {
-  echo "Position: <br/>";
+  echo "Base: <br/>";
   echo "Old codon: <br/>";
   echo "New codon: <br/>";
   echo "Nucleic acid level: <br/>";

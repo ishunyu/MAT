@@ -20,7 +20,7 @@
   <script type="text/javascript" src="../scripts/substitution.js"></script>
 </head>
 
-<body>
+<body onkeydown="return checkInputForNumber(event)">
   <div class="topBarBackground"></div>
   <!-- MAIN-->
   <div id="div_main" >
@@ -38,23 +38,21 @@
         </div>
         </br>        
         <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
-        <br/>
-        <span class="detailFormat textShadow" ><? echo $gene0to30; ?></span>
         <hr>
         
         <div class="ContentContainer">
           <form>
-          <span class="formLabel"> Choose Position: </span>
-          <input type="text" id="subsitutionPositionInput" name="subsitutionPositionInput" class="inputBoxStyle substitutionInputBox" onkeydown="return checkInputForNumber(event)" onkeyup="showGeneInfoWithOptionalMutation(event.keyCode)"/>
-          &nbsp;&nbsp;&nbsp;
-          <input type="button" class="submitButton substitutionSubmitButton" value="A" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-          <input type="button" class="submitButton substitutionSubmitButton" value="T" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-          <input type="button" class="submitButton substitutionSubmitButton" value="G" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-          <input type="button" class="submitButton substitutionSubmitButton" value="C" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+            <span class="formLabel"> Choose Base: </span>
+            <input type="text" id="subsitutionPositionInput" name="subsitutionPositionInput" class="inputBoxStyle substitutionInputBox" onkeyup="showGeneInfoWithOptionalMutation(event.keyCode)"/>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="submitButton substitutionSubmitButton" value="A" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+            <input type="button" class="submitButton substitutionSubmitButton" value="T" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+            <input type="button" class="submitButton substitutionSubmitButton" value="G" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
+            <input type="button" class="submitButton substitutionSubmitButton" value="C" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/> 
           </form>
         </div>
         <span id="showInfoAboutGeneAtPosition" class="formLabel">
-            Position: <br/>
+            Base: <br/>
             Old codon: <br/>
             New codon: <br/><hr>
             Nucleic acid level: <br/>

@@ -19,9 +19,9 @@ function drawRows() {
   $dnaListQuery = mysql_query($dnaListQuery);    
   
   while($dnaList = mysql_fetch_assoc($dnaListQuery)) {
-    echo "<tr>";
+  echo "<tr>";
 	echo td($dnaList['geneName'], "formLabel textShadow labelColumn");
-	echo td(a("Mutate","#")."&nbsp&nbsp&nbsp&nbsp".a("Annotate","../annotate/annotate.php?geneID=".strval($dnaList['id'])), "detailFormat textShadow");
+	echo td(a("Mutate","../mutate/mutate.php?geneID=".strval($dnaList['id']))."&nbsp&nbsp&nbsp&nbsp".a("Annotate","../annotate/annotate.php?geneID=".strval($dnaList['id'])), "detailFormat textShadow");
 	echo "</tr>";
   }
 }

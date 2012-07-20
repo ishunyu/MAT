@@ -41,13 +41,16 @@ class gene {
       return false;
     } 
     
-    $newCodon = $originalCodon = $this->getCodonAtBaseIndex($indexOfBase);
-    $newCodon[$this->positionInCodonOfBaseIndex($indexOfBase) - 1] = $base;
+    $newCodon = $originalCodon = $this->getCodonAtBaseIndex($indexOfBase);  // Get the codon
+    $newCodon[$this->positionInCodonOfBaseIndex($indexOfBase) - 1] = $base; // Get the position within codon and change new codon
     
-    $originalProtein = $this->lut[$originalCodon]["3LetterCode"];
-    $newCodon = $this->lut[$newCodon]["3LetterCode"];
+    $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
+    $newProtein = $this->lut[$newCodon]["3LetterCode"];
     
-    $protienMutation = "p.".$originalProtein.$indexOfBase.$newCodon;
+    if($originalProtein == $newProtein) // Silent mutation
+      return "See Nucleic acid level.";
+    
+    $protienMutation = "p.".$originalProtein.$indexOfBase.$newProtein;
     
     return $protienMutation;
   }
@@ -58,7 +61,15 @@ class gene {
       return false;
     } 
     
+    $newCodon = $originalCodon = $this->getCodonAtBaseIndex($indexOfBase);  // Get the codon
+    $newCodon[$this->positionInCodonOfBaseIndex($indexOfBase) - 1] = $base; // Get the position within codon and change new codon
+    
+    $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
+    $newProtein = $this->lut[$newCodon]["3LetterCode"];        
+    
     $rnaMutation = "c.".$indexOfBase.$this->sequence[$indexOfBase-1].">".$base;
+    if($originalProtein == $newProtein) // Silent mutation
+      $rnaMutation = $rnaMutation." (p.(=))";
 
     return $rnaMutation;
   }

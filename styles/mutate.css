@@ -12,3 +12,7 @@ input.mutateButton:hover {
 input.mutateButtonActive {
   background-color: grey;
 }
+
+input.substitutionInputBox {
+  width: 415px;  
+}
