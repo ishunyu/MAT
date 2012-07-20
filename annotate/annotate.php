@@ -28,59 +28,57 @@
       <hr>
       
       <!-- LABEL -->
-      <table class="specificationLabel">
+      <table class="annotationTable" id="annotationTable">
       	<tr>
-	        <td class="specificationLabelA textShadow">
+	        <td class="textShadow">
 	          Feature
 	        </td>
-	        <td class="specificationLabelB textShadow">
+	        <td class="textShadow">
 	          Id
 	        </td>
-	        <td class="specificationLabelC textShadow">
+	        <td class="textShadow">
 	          Start
 	        </td>
-	        <td class="specificationLabelD textShadow">
+	        <td class="textShadow">
 	          End
 	        </td>
-	        <td class="specificationLabelE textShadow">
+	        <td class="textShadow">
 	          Keep
 	        </td>
         </tr>
-      </table> 
 
-      <!-- FORM -->
-      <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
-        <? hidden_value($_SESSION['lastGeneId']); ?>
-        <div class="specRow" id="specRow">
-          <div class="specRowA1">
-            <select name="type1" class="geneType" id="type1" onchange="checkCheckbox(this)">
-              <option value="1">m7G Cap</option>
-              <option value="1">promoter</option>
-              <option value="1">5'URT</option>
-              <option value="1">Exon</option>
-              <option value="0">Intron</option>
-              <option value="1">3'URT</option>
-              <option value="1">Poly(A) tail</option>
-              <option value="1">other</option>
-            </select>
+        <!-- FORM -->
+        <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
+          <? hidden_value($geneId); ?>
+          <tr class="specRow" id="specRow">
+            <td class="feature">
+              <select name="type1" class="geneType" id="type1" onchange="checkCheckbox(this)">
+                <option value="1">m7G Cap</option>
+                <option value="1">promoter</option>
+                <option value="1">5'URT</option>
+                <option value="1">Exon</option>
+                <option value="0">Intron</option>
+                <option value="1">3'URT</option>
+                <option value="1">Poly(A) tail</option>
+                <option value="1">other</option>
+              </select></td>
+            <td class="id">
+              <input type="text" name="id1" class="idInputBox inputBoxStyle" id="id1" /></td>
+            <td class="start">
+              <input type="text" name="start1" class="geneStartAndEndMarker inputBoxStyle" id="start1" onkeydown="return checkInputForNumber(event)"/></td>
+            <td class="end">
+              <input type="text" name="end1" class="geneStartAndEndMarker inputBoxStyle" id="end1" onkeydown="return checkInputForNumber(event)"/></td>
+            <td class="keep">
+              <input type="checkbox" name="keep1" class="geneCheckbox" id="keep1" checked="true"/></td>
+          </tr>
+        </form>
+      </table>
+          <div class="submitBox" id="submit_box">
+            <input type="button" value="Add Row" onclick="addRow()" />
+            <input type="button" value="Delete Row" onclick="delRow()" />
+            <input type="button" value="Clear" onclick="clearRows()" />
+            <input type="submit" value="Submit" id="specificationSubmitBotton"/>
           </div>
-          <div class="specRowA2">
-            <input type="text" name="start1" class="geneStartAndEndMarker inputBoxStyle" id="start1" onkeydown="return checkInputForNumber(event)"/>
-          </div>
-          <div class="specRowA3">
-            <input type="text" name="end1" class="geneStartAndEndMarker inputBoxStyle" id="end1" onkeydown="return checkInputForNumber(event)"/>
-          </div>
-          <div class="specRowA4">
-            <input type="checkbox" name="keep1" class="geneCheckbox" id="keep1" checked="true"/>
-          </div>
-        </div>
-        <div class="specRowB" id="submit_box">
-          <input type="button" value="Add Row" onclick="addRow()" />
-          <input type="button" value="Delete Row" onclick="delRow()" />
-          <input type="button" value="Clear" onclick="clearRows()" />
-          <input type="submit" value="Submit" id="specificationSubmitBotton"/>
-        </div>            
-      </form>
       <? }
          else { ?>
           <a class="normalLink" href="../upload/upload.php">

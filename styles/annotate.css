@@ -13,142 +13,26 @@
 }
 
 
-table.specificationLabel {
+table.annotationTable {
   width: 700px;
   height: 40px;
   color: white;
   
   font-size: 20px;
   
-  text-align: center; 
+  text-align: left; 
   
   border-style: solid;
   border-width: 0px;
   border-color: blue;
 }
 
-div.specificationLabelA {
-  position: absolute;
-  margin-left: 0px;
-  
-  width: 100px;
-  height: 100%;
-  padding-top: 10px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specificationLabelB {
-  position: absolute;
-  margin-left: 100px;
-  
-  width: 200px;
-  height: 100%;
-  padding-top: 10px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specificationLabelC {
-  position: absolute;
-  margin-left: 300px;
-  
-  width: 200px;
-  height: 100%;
-  padding-top: 10px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specificationLabelD {
-  position: absolute;
-  margin-left: 500px;
-  
-  width: 100px;
-  height: 100%;
-  padding-top: 10px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specRow {
+div.submitBox {
   position: relative;
-  margin-left:20px;
-  margin-right:auto;
+  margin-left:0px;
   
   width: 700px;
   height: 40px;
-  text-align: center;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-.specRowB {
-  position: relative;
-  margin-left:20px;
-  margin-right:auto;
-  
-  width: 700px;
-  height: 30px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specRowA1 {
-  position: absolute;
-  margin-left: 0px;
-  
-  width: 100px;
-  height: 100%;
-  padding-top: 3px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specRowA2 {
-  position: absolute;
-  margin-left: 100px;
-  
-  width: 200px;
-  height: 100%;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specRowA3 {
-  position: absolute;
-  margin-left: 300px;
-  
-  width: 200px;
-  height: 100%;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-div.specRowA4 {
-  position: absolute;
-  margin-left: 500px;  
-  
-  width: 100px;
-  height: 100%;
   
   border-style: solid;
   border-width: 0px;
@@ -170,9 +54,18 @@ select.geneType {
  /*  background-color: #176A81; */
 }
 
+input.idInputBox {
+  height: 30px;
+  width: 170px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+  
+}
+
 input.geneStartAndEndMarker {
   height: 30px;
-  width: 150px;
+  width: 100px;
   font-size: 20px;
   font-weight: bold;
   text-align: right;
@@ -184,5 +77,5 @@ input.geneCheckbox {
 }
 
 input#specificationSubmitBotton {
-  margin-left: 250px;
+  float: right;
 }

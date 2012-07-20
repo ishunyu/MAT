@@ -1,18 +1,5 @@
-// ----- Specifications -----
-
-// Adding a row at the bottom of the specifications page
-function addRow() {
-  // RETRIEVE NUMBER OF ROWS
-  var f = document.getElementById("specification_form");
-  var num = 0;
-  for(var i = 0; i < f.length; i++) {
-    if(f.childNodes[i] && f.childNodes[i].tagName == "DIV"){
-      num++;
-    }    
-  }
-  
-  //if(num >= 50) return;
-  
+// ----- Annotate -----
+function createSelect(num) {
   // OPTIONS
   var op1 = document.createElement("option");
     op1.value = "1";
@@ -55,22 +42,40 @@ function addRow() {
     sel.appendChild(op7);
     sel.appendChild(op8);
   
+  return sel;
+}
+
+// Adding a row at the bottom of the specifications page
+function addRow() {
+  // RETRIEVE NUMBER OF ROWS
+  var table = document.getElementById("annotationTable");
+  var num = table.rows.length;
+  var row = table.insertRow(num);
+
+  //if(num >= 50) return;
+  var sel = createSelect(num);  
+  
   var previousSelectBox = document.getElementById("type"+(num-1));
   sel.selectedIndex = (previousSelectBox.selectedIndex >= 7) ? 7 : previousSelectBox.selectedIndex+1;
   
   // START AND END MARKERS
-  var textInput1 = document.createElement("input");
-    textInput1.onkeydown = function(){return checkInputForNumber(event);};
-    textInput1.name = "start" + num;
-    textInput1.id = "start" + num;
-    textInput1.className = "geneStartAndEndMarker inputBoxStyle";
-    textInput1.type = "text";
-  var textInput2 = document.createElement("input");
-    textInput2.onkeydown = function(){return checkInputForNumber(event);};
-    textInput2.name = "end" + num;
-    textInput2.id = "end" + num;
-    textInput2.className = "geneStartAndEndMarker inputBoxStyle";
-    textInput2.type = "text";
+  var id = document.createElement("input");
+    id.name = "feature" + num;
+    id.id = "feature" + num;
+    id.className = "idInputBox inputBoxStyle";
+    id.type = "text";
+  var start = document.createElement("input");
+    start.onkeydown = function(){return checkInputForNumber(event);};
+    start.name = "start" + num;
+    start.id = "start" + num;
+    start.className = "geneStartAndEndMarker inputBoxStyle";
+    start.type = "text";
+  var end = document.createElement("input");
+    end.onkeydown = function(){return checkInputForNumber(event);};
+    end.name = "end" + num;
+    end.id = "end" + num;
+    end.className = "geneStartAndEndMarker inputBoxStyle";
+    end.type = "text";
     
   var checkBox = document.createElement("input");
     checkBox.name = "keep" + num;
@@ -80,31 +85,19 @@ function addRow() {
     checkBox.checked = (sel.options[sel.selectedIndex].value == 0) ? false : true;
   
   // ROW ELEMENTS
-  var divA1 = document.createElement("div");
-    divA1.className = "specRowA1";
-  var divA2 = document.createElement("div");
-    divA2.className = "specRowA2";
-  var divA3 = document.createElement("div");
-    divA3.className = "specRowA3";
-  var divA4 = document.createElement("div");
-    divA4.className = "specRowA4";
+  var featureCell = row.insertCell(0);
+  var idCell = row.insertCell(1);
+  var startCell = row.insertCell(2);
+  var endCell = row.insertCell(3);
+  var keepCell = row.insertCell(4);
     
-  var divA = document.createElement("div");
-    divA.className = "specRow";
     
-  divA1.appendChild(sel);
-  divA2.appendChild(textInput1);
-  divA3.appendChild(textInput2);
-  divA4.appendChild(checkBox);
-  
-  divA.appendChild(divA1);
-  divA.appendChild(divA2);
-  divA.appendChild(divA3);
-  divA.appendChild(divA4);
-  
-  var l = document.getElementById("submit_box");
+  featureCell.appendChild(sel);
+  idCell.appendChild(id);
+  startCell.appendChild(start);
+  endCell.appendChild(end);
+  keepCell.appendChild(checkBox);
 
-  f.insertBefore(divA,l);
 }
 
 // Deletes the last row of specifications
