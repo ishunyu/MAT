@@ -1,5 +1,5 @@
 <?php
-//$LUT = json_decode(file_get_contents("classes\LUT.json"), true);
+//$LUT = json_decode(file_get_contents("classes/LUT.json"), true);
 class gene {
   private $sequence;  // Stores the Gene sequence
   private $originalSequence;
@@ -10,7 +10,7 @@ class gene {
   function __construct($gene) {
     $this->sequence = $gene;
     $this->size = strlen($gene);
-    $this->lut = json_decode(file_get_contents("..\classes\LUT.json"), true);
+    $this->lut = json_decode(file_get_contents("../classes/LUT.json"), true);
   }
   
   // Getters
