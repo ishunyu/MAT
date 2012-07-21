@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>
-  <? require_once "uploadInc.php";
+  <? require_once "upload_header.php";
      require_once "../headers/topBar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
 

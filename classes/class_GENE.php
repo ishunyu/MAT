@@ -27,7 +27,7 @@ class gene {
   }
   
   function getBaseAtBaseIndex($indexOfBase) {
-    if($indexOfBase > strlen($this->sequence) || $indexOfBase < 1) {
+    if($indexOfBase > strlen($this->sequence) || $indexOfBase < 1) {  // Error checking
       echo false;
       return;
     }
@@ -37,7 +37,7 @@ class gene {
   
   function proteinMutationAtBaseIndexWithBase($indexOfBase, $base) {
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {
+    if($indexOfBase > $this->size || $indexOfBase < 1) {  // Error checking
       return false;
     } 
     
@@ -57,7 +57,7 @@ class gene {
   
   function rnaMutationAtBaseIndexWithBase($indexOfBase, $base) {
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {
+    if($indexOfBase > $this->size || $indexOfBase < 1) {  // Error checking
       return false;
     } 
     
@@ -109,13 +109,13 @@ class gene {
     $left = -1;
     
     switch($indexOfBase%3) {  // Finding out which position the base is at
-      case 1:
+      case 1: // $indexOfBase $mid $right
         $left = $indexOfBase;
-        break;
+        break;  // $left $indexOfBase $right
       case 2:
         $left = $indexOfBase - 1;
         break;
-      case 0:
+      case 0: // $left $mid $indexOfBase
         $left = $indexOfBase - 2;
         break;
       default:
