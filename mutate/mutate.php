@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="../scripts/substitution.js"></script>
+  <script type="text/javascript" src="../scripts/mutate.js"></script>
 </head>
 
 <body onkeydown="return checkInputForNumber(event)">

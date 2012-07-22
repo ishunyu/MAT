@@ -11,7 +11,15 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
-  <script type="text/javascript" src="../scripts/specifications.js"></script>
+  <script type="text/javascript" src="../scripts/catalog.js"></script>
+  <script>
+  function go() {
+    var x = document.getElementById("showcase1");
+    x.style.height = "500px";
+  }
+
+</script>
+  
 </head>
 
 <body>
