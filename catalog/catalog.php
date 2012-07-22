@@ -30,7 +30,7 @@
     <? topBar("catalog"); ?> 
 
     <!-- CONTENT-->
-    <div class="generalContentContainer roundCorners">
+    <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <span class="titleFormat textShadow" >Sequences</span>
       <a href="../upload/upload.php">

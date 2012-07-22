@@ -27,7 +27,7 @@
   <? topBar("mutate"); ?> 
     
     <!-- CONTENT-->
-    <div class="generalContentContainer roundCorners">
+    <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
         <div class="mutate_navBar">          

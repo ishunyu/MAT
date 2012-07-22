@@ -2,13 +2,13 @@
 function createSelect(num) {
   // OPTIONS
   var op1 = document.createElement("option");
-    op1.value = "1";
+    op1.value = "2";
     op1.text = "m7G Cap";
   var op2 = document.createElement("option");
-    op2.value = "1";
+    op2.value = "3";
     op2.text = "promoter";
   var op3 = document.createElement("option");
-    op3.value = "1";
+    op3.value = "4";
     op3.text = "5'URT";
   var op4 = document.createElement("option");
     op4.value = "1";
@@ -17,13 +17,13 @@ function createSelect(num) {
     op5.value = "0";
     op5.text = "Intron";
   var op6 = document.createElement("option");
-    op6.value = "1";
+    op6.value = "5";
     op6.text = "3'URT";
   var op7 = document.createElement("option");
-    op7.value = "1";
+    op7.value = "6";
     op7.text = "Poly(A) tail";
   var op8 = document.createElement("option");
-    op8.value = "1";
+    op8.value = "99";
     op8.text = "Other";
   
   // SELECT
@@ -50,7 +50,9 @@ function addRow() {
   // RETRIEVE NUMBER OF ROWS
   var table = document.getElementById("annotationTable");
   var num = table.rows.length;
+  num = num - 1;
   var row = table.insertRow(num);
+
 
   //if(num >= 50) return;
   var sel = createSelect(num);  
@@ -98,31 +100,24 @@ function addRow() {
   endCell.appendChild(end);
   keepCell.appendChild(checkBox);
 
+  return false;
 }
 
 // Deletes the last row of specifications
 function delRow(){
   // GET THE NUMBER OF ROWS
-  var f = document.getElementById("specification_form");
-  var num = 0;
-  for(i = 0; i < f.length; i++) {
-    if(f.childNodes[i] && f.childNodes[i].tagName == "DIV"){
-      num++;
-    }    
-  }
+  var table = document.getElementById("annotationTable");
+  var num = table.rows.length;
+
+  if(num>3)
+    table.deleteRow(num - 2);
   
-  // DELETES THE LAST ROW
-  if(num > 2) {
-    var l = document.getElementById("submit_box");
-    var d = l.previousSibling;
-    
-    //alert(d);
-    f.removeChild(d);
-  }
+  return false;
 }
 
 // Automtically checks/unchecks the keep box depending on the type of gene
 function checkCheckbox(row) {
+  return false;
   var keepId = "keep"+row.id.substr(row.id.search(/\d/)); // Getting the id of the checkbox
   var selection = row.options[row.selectedIndex].value; // Getting the value of the dropdown list item
 

@@ -117,13 +117,16 @@ function sendAjaxForDeletion(geneId) {
   xmlhttp.onreadystatechange=function() { // the Call back function
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       var responseText = xmlhttp.responseText;
+      //alert(responseText);
+        //return false;
+      
       if(responseText == true) {
         var row = document.getElementById(geneId);  // Gets the dna row
         var showcase = document.getElementById("showcase"+geneId);  // Gets the showcase row
         var del = document.getElementById("del"+geneId);  // Gets the del row
         var table = row.parentNode; // Gets the table
-
         
+               
         if(showcase) { // Deletes the showcase row
           table.deleteRow(showcase.rowIndex);
         }

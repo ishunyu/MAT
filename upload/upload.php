@@ -22,7 +22,7 @@
     <div id="div_main">
       <? topBar("catalog"); ?> 
       <!-- CONTENT-->
-      <div class="generalContentContainer roundCorners">
+      <div class="generalContentContainer">
         
         <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="processUserFile.php" onsubmit="return check_upload();">
           <span class="titleFormat textShadow">Sequence Identifier</span>

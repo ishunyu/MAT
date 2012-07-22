@@ -36,6 +36,7 @@ $query_genelisttable =
     spec text,
     memberId INT NOT NULL,
     startTime DATETIME,
+    modifyTime DATETIME,
     PRIMARY KEY(id),
     FOREIGN KEY(memberId) REFERENCES $accountsTableName(id)
   )";

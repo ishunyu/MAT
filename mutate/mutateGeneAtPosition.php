@@ -5,7 +5,8 @@ require_once "../classes/class_GENE.php";
 $geneQuery =
   "SELECT gene
    FROM $geneListTableName
-   WHERE id='$_SESSION[lastGeneId]'";
+   ORDER BY modifyTime DESC
+   LIMIT 1";
 $geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
 $geneQuery = mysql_fetch_assoc($geneQuery);
 

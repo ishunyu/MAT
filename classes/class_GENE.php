@@ -130,34 +130,49 @@ class gene {
   
   function spec($rawSpec) {
     // Making the data easier to work with by arranging them in arrays
-    $rawSpec = array_values($rawSpec);
+    $numCol = $rawSpec['numCol'];
+    $rawSpec = array_values($rawSpec);  // Changes from assoc to numbers
     $spec = array();
-    for($i = 1; $i < sizeof($rawSpec);) {
-      if($i+3 == sizeof($rawSpec) || $rawSpec[$i+3] != "on") {  // Checks for the last one spec and spec without checks 
-        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], FALSE);
-        $i+=3;
+    
+    
+    $numColMinusOne = $numCol - 1;
+    //Fixes the issue with check boxes
+    for($i = 2; $i < sizeof($rawSpec);) {
+      if($i+$numColMinusOne == sizeof($rawSpec) || $rawSpec[$i+$numColMinusOne] != "on") {  // Checks for the last one spec and spec without checks
+        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], $rawSpec[$i+3], FALSE);
+        $i+=$numColMinusOne;
       }
       else {  // Specs to keep
-        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], TRUE);
-        $i+=4;
+        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], $rawSpec[$i+3], TRUE);
+        $i+=$numCol;
       }
     }
-
+    
     // Sorting the specs according to their places
     function cmpSpec($a, $b) {
-      if($a[1] == $b[1]) {
+      if($a[2] == $b[2]) {
         return 0;
       }
-      return ($a[1] < $b[1]) ? -1 : 1;
+      return ($a[2] < $b[2]) ? -1 : 1;
     }
     usort($spec, "cmpSpec");
+    
+    // Error checking to be done
 
     // Splicing the gene
     for($i = sizeof($spec)-1; $i >= 0; $i--) {
-      if(!$spec[$i][3]) {
-        $this->sequence = substr_replace($this->sequence, '', $spec[$i][1]-1, $spec[$i][2]-$spec[$i][1]+1);
+      $keep = $spec[$i][4];
+      if(!$keep) {
+        $startColNum = 2;
+        $endColNum = 3;
+        echo $this->sequence;
+        echo "<br>";
+        $this->sequence = substr_replace($this->sequence, '', $spec[$i][$startColNum]-1, $spec[$i][$endColNum]-$spec[$i][$startColNum]+1);
+        echo $this->sequence;
       }
     }
+    
+    return json_encode($spec);
   }
   
 } // End of class GENE

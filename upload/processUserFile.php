@@ -34,8 +34,8 @@ else {
 
   // Store information into genelisttable
   $insertDnaQuery =
-    "INSERT INTO $geneListTableName(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime)
-     VALUES(NULL, '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW())";
+    "INSERT INTO $geneListTableName(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime, modifyTime)
+     VALUES(NULL, '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW(), NOW())";
   $insertDnaQuery = mysql_query($insertDnaQuery)or die("Inserting gene information unsuccessful.");
   
    // Retrive gene ID

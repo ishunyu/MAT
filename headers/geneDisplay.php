@@ -6,10 +6,30 @@ $geneId = "";
 
 if(isset($_GET['geneID'])){
   $geneId = $_GET['geneID'];	// The latest Gene being worked on
-  $_SESSION['lastGeneId'] = $geneId;
+  
+  $updateQuery =
+    "UPDATE $geneListTableName
+     SET modifyTime=NOW()
+     WHERE id='$geneId'";
+  $updateQuery = mysql_query($updateQuery);
 }
-else if(isset($_SESSION['lastGeneId']))
-  $geneId = $_SESSION['lastGeneId'];  
+else {
+  // Gets the genes according to modify time
+  $dnaListQuery =
+    "SELECT id
+     FROM $geneListTableName
+     WHERE memberId = $_SESSION[id]
+     ORDER BY modifyTime DESC
+     LIMIT 1";  // Getting the last gene
+  $dnaListQuery = mysql_query($dnaListQuery);
+  $num_rows = mysql_num_rows($dnaListQuery);  // Get how many rows there are
+  
+  if($num_rows > 0) {
+    $dnaListQuery = mysql_fetch_assoc($dnaListQuery); // Gets the array structure
+    $geneId = $dnaListQuery['id'];
+  }
+  
+}
 
 if($geneId != "") {
   // Query for the working Gene
@@ -38,8 +58,12 @@ if($geneId != "") {
   $gene0to30 = "(".$gene0to30.")";
 }
 
-function hidden_value($geneId) {
-echo "<input type=\"hidden\" name=\"geneId\" value=\"$geneId\" />";
+function hidden_gene_value($geneId) {
+  echo "<input type=\"hidden\" name=\"geneId\" value=\"$geneId\" />";
+}
+
+function hidden_num_col($numCol) {
+  echo "<input type=\"hidden\" name=\"numCol\" value=\"$numCol\" />";
 }
 
 ?>

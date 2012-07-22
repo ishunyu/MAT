@@ -1,5 +1,5 @@
 var count = 3 
-var redirect="catalog.php"  
+var redirect="../catalog/catalog.php"  
   
 function countDown(){  
  if (count <= 1){  

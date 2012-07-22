@@ -27,13 +27,8 @@ table.annotationTable {
   border-color: blue;
 }
 
-div.submitBox {
-  position: relative;
-  margin-left:0px;
-  
-  width: 700px;
-  height: 40px;
-  
+
+td {
   border-style: solid;
   border-width: 0px;
   border-color: blue;
