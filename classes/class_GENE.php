@@ -128,6 +128,18 @@ class gene {
     return $this->sequence[$left].$this->sequence[$left+1].$this->sequence[$left+2];
   }
   
+  function getCodonPositionAtBaseIndex($indexOfBase) {  
+    // Bounds checking
+    if($indexOfBase > $this->size || $indexOfBase < 1) {
+      return false;
+    }  
+    
+    $codonPosition = ceil($indexOfBase / 3);
+    
+      
+    return $codonPosition;        
+  }
+  
   function spec($rawSpec) {
     // Making the data easier to work with by arranging them in arrays
     $numCol = $rawSpec['numCol'];

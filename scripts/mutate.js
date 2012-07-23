@@ -49,7 +49,13 @@ function sendAjaxForPosition(index, base) {
 
 // Prevents non-numbers from typing
 function checkInputForNumber(keyStroke) {
-  if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58) && keyStroke.keyCode != 8 && keyStroke.keyCode != 46) {
+  if((keyStroke.keyCode > 93 && keyStroke.keyCode < 106) || 
+     (keyStroke.keyCode > 41 && keyStroke.keyCode < 36))
+    return true;
+  
+  if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58) 
+     && keyStroke.keyCode != 8
+     && keyStroke.keyCode != 46) {
      if (keyStroke.preventDefault) {
          keyStroke.preventDefault();
      }    

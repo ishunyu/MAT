@@ -53,6 +53,7 @@
         </div>
         <span id="showInfoAboutGeneAtPosition" class="formLabel">
             Base: <br/>
+            Codon Position: <br/>
             Old codon: <br/>
             New codon: <br/><hr>
             Nucleic acid level: <br/>
