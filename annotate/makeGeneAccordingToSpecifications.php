@@ -28,7 +28,7 @@ $specQuery = mysql_query($specQuery) or die("Annotations could not be stored");
 
 //echo $gene;
 
-header("location:success.php"); 
+header("location:../catalog/catalog.php"); 
 ?>
 
 
