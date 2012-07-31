@@ -25,7 +25,6 @@ $specQuery =
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $specQuery = mysql_query($specQuery) or die("Annotations could not be stored");
 
-
 header("location:success.php"); 
 ?>
 
