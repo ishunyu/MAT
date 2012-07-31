@@ -4,21 +4,32 @@ $gene0to30 = "";
 $geneTitle = "Upload a new Gene";
 $geneId = "";
 
+// Checks for get variable & its validity
 if(isset($_GET['geneID'])){
-  $geneId = $_GET['geneID'];	// The latest Gene being worked on
-  
-  $updateQuery =
-    "UPDATE $geneListTableName
-     SET modifyTime=NOW()
-     WHERE id='$geneId'";
-  $updateQuery = mysql_query($updateQuery);
+  // Check to see if the gene is part of member's gene lists
+  $checkQuery = 
+    "SELECT *
+     FROM $geneListTableName
+     WHERE memberId = '$_SESSION[id]' AND id='$_GET[geneID]'";
+  $checkQuery = mysql_query($checkQuery);
+  $num_rows_checkQuery = mysql_num_rows($checkQuery);
+
+  // Checking to see how many results showed up
+  if($num_rows_checkQuery != 0) {
+    $geneId = $_GET['geneID'];
+  }
+  else {
+    header("location:../headers/easterEgg.php");
+  }
 }
-else {
+
+// In case there's no get variable
+if($geneId == "") {
   // Gets the genes according to modify time
   $dnaListQuery =
-    "SELECT id
+    "SELECT id, geneName, gene
      FROM $geneListTableName
-     WHERE memberId = $_SESSION[id]
+     WHERE memberId = '$_SESSION[id]'
      ORDER BY modifyTime DESC
      LIMIT 1";  // Getting the last gene
   $dnaListQuery = mysql_query($dnaListQuery);
@@ -58,6 +69,13 @@ if($geneId != "") {
   $gene0to30 = "(".$gene0to30.")";
 }
 
+$updateQuery =
+  "UPDATE $geneListTableName
+   SET modifyTime=NOW()
+   WHERE id='$geneId'";
+$updateQuery = mysql_query($updateQuery);
+
+// FUNCTION
 function hidden_gene_value($geneId) {
   echo "<input type=\"hidden\" name=\"geneId\" value=\"$geneId\" />";
 }
