@@ -160,6 +160,8 @@ class gene {
       }
     }
     
+    $returnSpec = $spec; // For storing the original spec in order
+    
     // Sorting the specs according to their places
     function cmpSpec($a, $b) {
       if($a[2] == $b[2]) {
@@ -177,14 +179,14 @@ class gene {
       if(!$keep) {
         $startColNum = 2;
         $endColNum = 3;
-        echo $this->sequence;
-        echo "<br>";
+        // echo $this->sequence;
+        // echo "<br>";
         $this->sequence = substr_replace($this->sequence, '', $spec[$i][$startColNum]-1, $spec[$i][$endColNum]-$spec[$i][$startColNum]+1);
-        echo $this->sequence;
+        // echo $this->sequence;
       }
     }
     
-    return json_encode($spec);
+    return json_encode($returnSpec);
   }
   
 } // End of class GENE

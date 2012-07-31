@@ -15,8 +15,8 @@ $gene = new gene($gene);
 $annotation = $gene->spec($_POST);
 $gene = $gene->getGene();
 
-echo $annotation;
-echo var_dump(json_decode($annotation, true));
+//echo $annotation;
+//echo var_dump(json_decode($annotation, true));
 
 // Store the specifications
 $specQuery =
@@ -25,8 +25,6 @@ $specQuery =
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $specQuery = mysql_query($specQuery) or die("Annotations could not be stored");
 
-
-//echo $gene;
 
 header("location:../catalog/catalog.php"); 
 ?>
