@@ -140,65 +140,33 @@ class gene {
     return $codonPosition;        
   }
   
-  function spec($rawSpec) {
-    // Making the data easier to work with by arranging them in arrays
-    $numCol = $rawSpec['numCol'];
-    $rawSpec = array_values($rawSpec);  // Changes from assoc to numbers
-    $spec = array();
-    
-    
-    $numColMinusOne = $numCol - 1;
-    //Fixes the issue with check boxes
-    for($i = 2; $i < sizeof($rawSpec);) {
-      if($i+$numColMinusOne == sizeof($rawSpec) || $rawSpec[$i+$numColMinusOne] != "on") {  // Checks for the last one spec and spec without checks
-        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], $rawSpec[$i+3], FALSE);
-        $i+=$numColMinusOne;
-      }
-      else {  // Specs to keep
-        $spec[] = array($rawSpec[$i], $rawSpec[$i+1], $rawSpec[$i+2], $rawSpec[$i+3], TRUE);
-        $i+=$numCol;
-      }
-    }
-    
-    $returnSpec = $spec; // For storing the original spec in order
+  function annotate($anno, $numCol) {
+    $annoCopy = $anno; // For storing the original spec in order
     
     // Sorting the specs according to their places
-    function cmpSpec($a, $b) {
-      if($a[2] == $b[2]) {
+    function cmpAnno($a, $b) {
+      if($a['st'] == $b['st']) {
         return 0;
       }
-      return ($a[2] < $b[2]) ? -1 : 1;
+      return ($a['st'] < $b['st']) ? -1 : 1;
     }
-    usort($spec, "cmpSpec");
+    usort($anno, "cmpAnno");
     
     // Error checking to be done
 
     // Splicing the gene
-    for($i = sizeof($spec)-1; $i >= 0; $i--) {
-      $keep = $spec[$i][4];
-      if(!$keep) {
-        $startColNum = 2;
-        $endColNum = 3;
-        // echo $this->sequence;
-        // echo "<br>";
-        $this->sequence = substr_replace($this->sequence, '', $spec[$i][$startColNum]-1, $spec[$i][$endColNum]-$spec[$i][$startColNum]+1);
-        // echo $this->sequence;
+    for($i = sizeof($anno)-1; $i >= 0; $i--) {
+      if(!$anno[$i]['kp']) {
+        $this->sequence = substr_replace($this->sequence,
+                                          '',
+                                          $anno[$i]['st']-1,
+                                          $anno[$i]['ed']-$anno[$i]['st']+1);
       }
     }
     
-    return json_encode($returnSpec);
+    return json_encode($annoCopy);
   }
   
 } // End of class GENE
 
 ?>
-
-
-
-
-
-
-
-
-
-

@@ -16,9 +16,10 @@
 <body>
 <div class="topBarBackground"></div>
   <!-- MAIN-->
-  <div id="div_main">
+  <div id="div_main">    
     <!-- TOP BAR-->      
     <? topBar("annotate") ?>
+
     <!-- CONTENT-->
     <div class="generalContentContainer">
     <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
@@ -28,48 +29,50 @@
       <hr>
       
       <!-- FORM -->
-        <form id="specification_form" method="POST" action="makeGeneAccordingToSpecifications.php">
-      <!-- LABEL -->
-      <table class="annotationTable" id="annotationTable">
-      	<tr>
-	        <td class="textShadow">
-	          Feature
-	        </td>
-	        <td class="textShadow">
-	          Id
-	        </td>
-	        <td class="textShadow">
-	          Start
-	        </td>
-	        <td class="textShadow">
-	          End
-	        </td>
-	        <td class="textShadow">
-	          Keep
-	        </td>
-        </tr>
+        <table class="annotationTable">
+        	<!-- LABEL -->
+          <tr>
+  	        <td class="textShadow">Feature</td>
+  	        <td class="textShadow">Id</td>
+  	        <td class="textShadow">Start</td>
+  	        <td class="textShadow">End</td>
+  	        <td class="textShadow">Keep</td>
+          </tr>
 
-        
-          <? hidden_gene_value($geneId);
-             hidden_num_col(5); ?>      
-          
-          <? require_once "annotations.php";?>        
-      
-          <tr class="submitBox" id="submit_box">
-            <td colspan="5">
-            <input type="button" value="Add Row" onclick="addRow()" />
-            <input type="button" value="Delete Row" onclick="delRow()" />
-            <input type="button" value="Clear" onclick="clearRows()" />
-            <input type="submit" value="Submit" id="specificationSubmitBotton"/></td>
+          <!-- INPUT BOX -->
+          <tr class="specRow" id="specRow">
+            <td class="feature">
+              <select name="feature" class="geneFeature" id="feature" onchange="checkCheckbox(this)">
+                <option value="2">m7G Cap</option>
+                <option value="3">promoter</option>
+                <option value="4">5'URT</option>
+                <option value="1">Exon</option>
+                <option value="0">Intron</option>
+                <option value="5">3'URT</option>
+                <option value="6">Poly(A) tail</option>
+                <option value="99">other</option>
+              </select></td>
+            <td class="ida">   <input type="text" class="idInputBox inputBoxStyle" id="ida" /></td>
+            <td class="start"><input type="text" class="geneStartAndEndMarker inputBoxStyle" id="start" onkeydown="return checkInputForNumber(event)"/></td>
+            <td class="end">  <input type="text" class="geneStartAndEndMarker inputBoxStyle" id="end" onkeydown="return checkInputForNumber(event)"/></td>
+            <td class="keep"> <input type="checkbox" class="geneCheckbox" id="keep" checked="true"/></td>
+          </tr>
+          <tr class="submitBox" id="submitBox">
+            <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submitAnnotation();">Submit</button></td>
           </tr>
         </table>
-      </form>    
-      <? }
-         else { ?>
-         <!--For when there is no gene -->
-          <a class="normalLink" href="../upload/upload.php">
-            <span class="titleFormat textShadow" >Please upload a DNA Sequence</span> </a>
-      <? } ?>
+
+        <table class="annotationTable" id="annotationTable">
+          <!-- FEATURES -->
+          <? hidden_gene_value($geneId);  hidden_num_col(5); ?>          
+          <? require_once "anno_table.php";?>
+        </table>
+  <? }
+     else { ?>
+     <!--For when there is no gene -->
+      <a class="normalLink" href="../upload/upload.php">
+        <span class="titleFormat textShadow" >Please upload a DNA Sequence</span> </a>
+  <? } ?>
     </div>
   </div>
 </body>

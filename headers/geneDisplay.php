@@ -77,11 +77,11 @@ $updateQuery = mysql_query($updateQuery);
 
 // FUNCTION
 function hidden_gene_value($geneId) {
-  echo "<input type=\"hidden\" name=\"geneId\" value=\"$geneId\" />";
+  echo "<input type=\"hidden\" id=\"geneId\" value=\"$geneId\" />";
 }
 
-function hidden_num_col($numCol) {
-  echo "<input type=\"hidden\" name=\"numCol\" value=\"$numCol\" />";
+function hidden_num_col($numCol) { // Needs this for spec of GENE class
+  echo "<input type=\"hidden\" id=\"numCol\" value=\"$numCol\" />";
 }
 
 ?>

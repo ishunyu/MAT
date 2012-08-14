@@ -1,21 +1,5 @@
-#div_specification_title {
-  position: relative;
-  margin-left:auto;
-  margin-right:auto;
-  
-  width: 700px;
-
-  top: 0px;
-  
-  border-style: solid;
-  border-width: 0px;
-  border-color: blue;
-}
-
-
 table.annotationTable {
   width: 700px;
-  height: 40px;
   color: white;
   
   font-size: 20px;
@@ -24,17 +8,43 @@ table.annotationTable {
   
   border-style: solid;
   border-width: 0px;
-  border-color: blue;
+  border-color: black;
 }
 
 
 td {
   border-style: solid;
   border-width: 0px;
-  border-color: blue;
+  border-color: black;
 }
 
-select.geneType {
+td.feature {
+  width: 150px;
+}
+
+td.ida {
+  width: 175px;
+  text-align: right;
+  padding-right: 25px;
+}
+
+td.start {
+  width: 105px;
+  text-align: right;
+  padding-right: 25px;
+}
+
+td.end {
+  width: 105px;
+  text-align: right;
+  padding-right: 25px;
+}
+
+td.keep {
+  text-align: center;
+}
+
+select.geneFeature {
   width: 100px;
   height: 30px;
   
@@ -45,8 +55,6 @@ select.geneType {
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;  
   border-radius: 5px 5px 5px 5px;
-  
- /*  background-color: #176A81; */
 }
 
 input.idInputBox {
@@ -71,6 +79,6 @@ input.geneCheckbox {
   height: 30px;
 }
 
-input#specificationSubmitBotton {
-  float: right;
+button#annoSubmitButton {
+  float: ;
 }
