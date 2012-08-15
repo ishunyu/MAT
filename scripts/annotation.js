@@ -249,7 +249,7 @@ function submit_annotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      alert(xml.responseText);
+      //alert(xml.responseText);
       if(xml.responseText.match(/\d/)) {
         var params_obj = new Object();
         params_obj.id = xml.responseText;
