@@ -1,4 +1,4 @@
-table.annotationTable {
+table.submitTable {
   width: 700px;
   color: white;
   
@@ -9,6 +9,12 @@ table.annotationTable {
   border-style: solid;
   border-width: 0px;
   border-color: black;
+}
+
+table.annotationTable {
+  width: 700px;
+  color: white;
+  font-size: 20px;
 }
 
 

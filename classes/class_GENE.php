@@ -140,7 +140,7 @@ class gene {
     return $codonPosition;        
   }
   
-  function annotate($anno, $numCol) {
+  function annotate($anno) {
     $annoCopy = $anno; // For storing the original spec in order
     
     // Sorting the specs according to their places

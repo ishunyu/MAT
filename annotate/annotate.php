@@ -29,7 +29,7 @@
       <hr>
       
       <!-- FORM -->
-        <table class="annotationTable">
+        <table class="submitTable">
         	<!-- LABEL -->
           <tr>
   	        <td class="textShadow">Feature</td>

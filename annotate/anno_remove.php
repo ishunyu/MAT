@@ -12,19 +12,11 @@ $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
 $anno = json_decode($anno, true);
 
-if(!$anno)  // If there's no annotation, make sure an array is made
-  $anno = array();
-
-$anno[] = array(
-                "id" => sizeof($anno),
-                "ftr" => $_POST['feature'],
-                "ida" => $_POST['ida'],
-                "st" => $_POST['start'],
-                "end" => $_POST['end'],
-                "kp" => $_POST['keep']
-                );
-
-// die(var_dump($anno));
+for($i = 0; $i < sizeof($anno); $i++) {
+  if($anno[$i]['id'] == $_POST['id']) {
+    unset($anno[$i]);
+  }
+}
 
 // Process the gene according to annotations
 $gene = new gene($gene);

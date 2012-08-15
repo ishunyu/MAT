@@ -80,15 +80,38 @@ function submitAnnotation() {
   var end = document.getElementById("end").value;
   var keep = document.getElementById("keep").checked;
   var geneId = document.getElementById("geneId").value;
-  var numCol = document.getElementById("numCol").value;
   
   var params = "geneId="+geneId
-              +"&numCol="+numCol
               +"&feature="+feature
               +"&ida="+ida
               +"&start="+start
               +"&end="+end
               +"&keep="+keep;
+  xml.send(params);
+}
+
+function remove(obj) {
+  var xml;
+  if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
+    xml = new XMLHttpRequest();
+  }
+  else {  // code for IE6, IE5
+    xml = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xml.onreadystatechange=function() {
+    if (xml.readyState==4 && xml.status==200) {
+      document.location.reload(true);
+    }
+  }
+  xml.open("POST","anno_remove.php",true);
+  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  var id = obj.name;
+  var geneId = document.getElementById("geneId").value;
+  
+  var params = "geneId="+geneId
+              +"&id="+id;
   xml.send(params);
 }
 

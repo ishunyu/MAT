@@ -18,7 +18,8 @@ if($annotation){
   
   for($i = 0; $i < sizeof($annotation); $i++) {?>
     <tr class="specRow">
-      <td class="feature">        
+      <td class="feature">
+        <a href="#" title="remove this annotation" name="<?echo $annotation[$i]['id'];?>" onclick="return remove(this);">x</a>&nbsp;&nbsp;
         <? switch($annotation[$i]['ftr']) {
           case  2:  echo "m7G Cap";       break;
           case  3:  echo "promoter";      break;
@@ -29,7 +30,7 @@ if($annotation){
           case  6:  echo "Poly(A) tail";  break;
           case 99:  echo "other";         break; } ?>
       </td>
-      <td class="ida">   <? echo $annotation[$i]['ida']; ?></td>
+      <td class="ida">  <? echo $annotation[$i]['ida']; ?></td>
       <td class="start"><? echo $annotation[$i]['st']; ?></td>
       <td class="end">  <? echo $annotation[$i]['end']; ?></td>
       <td class="keep"> <? if($annotation[$i]['kp'] == "true") echo "Yes";
