@@ -1,4 +1,6 @@
 // ----- Annotate -----
+var PARAMS_OBJ = new Object();
+
 String.prototype.contains = function(s) {
   return this.indexOf(s) != -1;
 }
@@ -57,7 +59,7 @@ function activate_row(row, cell) {
         feature = child.innerHTML.trim();
         child.innerHTML = '<select name="feature" class="feature" id="feature" onchange=""> \
                           <option value="2">m7G Cap</option> \
-                          <option value="3" selected="selected">promoter</option> \
+                          <option value="3">promoter</option> \
                           <option value="4">5\'URT</option> \
                           <option value="1">Exon</option> \
                           <option value="0">Intron</option> \
@@ -65,6 +67,15 @@ function activate_row(row, cell) {
                           <option value="6">Poly(A) tail</option> \
                           <option value="99">other</option> \
                         </select>';
+        var sel = child.firstChild;
+
+        var j;
+        for(j = 0; j < sel.length; j++) {
+          if(sel[j].innerHTML == feature) {
+            sel[j].selected = "selected";
+            break;
+          }
+        }
       }
       else if(child.className == "ida") { // ida
         ida = child.innerHTML.trim();
@@ -80,9 +91,9 @@ function activate_row(row, cell) {
       }
       else if(child.className == "keep") {  // keep
         keep = child.innerHTML.trim();
-        keep = keep == "Yes" ? 'checked="true"' : '';
+        k = (keep == "Yes") ? 'checked="true"' : '';
 
-        child.innerHTML = '<input type="checkbox" class="keep" id="keep" '+keep+'/>';
+        child.innerHTML = '<input type="checkbox" class="keep" id="keep" '+ k +'/>';
       }
     }
 
@@ -90,8 +101,40 @@ function activate_row(row, cell) {
   }
 
   cell.firstChild.focus();
+  PARAMS_OBJ.feature = feature;
+  PARAMS_OBJ.ida = ida;
+  PARAMS_OBJ.start = start;
+  PARAMS_OBJ.end = end;
+  PARAMS_OBJ.keep = (keep == "Yes") ? true : false;
 
   return true;
+}
+
+function submit_change(row, params) {
+  // Commit the change on the front end
+  var i, children = row.childNodes;
+  for(i = 0;i < children.length; i++) {
+    child = children[i];    
+    if(child.className == "feature_s") {  // feature
+      child.innerHTML = params.feature;
+    }
+    else if(child.className == "ida") { // ida
+      child.innerHTML = params.ida;
+    }
+    else if(child.className == "start") { // start
+      child.innerHTML = params.start;
+    }
+    else if(child.className == "end") { // end
+      child.innerHTML = params.end;
+    }
+    else if(child.className == "keep") {  // keep
+      child.innerHTML = (params.keep == true) ? 'Yes' : 'No';;
+    }
+  }
+
+  // Delete the active class name
+  var index_active = row.className.indexOf("active");
+  row.className = row.className.substr(0, index_active).trim();
 }
 
 // Deactivates the single, selected row
@@ -102,40 +145,64 @@ function deactivate(row) {
   var feature, ida, start, end, keep;
   var i, children = row.childNodes;
   
+  // Gather the information
   for(i = 0;i < children.length; i++) {
-    var child = children[i];
+    child = children[i];
     
     if(child.className == "feature_s") {  // feature
       feature = child.firstChild[child.firstChild.selectedIndex].innerHTML;
-      
-      child.innerHTML = feature;
     }
     else if(child.className == "ida") { // ida
       ida = child.firstChild.value;
-
-      child.innerHTML = ida;
     }
     else if(child.className == "start") { // start
       start = child.firstChild.value;
-
-      child.innerHTML = start;
     }
     else if(child.className == "end") { // end
       end = child.firstChild.value;
-
-      child.innerHTML = end;
     }
     else if(child.className == "keep") {  // keep
       keep = child.firstChild.checked;
-      k = keep == true ? 'Yes' : 'No';
-
-      child.innerHTML = k;
     }
   }
 
-  // Delete the active tab
-  var index_active = row.className.indexOf("active");
-  row.className = row.className.substr(0, index_active).trim();
+  // Commit the change in the database
+  var geneId = document.getElementById("geneId").value;
+  var id = row.id.match(/\d/g).join(""); // trim away the row value
+
+  var xml;
+  if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
+    xml = new XMLHttpRequest();
+  }
+  else {  // code for IE6, IE5
+    xml = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xml.onreadystatechange=function() {
+    if (xml.readyState==4 && xml.status==200) {
+      // alert(xml.responseText);
+      if(xml.responseText == "success") {
+        var params_obj = new Object();
+        params_obj.feature = feature;
+        params_obj.ida = ida;
+        params_obj.start = start;
+        params_obj.end = end;
+        params_obj.keep = keep;
+        submit_change(row, params_obj);
+      }
+    }
+  }
+  xml.open("POST","anno_commit_change.php",true);
+  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+  var params = "id="+id
+              +"&geneId="+geneId
+              +"&feature="+feature
+              +"&ida="+ida
+              +"&start="+start
+              +"&end="+end
+              +"&keep="+keep;
+  xml.send(params);  
 }
 
 // Deactivate all but the active row
@@ -182,16 +249,16 @@ function submit_annotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      // alert(xml.responseText);
-      if(xml.responseText != "") {
-        var r_params = new Object();
-        r_params.id = xml.responseText;
-        r_params.feature = feature;
-        r_params.ida = ida;
-        r_params.start = start;
-        r_params.end = end;
-        r_params.keep = keep;
-        add_row(r_params);
+      alert(xml.responseText);
+      if(xml.responseText.match(/\d/)) {
+        var params_obj = new Object();
+        params_obj.id = xml.responseText;
+        params_obj.feature = feature;
+        params_obj.ida = ida;
+        params_obj.start = start;
+        params_obj.end = end;
+        params_obj.keep = keep;
+        add_row(params_obj);
       }
     }
   }

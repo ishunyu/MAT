@@ -1,4 +1,4 @@
-<?php
+<?
 include "../headers/checkSession.php";
 include "../classes/class_GENE.php";
 
@@ -12,20 +12,13 @@ $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
 $anno = json_decode($anno, true);
 
-if(!$anno) { // If there's no annotation, make sure an array is made
-  $anno = array();
-  $anno['max_id'] = 0;
-}
-
-$anno[$anno['max_id']] = array(
-                            "ftr" => $_POST['feature'],
-                            "ida" => $_POST['ida'],
+$anno[$_POST['id']] = array(
+                            "ftr" => mysql_real_escape_string($_POST['feature']),
+                            "ida" => mysql_real_escape_string($_POST['ida']),
                             "st" => $_POST['start'],
                             "end" => $_POST['end'],
                             "kp" => $_POST['keep']
                             );
-
-$anno['max_id'] += 1;
 
 
 // Process the gene according to annotations
@@ -35,14 +28,12 @@ $gene = $gene->getGene();
 
 $j_anno = json_encode($anno);
 $j_anno = mysql_real_escape_string($j_anno);
-
 // Store the annotations
 $annoQuery =
   "UPDATE $geneListTableName
    SET spec = '$j_anno', gene = '$gene', modifyTime=NOW()
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
-$annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
+$annoQuery = mysql_query($annoQuery) or die("Annotation changes could not be stored");
 
-// header("location:success.php"); 
-echo $anno['max_id'] - 1;
+echo "success";
 ?>
