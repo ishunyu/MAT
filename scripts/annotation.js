@@ -1,27 +1,17 @@
 // ----- Annotate -----
 
-// Automtically checks/unchecks the keep box depending on the type of gene
-function checkCheckbox(row) {
+function checkbox() {
   return false;
-  var keepId = "keep"+row.id.substr(row.id.search(/\d/)); // Getting the id of the checkbox
-  var selection = row.options[row.selectedIndex].value; // Getting the value of the dropdown list item
+}
 
-  var keep = document.getElementById(keepId); // Getting the checkbox corresponding to the row
-  
-  // Perform the check/unchecked operation
-  if(selection == "0") {
-    keep.checked = false;
-  }
-  else if(selection == "1") {
-    keep.checked = true;
-  }
-  else {
-    document.write("Shouldn't be here");
-  }
+
+function enter(keyStroke) {
+  if(keyStroke.keyCode == 13)
+    submit_annotation();
 }
 
 // Prevents non-numbers from typing
-function checkInputForNumber(keyStroke) {
+function input_check(keyStroke) {
   // alert(keyStroke.keyCode);
 
   if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58)
@@ -43,19 +33,47 @@ function checkInputForNumber(keyStroke) {
   }
 }
 
-function pressedKey(keyStroke) {
-  if(keyStroke.shiftKey && keyStroke.keyCode == "A".charCodeAt(0)) {
-    addRow();
-  }  
-  else if(keyStroke.shiftKey && keyStroke.keyCode == "D".charCodeAt(0)) {
-    delRow();
-  }  
-  else if(keyStroke.shiftKey && keyStroke.keyCode == "C".charCodeAt(0)) {
-    clearRows();
-  }
+function add_row(obj) {
+  var table = document.getElementById("annotationTable");  
+  var row = table.insertRow(-1);
+  row.className = "a_row";
+  row.id = "row"+obj.id;
+
+    obj.keep = obj.keep ? "Yes" : "no";
+    insert ='<td class="feature"> \
+              <a href="#" title="remove this annotation" name="'+ obj.id +'" onclick="return remove_annotation(this);">x</a>&nbsp;&nbsp;&nbsp;'+
+              obj.feature + '</td>' + 
+            '<td class="ida">'+ obj.ida +'</td>' + 
+            '<td class="start">'+ obj.start  +'</td>' +
+            '<td class="end">'+ obj.end +'</td>' + 
+            '<td class="keep">'+ obj.keep +'</td>';
+
+  row.innerHTML = insert;
+
+    // var feature = document.createElement("td");
+    //   var a = document.createElement("a");
+    //   a.href = "#";
+    //   a.title = "remove this annotation";
+    //   a.onclick = function(){return remove_annotation(this);};
+    //   a.innerHTML = "x";
+    // feature.appendChild(a);
+    // feature.innerHTML = "&nbsp;&nbsp;"+obj.feature;
+
+    // var ida = document.createElement("td");
+    // ida.innerHTML = obj.ida;
+
+    // var start = document.createElement("td");
+    // start.innerHTML = obj.start;
+
+    // var end = document.createElement("td");
+    // end.innerHTML = obj.end;
+
+    // var keep = document.createElement("td");
+    // keep.innerHTML = obj.keep == "true" ? "Yes" : "no";
+
 }
 
-function submitAnnotation() {
+function submit_annotation() {
   var xml;
   if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
     xml = new XMLHttpRequest();
@@ -66,7 +84,17 @@ function submitAnnotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      document.location.reload(true);
+      // alert(xml.responseText);
+      if(xml.responseText != "") {
+        var r_params = new Object();
+        r_params.id = xml.responseText;
+        r_params.feature = feature;
+        r_params.ida = ida;
+        r_params.start = start;
+        r_params.end = end;
+        r_params.keep = keep;
+        add_row(r_params);
+      }
     }
   }
   xml.open("POST","anno_commit.php",true);
@@ -74,7 +102,8 @@ function submitAnnotation() {
 
   var featureIndex = document.getElementById("feature").selectedIndex;
   
-  var feature = document.getElementById("feature")[featureIndex].value;
+  var feature = document.getElementById("feature")[featureIndex].innerHTML;
+    // feature = encodeURI(feature);
   var ida = document.getElementById("ida").value;
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
@@ -87,10 +116,18 @@ function submitAnnotation() {
               +"&start="+start
               +"&end="+end
               +"&keep="+keep;
+
   xml.send(params);
 }
 
-function remove(obj) {
+function remove_row(id) {
+  var row = document.getElementById("row"+id);
+  var t = document.getElementById("annotationTable");
+
+  t.deleteRow(row.rowIndex);
+}
+
+function remove_annotation(obj) {
   var xml;
   if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
     xml = new XMLHttpRequest();
@@ -101,7 +138,12 @@ function remove(obj) {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      document.location.reload(true);
+      if(xml.responseText == "success") {
+        remove_row(id);
+      }
+      else {
+        alert("Removing annotation unsuccessful.")
+      }
     }
   }
   xml.open("POST","anno_remove.php",true);
@@ -116,5 +158,5 @@ function remove(obj) {
 }
 
 /* Start up functions*/
-document.onkeydown = function(){pressedKey(window.event);};
+// document.onkeydown = function(){pressedKey(window.event);};
 

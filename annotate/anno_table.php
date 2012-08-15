@@ -7,37 +7,26 @@ $annotationQuery =
 
 $annotationQuery = mysql_query($annotationQuery);
 $annotationQuery = mysql_fetch_assoc($annotationQuery);    
-$annotation = $annotationQuery['spec']; // Gets the spec portion of the query
-
-if($annotation){  
-  $annotation = json_decode($annotation, true);  // Turns json into associative array
-  $annotation = array_values($annotation);
-  $count = 1;
+$anno = $annotationQuery['spec']; // Gets the spec portion of the query
+$anno = json_decode($anno, true);  // Turns json into associative array
+if($anno){  
+  unset($anno['max_id']); // Removes the size in the annotations array
   
-  //echo var_dump($annotation);
+  // echo var_dump($anno);
   
-  for($i = 0; $i < sizeof($annotation); $i++) {?>
-    <tr class="specRow">
+  foreach($anno as $id => $a) {?>
+    <tr class="a_row" id="row<? echo $id; ?>">
       <td class="feature">
-        <a href="#" title="remove this annotation" name="<?echo $annotation[$i]['id'];?>" onclick="return remove(this);">x</a>&nbsp;&nbsp;
-        <? switch($annotation[$i]['ftr']) {
-          case  2:  echo "m7G Cap";       break;
-          case  3:  echo "promoter";      break;
-          case  4:  echo "5'URT";         break;
-          case  1:  echo "Exon";          break;
-          case  0:  echo "Intron";        break;
-          case  5:  echo "3'URT";         break;
-          case  6:  echo "Poly(A) tail";  break;
-          case 99:  echo "other";         break; } ?>
+        <a href="#" title="remove this annotation" name="<?echo $id;?>" onclick="return remove_annotation(this);">x</a>&nbsp;&nbsp;
+        <? echo $a['ftr'];?>
       </td>
-      <td class="ida">  <? echo $annotation[$i]['ida']; ?></td>
-      <td class="start"><? echo $annotation[$i]['st']; ?></td>
-      <td class="end">  <? echo $annotation[$i]['end']; ?></td>
-      <td class="keep"> <? if($annotation[$i]['kp'] == "true") echo "Yes";
-                            else echo "no"; ?></td>
+      <td class="ida">  <? echo $a['ida']; ?></td>
+      <td class="start"><? echo $a['st']; ?></td>
+      <td class="end">  <? echo $a['end']; ?></td>
+      <td class="keep"> <? if($a['kp'] == "true") echo "Yes";
+                            else echo "No"; ?></td>
     </tr>
   <?
-    $count++;
   } 
 }
 ?>

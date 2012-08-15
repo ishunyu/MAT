@@ -40,9 +40,9 @@
           </tr>
 
           <!-- INPUT BOX -->
-          <tr class="specRow" id="specRow">
+          <tr class="" id="input_row">
             <td class="feature">
-              <select name="feature" class="geneFeature" id="feature" onchange="checkCheckbox(this)">
+              <select name="feature" class="geneFeature" id="feature" onchange="checkbox()">
                 <option value="2">m7G Cap</option>
                 <option value="3">promoter</option>
                 <option value="4">5'URT</option>
@@ -52,13 +52,16 @@
                 <option value="6">Poly(A) tail</option>
                 <option value="99">other</option>
               </select></td>
-            <td class="ida">   <input type="text" class="idInputBox inputBoxStyle" id="ida" /></td>
-            <td class="start"><input type="text" class="geneStartAndEndMarker inputBoxStyle" id="start" onkeydown="return checkInputForNumber(event)"/></td>
-            <td class="end">  <input type="text" class="geneStartAndEndMarker inputBoxStyle" id="end" onkeydown="return checkInputForNumber(event)"/></td>
+            <td class="ida">  <input type="text" class="idInputBox inputBoxStyle" id="ida"
+                                onkeydown="" /></td>
+            <td class="start"><input type="text" class="geneStartAndEndMarker inputBoxStyle" id="start"
+                                onkeydown="enter(event);return input_check(event);"/></td>
+            <td class="end">  <input type="text" class="geneStartAndEndMarker inputBoxStyle" id="end"
+                                onkeydown="enter(event); return input_check(event)"/></td>
             <td class="keep"> <input type="checkbox" class="geneCheckbox" id="keep" checked="true"/></td>
           </tr>
           <tr class="submitBox" id="submitBox">
-            <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submitAnnotation();">Submit</button></td>
+            <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submit_annotation();">Submit</button></td>
           </tr>
         </table>
 

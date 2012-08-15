@@ -12,24 +12,21 @@ $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
 $anno = json_decode($anno, true);
 
-for($i = 0; $i < sizeof($anno); $i++) {
-  if($anno[$i]['id'] == $_POST['id']) {
-    unset($anno[$i]);
-  }
-}
+unset($anno[$_POST['id']]);
 
 // Process the gene according to annotations
 $gene = new gene($gene);
-$annotation = $gene->annotate($anno);
+$gene->annotate($anno);
 $gene = $gene->getGene();
 
+$j_anno = json_encode($anno);
 
 // Store the annotations
 $annoQuery =
   "UPDATE $geneListTableName
-   SET spec = '$annotation', gene = '$gene', modifyTime=NOW()
+   SET spec = '$j_anno', gene = '$gene', modifyTime=NOW()
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
 
-// header("location:success.php"); 
+echo "success"; 
 ?>

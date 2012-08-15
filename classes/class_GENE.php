@@ -141,7 +141,7 @@ class gene {
   }
   
   function annotate($anno) {
-    $annoCopy = $anno; // For storing the original spec in order
+    unset($anno['max_id']);
     
     // Sorting the specs according to their places
     function cmpAnno($a, $b) {
@@ -163,8 +163,6 @@ class gene {
                                           $anno[$i]['ed']-$anno[$i]['st']+1);
       }
     }
-    
-    return json_encode($annoCopy);
   }
   
 } // End of class GENE
