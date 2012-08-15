@@ -27,6 +27,10 @@ td.feature {
   width: 150px;
 }
 
+td.feature_s {
+  width: 120px;
+}
+
 td.ida {
   width: 175px;
   text-align: right;
@@ -49,7 +53,7 @@ td.keep {
   text-align: center;
 }
 
-select.geneFeature {
+select.feature {
   width: 100px;
   height: 30px;
   
@@ -62,7 +66,7 @@ select.geneFeature {
   border-radius: 5px 5px 5px 5px;
 }
 
-input.idInputBox {
+input.ida {
   height: 30px;
   width: 170px;
   text-align: right;
@@ -71,7 +75,7 @@ input.idInputBox {
   
 }
 
-input.geneStartAndEndMarker {
+input.start_end {
   height: 30px;
   width: 100px;
   font-size: 20px;
@@ -79,7 +83,7 @@ input.geneStartAndEndMarker {
   text-align: right;
 }
 
-input.geneCheckbox {
+input.keep {
   width: 30px;
   height: 30px;
 }
