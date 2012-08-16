@@ -1,4 +1,5 @@
 // ----- Annotate -----
+// Global PARAMS object, reduces database requests
 var PARAMS_OBJ = new Object();
 
 String.prototype.contains = function(s) {
@@ -16,7 +17,7 @@ function enter(keyStroke) {
 
 function enter_c(keyStroke) {
   if(keyStroke.keyCode == 13)
-    deactivate_rows(null);
+    deactivate_active_rows(null);
 }
 
 // Prevents non-numbers from typing
@@ -42,75 +43,7 @@ function input_check(keyStroke) {
   }
 }
 
-// Dynamically change the annotation data
-function activate_row(row, cell) {
-  if(!row.className.contains("active")) {  // let's make it editable
-    // First, make other rows inactive
-    deactivate_rows(row);
-
-
-    var feature, ida, start, end, keep;
-    var i, children = row.childNodes;
-    
-    for(i = 0;i < children.length; i++) {
-      var child = children[i];
-      
-      if(child.className == "feature_s") {  // feature
-        feature = child.innerHTML.trim();
-        child.innerHTML = '<select name="feature" class="feature" id="feature" onchange=""> \
-                          <option value="2">m7G Cap</option> \
-                          <option value="3">promoter</option> \
-                          <option value="4">5\'URT</option> \
-                          <option value="1">Exon</option> \
-                          <option value="0">Intron</option> \
-                          <option value="5">3\'URT</option> \
-                          <option value="6">Poly(A) tail</option> \
-                          <option value="99">other</option> \
-                        </select>';
-        var sel = child.firstChild;
-
-        var j;
-        for(j = 0; j < sel.length; j++) {
-          if(sel[j].innerHTML == feature) {
-            sel[j].selected = "selected";
-            break;
-          }
-        }
-      }
-      else if(child.className == "ida") { // ida
-        ida = child.innerHTML.trim();
-        child.innerHTML = '<input type="text" class="ida inputBoxStyle" id="ida" value="'+ida+'" onkeydown="return enter_c(event);" />';
-      }
-      else if(child.className == "start") { // start
-        start = child.innerHTML.trim();
-        child.innerHTML = '<input type="text" class="start_end inputBoxStyle" id="start" value="'+start+'" onkeydown="enter_c(event);return input_check(event);" />';
-      }
-      else if(child.className == "end") { // end
-        end = child.innerHTML.trim();
-        child.innerHTML = '<input type="text" class="start_end inputBoxStyle" id="end" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
-      }
-      else if(child.className == "keep") {  // keep
-        keep = child.innerHTML.trim();
-        k = (keep == "Yes") ? 'checked="true"' : '';
-
-        child.innerHTML = '<input type="checkbox" class="keep" id="keep" '+ k +'/>';
-      }
-    }
-
-    row.className = row.className + " active";
-  }
-
-  cell.firstChild.focus();
-  PARAMS_OBJ.feature = feature;
-  PARAMS_OBJ.ida = ida;
-  PARAMS_OBJ.start = start;
-  PARAMS_OBJ.end = end;
-  PARAMS_OBJ.keep = (keep == "Yes") ? true : false;
-
-  return true;
-}
-
-function submit_change(row, params) {
+function make_row_plain(row, params) {
   // Commit the change on the front end
   var i, children = row.childNodes;
   for(i = 0;i < children.length; i++) {
@@ -137,11 +70,79 @@ function submit_change(row, params) {
   row.className = row.className.substr(0, index_active).trim();
 }
 
-// Deactivates the single, selected row
-function deactivate(row) {
-  if(!row.className.contains("active")) // Return if the row is inactive
-    return;
+function activate_row_helper(children, cell) {
+  var feature, ida, start, end, keep, i;
 
+  for(i = 0;i < children.length; i++) {
+    var child = children[i];
+    
+    if(child.className == "feature_s") {  // feature
+      feature = child.innerHTML.trim();
+      child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange=""> \
+                        <option value="2">m7G Cap</option> \
+                        <option value="3">promoter</option> \
+                        <option value="4">5\'URT</option> \
+                        <option value="1">Exon</option> \
+                        <option value="0">Intron</option> \
+                        <option value="5">3\'URT</option> \
+                        <option value="6">Poly(A) tail</option> \
+                        <option value="99">other</option> \
+                      </select>';
+      var sel = child.firstChild;
+
+      var j;
+      for(j = 0; j < sel.length; j++) { // Loop to select the correct feature
+        if(sel[j].innerHTML == feature) {
+          sel[j].selected = "selected";
+          break;
+        }
+      }
+    }
+    else if(child.className == "ida") { // ida
+      ida = child.innerHTML.trim();
+      child.innerHTML = '<input type="text" class="ida edit inputBoxStyle" id="ida_edit" value="'+ida+'" onkeydown="return enter_c(event);" />';
+    }
+    else if(child.className == "start") { // start
+      start = child.innerHTML.trim();
+      child.innerHTML = '<input type="text" class="start_end edit inputBoxStyle" id="start" value="'+start+'" onkeydown="enter_c(event);return input_check(event);" />';
+    }
+    else if(child.className == "end") { // end
+      end = child.innerHTML.trim();
+      child.innerHTML = '<input type="text" class="start_end edit inputBoxStyle" id="end" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
+    }
+    else if(child.className == "keep") {  // keep
+      keep = child.innerHTML.trim();
+      k = (keep == "Yes") ? 'checked="true"' : '';
+
+      child.innerHTML = '<input type="checkbox" class="keep edit" id="keep" '+ k +'/>';
+    }
+  }
+
+  /* Stores row information so we don't have to unnecessarily query the database.
+      Will be compared later when a row is deactivated.*/ 
+  PARAMS_OBJ.feature = feature;
+  PARAMS_OBJ.ida = ida;
+  PARAMS_OBJ.start = start;
+  PARAMS_OBJ.end = end;
+  PARAMS_OBJ.keep = (keep == "Yes") ? true : false;
+}
+
+// Dynamically change the annotation data
+function activate_row(row, cell) {
+  if(row.className.contains("active")) {
+    deactivate_single_row(row);
+    return;
+  }
+
+  // let's make it editable  
+  deactivate_active_rows(); // First, make other rows inactive
+  activate_row_helper(row.cells, cell);
+
+  cell.firstChild.focus();  // Focus the selected cell input
+  row.className = row.className + " active";  // Adds the active component
+}
+
+function deactivate_single_row_helper(row) {
   var feature, ida, start, end, keep;
   var i, children = row.childNodes;
   
@@ -166,6 +167,24 @@ function deactivate(row) {
     }
   }
 
+  var params_obj = new Object();
+      params_obj.feature = feature;
+      params_obj.ida = ida;
+      params_obj.start = start;
+      params_obj.end = end;
+      params_obj.keep = keep;
+
+  if(params_obj.feature == PARAMS_OBJ.feature &&
+      params_obj.ida == PARAMS_OBJ.ida &&
+      params_obj.start == PARAMS_OBJ.start &&
+      params_obj.end == PARAMS_OBJ.end &&
+      params_obj.keep == PARAMS_OBJ.keep)
+  {
+    make_row_plain(row, params_obj);
+    return;
+  }
+
+
   // Commit the change in the database
   var geneId = document.getElementById("geneId").value;
   var id = row.id.match(/\d/g).join(""); // trim away the row value
@@ -182,13 +201,7 @@ function deactivate(row) {
     if (xml.readyState==4 && xml.status==200) {
       // alert(xml.responseText);
       if(xml.responseText == "success") {
-        var params_obj = new Object();
-        params_obj.feature = feature;
-        params_obj.ida = ida;
-        params_obj.start = start;
-        params_obj.end = end;
-        params_obj.keep = keep;
-        submit_change(row, params_obj);
+        make_row_plain(row, params_obj);
       }
     }
   }
@@ -205,15 +218,23 @@ function deactivate(row) {
   xml.send(params);  
 }
 
-// Deactivate all but the active row
-function deactivate_rows(active) {
+// Deactivates the single, selected row
+function deactivate_single_row(row) {
+  if(!row.className.contains("active")) // Return if the row is inactive
+    return;
+
+  deactivate_single_row_helper(row);
+}
+
+// Deactivate all active rows
+function deactivate_active_rows() {
   var table = document.getElementById("annotationTable");
   var rows = table.rows;
   var i;
 
   for(i = 0; i < rows.length; i++) {
     if(rows[i].className.contains("active"))
-      deactivate(rows[i]);    
+      deactivate_single_row(rows[i]);    
   }
 }
 
@@ -228,11 +249,11 @@ function add_row(obj) {
     insert ='<td><a href="#" title="remove this annotation" name="'+ obj.id +
                 '" onclick="return remove_annotation(this);"> \
                 <img src="../images/icons/trash_w.png" height="15" width="" /></a></td>'+
-            '<td class="feature_s"  onclick="return activate_row(this.parentNode, this);">'+obj.feature + '</td>' + 
-            '<td class="ida"  onclick="return activate_row(this.parentNode, this);">'+ obj.ida +'</td>' + 
-            '<td class="start"  onclick="return activate_row(this.parentNode, this);">'+ obj.start  +'</td>' +
-            '<td class="end"  onclick="return activate_row(this.parentNode, this);">'+ obj.end +'</td>' + 
-            '<td class="keep"  onclick="return activate_row(this.parentNode, this);">'+ obj.keep +'</td>';
+            '<td class="feature_s"  ondblclick="return activate_row(this.parentNode, this);">'+obj.feature + '</td>' + 
+            '<td class="ida"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.ida +'</td>' + 
+            '<td class="start"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.start  +'</td>' +
+            '<td class="end"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.end +'</td>' + 
+            '<td class="keep"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.keep +'</td>';
 
   row.innerHTML = insert;
 }

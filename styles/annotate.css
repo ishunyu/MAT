@@ -91,3 +91,13 @@ input.keep {
 button#annoSubmitButton {
   float: ;
 }
+
+select.edit {
+  height: 20px;
+}
+
+input.edit {
+  height: 18px;
+  font-size: 18px;
+  font-weight: normal;
+}
