@@ -81,10 +81,10 @@ function activate_row_helper(children, cell) {
       child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange=""> \
                         <option value="2">m7G Cap</option> \
                         <option value="3">promoter</option> \
-                        <option value="4">5\'URT</option> \
+                        <option value="4">5\'UTR</option> \
                         <option value="1">Exon</option> \
                         <option value="0">Intron</option> \
-                        <option value="5">3\'URT</option> \
+                        <option value="5">3\'UTR</option> \
                         <option value="6">Poly(A) tail</option> \
                         <option value="99">other</option> \
                       </select>';
@@ -258,6 +258,15 @@ function add_row(obj) {
   row.innerHTML = insert;
 }
 
+// Clears the input
+function clear_input() {
+  document.getElementById("ida").value = "";
+  document.getElementById("ida").focus();
+  document.getElementById("start").value = "";
+  document.getElementById("end").value = "";
+
+}
+
 // Submits the new annotation using AJAX
 function submit_annotation() {
   var xml;
@@ -280,6 +289,7 @@ function submit_annotation() {
         params_obj.end = end;
         params_obj.keep = keep;
         add_row(params_obj);
+        clear_input();
       }
     }
   }

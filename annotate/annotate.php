@@ -41,24 +41,24 @@
 
           <!-- INPUT BOX -->
           <tr class="" id="input_row">
-            <td class="feature" onclick="deactivate_rows(null);">
+            <td class="feature" onclick="deactivate_active_rows(null);">
               <select name="feature" class="feature" id="feature" onchange="checkbox()">
                 <option value="2">m7G Cap</option>
                 <option value="3">promoter</option>
-                <option value="4">5'URT</option>
+                <option value="4">5'UTR</option>
                 <option value="1">Exon</option>
                 <option value="0">Intron</option>
-                <option value="5">3'URT</option>
+                <option value="5">3'UTR</option>
                 <option value="6">Poly(A) tail</option>
                 <option value="99">other</option>
               </select></td>
-            <td class="ida" onclick="deactivate_rows(null);">
+            <td class="ida" onclick="deactivate_active_rows(null);">
               <input type="text" class="ida inputBoxStyle" id="ida" onkeydown="enter(event);" /></td>
-            <td class="start" onclick="deactivate_rows(null);">
+            <td class="start" onclick="deactivate_active_rows(null);">
               <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
-            <td class="end" onclick="deactivate_rows(null);">
+            <td class="end" onclick="deactivate_active_rows(null);">
               <input type="text" class="start_end inputBoxStyle" id="end" onkeydown="enter(event); return input_check(event)"/></td>
-            <td class="keep" onclick="deactivate_rows(null);">
+            <td class="keep" onclick="deactivate_active_rows(null);">
               <input type="checkbox" class="keep" id="keep" checked="true"/></td>
           </tr>
           <tr class="submitBox" id="submitBox">
@@ -66,7 +66,7 @@
           </tr>
         </table>
         <? hidden_gene_value($geneId);  hidden_num_col(5); ?>
-        <table class="annotationTable" id="annotationTable" onblur="deactivate_rows(null);">
+        <table class="annotationTable" id="annotationTable" onblur="deactivate_active_rows(null);">
           <!-- ANNOTATIONS -->                    
           <? require_once "anno_table.php";?>
         </table>
