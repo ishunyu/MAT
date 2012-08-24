@@ -1,5 +1,5 @@
 <?php
-require_once "variables.php";
+require_once "../headers/variables.php";
 
 // Connecting to mysql
   $connection = mysql_connect($hostName, $username, $password) or die("Cannot connect to SQL");

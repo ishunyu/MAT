@@ -1,5 +1,5 @@
 <?php
-require_once "../headers/connectdb.php";
+require_once "../db/connectdb.php";
 
 $firstName = mysql_real_escape_string($_POST['firstName']);
 $lastName = mysql_real_escape_string($_POST['lastName']);

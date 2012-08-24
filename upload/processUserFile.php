@@ -1,7 +1,7 @@
 <?php
 // uploader.php
 
-require_once "../headers/connectdb.php";
+require_once "../db/connectdb.php";
 require_once "../headers/session.php";
 require_once "../classes/FILES.php";
 

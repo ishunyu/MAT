@@ -58,7 +58,7 @@ function checkRegForm() {
     }
   }
   
-  xmlhttp.open("POST","checkUserExistsInDatabase.php",true);
+  xmlhttp.open("POST","_check_user.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("username="+username);
   
