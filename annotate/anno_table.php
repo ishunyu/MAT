@@ -16,13 +16,17 @@ if($anno){
   
   foreach($anno as $id => $a) {?>
     <tr class="a_row" id="row<? echo $id; ?>" >
-      <td><a href="#" title="remove" name="<?echo $id;?>" onclick="return remove_annotation(this);">
-          <img src="../images/icons/trash_w.png" height="15" width="" /></a></td>
-      <td class="feature_s" ondblclick="return activate_row(this.parentNode, this);"><? echo stripcslashes($a['ftr']);?></td>
-      <td class="ida" ondblclick="return activate_row(this.parentNode, this);">  <? echo $a['ida']; ?></td>
-      <td class="start" ondblclick="return activate_row(this.parentNode, this);"><? echo $a['st']; ?></td>
-      <td class="end" ondblclick="return activate_row(this.parentNode, this);">  <? echo $a['end']; ?></td>
-      <td class="keep" ondblclick="return activate_row(this.parentNode, this);"> <? if($a['kp'] == "true") echo "Yes";
+      <td>
+        <a href="#" title="remove" name="<?echo $id;?>" onclick="return remove_annotation(this);">
+          <img src="../images/icons/trash_w.png" height="15" width="" /></a>
+        <a href="#" title="edit" onclick="activate_row(this)">
+          <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
+      </td>
+      <td class="feature_s"><? echo stripcslashes($a['ftr']);?></td>
+      <td class="ida">  <? echo $a['ida']; ?></td>
+      <td class="start"><? echo $a['st']; ?></td>
+      <td class="end">  <? echo $a['end']; ?></td>
+      <td class="keep"> <? if($a['kp'] == "true") echo "Yes";
                             else echo "No"; ?></td>
     </tr>
   <?

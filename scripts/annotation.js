@@ -70,7 +70,7 @@ function make_row_plain(row, params) {
   row.className = row.className.substr(0, index_active).trim();
 }
 
-function activate_row_helper(children, cell) {
+function activate_row_helper(children) {
   var feature, ida, start, end, keep, i;
 
   for(i = 0;i < children.length; i++) {
@@ -128,7 +128,9 @@ function activate_row_helper(children, cell) {
 }
 
 // Dynamically change the annotation data
-function activate_row(row, cell) {
+function activate_row(edit_button) {
+  var row = edit_button.parentNode.parentNode;
+
   if(row.className.contains("active")) {
     deactivate_single_row(row);
     return;
@@ -136,9 +138,9 @@ function activate_row(row, cell) {
 
   // let's make it editable  
   deactivate_active_rows(); // First, make other rows inactive
-  activate_row_helper(row.cells, cell);
+  activate_row_helper(row.cells);
 
-  cell.firstChild.focus();  // Focus the selected cell input
+  // Something  // Focus the selected cell input
   row.className = row.className + " active";  // Adds the active component
 }
 
@@ -248,12 +250,14 @@ function add_row(obj) {
     obj.keep = obj.keep ? "Yes" : "no";
     insert ='<td><a href="#" title="remove this annotation" name="'+ obj.id +
                 '" onclick="return remove_annotation(this);"> \
-                <img src="../images/icons/trash_w.png" height="15" width="" /></a></td>'+
-            '<td class="feature_s"  ondblclick="return activate_row(this.parentNode, this);">'+obj.feature + '</td>' + 
-            '<td class="ida"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.ida +'</td>' + 
-            '<td class="start"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.start  +'</td>' +
-            '<td class="end"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.end +'</td>' + 
-            '<td class="keep"  ondblclick="return activate_row(this.parentNode, this);">'+ obj.keep +'</td>';
+                <img src="../images/icons/trash_w.png" height="15" width="" /></a> \
+                <a href="#" title="edit" onclick="activate_row(this)"> \
+                  <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
+            '<td class="feature_s">'+obj.feature + '</td>' + 
+            '<td class="ida">'+ obj.ida +'</td>' + 
+            '<td class="start">'+ obj.start  +'</td>' +
+            '<td class="end">'+ obj.end +'</td>' + 
+            '<td class="keep">'+ obj.keep +'</td>';
 
   row.innerHTML = insert;
 }
