@@ -46,13 +46,13 @@ if($userQuery) { // Login success
   // Redirect the user
   $redirectPath =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
-    "location:https://localhost/MAT/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/MAT/upload/upload.php";
+    "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
   header($redirectPath);
 }
 else {  // Redirect
   $redirectPath =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
-    "location:https://localhost/MAT/index.php" : "location:http://vis.cs.ucdavis.edu/~yus/MAT/index.php";
+    "location:https://localhost/mat/index.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/index.php";
   header($redirectPath."?loginAttempt=1&username=$_POST[username]");
 }
 ?>

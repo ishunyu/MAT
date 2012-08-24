@@ -1,6 +1,6 @@
 *.xls
 log
-MAT.pdf
+*.pdf
 .settings/
 .project
 .classpath

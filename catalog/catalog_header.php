@@ -33,5 +33,5 @@ function drawRows() {
 	echo "</tr>";
   }
 }
-//www.mat.com/manage/annotate.php?geneID=9
+
 ?>

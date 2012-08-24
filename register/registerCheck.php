@@ -36,7 +36,7 @@ if($count == 0) {
 
     $redirectPath =
       ($_SERVER["HTTP_HOST"] == "localhost") ?
-      "location:https://localhost/MAT/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/MAT/upload/upload.php";
+      "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
     header($redirectPath);
   }
 }
@@ -44,7 +44,7 @@ else {
   die("You got here!");
   $redirectPath =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
-    "location:https://localhost/MAT/register/register.php" : "location:http://vis.cs.ucdavis.edu/~yus/MAT/register/register.php";
+    "location:https://localhost/mat/register/register.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/register/register.php";
   header($redirectPath);
 }
 
