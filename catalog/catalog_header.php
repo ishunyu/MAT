@@ -1,5 +1,5 @@
 <?php
-include "../headers/session.php";
+require_once "../headers/session.php";
 
 function td($string, $class) {
   return "<td class=\"$class\">$string</td>";
@@ -22,12 +22,12 @@ function drawRows() {
   echo "<tr id=\"".strval($dnaList['id'])."\">";
 	echo td($dnaList['geneName'], "formLabel textShadow labelColumn");
 	echo td(a("Mutate","../mutate/mutate.php?geneID=".strval($dnaList['id']))
-          ."&nbsp&nbsp&nbsp&nbsp"
+          .'&nbsp&nbsp&nbsp&nbsp'
           .a("Annotate","../annotate/annotate.php?geneID=".strval($dnaList['id']))
           ."&nbsp&nbsp&nbsp&nbsp"
-          ."<a  href=\"\" onClick=\"return show(this);\">Show</a>"
-          ."&nbsp&nbsp&nbsp&nbsp"
-          ."<a  href=\"\" onClick=\"return del(this);\">Delete</a>"          
+          .'<a  href="" onClick="return show(this);">Show</a>'
+          .'&nbsp&nbsp&nbsp&nbsp'
+          .'<a  href="" onClick="return del(this);">Delete</a>'         
           , "");
           
 	echo "</tr>";

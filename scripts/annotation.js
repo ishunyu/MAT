@@ -10,11 +10,13 @@ function checkbox() {
   return false;
 }
 
+// Used for submitting
 function enter(keyStroke) {
   if(keyStroke.keyCode == 13)
     submit_annotation();
 }
 
+// Used for while editing
 function enter_c(keyStroke) {
   if(keyStroke.keyCode == 13)
     deactivate_active_rows(null);
@@ -82,7 +84,7 @@ function make_row_plain(row, params) {
 function activate_row_helper(children) {
   var feature, ida, start, end, keep, i;
 
-  for(i = 0;i < children.length; i++) {
+  for(i = 0;i < children.length; i++) { // bookmark
     var child = children[i];
     
     if(child.className == "controls") { // Change edit image to confirm image
@@ -104,7 +106,6 @@ function activate_row_helper(children) {
                         <option>Intron</option> \
                         <option>3\'UTR</option> \
                         <option>Poly(A) tail</option> \
-                        <option>other</option> \
                       </select>';
       var sel = child.firstChild;
 
@@ -378,5 +379,3 @@ function remove_annotation(obj) {
 }
 
 /* Start up functions*/
-// document.onkeydown = function(){pressedKey(window.event);};
-

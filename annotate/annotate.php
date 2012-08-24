@@ -1,4 +1,4 @@
-<? require_once "annotate_header.php"; ?>
+<? require_once 'annotate_header.php'; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>  
@@ -15,6 +15,10 @@
 
 <body>
 <div class="topBarBackground"></div>
+<div id="feature_panel" class="roundCorners" style="visibility:hidden; border:1px solid lightgray; position:absolute; width:400px; height:400px; background: white; top: 100px; left:30%; z-index: 9999;">
+  <h4>Features</h4>
+  <? require_once '+anno_feature.php'; ?>
+</div>
   <!-- MAIN-->
   <div id="div_main">    
     <!-- TOP BAR-->      
@@ -32,7 +36,9 @@
         <table class="submitTable">
         	<!-- LABEL -->
           <tr>
-  	        <td class="textShadow">Feature</td>
+  	        <td class="textShadow">Feature
+              <a class="smallLink">add</a>
+            </td>
   	        <td class="textShadow">Id</td>
   	        <td class="textShadow">Start</td>
   	        <td class="textShadow">End</td>
@@ -50,7 +56,6 @@
                 <option>Intron</option>
                 <option>3'UTR</option>
                 <option>Poly(A) tail</option>
-                <option>other</option>
               </select></td>
             <td class="ida" onclick="deactivate_active_rows(null);">
               <input type="text" class="ida inputBoxStyle" id="ida" onkeydown="enter(event);" /></td>
@@ -68,7 +73,7 @@
         <? hidden_gene_value($geneId);  hidden_num_col(5); ?>
         <table class="annotationTable" id="annotationTable" onblur="deactivate_active_rows(null);">
           <!-- ANNOTATIONS -->                    
-          <? require_once "anno_table.php";?>
+          <? require_once '+anno_table.php';?>
         </table>
   <? }
      else { ?>
