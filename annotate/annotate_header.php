@@ -1,7 +1,7 @@
 <?php
-include "../headers/checkSession.php";
-require_once "../headers/geneDisplay.php";
-require_once "../headers/topBar.php";
+include "../headers/session.php";
+require_once "../headers/show_gene.php";
+require_once "../headers/top_bar.php";
 
 
 ?>

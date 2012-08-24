@@ -1,6 +1,6 @@
 <?
-require_once "../headers/databaseConfig.php";
-require_once "../headers/globalVariables.php";
+require_once "../headers/connectdb.php";
+require_once "../headers/variables.php";
 
 $geneId = $_POST["geneId"];
 

@@ -19,7 +19,7 @@ if(isset($_GET['geneID'])){
     $geneId = $_GET['geneID'];
   }
   else {
-    header("location:../headers/easterEgg.php");
+    header("location:../headers/easter_egg.php");
   }
 }
 

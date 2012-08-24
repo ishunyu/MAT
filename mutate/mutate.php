@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>
-  <? require_once "../headers/checkSession.php";
-     require_once "../headers/geneDisplay.php";
-     require_once "../headers/topBar.php" ?>
+  <? require_once "../headers/session.php";
+     require_once "../headers/show_gene.php";
+     require_once "../headers/top_bar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   
   <!-- FAVICON -->
@@ -12,7 +12,7 @@
   
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
-  <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
+  <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/mutate.css">
   <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   

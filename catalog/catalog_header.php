@@ -1,5 +1,5 @@
 <?php
-include "../headers/checkSession.php";
+include "../headers/session.php";
 
 function td($string, $class) {
   return "<td class=\"$class\">$string</td>";
@@ -10,7 +10,7 @@ function a($string, $link) {
 }
 
 function drawRows() {
-  include "../headers/globalVariables.php";
+  include "../headers/variables.php";
   
   $dnaListQuery =
     "SELECT geneName, id

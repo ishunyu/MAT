@@ -1,6 +1,6 @@
 <?php
-include "../headers/checkSession.php";
-include "../classes/class_GENE.php";
+include "../headers/session.php";
+include "../classes/GENE.php";
 
 // Retrieving the gene & annotation
 $geneQuery =

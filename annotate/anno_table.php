@@ -16,9 +16,9 @@ if($anno){
   
   foreach($anno as $id => $a) {?>
     <tr class="a_row" id="row<? echo $id; ?>" >
-      <td>
+      <td class="controls">
         <a href="#" title="remove" name="<?echo $id;?>" onclick="return remove_annotation(this);">
-          <img src="../images/icons/trash_w.png" height="15" width="" /></a>
+          <img src="../images/icons/trash_white.png" height="15" width="" /></a>
         <a href="#" title="edit" onclick="activate_row(this)">
           <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
       </td>

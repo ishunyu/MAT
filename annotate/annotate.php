@@ -4,7 +4,7 @@
 <head>  
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
-  <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
+  <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/annotate.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
@@ -43,14 +43,14 @@
           <tr class="" id="input_row">
             <td class="feature" onclick="deactivate_active_rows(null);">
               <select name="feature" class="feature" id="feature" onchange="checkbox()">
-                <option value="2">m7G Cap</option>
-                <option value="3">promoter</option>
-                <option value="4">5'UTR</option>
-                <option value="1">Exon</option>
-                <option value="0">Intron</option>
-                <option value="5">3'UTR</option>
-                <option value="6">Poly(A) tail</option>
-                <option value="99">other</option>
+                <option>m7G Cap</option>
+                <option>promoter</option>
+                <option>5'UTR</option>
+                <option>Exon</option>
+                <option>Intron</option>
+                <option>3'UTR</option>
+                <option>Poly(A) tail</option>
+                <option>other</option>
               </select></td>
             <td class="ida" onclick="deactivate_active_rows(null);">
               <input type="text" class="ida inputBoxStyle" id="ida" onkeydown="enter(event);" /></td>

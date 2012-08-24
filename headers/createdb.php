@@ -1,14 +1,14 @@
 <?php
-include "globalVariables.php";
+include "variables.php";
 
 // Connecting to mysql
   $connection = mysql_connect($hostName, $username, $password)or die("Cannot connect to SQL");
 
 // Create out database
-  mysql_query($query_createDatabase) or die("Database $MATDatabaseName could not be created.");
+  mysql_query($query_createDatabase) or die("Database $db could not be created.");
 
 // Connect to our datatbase
-  mysql_select_db($MATDatabaseName)
+  mysql_select_db($db)
     or die("Cannot establish connection with database");
 
 // Create table $accountsTableName

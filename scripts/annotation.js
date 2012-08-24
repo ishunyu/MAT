@@ -47,8 +47,17 @@ function make_row_plain(row, params) {
   // Commit the change on the front end
   var i, children = row.childNodes;
   for(i = 0;i < children.length; i++) {
-    child = children[i];    
-    if(child.className == "feature_s") {  // feature
+    child = children[i];
+    if(child.className == "controls") {
+      var j;
+      for(j = 0; j < child.childNodes.length; j++) {
+        if(child.childNodes[j].title == "edit") {
+          var edit_image = child.childNodes[j].firstChild.nextSibling;
+          edit_image.src = "../images/icons/file_3_white.png";
+        }
+      }
+    }
+    else if(child.className == "feature_s") {  // feature
       child.innerHTML = params.feature;
     }
     else if(child.className == "ida") { // ida
@@ -76,17 +85,26 @@ function activate_row_helper(children) {
   for(i = 0;i < children.length; i++) {
     var child = children[i];
     
-    if(child.className == "feature_s") {  // feature
+    if(child.className == "controls") { // Change edit image to confirm image
+      var j;
+      for(j = 0; j < child.childNodes.length; j++) {
+        if(child.childNodes[j].title == "edit") {
+          var edit_image = child.childNodes[j].firstChild.nextSibling;
+          edit_image.src = "../images/icons/tick_2_white.png";
+        }
+      }
+    }
+    else if(child.className == "feature_s") {  // feature
       feature = child.innerHTML.trim();
       child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange=""> \
-                        <option value="2">m7G Cap</option> \
-                        <option value="3">promoter</option> \
-                        <option value="4">5\'UTR</option> \
-                        <option value="1">Exon</option> \
-                        <option value="0">Intron</option> \
-                        <option value="5">3\'UTR</option> \
-                        <option value="6">Poly(A) tail</option> \
-                        <option value="99">other</option> \
+                        <option>m7G Cap</option> \
+                        <option>promoter</option> \
+                        <option>5\'UTR</option> \
+                        <option>Exon</option> \
+                        <option>Intron</option> \
+                        <option>3\'UTR</option> \
+                        <option>Poly(A) tail</option> \
+                        <option>other</option> \
                       </select>';
       var sel = child.firstChild;
 
@@ -207,7 +225,7 @@ function deactivate_single_row_helper(row) {
       }
     }
   }
-  xml.open("POST","anno_commit_change.php",true);
+  xml.open("POST","_anno_commit_change.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
   var params = "id="+id
@@ -248,9 +266,9 @@ function add_row(obj) {
   row.id = "row"+obj.id;
 
     obj.keep = obj.keep ? "Yes" : "no";
-    insert ='<td><a href="#" title="remove this annotation" name="'+ obj.id +
+    insert ='<td class="controls"><a href="#" title="remove this annotation" name="'+ obj.id +
                 '" onclick="return remove_annotation(this);"> \
-                <img src="../images/icons/trash_w.png" height="15" width="" /></a> \
+                <img src="../images/icons/trash_white.png" height="15" width="" /></a> \
                 <a href="#" title="edit" onclick="activate_row(this)"> \
                   <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
             '<td class="feature_s">'+obj.feature + '</td>' + 
@@ -297,7 +315,7 @@ function submit_annotation() {
       }
     }
   }
-  xml.open("POST","anno_commit.php",true);
+  xml.open("POST","_anno_commit.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   var featureIndex = document.getElementById("feature").selectedIndex;
@@ -348,7 +366,7 @@ function remove_annotation(obj) {
       }
     }
   }
-  xml.open("POST","anno_remove.php",true);
+  xml.open("POST","_anno_remove.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   var id = obj.name;

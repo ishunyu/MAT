@@ -1,5 +1,5 @@
 <?
-require_once "../headers/checkSession.php";
+require_once "../headers/session.php";
 
 $geneId = $_POST["geneId"];
 

@@ -62,7 +62,7 @@ function sendAjaxForSequence(geneId) {
   
   var POSTMessage = "geneId="+geneId;
   
-  xmlhttp.open("POST","show.php",true);
+  xmlhttp.open("POST","_show.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send(POSTMessage);
 }
@@ -142,7 +142,7 @@ function sendAjaxForDeletion(geneId) {
   
   var POSTMessage = "geneId="+geneId;
   
-  xmlhttp.open("POST","delete.php",true);
+  xmlhttp.open("POST","_delete.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send(POSTMessage);
 }

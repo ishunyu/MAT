@@ -4,12 +4,12 @@ $hostName="localhost";  // name of the host server
 $hostName_vis = "vis.cs.ucdavis.edu";
 $username="shunyu"; // mysql account name
 $password="vis@pass";  // mysql account password
-$MATDatabaseName="shunyu_database_genemutation"; // Our database to connect to
-$accountsTableName="shunyu_table_accounts";  // Table for storing account information
-$geneListTableName="shunyu_table_genes";  // Table for storing gene information
+$db="shunyu_mat"; // Our database to connect to
+$accountsTableName="shunyu_users";  // Table for storing account information
+$geneListTableName="shunyu_genes";  // Table for storing gene information
 
 $query_createDatabase =
-  "CREATE DATABASE IF NOT EXISTS $MATDatabaseName";
+  "CREATE DATABASE IF NOT EXISTS $db";
 
 $query_accountstable =
   "CREATE TABLE IF NOT EXISTS $accountsTableName(
@@ -28,6 +28,7 @@ $query_accountstable =
 $query_genelisttable =
   "CREATE TABLE IF NOT EXISTS $geneListTableName(
     id INT NOT NULL AUTO_INCREMENT,
+    features varchar(30),
     geneName varchar(225),
     geneNotes text,
     geneOriginal mediumtext,

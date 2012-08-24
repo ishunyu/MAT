@@ -2,10 +2,10 @@
 <html>
 <head>
   <? require_once "catalog_header.php";
-     require_once "../headers/topBar.php" ?>
+     require_once "../headers/top_bar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
-  <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
+  <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/catalog.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 

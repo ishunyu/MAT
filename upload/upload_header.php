@@ -1,5 +1,5 @@
 <?php
-include "../headers/checkSession.php";
+include "../headers/session.php";
 
 function checkIfGenesExist($my_tableName) {
   $id = $_SESSION['id'];

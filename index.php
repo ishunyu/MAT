@@ -19,7 +19,7 @@
   <div class="pageTitle">Mutation Analysis Tool<hr id="divider" class=""></div>
   
   <!-- FORM -->
-  <form name="inputLogin" action="login/loginCheck.php" method="POST" id="loginForm">
+  <form name="inputLogin" action="login/login.php" method="POST" id="loginForm">
     <span class="formLabel">Username</span>
     <input class="inputBoxStyle" id="username" type="text" name="username" onkeydown="clearIndexPageInputs()"/>
     <br/><br/>

@@ -1,5 +1,5 @@
 <?php
-require_once "../headers/databaseConfig.php";
+require_once "../headers/connectdb.php";
 
 $username = $_POST['username'];
 

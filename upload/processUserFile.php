@@ -1,9 +1,9 @@
 <?php
 // uploader.php
 
-require_once "../headers/databaseConfig.php";
-require_once "../headers/checkSession.php";
-require_once "../classes/class_files.php";
+require_once "../headers/connectdb.php";
+require_once "../headers/session.php";
+require_once "../classes/FILES.php";
 
 $geneName = $_POST['geneName'];
 $geneNotes = $_POST['geneNotes'];

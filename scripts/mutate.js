@@ -42,7 +42,7 @@ function sendAjaxForPosition(index, base) {
   
   var POSTMessage = "index="+index+"&"+"base="+base;
   
-  xmlhttp.open("POST","mutateGeneAtPosition.php",true);
+  xmlhttp.open("POST","_mutate.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send(POSTMessage);
 }

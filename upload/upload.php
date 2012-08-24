@@ -2,14 +2,14 @@
 <html>
 <head>
   <? require_once "upload_header.php";
-     require_once "../headers/topBar.php" ?>
+     require_once "../headers/top_bar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
 
   <link rel="icon" href="../favicon.ico" type="image/x-icon">   
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
-  <link rel="stylesheet" type="text/css" href="../styles/topBar.css">
+  <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/upload.css">
 
   
