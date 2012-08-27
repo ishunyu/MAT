@@ -14,30 +14,30 @@ $password = md5(mysql_real_escape_string($password));
 //echo $password."</br>";
 
 // Query to the database for account info
-$userQuery =
+$userQ =
   "SELECT *
    FROM $accountsTableName
    WHERE username='$username' AND password='$password'";
-$userQuery = mysql_query($userQuery);
-$userQuery = mysql_fetch_assoc($userQuery);
+$userQ = mysql_query($userQ);
+$userQ = mysql_fetch_assoc($userQ);
 
-//die(var_dump($userQuery));
+//die(var_dump($userQ));
 
-if($userQuery) { // Login success
+if($userQ) { // Login success
   session_start();  // Start session
   
   // Set the session variables
   $_SESSION['username'] = $username;
-  $_SESSION['id'] = $userQuery['id'];
-  $_SESSION['lastGeneId'] = $userQuery['lastGeneId'];
-  $_SESSION['firstName'] = $userQuery['firstName'];
-  $_SESSION['lastLoginTime'] = $userQuery['lastLoginTime'];
+  $_SESSION['id'] = $userQ['id'];
+  $_SESSION['lastGeneId'] = $userQ['lastGeneId'];
+  $_SESSION['firstName'] = $userQ['firstName'];
+  $_SESSION['lastLoginTime'] = $userQ['lastLoginTime'];
   
   //Set the lastLoginTime
   $updateLoginTime = 
     "UPDATE $accountsTableName
      SET lastLoginTime=NOW()
-     WHERE id='$userQuery[id]'";
+     WHERE id='$userQ[id]'";
   $updateLoginTime = mysql_query($updateLoginTime) or die("Update login time unsuccessful");
   
   // Set cookies

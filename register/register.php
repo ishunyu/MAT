@@ -20,7 +20,7 @@
   
   <div id="inputErrorMessage"></div>
   <!-- FORM -->
-  <form id="registerForm" name="registerForm"  action="register_check.php" onsubmit="return checkRegForm()" method="POST">
+  <form id="registerForm" name="registerForm"  action="register_proc.php" onsubmit="return checkRegForm()" method="POST">
     <span class="formLabel">First Name</span>
     <input class="inputBoxStyle" id="reg_firstName" type="text" name="firstName" maxlength="255"/>
     <br/><br/>

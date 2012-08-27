@@ -85,3 +85,4 @@
   </div>
 </body>
 </html>
+<? mysql_close($connection); ob_end_flush(); ?>

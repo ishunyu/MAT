@@ -2,21 +2,22 @@
 require_once "../db/connectdb.php";
 require_once "../headers/variables.php";
 
-$geneId = $_POST["geneId"];
+$geneId = $_POST['geneId'];
 
-$geneQuery =
-  "SELECT gene,modifyTime
+$_gene =
+  "SELECT gene, geneNotes, modifyTime
    FROM $geneListTableName
    WHERE id=$geneId";
-$geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
-$geneQuery = mysql_fetch_assoc($geneQuery);
+$_gene = mysql_query($_gene) or die("Gene query unsuccessful");
+$_gene = mysql_fetch_assoc($_gene);
 
-$gene = $geneQuery["gene"];
+$gene = $_gene["gene"];
 
-echo "Length: ".strlen($gene);
-echo "<br>";
-echo "Last modified: ".$geneQuery["modifyTime"];
-echo "<br><br>";
+echo 'Length: '.strlen($gene);
+echo '<br>';
+echo 'Last modified: '.$_gene['modifyTime'];
+echo '<br>';
+echo 'Notes: '.$_gene['geneNotes'];
+echo '<br><br>';
 echo $gene;
-
 ?>
