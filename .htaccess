@@ -1,0 +1,36 @@
+RewriteEngine On
+RewriteBase /
+
+#ErrorDocument 400 /mat/bad/404.php
+#ErrorDocument 401 /mat/bad/404.php
+#ErrorDocument 403 /mat/bad/404.php
+#ErrorDocument 404 /mat/bad/404.php
+#ErrorDocument 500 /mat/bad/404.php
+
+# Stops redirect loop!
+RewriteCond %{ENV:REDIRECT_STATUS} 200
+RewriteRule .* - [L]
+
+# Catalog
+RewriteRule ^catalog/catalog.php$ /mat/catalog/ [R=301,L]
+RewriteRule ^catalog/$ /mat/catalog/catalog.php [L]
+
+# Upload
+RewriteRule ^upload/upload.php$ /mat/upload/ [R=301,L]
+RewriteRule ^upload/$ /mat/upload/upload.php [L]
+
+# Annotate
+RewriteCond %{QUERY_STRING} ^geneId=([0-9]+)$
+RewriteRule ^annotate/annotate\.php$ /mat/annotate/%1? [R=301,L]
+RewriteRule ^annotate/([0-9]+)$ /mat/annotate/annotate.php?geneId=$1 [L]
+
+RewriteRule ^annotate/annotate.php$ /mat/annotate/ [R=301,L]
+RewriteRule ^annotate/$ /mat/annotate/annotate.php [L]
+
+# Mutate
+RewriteCond %{QUERY_STRING} ^geneId=([0-9]+)$
+RewriteRule ^mutate/mutate\.php$ /mat/mutate/%1? [R=301,L]
+RewriteRule ^mutate/([0-9]+)$ /mat/mutate/mutate.php?geneId=$1 [L]
+
+RewriteRule ^mutate/mutate.php$ /mat/mutate/ [R=301,L]
+RewriteRule ^mutate/$ /mat/mutate/mutate.php [L]

@@ -1,8 +1,7 @@
+<? require_once '__catalog__.php'; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>
-  <? require_once "catalog_header.php";
-     require_once "../headers/top_bar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
@@ -43,3 +42,4 @@
   </div>
 </body>
 </html>
+<? mysql_close($connection); ob_end_flush(); ?>

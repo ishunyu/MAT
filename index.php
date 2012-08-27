@@ -1,7 +1,7 @@
+<? require_once "__index__.php"; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.ddiv"> 
 <html>
-<head>
-  <? require_once "index_header.php"; ?>
+<head>  
   <meta http-equiv="X-UA-Compatible" content="IE=9"> </meta>
 
   <link rel="icon" href="favicon.ico" type="image/x-icon"> 

@@ -48,7 +48,7 @@ function check_upload() {
     }
   }
   
-  xmlhttp.open("POST","checkGeneExistsInDatabase.php",true);
+  xmlhttp.open("POST","_check_gene.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("geneName="+geneName);
   

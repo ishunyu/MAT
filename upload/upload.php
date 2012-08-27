@@ -1,8 +1,8 @@
+<? require_once "__upload__.php"; ?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>
-  <? require_once "upload_header.php";
-     require_once "../headers/top_bar.php" ?>
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
 
   <link rel="icon" href="../favicon.ico" type="image/x-icon">   
@@ -11,7 +11,6 @@
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/upload.css">
-
   
   <script type="text/javascript" src="../scripts/upload.js"></script>
 </head>
@@ -24,7 +23,7 @@
       <!-- CONTENT-->
       <div class="generalContentContainer">
         
-        <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="processUserFile.php" onsubmit="return check_upload();">
+        <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="upload_proc.php" onsubmit="return check_upload();">
           <span class="titleFormat textShadow">Sequence Identifier</span>
           <a href="../catalog/catalog.php">
             <input class="submitButton normalButton" id="" type = "button" value = "Catalog" /> </a>
@@ -57,3 +56,4 @@
 
 </body>
 </html>
+<? mysql_close($connection); ob_end_flush(); ?>
