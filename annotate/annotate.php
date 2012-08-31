@@ -33,7 +33,7 @@
         	<!-- LABEL -->
           <tr>
   	        <td class="textShadow">Feature
-              <a href="../feature/feature.php" class="smallLink">add</a>
+              <a href="../features/features.php" class="smallLink">add</a>
             </td>
   	        <td class="textShadow">Id</td>
   	        <td class="textShadow">Start</td>
