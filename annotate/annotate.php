@@ -1,4 +1,4 @@
-<? require_once 'annotate_header.php'; ?>
+<? require_once '__annotate__.php'; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>  
@@ -15,10 +15,6 @@
 
 <body>
 <div class="topBarBackground"></div>
-<div id="feature_panel" class="roundCorners" style="visibility:hidden; border:1px solid lightgray; position:absolute; width:400px; height:400px; background: white; top: 100px; left:30%; z-index: 9999;">
-  <h4>Features</h4>
-  <? require_once '+anno_feature.php'; ?>
-</div>
   <!-- MAIN-->
   <div id="div_main">    
     <!-- TOP BAR-->      
@@ -37,7 +33,7 @@
         	<!-- LABEL -->
           <tr>
   	        <td class="textShadow">Feature
-              <a class="smallLink">add</a>
+              <a href="../feature/feature.php" class="smallLink">add</a>
             </td>
   	        <td class="textShadow">Id</td>
   	        <td class="textShadow">Start</td>

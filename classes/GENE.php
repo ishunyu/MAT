@@ -48,7 +48,7 @@ class gene {
     $newProtein = $this->lut[$newCodon]["3LetterCode"];
     
     if($originalProtein == $newProtein) // Silent mutation
-      return "See Nucleic acid level.";
+      return "p.(=)";
     
     $protienMutation = "p.".$originalProtein.$indexOfBase.$newProtein;
     
@@ -68,9 +68,6 @@ class gene {
     $newProtein = $this->lut[$newCodon]["3LetterCode"];        
     
     $rnaMutation = "c.".$indexOfBase.$this->sequence[$indexOfBase-1].">".$base;
-    if($originalProtein == $newProtein) // Silent mutation
-      $rnaMutation = $rnaMutation." (p.(=))";
-
     return $rnaMutation;
   }
   

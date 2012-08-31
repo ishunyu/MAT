@@ -67,6 +67,8 @@ if($geneId != "") {
     $gene0to30 = $gene;
   }
   $gene0to30 = "(".$gene0to30.")";
+
+  $_SESSION['gene_id'] = $geneId;
 }
 
 $updateQuery =

@@ -226,7 +226,7 @@ function deactivate_single_row_helper(row) {
       }
     }
   }
-  xml.open("POST","_anno_commit_change.php",true);
+  xml.open("POST","_change_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
   var params = "id="+id
@@ -316,7 +316,7 @@ function submit_annotation() {
       }
     }
   }
-  xml.open("POST","_anno_commit.php",true);
+  xml.open("POST","_submit_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   var featureIndex = document.getElementById("feature").selectedIndex;
@@ -367,7 +367,7 @@ function remove_annotation(obj) {
       }
     }
   }
-  xml.open("POST","_anno_remove.php",true);
+  xml.open("POST","_remove_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   var id = obj.name;

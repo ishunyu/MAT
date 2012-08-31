@@ -14,10 +14,10 @@ if($anno){
   
   // echo var_dump($anno);
   
-  foreach($anno as $id => $a) {?>
-    <tr class="a_row" id="row<? echo $id; ?>" >
+  foreach($anno as $key => $a) {?>
+    <tr class="a_row" id="row<? echo $key; ?>" >
       <td class="controls">
-        <a href="#" title="remove" name="<?echo $id;?>" onclick="return remove_annotation(this);">
+        <a href="#" title="remove" name="<?echo $key;?>" onclick="return remove_annotation(this);">
           <img src="../images/icons/trash_white.png" height="15" width="" /></a>
         <a href="#" title="edit" onclick="activate_row(this)">
           <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
