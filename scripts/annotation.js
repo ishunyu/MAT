@@ -46,6 +46,7 @@ function input_check(keyStroke) {
 }
 
 function make_row_plain(row, params) {
+  console.log("here");
   // Commit the change on the front end
   var i, children = row.childNodes;
   for(i = 0;i < children.length; i++) {
@@ -71,9 +72,6 @@ function make_row_plain(row, params) {
     else if(child.className == "end") { // end
       child.innerHTML = params.end;
     }
-    else if(child.className == "keep") {  // keep
-      child.innerHTML = (params.keep == true) ? 'Yes' : 'No';;
-    }
   }
 
   // Delete the active class name
@@ -82,7 +80,7 @@ function make_row_plain(row, params) {
 }
 
 function activate_row_helper(children) {
-  var feature, feature_name, ida, start, end, keep, i;
+  var feature, feature_name, ida, start, end, i;
 
   for(i = 0;i < children.length; i++) { // bookmark
     var child = children[i];
@@ -123,12 +121,6 @@ function activate_row_helper(children) {
       end = child.innerHTML.trim();
       child.innerHTML = '<input type="text" class="start_end edit inputBoxStyle" id="end" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
     }
-    else if(child.className == "keep") {  // keep
-      keep = child.innerHTML.trim();
-      k = (keep == "Yes") ? 'checked="true"' : '';
-
-      child.innerHTML = '<input type="checkbox" class="keep edit" id="keep" '+ k +'/>';
-    }
   }
 
   /* Stores row information so we don't have to unnecessarily query the database.
@@ -138,7 +130,6 @@ function activate_row_helper(children) {
   PARAMS_OBJ.ida = ida;
   PARAMS_OBJ.start = start;
   PARAMS_OBJ.end = end;
-  PARAMS_OBJ.keep = (keep == "Yes") ? true : false;
 }
 
 // Dynamically change the annotation data
@@ -159,7 +150,7 @@ function activate_row(edit_button) {
 }
 
 function deactivate_single_row_helper(row) {
-  var feature, feature_name, ida, start, end, keep;
+  var feature, feature_name, ida, start, end;
   var i, children = row.childNodes;
   
   // Gather the information
@@ -179,9 +170,6 @@ function deactivate_single_row_helper(row) {
     else if(child.className == "end") { // end
       end = child.firstChild.value;
     }
-    else if(child.className == "keep") {  // keep
-      keep = child.firstChild.checked;
-    }
   }
 
   var params_obj = new Object();
@@ -190,13 +178,11 @@ function deactivate_single_row_helper(row) {
       params_obj.ida = ida;
       params_obj.start = start;
       params_obj.end = end;
-      params_obj.keep = keep;
 
   if(params_obj.feature == PARAMS_OBJ.feature &&
       params_obj.ida == PARAMS_OBJ.ida &&
       params_obj.start == PARAMS_OBJ.start &&
-      params_obj.end == PARAMS_OBJ.end &&
-      params_obj.keep == PARAMS_OBJ.keep)
+      params_obj.end == PARAMS_OBJ.end)
   {
     make_row_plain(row, params_obj);
     return;
@@ -217,7 +203,7 @@ function deactivate_single_row_helper(row) {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      // alert(xml.responseText);
+      console.log(xml.responseText);
       if(xml.responseText == "success") {
         make_row_plain(row, params_obj);
       }
@@ -231,8 +217,7 @@ function deactivate_single_row_helper(row) {
               +"&feature="+feature
               +"&ida="+ida
               +"&start="+start
-              +"&end="+end
-              +"&keep="+keep;
+              +"&end="+end;
   xml.send(params);  
 }
 
@@ -263,7 +248,6 @@ function add_row(obj) {
   row.className = "a_row";
   row.id = "row"+obj.id;
 
-    obj.keep = obj.keep ? "Yes" : "no";
     insert ='<td class="controls"><a href="#" title="remove this annotation" name="'+ obj.id +
                 '" onclick="return remove_annotation(this);"> \
                 <img src="../images/icons/trash_white.png" height="15" width="" /></a> \
@@ -272,8 +256,7 @@ function add_row(obj) {
             '<td class="feature_s">'+obj.feature + '</td>' + 
             '<td class="ida">'+ obj.ida +'</td>' + 
             '<td class="start">'+ obj.start  +'</td>' +
-            '<td class="end">'+ obj.end +'</td>' + 
-            '<td class="keep">'+ obj.keep +'</td>';
+            '<td class="end">'+ obj.end +'</td>';
 
   row.innerHTML = insert;
 }
@@ -299,7 +282,7 @@ function submit_annotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      //alert(xml.responseText);
+      // console.log(xml.responseText);
       if(xml.responseText.match(/\d/)) {
         var params_obj = new Object();
         params_obj.id = xml.responseText;
@@ -307,7 +290,6 @@ function submit_annotation() {
         params_obj.ida = ida;
         params_obj.start = start;
         params_obj.end = end;
-        params_obj.keep = keep;
         add_row(params_obj);
         clear_input();
       }
@@ -323,15 +305,13 @@ function submit_annotation() {
   var ida = document.getElementById("ida").value;
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
-  var keep = document.getElementById("keep").checked;
   var geneId = document.getElementById("geneId").value;
   
   var params = "geneId="+geneId
               +"&feature="+feature
               +"&ida="+ida
               +"&start="+start
-              +"&end="+end
-              +"&keep="+keep;
+              +"&end="+end;
 
   xml.send(params);
 }

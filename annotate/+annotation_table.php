@@ -28,8 +28,6 @@ if($anno){
       <td class="ida">  <? echo $a['ida']; ?></td>
       <td class="start"><? echo $a['st']; ?></td>
       <td class="end">  <? echo $a['end']; ?></td>
-      <td class="keep"> <? if($a['kp'] == "true") echo "Yes";
-                            else echo "No"; ?></td>
     </tr>
   <?
   } 

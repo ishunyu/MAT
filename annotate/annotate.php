@@ -32,14 +32,13 @@
         <table class="submitTable">
         	<!-- LABEL -->
           <tr>
-  	        <td class="textShadow">
+  	        <td class="textShadow feature">
               <a href="../features/features.php">Feature</a>
               <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
-  	        <td class="textShadow">Id</td>
-  	        <td class="textShadow">Start</td>
-  	        <td class="textShadow">End</td>
-  	        <td class="textShadow">Keep</td>
+  	        <td class="textShadow ida">Id</td>
+  	        <td class="textShadow start">Start</td>
+  	        <td class="textShadow end">End</td>
           </tr>
 
           <!-- INPUT BOX -->
@@ -54,8 +53,6 @@
               <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
             <td class="end" onclick="deactivate_active_rows(null);">
               <input type="text" class="start_end inputBoxStyle" id="end" onkeydown="enter(event); return input_check(event)"/></td>
-            <td class="keep" onclick="deactivate_active_rows(null);">
-              <input type="checkbox" class="keep" id="keep" checked="true"/></td>
           </tr>
           <tr class="submitBox" id="submitBox">
             <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submit_annotation();">Submit</button></td>

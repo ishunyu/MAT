@@ -21,8 +21,7 @@ $anno[$anno['max_id']] = array(
                             "ftr" => $_POST['feature'],
                             "ida" => $_POST['ida'],
                             "st" => (int)$_POST['start'],
-                            "end" => (int)$_POST['end'],
-                            "kp" => $_POST['keep']
+                            "end" => (int)$_POST['end']
                             );
 
 $anno['max_id'] += 1;

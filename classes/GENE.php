@@ -139,6 +139,7 @@ class gene {
   
   function annotate($anno) {
     unset($anno['max_id']);
+    //echo var_dump($anno);
     
     // Sorting the specs according to their places
     function cmpAnno($a, $b) {
@@ -149,15 +150,15 @@ class gene {
     }
     usort($anno, "cmpAnno");
     
-    // Error checking to be done
+    // Error checking to be done    
 
     // Splicing the gene
     for($i = sizeof($anno)-1; $i >= 0; $i--) {
-      if(!$anno[$i]['kp']) {
+      if($anno[$i]['ftr'] == '3') {
         $this->sequence = substr_replace($this->sequence,
                                           '',
                                           $anno[$i]['st']-1,
-                                          $anno[$i]['ed']-$anno[$i]['st']+1);
+                                          $anno[$i]['end']-$anno[$i]['st']+1);
       }
     }
   }
