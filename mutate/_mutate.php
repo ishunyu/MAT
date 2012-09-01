@@ -4,7 +4,7 @@ require_once "../classes/GENE.php";
 
 $geneQuery =
   "SELECT gene
-   FROM $geneListTableName
+   FROM $gene_table
    ORDER BY modifyTime DESC
    LIMIT 1";
 $geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");

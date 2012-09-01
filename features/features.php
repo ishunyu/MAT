@@ -18,7 +18,7 @@
   <!-- MAIN-->
   <div id="div_main">    
     <!-- TOP BAR-->      
-    <? topBar("annotate") ?>
+    <? topBar("features") ?>
 
     <!-- CONTENT-->
     <div class="generalContentContainer">

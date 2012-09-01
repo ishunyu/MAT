@@ -15,7 +15,7 @@ function drawRows() {
   
   $geneQ =
     "SELECT geneName, id
-     FROM $geneListTableName
+     FROM $gene_table
      WHERE memberId = $_SESSION[id]";
   $geneQ = mysql_query($geneQ);    
   

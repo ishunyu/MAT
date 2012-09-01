@@ -16,7 +16,7 @@ $password = md5(mysql_real_escape_string($password));
 // Query to the database for account info
 $userQ =
   "SELECT *
-   FROM $accountsTableName
+   FROM $user_table
    WHERE username='$username' AND password='$password'";
 $userQ = mysql_query($userQ);
 $userQ = mysql_fetch_assoc($userQ);
@@ -35,7 +35,7 @@ if($userQ) { // Login success
   
   //Set the lastLoginTime
   $updateLoginTime = 
-    "UPDATE $accountsTableName
+    "UPDATE $user_table
      SET lastLoginTime=NOW()
      WHERE id='$userQ[id]'";
   $updateLoginTime = mysql_query($updateLoginTime) or die("Update login time unsuccessful");

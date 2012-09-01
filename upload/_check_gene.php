@@ -5,7 +5,7 @@ $geneName = $_POST['geneName'];
 $id = $_SESSION['id'];
 
 $geneListQuery =
-  "SELECT * FROM $geneListTableName
+  "SELECT * FROM $gene_table
    WHERE geneName='$geneName' AND memberId='$id'";
 $geneListQuery = mysql_query($geneListQuery) or die("Fetching member's gene information unsuccessful.");
 

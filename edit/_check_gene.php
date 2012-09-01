@@ -7,7 +7,7 @@ $id = $_SESSION['id'];
 
 $_genes =
   "SELECT id
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE geneName='$geneName' AND memberId='$id'";
 $_genes = mysql_query($_genes) or die("Fetching member's gene information unsuccessful.");
 $_rows = mysql_num_rows($_genes);

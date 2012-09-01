@@ -4,8 +4,8 @@ function remove_feature(cell) {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      console.log(xml.responseText);
-      // location.reload();
+      // console.log(xml.responseText);
+      location.reload();
     }
   }
 

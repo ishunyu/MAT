@@ -2,7 +2,7 @@
 // Gets the feature
 $featuresQ =
   "SELECT features
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE id=$geneId";
 
 

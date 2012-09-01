@@ -19,16 +19,14 @@
     <div class="topBarBackground"></div>
     <!-- MAIN-->
     <div id="div_main">
-      <? topBar("catalog"); ?> 
+      <? topBar("upload"); ?> 
       <!-- CONTENT-->
       <div class="generalContentContainer">
         
         <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="upload_proc.php" onsubmit="return check_upload();">
           <span class="titleFormat textShadow">Sequence Identifier</span>
-          <a href="../catalog/catalog.php">
-            <input class="submitButton normalButton" id="" type = "button" value = "Catalog" /> </a>
           <br/>
-          <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence. This is for your reference only.</span>
+          <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence.<br>This is for your reference only.</span>
           <hr>
           <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30" />            
           <span id="geneNameWarning" class="warningFormat textShadow"></span>

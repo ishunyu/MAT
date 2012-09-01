@@ -11,7 +11,7 @@ $features = json_decode(stripcslashes($features_a['features']), true);
 
 $features['max_id'] += 1;
 $features[$features['max_id']] = $feature;
-$features_json = mysql_escape_string(json_encode($features));
+$features_json = mysql_real_escape_string(json_encode($features));
 
 $set_features_q = "UPDATE shunyu_genes SET features = '$features_json' WHERE id='$gene_id'";
 $set_features_r = mysql_query($set_features_q);

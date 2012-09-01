@@ -60,7 +60,7 @@ function make_row_plain(row, params) {
       }
     }
     else if(child.className == "feature_s") {  // feature
-      child.innerHTML = params.feature;
+      child.innerHTML = params.feature_name;
     }
     else if(child.className == "ida") { // ida
       child.innerHTML = params.ida;
@@ -82,7 +82,7 @@ function make_row_plain(row, params) {
 }
 
 function activate_row_helper(children) {
-  var feature, ida, start, end, keep, i;
+  var feature, feature_name, ida, start, end, keep, i;
 
   for(i = 0;i < children.length; i++) { // bookmark
     var child = children[i];
@@ -97,22 +97,16 @@ function activate_row_helper(children) {
       }
     }
     else if(child.className == "feature_s") {  // feature
-      feature = child.innerHTML.trim();
-      child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange=""> \
-                        <option>m7G Cap</option> \
-                        <option>promoter</option> \
-                        <option>5\'UTR</option> \
-                        <option>Exon</option> \
-                        <option>Intron</option> \
-                        <option>3\'UTR</option> \
-                        <option>Poly(A) tail</option> \
-                      </select>';
+      feature_name = child.innerHTML.trim();
+      console.log();
+      child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange="">'+document.getElementById('feature').innerHTML+'</select>';
       var sel = child.firstChild;
 
       var j;
       for(j = 0; j < sel.length; j++) { // Loop to select the correct feature
-        if(sel[j].innerHTML == feature) {
+        if(sel[j].innerHTML == feature_name) {
           sel[j].selected = "selected";
+          feature = sel[j].value;
           break;
         }
       }
@@ -140,6 +134,7 @@ function activate_row_helper(children) {
   /* Stores row information so we don't have to unnecessarily query the database.
       Will be compared later when a row is deactivated.*/ 
   PARAMS_OBJ.feature = feature;
+  PARAMS_OBJ.feature_name = feature_name;
   PARAMS_OBJ.ida = ida;
   PARAMS_OBJ.start = start;
   PARAMS_OBJ.end = end;
@@ -164,7 +159,7 @@ function activate_row(edit_button) {
 }
 
 function deactivate_single_row_helper(row) {
-  var feature, ida, start, end, keep;
+  var feature, feature_name, ida, start, end, keep;
   var i, children = row.childNodes;
   
   // Gather the information
@@ -172,7 +167,8 @@ function deactivate_single_row_helper(row) {
     child = children[i];
     
     if(child.className == "feature_s") {  // feature
-      feature = child.firstChild[child.firstChild.selectedIndex].innerHTML;
+      feature = child.firstChild[child.firstChild.selectedIndex].value;
+      feature_name = child.firstChild[child.firstChild.selectedIndex].innerHTML;
     }
     else if(child.className == "ida") { // ida
       ida = child.firstChild.value;
@@ -190,6 +186,7 @@ function deactivate_single_row_helper(row) {
 
   var params_obj = new Object();
       params_obj.feature = feature;
+      params_obj.feature_name = feature_name;
       params_obj.ida = ida;
       params_obj.start = start;
       params_obj.end = end;
@@ -306,7 +303,7 @@ function submit_annotation() {
       if(xml.responseText.match(/\d/)) {
         var params_obj = new Object();
         params_obj.id = xml.responseText;
-        params_obj.feature = feature;
+        params_obj.feature = document.getElementById("feature")[featureIndex].innerHTML;
         params_obj.ida = ida;
         params_obj.start = start;
         params_obj.end = end;
@@ -321,7 +318,7 @@ function submit_annotation() {
 
   var featureIndex = document.getElementById("feature").selectedIndex;
   
-  var feature = document.getElementById("feature")[featureIndex].innerHTML;
+  var feature = document.getElementById("feature")[featureIndex].value;
     // feature = encodeURI(feature);
   var ida = document.getElementById("ida").value;
   var start = document.getElementById("start").value;

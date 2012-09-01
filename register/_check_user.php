@@ -4,7 +4,7 @@ require_once "../db/connectdb.php";
 $username = $_POST['username'];
 
 $userListQuery =
-  "SELECT * FROM $accountsTableName
+  "SELECT * FROM $user_table
    WHERE username='$username'";
 $userListQuery = mysql_query($userListQuery) or die("Fetching member's gene information unsuccessful.");
 

@@ -32,8 +32,6 @@
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <span class="titleFormat textShadow" >Sequences</span>
-      <a href="../upload/upload.php">
-        <input class="submitButton normalButton" id="" type = "button" value = "Upload" /> </a>
       <table id="catalogTable">
       <!-- LABEL -->
         <? drawRows(); ?>

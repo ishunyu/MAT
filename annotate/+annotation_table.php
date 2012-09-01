@@ -1,14 +1,16 @@
 <?php
 // Gets the annotation
-$annotationQuery =
-  "SELECT spec
-   FROM $geneListTableName
+$annotation_q =
+  "SELECT spec, features
+   FROM $gene_table
    WHERE id=$geneId";
 
-$annotationQuery = mysql_query($annotationQuery);
-$annotationQuery = mysql_fetch_assoc($annotationQuery);    
-$anno = $annotationQuery['spec']; // Gets the spec portion of the query
-$anno = json_decode($anno, true);  // Turns json into associative array
+$annotation_q = mysql_query($annotation_q);
+$annotation_q = mysql_fetch_assoc($annotation_q);    
+$anno = $annotation_q['spec']; // Gets the spec portion of the query
+$anno = json_decode(stripcslashes($anno), true);  // Turns json into associative array
+
+$features = json_decode(stripcslashes($annotation_q['features']), true);
 if($anno){  
   unset($anno['max_id']); // Removes the size in the annotations array
   
@@ -22,7 +24,7 @@ if($anno){
         <a href="#" title="edit" onclick="activate_row(this)">
           <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
       </td>
-      <td class="feature_s"><? echo stripcslashes($a['ftr']);?></td>
+      <td class="feature_s"><? echo stripcslashes($features[$a['ftr']]);?></td>
       <td class="ida">  <? echo $a['ida']; ?></td>
       <td class="start"><? echo $a['st']; ?></td>
       <td class="end">  <? echo $a['end']; ?></td>

@@ -6,7 +6,7 @@ $geneId = $_POST['geneId'];
 
 $_gene =
   "SELECT gene, geneNotes, modifyTime
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE id=$geneId";
 $_gene = mysql_query($_gene) or die("Gene query unsuccessful");
 $_gene = mysql_fetch_assoc($_gene);

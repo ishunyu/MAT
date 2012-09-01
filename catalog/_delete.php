@@ -5,7 +5,7 @@ $geneId = $_POST["geneId"];
 
 // Deletes the gene from database
 $geneQuery =
-  "DELETE FROM $geneListTableName
+  "DELETE FROM $gene_table
    WHERE id=$geneId";
 $geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
 
@@ -13,7 +13,7 @@ $geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
 // Gets the last gene id of the user
 $lastGeneIdQuery =
   "SELECT lastGeneId
-   FROM $accountsTableName
+   FROM $user_table
    WHERE id='$_SESSION[id]'";
 $lastGeneIdQuery = mysql_query($lastGeneIdQuery) or die("Last gene id query unsuccessful");
 $lastGeneIdQuery = mysql_fetch_assoc($lastGeneIdQuery);
@@ -24,7 +24,7 @@ if($storedLastGeneId == $geneId) {
   // Gets the genes according to modify time
   $dnaListQuery =
     "SELECT id
-     FROM $geneListTableName
+     FROM $gene_table
      WHERE memberId = $_SESSION[id]
      ORDER BY modifyTime DESC
      LIMIT 1";  // Getting the last gene
@@ -35,14 +35,14 @@ if($storedLastGeneId == $geneId) {
     $dnaListQuery = mysql_fetch_assoc($dnaListQuery); // Gets the array structure
     // update the last gene id
     $lastGeneIdUpdateQuery =
-      "UPDATE $accountsTableName
+      "UPDATE $user_table
        SET lastGeneId=$dnaListQuery[id]
        WHERE id='$_SESSION[id]'";
     $lastGeneIdUpdateQuery = mysql_query($lastGeneIdUpdateQuery);
   }
   else {
     $lastGeneIdUpdateQuery =
-      "UPDATE $accountsTableName
+      "UPDATE $user_table
        SET lastGeneId=NULL
        WHERE id='$_SESSION[id]'";
     $lastGeneIdUpdateQuery = mysql_query($lastGeneIdUpdateQuery);

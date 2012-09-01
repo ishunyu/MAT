@@ -11,7 +11,7 @@ $id = $_SESSION['id'];
 // Query the gene list
 $_genes =
   "SELECT *
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE geneName='$geneName' AND memberID='$id'";
 $_genes = mysql_query($_genes) or die("Fetching member's gene information unsuccessful.");
 if(mysql_num_rows($_genes) > 0) {
@@ -25,7 +25,7 @@ if($_genes['id'] != $geneId) {
 else {
   // Store information into genelisttable
   $_update =
-    "UPDATE $geneListTableName
+    "UPDATE $gene_table
      SET geneName = '$geneName', geneNotes = '$geneNotes', modifyTime = 'NOW()'
      WHERE id = '$geneId'";
   $_update = mysql_query($_update)or die("Updating gene information unsuccessful.");

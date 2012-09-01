@@ -32,8 +32,9 @@
         <table class="submitTable">
         	<!-- LABEL -->
           <tr>
-  	        <td class="textShadow">Feature
-              <a href="../features/features.php" class="smallLink">add</a>
+  	        <td class="textShadow">
+              <a href="../features/features.php">Feature</a>
+              <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
   	        <td class="textShadow">Id</td>
   	        <td class="textShadow">Start</td>
@@ -45,13 +46,7 @@
           <tr class="" id="input_row">
             <td class="feature" onclick="deactivate_active_rows(null);">
               <select name="feature" class="feature" id="feature" onchange="checkbox()">
-                <option>m7G Cap</option>
-                <option>promoter</option>
-                <option>5'UTR</option>
-                <option>Exon</option>
-                <option>Intron</option>
-                <option>3'UTR</option>
-                <option>Poly(A) tail</option>
+                <? require_once '+features.php';?>
               </select></td>
             <td class="ida" onclick="deactivate_active_rows(null);">
               <input type="text" class="ida inputBoxStyle" id="ida" onkeydown="enter(event);" /></td>
@@ -69,7 +64,7 @@
         <? hidden_gene_value($geneId);  hidden_num_col(5); ?>
         <table class="annotationTable" id="annotationTable" onblur="deactivate_active_rows(null);">
           <!-- ANNOTATIONS -->                    
-          <? require_once '+anno_table.php';?>
+          <? require_once '+annotation_table.php';?>
         </table>
   <? }
      else { ?>

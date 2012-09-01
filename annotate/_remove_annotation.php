@@ -5,7 +5,7 @@ require_once "../classes/GENE.php";
 // Retrieving the gene & annotation
 $geneQuery =
   "SELECT geneFormatted, spec
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
 $gene = $geneQuery['geneFormatted'];
@@ -23,7 +23,7 @@ $j_anno = json_encode($anno);
 
 // Store the annotations
 $annoQuery =
-  "UPDATE $geneListTableName
+  "UPDATE $gene_table
    SET spec = '$j_anno', gene = '$gene', modifyTime=NOW()
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");

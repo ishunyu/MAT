@@ -5,7 +5,7 @@ require_once "../classes/GENE.php";
 // Retrieving the gene & annotation
 $geneQuery =
   "SELECT geneFormatted, spec
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
 $gene = $geneQuery['geneFormatted'];
@@ -20,8 +20,8 @@ if(!$anno) { // If there's no annotation, make sure an array is made
 $anno[$anno['max_id']] = array(
                             "ftr" => $_POST['feature'],
                             "ida" => $_POST['ida'],
-                            "st" => $_POST['start'],
-                            "end" => $_POST['end'],
+                            "st" => (int)$_POST['start'],
+                            "end" => (int)$_POST['end'],
                             "kp" => $_POST['keep']
                             );
 
@@ -38,7 +38,7 @@ $j_anno = mysql_real_escape_string($j_anno);
 
 // Store the annotations
 $annoQuery =
-  "UPDATE $geneListTableName
+  "UPDATE $gene_table
    SET spec = '$j_anno', gene = '$gene', modifyTime=NOW()
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");

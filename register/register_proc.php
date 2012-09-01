@@ -9,7 +9,7 @@ $username = mysql_real_escape_string(strtolower($_POST['username']));
 
 $userQuery =
   "SELECT *
-   FROM $accountsTableName
+   FROM $user_table
    WHERE username='$username'";
 $userQuery = mysql_query($userQuery);
 $count = mysql_num_rows($userQuery);
@@ -17,13 +17,13 @@ $count = mysql_num_rows($userQuery);
 
 if($count == 0) {
   $userInsertQuery =
-    "INSERT INTO $accountsTableName(id, username, password, firstName, lastName, lastGeneId, lastPage, lastLoginTime, startTime)
+    "INSERT INTO $user_table(id, username, password, firstName, lastName, lastGeneId, lastPage, lastLoginTime, startTime)
     VALUES(NULL, '$username', '$password1', '$firstName', '$lastName', NULL, NULL, NOW(), NOW())";
   //die($connection);
   $userInsertQuery = mysql_query($userInsertQuery) or die("Register unsuccessful");
 
   if($userInsertQuery) {
-    $userQuery = "SELECT * FROM $accountsTableName WHERE username='$username' and Password='$password1'";
+    $userQuery = "SELECT * FROM $user_table WHERE username='$username' and Password='$password1'";
     $userQuery = mysql_query($userQuery) or die("Retrieving user information unsuccessful");
     $userQuery = mysql_fetch_assoc($userQuery);
     

@@ -11,7 +11,7 @@ $id = $_SESSION['id'];
 // Query the gene list
 $_genes =
   "SELECT *
-   FROM $geneListTableName
+   FROM $gene_table
    WHERE geneName='$geneName' AND memberID='$id'";
 $_genes = mysql_query($_genes) or die("Fetching member's gene information unsuccessful.");
 
@@ -26,14 +26,14 @@ else {
 
   // Store information into genelisttable
   $_insert_gene =
-    "INSERT INTO $geneListTableName(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime, modifyTime)
+    "INSERT INTO $gene_table(id, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime, modifyTime)
      VALUES(NULL, '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW(), NOW())";
   $_insert_gene = mysql_query($_insert_gene)or die("Inserting gene information unsuccessful.");
   
    // Retrive gene ID
   // $_gene_id =
   //   "SELECT id
-  //    FROM $geneListTableName
+  //    FROM $gene_table
   //    WHERE geneName='$geneName' AND memberId='$id'";
   // $_gene_id = mysql_query($_gene_id);
   // $_gene_id = mysql_fetch_assoc($_gene_id);

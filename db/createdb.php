@@ -11,13 +11,13 @@ require_once "../headers/variables.php";
   mysql_select_db($db)
     or die("Cannot establish connection with database");
 
-// Create table $accountsTableName
+// Create table $user_table
   mysql_query($query_accountstable)
-    or die("Cannot create table $accountsTableName");
+    or die("Cannot create table $user_table");
 
-// Create table $geneListTableName
+// Create table $gene_table
   mysql_query($query_genelisttable)
-    or die("Cannot create table $geneListTableName");
+    or die("Cannot create table $gene_table");
 
 // Redirect to main page
   $redirectPath =

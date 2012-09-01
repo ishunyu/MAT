@@ -11,7 +11,7 @@ if(isset($_GET['geneId'])){
   // Check to see if the gene is part of member's gene lists
   $checkQuery = 
     "SELECT *
-     FROM $geneListTableName
+     FROM $gene_table
      WHERE memberId = '$_SESSION[id]' AND id='$_GET[geneId]'";
   $checkQuery = mysql_query($checkQuery);
   $num_rows_checkQuery = mysql_num_rows($checkQuery);
@@ -29,7 +29,7 @@ if($geneId != '') {
   // Query for the working Gene
   $geneQuery = 
     "SELECT geneName, geneNotes
-     FROM $geneListTableName
+     FROM $gene_table
      WHERE id='$geneId'";
   $geneQuery = mysql_query($geneQuery);
   $geneQuery = mysql_fetch_assoc($geneQuery);
@@ -38,7 +38,7 @@ if($geneId != '') {
   $geneNotes = $geneQuery['geneNotes'];
 
   $updateQuery =
-    "UPDATE $geneListTableName
+    "UPDATE $gene_table
      SET modifyTime=NOW()
      WHERE id='$geneId'";
   $updateQuery = mysql_query($updateQuery);
