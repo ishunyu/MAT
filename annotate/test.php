@@ -8,7 +8,7 @@ while($test_a = mysql_fetch_assoc($test_r)) {
   $test = json_decode(stripcslashes($test_a['spec']), true);
 
   foreach($test as $key => $annotation) {
-    if($key == "max_id")
+    if(!isset($annotation['ftr']))
       continue;
 
     $feature = $annotation['ftr'];
