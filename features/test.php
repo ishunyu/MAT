@@ -1,7 +1,7 @@
 <?
 require_once '../db/connectdb.php';
 
-$str = array(
+$features_q = array(
   "max_id"=> 6,
   "0" => "m7G Cap",
   "1" => "promoter",
@@ -11,13 +11,10 @@ $str = array(
   "5" => "3'UTR",
   "6" => "Poly(A) tail"
 );
+$features = mysql_escape_string(json_encode($features_q));  // Turns json into associative array
 
-$features = json_encode($str);  // Turns json into associative array
-
-$features = mysql_escape_string($features);
-
-$featuresQ = "update shunyu_genes set features = '$features'";
-mysql_query($featuresQ);
+$features_q = "update shunyu_genes set features = '$features'";
+mysql_query($features_q);
 
 ?>
 

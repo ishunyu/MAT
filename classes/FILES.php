@@ -12,7 +12,7 @@
 	
 	function cleanUploadedData($data) {
 		$array_whitespaces = array("\n","\r"," ");  // Array that contains possible whitespace characters
-		$data = str_replace($array_whitespaces,"",$data);  // Strip out whitespaces, newlines, carraige returns
+		$data = str_replace($array_whitespaces,'',$data);  // Strip out whitespaces, newlines, carraige returns
 		$data = strtoupper($data);  // turns everything into capital
     
 		return $data;
