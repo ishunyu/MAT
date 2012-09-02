@@ -5,6 +5,10 @@ function remove_feature(cell) {
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
       // console.log(xml.responseText);
+      if(xml.responseText == 'used') {
+        alert("Can't delete because it's in use! Sorry!");
+        return;
+      }
       location.reload();
     }
   }

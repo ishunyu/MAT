@@ -18,8 +18,8 @@ foreach($features as $key => $item) { ?>
     <td class="controls" style="width: 50px;">
       <a href="#" title="remove" name="<?echo $key;?>" onclick="return remove_feature(this);">
         <img src="../images/icons/trash_white.png" height="15" width="" /></a>
-      <a href="#" title="edit" onclick="activate_row(this)">
-        <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
+      <!-- <a href="#" title="edit" onclick="activate_row(this)">
+        <img src="../images/icons/file_3_white.png" height="15" width="" /></a> -->
     </td>
     <td class="display"><? echo stripcslashes($item);?></td>
   </tr>
