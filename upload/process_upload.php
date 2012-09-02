@@ -29,7 +29,6 @@ else {
   $_insert_gene =
     "INSERT INTO $gene_table(id, features, geneName, geneNotes, geneOriginal, geneFormatted, gene, spec, memberId, startTime, modifyTime)
      VALUES(NULL, '$features', '$geneName', '$geneNotes', '$fileData', '$cleanData', '$cleanData', NULL,'$id', NOW(), NOW())";
-  echo $_insert_gene;
   $_insert_gene = mysql_query($_insert_gene)or die("Inserting gene information unsuccessful.");
   
   header("location:../catalog/catalog.php");
