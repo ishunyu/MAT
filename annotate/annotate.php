@@ -36,7 +36,7 @@
               <a href="../features/features.php">Feature</a>
               <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
-  	        <td class="textShadow ida">Id</td>
+  	        <td class="textShadow ida">Name</td>
   	        <td class="textShadow start">Start</td>
   	        <td class="textShadow end">End</td>
           </tr>
