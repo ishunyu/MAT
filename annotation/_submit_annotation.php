@@ -28,7 +28,7 @@ $anno['max_id'] += 1;
 
 
 // Process the gene according to annotations
-$gene = new gene($gene);
+$gene = new GENE($gene);
 $gene->annotate($anno);
 $gene = $gene->get_gene();
 
@@ -42,6 +42,6 @@ $annoQuery =
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
 
-// header("location:success.php"); 
+// header("location:success.php");
 echo $anno['max_id'] - 1;
 ?>

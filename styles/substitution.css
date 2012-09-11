@@ -1,3 +1,5 @@
+
+
 input.mutate_button {
   width: 110px;
 
@@ -16,13 +18,22 @@ input.mutate_button_active {
   background-color: gray;
 }
 
-.generalContentContainer table th {
-  width: 150px;
-  text-align: right;
+.info {
+  table-layout:fixed;
+  width: 100%;
+
+  font-size: 14px;
 }
 
-.generalContentContainer table td {
-  padding-left: 20px;
+.info th {
+  width: 200px;
+  text-align: left;
+  font-weight: normal;
+}
+
+.info td {
+  width: 500px;
+  overflow-x: auto;
 }
 
 

@@ -21,7 +21,7 @@ $anno[$_POST['id']] = array(
 
 
 // Process the gene according to annotations
-$gene = new gene($gene);
+$gene = new GENE($gene);
 $gene->annotate($anno);
 $gene = $gene->get_gene();
 

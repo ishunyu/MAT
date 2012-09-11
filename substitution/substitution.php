@@ -45,7 +45,7 @@
           </form>
         </div>
         <br>
-        <table id="gene_info" style="color: white;">
+        <table id="gene_info" style="color: white;" class="info">
           <tr>
             <th>Base:</th>
             <td></td>
@@ -59,7 +59,7 @@
             <td></td>
           </tr>           
         </table><br>
-        <table id='substitution_info' style="color: white">
+        <table id='substitution_info' style="color: white" class="info">
           <tr>
             <th>New codon:</th>
             <td></td>

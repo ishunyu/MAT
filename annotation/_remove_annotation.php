@@ -15,7 +15,7 @@ $anno = json_decode(stripcslashes($anno), true);
 unset($anno[$_POST['id']]);
 
 // Process the gene according to annotations
-$gene = new gene($gene);
+$gene = new GENE($gene);
 $gene->annotate($anno);
 $gene = $gene->get_gene();
 

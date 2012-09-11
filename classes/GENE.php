@@ -1,6 +1,6 @@
 <?php
 //$LUT = json_decode(file_get_contents("classes/LUT.json"), true);
-class gene {
+class GENE {
   private $sequence;  // Stores the Gene sequence
   private $lut;
   private $size;
@@ -23,6 +23,10 @@ class gene {
   
   function get_size() {
     return $this->size;
+  }
+
+  function get_codon_info($codon) {
+    return $this->lut[$codon];
   }
   
   function get_base($index) {
@@ -138,7 +142,6 @@ class gene {
   
   function annotate($anno) {
     unset($anno['max_id']);
-    //echo var_dump($anno);
     
     // Sorting the specs according to their places
     function cmpAnno($a, $b) {
@@ -151,15 +154,16 @@ class gene {
     
     // Error checking to be done    
 
+    $tmp = '';
+
     // Splicing the gene
-    for($i = sizeof($anno)-1; $i >= 0; $i--) {
-      if($anno[$i]['ftr'] == '3') {
-        $this->sequence = substr_replace($this->sequence,
-                                          '',
-                                          $anno[$i]['st']-1,
-                                          $anno[$i]['end']-$anno[$i]['st']+1);
+    foreach($anno as $item) {
+      if($item['ftr'] == '3') {
+        $tmp .= substr($this->sequence, $item['st'] - 1, $item['end']-$item['st']+1);
       }
     }
+
+    $this->sequence = $tmp;
   }
   
 } // End of class GENE

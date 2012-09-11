@@ -32,14 +32,14 @@
         <hr>
         
         <div class="ContentContainer">
-          <table>
+          <table id="deletion_input">
             <tr>
               <td><span class="formLabel">First deleted base:</span></td>
-              <td><input type="text" id="start_index" class="inputBoxStyle text_small" onkeyup="deletion_info()"/></td>
+              <td><input type="text" id="start_index" class="inputBoxStyle text_small" onkeyup="deletion_info(this)"/></td>
             </tr>
             <tr>
               <td><span class="formLabel">Last deleted base:</span></td>
-              <td><input type="text" id="end_index" class="inputBoxStyle text_small" onkeyup="deletion_info()"/><br></td>
+              <td><input type="text" id="end_index" class="inputBoxStyle text_small" onkeyup="deletion_info(this)"/></td>
             </tr>
             <tr>
               <td>
@@ -47,10 +47,76 @@
               <td><input type="button" class="" value="Submit" onclick="deletion_info()"></input></td>
             </tr>
           </table>
+          <table id="deletion_info" class="info" style="color: white;">
+            <tr>
+              <th>Deleted Sequence:</th>
+              <td id="deleted_sequence"></td>
+            </tr>
+            <tr>
+              <th>Number of bases deleted:</th>
+              <td id="number_of_bases_deleted"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Frame retention:</th>
+              <td id="frame_retention"></td>
+            <tr>
+              <th>First affected codon:</th>
+              <td id="first_affected_codon"></td>
+            </tr>
+            <tr>
+              <th>Coding for... (WT):</th>
+              <td id="coding_for"></td>
+            </tr>
+            <tr>
+              <th>Amino acid position:</th>
+              <td id="amino_acid_position"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Exon (5' - 3' bases):</th>
+              <td id="exon"></td>
+            </tr>
+            <tr>
+              <th>Distance to 5' junction (bp):</th>
+              <td id="distance_to_5_junction"></td>
+            </tr>
+            <tr>
+              <th>Distance to 3' junction (bp):</th>
+              <td id="distance_to_3_junction"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Deletion only:</th>
+              <td id="deletion_only"></td>
+            </tr>
+            <tr>
+              <th>In-frame, single AA:</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>In-frame, multiple AA:</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Non-frame shifting:</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Frame shifting:</th>
+              <td></td>
+            </tr>
+          </table>
         </div>
-        <table id="deletion_info">
-
-        </table>
       <? }
          else { ?>
           <a class="normalLink" href="../upload/upload.php">

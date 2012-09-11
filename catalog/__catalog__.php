@@ -23,9 +23,9 @@ function drawRows() {
   echo '<tr id="'.strval($item['id']).'">';
 	echo td($item['geneName'],
           'formLabel labelColumn');
-	echo td('<b>'.a('Mutate','../mutate/mutate.php?geneId='.strval($item['id']))
+	echo td('<b>'.a('Mutate','../deletion/deletion.php?geneId='.strval($item['id']))
           .'&nbsp&nbsp&nbsp&nbsp'
-          .a('Annotate','../annotate/annotate.php?geneId='.strval($item['id'])).'</b>'
+          .a('Annotate','../annotation/annotation.php?geneId='.strval($item['id'])).'</b>'
           ."&nbsp&nbsp&nbsp&nbsp"
           .'<a  href="" onClick="return show(this);">Show</a>'
           .'&nbsp&nbsp'

@@ -2,7 +2,7 @@
 
 // Checks if the input is there and that it's a positive number
 function is_pos_num(s) {
-  if(s == "")
+  if(s == '' || s == '0')
     return false;
 
   var patt=/[^0-9]/;
@@ -10,25 +10,23 @@ function is_pos_num(s) {
 }
 
 // Error corrections
-function deletion_info() {
+function deletion_info(input) {
   var start = document.getElementById('start_index').value;
   var end = document.getElementById('end_index').value;
 
-  _deletion_info(start, end);
-
-/*  if(is_pos_num(start) && is_pos_num(end)) {
+  if(is_pos_num(start) && is_pos_num(end)) {
     // Change the text to integer so we can compare
     start = parseInt(start);
     end = parseInt(end);
 
-    // Make sure the numbers aren't ZERO's
-    if(start == 0 || end == 0)
-      return;
-
     // Send AJAX
     if(start <= end)
       _deletion_info(start, end);
-  }*/
+  }
+  else if(input.value != '' && !is_pos_num(input.value)) {
+    alert('Enter a non-negative number please!');
+    input.value = '';
+  }
 }
 
 // Actual AJAX functions
