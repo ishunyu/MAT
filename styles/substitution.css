@@ -1,21 +1,19 @@
 input.mutate_button {
-  width: 120px;
-  height: 30px;
+  width: 110px;
+
+  font-size: 18px;
+
   margin-left: 5px;
   margin-top: 7px;
   background-color: #36175E;
 }
 
 input.mutate_button:hover {
-  background-color: grey;
+  background-color: gray;
 }
 
 input.mutate_button_active {
-  background-color: grey;
-}
-
-input.index {
-  width: 415px;  
+  background-color: gray;
 }
 
 .generalContentContainer table th {
@@ -26,3 +24,5 @@ input.index {
 .generalContentContainer table td {
   padding-left: 20px;
 }
+
+

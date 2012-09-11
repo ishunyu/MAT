@@ -174,7 +174,7 @@ input.submitButton:hover {
 }
 
 input.submitButton:active {
-  background-color: gray;
+  background-color: #25064C;
   color: white;
 }
 
@@ -190,5 +190,13 @@ input.normalButton:hover {
 
 div.mutate_navBar {
   float: right;
+}
+
+input.text_small {
+  width: 130px;  
+}
+
+input.button_small {
+  width: 30px;
 }
 

@@ -35,11 +35,11 @@
           <table>
             <tr>
               <td><span class="formLabel">First deleted base:</span></td>
-              <td><input type="text" id="start_index" class="inputBoxStyle" onkeyup="deletion_info()"/></td>
+              <td><input type="text" id="start_index" class="inputBoxStyle text_small" onkeyup="deletion_info()"/></td>
             </tr>
             <tr>
               <td><span class="formLabel">Last deleted base:</span></td>
-              <td><input type="text" id="end_index" class="inputBoxStyle" onkeyup="deletion_info()"/><br></td>
+              <td><input type="text" id="end_index" class="inputBoxStyle text_small" onkeyup="deletion_info()"/><br></td>
             </tr>
             <tr>
               <td>

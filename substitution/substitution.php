@@ -35,12 +35,13 @@
         <div class="ContentContainer">
           <form>
             <span class="formLabel" style="margin-left: 30px;"> Choose Base: </span>
-            <input type="text" id="index" name="index" class="inputBoxStyle substitutionInputBox"  onkeyup="gene_info()"/>
-            <br>
-            <input type="button" class="submitButton " value="A" style="margin-left: 160px;" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton " value="T" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton " value="G" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton " value="C" onclick="substitution_info(this.value)"/> 
+            <input type="text" id="index" name="index" class="inputBoxStyle text_small"  onkeyup="gene_info()"/>
+            <br><br>
+            <span class="formLabel" style="margin-left: 50px;"> Change To: </span>
+            <input type="button" class="submitButton button_small" value="A" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton button_small" value="T" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton button_small" value="G" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton button_small" value="C" onclick="substitution_info(this.value)"/> 
           </form>
         </div>
         <br>
