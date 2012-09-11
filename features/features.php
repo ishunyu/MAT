@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
-  <link rel="stylesheet" type="text/css" href="../styles/annotate.css">
+  <link rel="stylesheet" type="text/css" href="../styles/annotation.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">

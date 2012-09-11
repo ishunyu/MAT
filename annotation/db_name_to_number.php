@@ -1,3 +1,4 @@
+<!-- This script converts the current named annotations to id numbers -->
 <?
 require_once '../db/connectdb.php';
 

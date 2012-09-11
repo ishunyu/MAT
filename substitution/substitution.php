@@ -1,4 +1,4 @@
-<? require_once '__mutate__.php'; ?>
+<? require_once '__substitution__.php'; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>
@@ -11,29 +11,24 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
-  <link rel="stylesheet" type="text/css" href="../styles/mutate.css">
+  <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="../scripts/mutate.js"></script>
+  <script type="text/javascript" src="../scripts/substitution.js"></script>
 </head>
 
 <body onkeydown="return checkInputForNumber(event)">
   <div class="topBarBackground"></div>
   <!-- MAIN-->
   <div id="div_main" >
-  <? topBar("mutate"); ?> 
+  <? topBar('mutation'); ?> 
     
     <!-- CONTENT-->
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
-        <div class="mutate_navBar">          
-          <input class="submitButton mutateButton mutateButtonActive" id="Substitution" type = "button" value = "Substitution" />
-          <input class="submitButton mutateButton" id="Insertion" type = "button" value = "Insertion" />
-          <input class="submitButton mutateButton" id="Deletion" type = "button" value = "Deletion" />
-          <input type="hidden" id="mutateState" value="substitution" />
-        </div>
+        <? mutation_navbar('substitution'); ?>
         </br>        
         <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
         <hr>

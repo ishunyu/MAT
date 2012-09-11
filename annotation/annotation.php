@@ -1,11 +1,11 @@
-<? require_once '__annotate__.php'; ?>
+<? require_once '__annotation__.php'; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>  
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
-  <link rel="stylesheet" type="text/css" href="../styles/annotate.css">
+  <link rel="stylesheet" type="text/css" href="../styles/annotation.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
@@ -18,7 +18,7 @@
   <!-- MAIN-->
   <div id="div_main">    
     <!-- TOP BAR-->      
-    <? topBar("annotate") ?>
+    <? topBar("annotation") ?>
 
     <!-- CONTENT-->
     <div class="generalContentContainer">

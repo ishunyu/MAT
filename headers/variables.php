@@ -28,7 +28,7 @@ $query_accountstable =
 $query_genelisttable =
   "CREATE TABLE IF NOT EXISTS $gene_table(
     id INT NOT NULL AUTO_INCREMENT,
-    features varchar(30),
+    features varchar(5000),
     geneName varchar(225),
     geneNotes text,
     geneOriginal mediumtext,
