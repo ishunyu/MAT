@@ -18,7 +18,7 @@
   <script type="text/javascript" src="../scripts/substitution.js"></script>
 </head>
 
-<body onkeydown="return checkInputForNumber(event)">
+<body>
   <div class="topBarBackground"></div>
   <!-- MAIN-->
   <div id="div_main" >
@@ -28,30 +28,50 @@
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
+        <span class="titleFormat" ><? echo $geneTitle;?></span>
         <? mutation_navbar('substitution'); ?>
-        </br>        
-        <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
         <hr>
         
         <div class="ContentContainer">
           <form>
-            <span class="formLabel"> Choose Base: </span>
-            <input type="text" id="subsitutionPositionInput" name="subsitutionPositionInput" class="inputBoxStyle substitutionInputBox" onkeyup="showGeneInfoWithOptionalMutation(event.keyCode)"/>
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" class="submitButton substitutionSubmitButton" value="A" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-            <input type="button" class="submitButton substitutionSubmitButton" value="T" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-            <input type="button" class="submitButton substitutionSubmitButton" value="G" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/>
-            <input type="button" class="submitButton substitutionSubmitButton" value="C" onclick="showGeneInfoWithOptionalMutation(this.value.charCodeAt(0))"/> 
+            <span class="formLabel" style="margin-left: 30px;"> Choose Base: </span>
+            <input type="text" id="index" name="index" class="inputBoxStyle substitutionInputBox"  onkeyup="gene_info()"/>
+            <br>
+            <input type="button" class="submitButton " value="A" style="margin-left: 160px;" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton " value="T" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton " value="G" onclick="substitution_info(this.value)"/>
+            <input type="button" class="submitButton " value="C" onclick="substitution_info(this.value)"/> 
           </form>
         </div>
-        <span id="showInfoAboutGeneAtPosition" class="formLabel">
-            Base: <br/>
-            Codon Position: <br/>
-            Old codon: <br/>
-            New codon: <br/><hr>
-            Nucleic acid level: <br/>
-            Protein level: <br/>
-        <span>
+        <br>
+        <table id="gene_info" style="color: white;">
+          <tr>
+            <th>Base:</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Codon Position:</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Old codon:</th>
+            <td></td>
+          </tr>           
+        </table><br>
+        <table id='substitution_info' style="color: white">
+          <tr>
+            <th>New codon:</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Nucleic acid level:</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Protein level:</th>
+            <td></td>
+          </tr>
+        </table>
       <? }
          else { ?>
           <a class="normalLink" href="../upload/upload.php">

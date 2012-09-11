@@ -1,18 +1,28 @@
-input.mutateButton {
+input.mutate_button {
   width: 120px;
+  height: 30px;
   margin-left: 5px;
   margin-top: 7px;
-  background-color: #2298B8;
+  background-color: #36175E;
 }
 
-input.mutateButton:hover {
+input.mutate_button:hover {
   background-color: grey;
 }
 
-input.mutateButtonActive {
+input.mutate_button_active {
   background-color: grey;
 }
 
-input.substitutionInputBox {
+input.index {
   width: 415px;  
+}
+
+.generalContentContainer table th {
+  width: 150px;
+  text-align: right;
+}
+
+.generalContentContainer table td {
+  padding-left: 20px;
 }

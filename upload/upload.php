@@ -24,29 +24,27 @@
       <div class="generalContentContainer">
         
         <form id="geneUploadForm" enctype="multipart/form-data" method="POST" action="process_upload.php" onsubmit="return check_upload();">
-          <span class="titleFormat textShadow">Sequence Identifier</span>
+          <span class="titleFormat">Sequence Identifier</span>
           <br/>
-          <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence.<br>This is for your reference only.</span>
+          <span class="detailFormat">Please enter a name, number, ??? number or other ID for your sequence.<br>This is for your reference only.</span>
           <hr>
           <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30" />            
-          <span id="geneNameWarning" class="warningFormat textShadow"></span>
+          <span id="geneNameWarning" class="warningFormat"></span>
           <br/><br/>
           
-          <span class="titleFormat textShadow">Upload</span><br/>
-          <span class="detailFormat textShadow">Currently accepted sequence file format: TXT, FASTA</span>
+          <span class="titleFormat">Upload</span><br/>
+          <span class="detailFormat">Currently accepted sequence file format: TXT, FASTA</span>
           <hr>
           <input type="file" name="uploadedFile" id="uploadedFile"/>
-          <span id="uploadFileWarning" class="warningFormat textShadow"></span>
+          <span id="uploadFileWarning" class="warningFormat"></span>
           <br/><br/>
           
-          <span class="titleFormat textShadow">Notes</span><br/>
-          <span class="detailFormat textShadow">Jot down any notes for yourself</span>
+          <span class="titleFormat">Notes</span><br/>
+          <span class="detailFormat">Jot down any notes for yourself</span>
           <hr>
           <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count_popup(event);"></textarea>
           <br/>
-          
-          <!--span id="wordCount" class="detailFormat textShadow" >65535 characters left</span><br/-->
-          <input type="submit" value="Save" id="uploadSubmitButton" class="submitButton"/>         
+          <input type="submit" value="Save" id="uploadSubmitButton" class=""/>         
         </form>
         
       </div>

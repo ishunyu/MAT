@@ -31,7 +31,7 @@
     <!-- CONTENT-->
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
-      <span class="titleFormat textShadow" >Sequences</span>
+      <span class="titleFormat" >Sequences</span>
       <table id="catalogTable">
       <!-- LABEL -->
         <? drawRows(); ?>

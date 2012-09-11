@@ -10,7 +10,7 @@ $geneQuery =
 $geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
 $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
-$anno = json_decode($anno, true);
+$anno = json_decode(stripcslashes($anno), true);
 
 if(!$anno) { // If there's no annotation, make sure an array is made
   $anno = array();
@@ -18,8 +18,8 @@ if(!$anno) { // If there's no annotation, make sure an array is made
 }
 
 $anno[$anno['max_id']] = array(
-                            "ftr" => $_POST['feature'],
-                            "ida" => $_POST['ida'],
+                            "ftr" => mysql_real_escape_string($_POST['feature']),
+                            "ida" => mysql_real_escape_string($_POST['ida']),
                             "st" => (int)$_POST['start'],
                             "end" => (int)$_POST['end']
                             );
@@ -30,7 +30,7 @@ $anno['max_id'] += 1;
 // Process the gene according to annotations
 $gene = new gene($gene);
 $gene->annotate($anno);
-$gene = $gene->getGene();
+$gene = $gene->get_gene();
 
 $j_anno = json_encode($anno);
 $j_anno = mysql_real_escape_string($j_anno);

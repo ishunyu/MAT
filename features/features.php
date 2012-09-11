@@ -24,14 +24,14 @@
     <div class="generalContentContainer">
       <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
-      <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
+      <span class="titleFormat" ><? echo $geneTitle;?></span>
       <hr>
       
       <!-- FORM -->
       <table class="submitTable">
         <!-- LABEL -->
         <tr>
-          <td class="textShadow">Feature
+          <td class="">Feature
           </td>
         </tr>
 

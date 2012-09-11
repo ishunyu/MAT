@@ -14,10 +14,10 @@
   <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="../scripts/substitution.js"></script>
+  <script type="text/javascript" src="../scripts/deletion.js"></script>
 </head>
 
-<body onkeydown="return checkInputForNumber(event)">
+<body>
   <div class="topBarBackground"></div>
   <!-- MAIN-->
   <div id="div_main" >
@@ -26,25 +26,31 @@
     <!-- CONTENT-->
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
-      <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
+      <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>       
+        <span class="titleFormat" ><? echo $geneTitle;?></span>
         <? mutation_navbar('deletion'); ?>
-        </br>        
-        <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
         <hr>
         
         <div class="ContentContainer">
-          <input type="text" id="start_index" />
-          <input type="text" id="end_index" />
-          <button>Submit</button> 
+          <table>
+            <tr>
+              <td><span class="formLabel">First deleted base:</span></td>
+              <td><input type="text" id="start_index" class="inputBoxStyle" onkeyup="deletion_info()"/></td>
+            </tr>
+            <tr>
+              <td><span class="formLabel">Last deleted base:</span></td>
+              <td><input type="text" id="end_index" class="inputBoxStyle" onkeyup="deletion_info()"/><br></td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td><input type="button" class="" value="Submit" onclick="deletion_info()"></input></td>
+            </tr>
+          </table>
         </div>
-        <span id="showInfoAboutGeneAtPosition" class="formLabel">
-            Base: <br/>
-            Codon Position: <br/>
-            Old codon: <br/>
-            New codon: <br/><hr>
-            Nucleic acid level: <br/>
-            Protein level: <br/>
-        <span>
+        <table id="deletion_info">
+
+        </table>
       <? }
          else { ?>
           <a class="normalLink" href="../upload/upload.php">

@@ -10,7 +10,7 @@ $geneQuery =
 $geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
 $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
-$anno = json_decode($anno, true);
+$anno = json_decode(stripcslashes($anno), true);
 
 $anno[$_POST['id']] = array(
                             "ftr" => mysql_real_escape_string($_POST['feature']),
@@ -23,7 +23,7 @@ $anno[$_POST['id']] = array(
 // Process the gene according to annotations
 $gene = new gene($gene);
 $gene->annotate($anno);
-$gene = $gene->getGene();
+$gene = $gene->get_gene();
 
 $j_anno = json_encode($anno);
 $j_anno = mysql_real_escape_string($j_anno);

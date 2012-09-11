@@ -22,7 +22,7 @@ function drawRows() {
   while($item = mysql_fetch_assoc($geneQ)) {
   echo '<tr id="'.strval($item['id']).'">';
 	echo td($item['geneName'],
-          'formLabel textShadow labelColumn');
+          'formLabel labelColumn');
 	echo td('<b>'.a('Mutate','../mutate/mutate.php?geneId='.strval($item['id']))
           .'&nbsp&nbsp&nbsp&nbsp'
           .a('Annotate','../annotate/annotate.php?geneId='.strval($item['id'])).'</b>'

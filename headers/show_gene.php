@@ -51,12 +51,6 @@ if($geneId != "") {
   $geneQuery = mysql_query($geneQuery);
   $geneQuery = mysql_fetch_assoc($geneQuery);
   
-  // $updateQuery =
-  //   "UPDATE $user_table
-  //    SET lastGeneId='$geneId'
-  //    WHERE id='$_SESSION[id]'";
-  // $updateQuery = mysql_query($updateQuery);
-  
   $gene = $geneQuery['gene'];
   $geneTitle = $geneQuery['geneName'];
   if(strlen($gene) > 30) {

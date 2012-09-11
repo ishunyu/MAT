@@ -3,7 +3,7 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  background-color: #2298B8; /*Blue hue*/
+  background-color: #25064C; /*Blue hue*/
   /* background-image: url('../images/background.jpg'); */
 }
 
@@ -152,8 +152,8 @@ span.warningFormat {
 }
 
 input.submitButton {
-  width: 100px;
-  height: 40px;
+  width: 80px;
+  height: 30px;
   
   font-size: 20px;
   color: white;
@@ -163,18 +163,14 @@ input.submitButton {
   border-style: solid;
   border-color: white;
   border-width: 1px;
-  
-  -moz-box-shadow: 0px 0px 7px 0px #111;
-  -webkit-box-shadow: 0px 0px 7px 0px #111;
-  box-shadow: 0px 0px 7px 0px #111;
     
-  -moz-border-radius: 10px 10px 10px 10px;
-  -webkit-border-radius: 10px 10px 10px 10px;  
-  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;  
+  border-radius: 4px 4px 4px 4px;
 }
 
 input.submitButton:hover {
-  background-color: #2298B8;
+  background-color: #36175E;
 }
 
 input.submitButton:active {
@@ -185,7 +181,7 @@ input.submitButton:active {
 input.normalButton {
   float: right;
   margin-top: 7px;
-  background-color: #2298B8;
+  background-color: #36175E;
 }
 
 input.normalButton:hover {

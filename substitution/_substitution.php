@@ -2,46 +2,34 @@
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
 
-$geneQuery =
+$gene_q =
   "SELECT gene
    FROM $gene_table
-   ORDER BY modifyTime DESC
-   LIMIT 1";
-$geneQuery = mysql_query($geneQuery) or die("Gene query unsuccessful");
-$geneQuery = mysql_fetch_assoc($geneQuery);
+   WHERE id='$_SESSION[gene_id]'";
+$gene_r = mysql_query($gene_q) or die("Gene query unsuccessful");
+$gene_a = mysql_fetch_assoc($gene_r);
 
 $index = $_POST["index"];
 $base = $_POST["base"];
-$gene = new GENE($geneQuery["gene"]);
+$gene = new GENE($gene_a["gene"]);
 
-$newCodon = $oldCodon = $gene->getCodonAtBaseIndex($index);
-$newCodon[$gene->positionInCodonOfBaseIndex($index) - 1] = $base;
-$codonPos = $gene->getCodonPositionAtBaseIndex($index);
-$rnaMutation = $gene->rnaMutationAtBaseIndexWithBase($index, $base);
-$proteinMutation = $gene->proteinMutationAtBaseIndexWithBase($index, $base);  
+$new_codon = $gene->get_codon($index);
+$new_codon[$gene->get_position_in_codon($index) - 1] = $base;
+$codon_position = $gene->get_codon_position($index);
+$rna_mutation = $gene->rna_mutation($index, $base);
+$protein_mutation = $gene->protein_mutation($index, $base);  
 
-if($rnaMutation && $proteinMutation) {
-  echo "Base: ".$index."<br/>";
-  echo "Codon Position: ".$codonPos."<br/>";
-  echo "Old codon: ".$oldCodon."<br/>";
-  echo "New codon: ".$newCodon."<br/>";
-  echo "<hr>";
-  echo "Nucleic acid level: ".$rnaMutation."<br/>";
-  echo "Protein level: ".$proteinMutation."<br/>";
-}
-else {
-  echo "Base: <br/>";
-  echo "Codon Position: <br/>";
-  echo "Old codon: <br/>";
-  echo "New codon: <br/>";
-  echo "<hr>";
-  echo "Nucleic acid level: <br/>";
-  echo "Protein level: <br/>";
-}
-
-
-//echo var_dump($gene->getLut());
-//echo $_POST["base"];
-
-
-?>
+if($rna_mutation && $protein_mutation) { ?>
+<tr>
+  <th>New codon:</th>
+  <td><? echo $new_codon; ?></td>
+</tr>
+<tr>
+  <th>Nucleic acid level:</th>
+  <td><? echo $rna_mutation; ?></td>
+</tr>
+<tr>
+  <th>Protein level:</th>
+  <td><? echo $protein_mutation; ?></td>
+</tr>
+<? } ?>

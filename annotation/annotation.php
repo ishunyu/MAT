@@ -24,7 +24,7 @@
     <div class="generalContentContainer">
     <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
-      <span class="titleFormat textShadow" ><? echo $geneTitle;?></span>
+      <span class="titleFormat " ><? echo $geneTitle;?></span>
       <span class="detailFormat" style="float:right"> No error checking yet! Users are responsible for correct input.</span>      
       <hr>
       
@@ -32,13 +32,13 @@
         <table class="submitTable">
         	<!-- LABEL -->
           <tr>
-  	        <td class="textShadow feature">
+  	        <td class="feature">
               <a href="../features/features.php">Feature</a>
               <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
-  	        <td class="textShadow ida">Name</td>
-  	        <td class="textShadow start">Start</td>
-  	        <td class="textShadow end">End</td>
+  	        <td class="ida">Name</td>
+  	        <td class="start">Start</td>
+  	        <td class="end">End</td>
           </tr>
 
           <!-- INPUT BOX -->
@@ -67,7 +67,7 @@
      else { ?>
      <!--For when there is no gene -->
       <a class="normalLink" href="../upload/upload.php">
-        <span class="titleFormat textShadow" >Please upload a DNA Sequence</span> </a>
+        <span class="titleFormat " >Please upload a DNA Sequence</span> </a>
   <? } ?>
     </div>
   </div>

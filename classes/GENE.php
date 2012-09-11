@@ -2,7 +2,6 @@
 //$LUT = json_decode(file_get_contents("classes/LUT.json"), true);
 class gene {
   private $sequence;  // Stores the Gene sequence
-  private $originalSequence;
   private $lut;
   private $size;
   
@@ -14,35 +13,35 @@ class gene {
   }
   
   // Getters
-  function getGene() {
+  function get_gene() {
     return $this->sequence;
   }
   
-  function getLut() {
+  function get_look_up_table() {
     return $this->lut;
   }
   
-  function getSize() {
+  function get_size() {
     return $this->size;
   }
   
-  function getBaseAtBaseIndex($indexOfBase) {
-    if($indexOfBase > strlen($this->sequence) || $indexOfBase < 1) {  // Error checking
+  function get_base($index) {
+    if($index > strlen($this->sequence) || $index < 1) {  // Error checking
       echo false;
       return;
     }
     
-    return $this->sequence[$indexOfBase-1];
+    return $this->sequence[$index-1];
   }
   
-  function proteinMutationAtBaseIndexWithBase($indexOfBase, $base) {
+  function protein_mutation($index, $base) {
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {  // Error checking
+    if($index > $this->size || $index < 1) {  // Error checking
       return false;
     } 
     
-    $newCodon = $originalCodon = $this->getCodonAtBaseIndex($indexOfBase);  // Get the codon
-    $newCodon[$this->positionInCodonOfBaseIndex($indexOfBase) - 1] = $base; // Get the position within codon and change new codon
+    $newCodon = $originalCodon = $this->get_codon($index);  // Get the codon
+    $newCodon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
     $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
     $newProtein = $this->lut[$newCodon]["3LetterCode"];
@@ -50,36 +49,36 @@ class gene {
     if($originalProtein == $newProtein) // Silent mutation
       return "p.(=)";
     
-    $protienMutation = "p.".$originalProtein.$indexOfBase.$newProtein;
+    $protienMutation = "p.".$originalProtein.$index.$newProtein;
     
     return $protienMutation;
   }
   
-  function rnaMutationAtBaseIndexWithBase($indexOfBase, $base) {
+  function rna_mutation($index, $base) {
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {  // Error checking
+    if($index > $this->size || $index < 1) {  // Error checking
       return false;
     } 
     
-    $newCodon = $originalCodon = $this->getCodonAtBaseIndex($indexOfBase);  // Get the codon
-    $newCodon[$this->positionInCodonOfBaseIndex($indexOfBase) - 1] = $base; // Get the position within codon and change new codon
+    $newCodon = $originalCodon = $this->get_codon($index);  // Get the codon
+    $newCodon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
     $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
     $newProtein = $this->lut[$newCodon]["3LetterCode"];        
     
-    $rnaMutation = "c.".$indexOfBase.$this->sequence[$indexOfBase-1].">".$base;
+    $rnaMutation = "c.".$index.$this->sequence[$index-1].">".$base;
     return $rnaMutation;
   }
   
-  function positionInCodonOfBaseIndex($indexOfBase) {
+  function get_position_in_codon($index) {
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {
+    if($index > $this->size || $index < 1) {
       return false;
     }  
     
     $positionInCodon = 0;
     
-    switch($indexOfBase%3) {  // Finding out which position the base is at
+    switch($index % 3) {  // Finding out which position the base is at
       case 1:
         $positionInCodon = 1;
         break;
@@ -97,23 +96,23 @@ class gene {
   }
   
   // Finds the codon with the base indexs
-  function getCodonAtBaseIndex($indexOfBase) {  
+  function get_codon($index) {  
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {
+    if($index > $this->size || $index < 1) {
       return false;
     }  
     
     $left = -1;
     
-    switch($indexOfBase%3) {  // Finding out which position the base is at
-      case 1: // $indexOfBase $mid $right
-        $left = $indexOfBase;
-        break;  // $left $indexOfBase $right
+    switch($index%3) {  // Finding out which position the base is at
+      case 1: // $index $mid $right
+        $left = $index;
+        break;  // $left $index $right
       case 2:
-        $left = $indexOfBase - 1;
+        $left = $index - 1;
         break;
-      case 0: // $left $mid $indexOfBase
-        $left = $indexOfBase - 2;
+      case 0: // $left $mid $index
+        $left = $index - 2;
         break;
       default:
         break;
@@ -125,13 +124,13 @@ class gene {
     return $this->sequence[$left].$this->sequence[$left+1].$this->sequence[$left+2];
   }
   
-  function getCodonPositionAtBaseIndex($indexOfBase) {  
+  function get_codon_position($index) {  
     // Bounds checking
-    if($indexOfBase > $this->size || $indexOfBase < 1) {
+    if($index > $this->size || $index < 1) {
       return false;
     }  
     
-    $codonPosition = ceil($indexOfBase / 3);
+    $codonPosition = ceil($index / 3);
     
       
     return $codonPosition;        
