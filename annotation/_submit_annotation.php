@@ -18,11 +18,11 @@ if(!$anno) { // If there's no annotation, make sure an array is made
 }
 
 $anno[$anno['max_id']] = array(
-                            "ftr" => mysql_real_escape_string($_POST['feature']),
-                            "ida" => mysql_real_escape_string($_POST['ida']),
-                            "st" => (int)$_POST['start'],
-                            "end" => (int)$_POST['end']
-                            );
+  "ftr" => mysql_real_escape_string($_POST['feature']),
+  "ida" => mysql_real_escape_string($_POST['ida']),
+  "st" => (int)$_POST['start'],
+  "end" => (int)$_POST['end']
+);
 
 $anno['max_id'] += 1;
 

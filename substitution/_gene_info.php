@@ -21,7 +21,7 @@ if(($index <= 0))
 
 $gene = new GENE($gene_a['gene']);
 
-$old_codon = $gene->get_codon($index);
+$old_codon = $gene->get_codon_base_index($index);
 $codon_position = $gene->get_codon_position($index);
 
 if($index > $gene->get_size())

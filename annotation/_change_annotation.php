@@ -13,11 +13,11 @@ $anno = $geneQuery['spec'];
 $anno = json_decode(stripcslashes($anno), true);
 
 $anno[$_POST['id']] = array(
-                            "ftr" => mysql_real_escape_string($_POST['feature']),
-                            "ida" => mysql_real_escape_string($_POST['ida']),
-                            "st" => (int)$_POST['start'],
-                            "end" => (int)$_POST['end']
-                            );
+  "ftr" => mysql_real_escape_string($_POST['feature']),
+  "ida" => mysql_real_escape_string($_POST['ida']),
+  "st" => (int)$_POST['start'],
+  "end" => (int)$_POST['end']
+);
 
 
 // Process the gene according to annotations

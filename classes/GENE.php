@@ -17,22 +17,18 @@ class GENE {
     return $this->sequence;
   }
   
-  function get_look_up_table() {
-    return $this->lut;
-  }
-  
   function get_size() {
     return $this->size;
   }
 
-  function get_codon_info($codon) {
+  function get_codon_info($index) {
+    $codon = $this->get_codon_base_index($index);
     return $this->lut[$codon];
   }
   
   function get_base($index) {
     if($index > strlen($this->sequence) || $index < 1) {  // Error checking
-      echo false;
-      return;
+      return false;
     }
     
     return $this->sequence[$index-1];
@@ -44,16 +40,16 @@ class GENE {
       return false;
     } 
     
-    $newCodon = $originalCodon = $this->get_codon($index);  // Get the codon
-    $newCodon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
+    $new_codon = $old_codon = $this->get_codon_base_index($index);  // Get the codon
+    $new_codon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
-    $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
-    $newProtein = $this->lut[$newCodon]["3LetterCode"];
+    $old_protein = $this->lut[$old_codon]["3LetterCode"]; // Retrieve the protein
+    $new_protein = $this->lut[$new_codon]["3LetterCode"];
     
-    if($originalProtein == $newProtein) // Silent mutation
+    if($old_protein == $new_protein) // Silent mutation
       return "p.(=)";
     
-    $protienMutation = "p.".$originalProtein.$index.$newProtein;
+    $protienMutation = "p.".$old_protein.$index.$new_protein;
     
     return $protienMutation;
   }
@@ -64,11 +60,11 @@ class GENE {
       return false;
     } 
     
-    $newCodon = $originalCodon = $this->get_codon($index);  // Get the codon
-    $newCodon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
+    $new_codon = $old_codon = $this->get_codon_base_index($index);  // Get the codon
+    $new_codon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
-    $originalProtein = $this->lut[$originalCodon]["3LetterCode"]; // Retrieve the protein
-    $newProtein = $this->lut[$newCodon]["3LetterCode"];        
+    $old_protein = $this->lut[$old_codon]["3LetterCode"]; // Retrieve the protein
+    $new_protein = $this->lut[$new_codon]["3LetterCode"];        
     
     $rnaMutation = "c.".$index.$this->sequence[$index-1].">".$base;
     return $rnaMutation;
@@ -80,27 +76,27 @@ class GENE {
       return false;
     }  
     
-    $positionInCodon = 0;
+    $position_in_codon = 0;
     
     switch($index % 3) {  // Finding out which position the base is at
       case 1:
-        $positionInCodon = 1;
+        $position_in_codon = 1;
         break;
       case 2:
-        $positionInCodon = 2;
+        $position_in_codon = 2;
         break;
       case 0:
-        $positionInCodon = 3;
+        $position_in_codon = 3;
         break;
       default:
         break;
     }
     
-    return $positionInCodon;
+    return $position_in_codon;
   }
   
-  // Finds the codon with the base indexs
-  function get_codon($index) {  
+  // Finds the codon with the base index
+  function get_codon_base_index($index) {  
     // Bounds checking
     if($index > $this->size || $index < 1) {
       return false;
@@ -108,7 +104,7 @@ class GENE {
     
     $left = -1;
     
-    switch($index%3) {  // Finding out which position the base is at
+    switch($index % 3) {  // Finding out which position the base is at
       case 1: // $index $mid $right
         $left = $index;
         break;  // $left $index $right
@@ -133,24 +129,21 @@ class GENE {
     if($index > $this->size || $index < 1) {
       return false;
     }  
-    
-    $codonPosition = ceil($index / 3);
-    
       
-    return $codonPosition;        
+    return ceil($index / 3.0);        
   }
   
   function annotate($anno) {
     unset($anno['max_id']);
     
     // Sorting the specs according to their places
-    function cmpAnno($a, $b) {
+    function cmp_annotations($a, $b) {
       if($a['st'] == $b['st']) {
         return 0;
       }
       return ($a['st'] < $b['st']) ? -1 : 1;
     }
-    usort($anno, "cmpAnno");
+    usort($anno, "cmp_annotations");
     
     // Error checking to be done    
 
@@ -165,7 +158,99 @@ class GENE {
 
     $this->sequence = $tmp;
   }
-  
+
+  function exons($annotations) {
+    // Finding exon info
+    $annotations = json_decode(stripcslashes($annotations), true);
+    $exons = array();
+
+    // Extract the exon info from annotations
+    foreach($annotations as $item) {
+      if($item['ftr'] == '3')
+        $exons[] = $item;
+    }
+
+    // Sort the exon info
+    function cmp_annotations($a, $b) {
+      if($a['st'] == $b['st']) {
+        return 0;
+      }
+      return ($a['st'] < $b['st']) ? -1 : 1;
+    }
+    usort($exons, "cmp_annotations");
+
+    // Shift the exon information over
+    if(sizeof($exons) > 0) {
+      $anchor = 0;
+
+      foreach($exons as $key => $item) {
+        $diff = $exons[$key]['end'] - $exons[$key]['st'];
+        $exons[$key]['st'] = $anchor + 1;
+        $anchor = $exons[$key]['end'] = $exons[$key]['st'] + $diff;    
+      }
+    }
+    // Exon information extraction complete
+
+    return $exons;
+  }
+
+  // Gets the new codon info
+  function get_new_codon_info($start, $end) {
+    // Gets the relative position of the base in its respective codon
+    $start_in_codon = $this->get_position_in_codon($start);
+
+    // Change to computer science terms
+    $start--;
+    $end--;
+
+    $new_codon = '';
+
+    if(($start_in_codon == 1) && (($end + 3) <= $this->size)) { // start mid right -> end+1 end+2 end+3
+      $new_codon = $this->sequence[$end + 1].$this->sequence[$end + 2].$this->sequence[$end + 3];
+
+    }
+    else if(($start_in_codon == 2) && (($end + 2) <= $this->size)) { // left start right - > start-1 end+1 end+2
+      $new_codon = $this->sequence[$start - 1].$this->sequence[$end + 1].$this->sequence[$end + 2];
+
+    }
+    else if(($start_in_codon == 3) && (($end + 1) <= $this->size)) {// left mid start -> start-2 start-1 end+1
+      $new_codon = $this->sequence[$start - 2].$this->sequence[$start - 1].$this->sequence[$end + 1];
+      
+    }
+    else {
+      return false;
+    }
+
+    return $this->lut[$new_codon];
+  }
+
+  function stop_codon($start, $end) {
+    // If the $end is greater than the sequence, then no show :(|)
+    if($end > $this->size)
+      return false;
+
+    // Form the new gene
+    $new_gene = substr_replace($this->sequence, '', $start - 1, $end - $start + 1);
+
+    // Start going through the gene and count
+    $count = 0;
+    $output = ' ';
+
+    // Offset for the position inside codon
+    $shift_in_codon = ($this->get_position_in_codon($start) - 1) * -1;
+    $start += $shift_in_codon;
+
+    for($i = ($start - 1); ($i + 3) < strlen($new_gene); $i += 3) {
+      $count++;
+      $codon = substr($new_gene, $i, 3);
+      $output .= $count.' '.$codon."  ";
+
+      if($this->lut[$codon]['1LetterCode'] == 'X') {
+        return $count;
+      }
+    }
+  }
+
 } // End of class GENE
 
 ?>

@@ -101,19 +101,19 @@
             </tr>
             <tr>
               <th>In-frame, single AA:</th>
-              <td></td>
+              <td id="in_frame_single_aa"></td>
             </tr>
             <tr>
               <th>In-frame, multiple AA:</th>
-              <td></td>
+              <td id="in_frame_multiple_aa"></td>
             </tr>
             <tr>
               <th>Non-frame shifting:</th>
-              <td></td>
+              <td id="non_frame_shifting_aa"></td>
             </tr>
             <tr>
               <th>Frame shifting:</th>
-              <td></td>
+              <td id="frame_shifting_aa"></td>
             </tr>
           </table>
         </div>

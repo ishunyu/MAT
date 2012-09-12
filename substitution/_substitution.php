@@ -13,7 +13,7 @@ $index = $_POST["index"];
 $base = $_POST["base"];
 $gene = new GENE($gene_a["gene"]);
 
-$new_codon = $gene->get_codon($index);
+$new_codon = $gene->get_codon_base_index($index);
 $new_codon[$gene->get_position_in_codon($index) - 1] = $base;
 $codon_position = $gene->get_codon_position($index);
 $rna_mutation = $gene->rna_mutation($index, $base);
