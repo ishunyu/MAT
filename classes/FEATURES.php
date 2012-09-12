@@ -7,7 +7,11 @@ $features_q = array(
   "3" => "Exon",
   "4" => "Intron",
   "5" => "3'UTR",
-  "6" => "Poly(A) tail"
+  "6" => "Poly(A) tail",
+  "7" => "Start codon",
+  "8" => "Stop codon",
+  "9" => "TSS",
+  "10" => "Exon alternate",
 );
 
 $features = mysql_escape_string(json_encode($features_q));  // Turns json into associative array
