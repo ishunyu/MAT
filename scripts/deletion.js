@@ -44,8 +44,22 @@ function _deletion_info(start, end) {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      console.log(xml.responseText);
-
+      //console.log(xml.responseText);
+      if(xml.responseText != 'failed')
+        _deletion_info_helper(xml.responseText);
+      else
+        alert("Something went wrong!");
     }
   }
+}
+
+function _deletion_info_helper(result) {
+  var populate = function (key, value) {
+    if(key != '') {
+      console.log('key: ' + key + ' value: ' + value);
+      document.getElementById(key).innerHTML = value;
+    }
+  }
+
+  JSON.parse(result, populate);
 }

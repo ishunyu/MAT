@@ -24,6 +24,9 @@ $gene_q = "SELECT gene, spec
 $gene_r = mysql_query($gene_q);
 $gene_a = mysql_fetch_assoc($gene_r);
 
+if($end > strlen($gene_a['gene']))
+  die('failed');
+
 /* INITIATES THE NEW GENE CLASS */
 $gene = new GENE($gene_a['gene']);
 $exons = $gene->exons($gene_a['spec']);
@@ -67,7 +70,7 @@ foreach($exons as $item) {
   }
 }
 
-/* RESUTLS */
+/* RESULTS */
 /* NA LEVEL */
 if($start == $end)
   $deletion_only = "c.".$start."del".$deleted_seq;
@@ -109,14 +112,13 @@ else {
   $new_codon_info = $gene->get_new_codon_info($start, $end);
   $stop_position = $gene->stop_codon($start, $end);
 
-  echo var_dump($new_codon_info);
-
   $frame_shifting_aa = "p.".$codon_info['3LetterCode'].$amino_acid_position."fs<br>";
   $frame_shifting_aa .= "p.".$codon_info['3LetterCode'].$amino_acid_position.$new_codon_info['3LetterCode']."fsX".$stop_position;
 }
 
 $output = array(
   'deleted_seq' => $deleted_seq,
+  'number_of_bases_deleted' => strlen($deleted_seq),
   'frame_retention' => $frame_retention,
   'first_affected_codon' => $first_affected_codon,
   'codon_info' => $codon_info['1LetterCode']."<br>".$codon_info['3LetterCode']."<br>".$codon_info['fullname'],

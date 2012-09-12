@@ -50,7 +50,7 @@
           <table id="deletion_info" class="info" style="color: white;">
             <tr>
               <th>Deleted Sequence:</th>
-              <td id="deleted_sequence"></td>
+              <td id="deleted_seq"></td>
             </tr>
             <tr>
               <th>Number of bases deleted:</th>
@@ -69,7 +69,7 @@
             </tr>
             <tr>
               <th>Coding for... (WT):</th>
-              <td id="coding_for"></td>
+              <td id="codon_info"></td>
             </tr>
             <tr>
               <th>Amino acid position:</th>
