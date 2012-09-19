@@ -5,8 +5,8 @@ require_once "../headers/session.php";
 require_once "../classes/FILES.php";
 require_once "../classes/FEATURES.php";
 
-$geneName = $_POST['geneName'];
-$geneNotes = $_POST['geneNotes'];
+$geneName = mysql_real_escape_string($_POST['geneName']);
+$geneNotes = mysql_real_escape_string($_POST['geneNotes']);
 $id = $_SESSION['id'];
 
 // Query the gene list
