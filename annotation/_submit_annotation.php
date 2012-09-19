@@ -1,4 +1,4 @@
-<?php
+<?php /* _submit_annotation.php */
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
 
@@ -16,7 +16,17 @@ if(!$anno) { // If there's no annotation, make sure an array is made
   $anno = array();
   $anno['max_id'] = 0;
 }
+else {  // Checking for repeats
+  foreach($anno as $key => $item) {
+    if($key != 'max_id') {
+      if($item['ida'] == $_POST['ida']) {
+        die('repeat');  // Stop if there's a repeat.
+      }
+    }
+  }
+}
 
+/* Adding the annotation to the array */
 $anno[$anno['max_id']] = array(
   "ftr" => mysql_real_escape_string($_POST['feature']),
   "ida" => mysql_real_escape_string($_POST['ida']),
@@ -42,6 +52,5 @@ $annoQuery =
    WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
 
-// header("location:success.php");
 echo $anno['max_id'] - 1;
 ?>

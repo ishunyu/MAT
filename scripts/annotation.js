@@ -272,29 +272,8 @@ function clear_input() {
 
 // Submits the new annotation using AJAX
 function submit_annotation() {
-  var xml;
-  if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
-    xml = new XMLHttpRequest();
-  }
-  else {  // code for IE6, IE5
-    xml = new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : new ActiveXObject("Microsoft.XMLHTTP");
 
-  xml.onreadystatechange=function() {
-    if (xml.readyState==4 && xml.status==200) {
-      //console.log(xml.responseText);
-      if(xml.responseText.match(/\d/)) {
-        var params_obj = new Object();
-        params_obj.id = xml.responseText;
-        params_obj.feature = document.getElementById("feature")[featureIndex].innerHTML;
-        params_obj.ida = ida;
-        params_obj.start = start;
-        params_obj.end = end;
-        add_row(params_obj);
-        clear_input();
-      }
-    }
-  }
   xml.open("POST","_submit_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -307,13 +286,32 @@ function submit_annotation() {
   var end = document.getElementById("end").value;
   var geneId = document.getElementById("geneId").value;
   
-  var params = "geneId="+geneId
+  var data = "geneId="+geneId
               +"&feature="+feature
               +"&ida="+ida
               +"&start="+start
               +"&end="+end;
 
-  xml.send(params);
+  xml.send(data);
+
+  xml.onreadystatechange=function() {
+    if (xml.readyState==4 && xml.status==200) {
+      console.log(xml.responseText);
+      if(xml.responseText == "repeat") {
+        alert("The name is already in use!")
+      }
+      else if(xml.responseText.match(/\d/)) {
+        var params_obj = new Object();
+        params_obj.id = xml.responseText;
+        params_obj.feature = document.getElementById("feature")[featureIndex].innerHTML;
+        params_obj.ida = ida;
+        params_obj.start = start;
+        params_obj.end = end;
+        add_row(params_obj);
+        clear_input();
+      }
+    }
+  }
 }
 
 // Removes a row from the table
