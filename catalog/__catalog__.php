@@ -14,22 +14,22 @@ function drawRows() {
   include "../headers/variables.php";
   
   $geneQ =
-    "SELECT geneName, id
-     FROM $gene_table
-     WHERE memberId = $_SESSION[id]";
+    "SELECT id, name
+     FROM $table_genes
+     WHERE m_id = $_SESSION[id_user]";
   $geneQ = mysql_query($geneQ);    
   
   while($item = mysql_fetch_assoc($geneQ)) {
   echo '<tr id="'.strval($item['id']).'">';
-	echo td($item['geneName'],
+	echo td($item['name'],
           'formLabel labelColumn');
-	echo td('<b>'.a('Mutate','../deletion/deletion.php?geneId='.strval($item['id']))
+	echo td('<b>'.a('Mutate','../deletion/deletion.php?id_gene='.strval($item['id']))
           .'&nbsp&nbsp&nbsp&nbsp'
-          .a('Annotate','../annotation/annotation.php?geneId='.strval($item['id'])).'</b>'
+          .a('Annotate','../annotation/annotation.php?id_gene='.strval($item['id'])).'</b>'
           ."&nbsp&nbsp&nbsp&nbsp"
           .'<a  href="" onClick="return show(this);">Show</a>'
           .'&nbsp&nbsp'
-          .a('Edit', '../edit/edit.php?geneId='.strval($item['id']))
+          .a('Edit', '../edit/edit.php?id_gene='.strval($item['id']))
           .'&nbsp&nbsp'
           .'<a  href="" onClick="return del(this);">Delete</a>'         
           , '');

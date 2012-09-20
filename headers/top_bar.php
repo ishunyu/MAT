@@ -1,7 +1,7 @@
 <?
   function topBar($page) { ?>
 		<div class="topBar" class="">
-		  <div class="textShadow welcome">Welcome, <? echo $_SESSION['firstName'] ?>!</div>
+		  <div class="textShadow welcome">Welcome, <? echo $_SESSION['name_first'] ?>!</div>
 		  <a href="../logout/logout.php" class="textShadow smallLink logout">Logout</a>
 		  <!-- NAV BAR-->
 		  <table class="navBar">

@@ -1,0 +1,14 @@
+table.submit {
+  color: white;
+}
+
+td {
+  border-style: solid;
+  border-width: 0px;
+  border-color: black;
+}
+
+.row_feature {
+  font-size: 14px;
+  color: white;
+}

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
-  <link rel="stylesheet" type="text/css" href="../styles/annotation.css">
+  <link rel="stylesheet" type="text/css" href="../styles/features.css">
   
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
@@ -22,35 +22,34 @@
 
     <!-- CONTENT-->
     <div class="generalContentContainer">
-      <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
+      <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
-      <span class="titleFormat" ><? echo $geneTitle;?></span>
+      <span class="titleFormat" ><? echo $title_gene;?></span>
       <hr>
       
       <!-- FORM -->
-      <table class="submitTable">
+      <table class="submit">
         <!-- LABEL -->
         <tr>
-          <td class="">Feature
-          </td>
+          <td class="">Feature</td>
         </tr>
 
         <!-- INPUT BOX -->
         <tr class="" id="input_row">
-          <td class="feature" colspan="2" onclick="<!-- deactivate_active_rows(null); -->">
-            <input type="text" class="ida inputBoxStyle" id="feature" onkeydown="<!-- enter(event); -->" /></td>
+          <td class="feature" colspan="2" onclick="">
+            <input type="text" class="name_gene inputBoxStyle" id="feature" onkeydown="" /></td>
         </tr>
         <tr class="submitBox" id="submitBox">
           <td colspan="2"> <button type="submit" id="feature_submit_btn" onclick="return submit_feature();">Submit</button></td>
         </tr>
         <? require_once '+table_features.php'; ?>
       </table>
-      <? hidden_gene_value($geneId);  hidden_num_col(5); ?>
+      <? hidden_gene_value($id_gene);  hidden_num_col(5); ?>
       <? }else { ?>
       <!--For when there is no gene -->
       <a class="normalLink" href="../upload/upload.php">
         <span class="titleFormat textShadow" >Please upload a DNA Sequence</span></a>
-        <? } ?>
+      <? } ?>
     </div>
   </div>
 </body>

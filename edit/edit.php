@@ -27,19 +27,19 @@ require_once "../headers/top_bar.php"
       <div class="generalContentContainer">
       	<!-- EDIT FORM -->
         <form id="geneEditForm" enctype="multipart/form-data" method="POST" action="edit_proc.php" onsubmit="return check_edit();">
-          <? echo hidden_gene_value($geneId); ?>
+          <? echo hidden_gene_value($id_gene); ?>
           <!-- SEQUENCE IDENTIFIER -->
           <span class="titleFormat textShadow">Sequence Identifier</span><br/>
           <span class="detailFormat textShadow">Please enter a name, number, ??? number or other ID for your sequence. This is for your reference only.</span><hr>          
-          <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30"
-          		 value="<? echo $geneName; ?>"/>            
-          <span id="geneNameWarning" class="warningFormat textShadow"></span>
+          <input type="text" name="name_gene" id="name_gene"  class="inputBoxStyle" maxlength="30"
+          		 value="<? echo $name_gene; ?>"/>            
+          <span id="name_geneWarning" class="warningFormat textShadow"></span>
           <br/><br/>
           <!-- NOTES -->
           <span class="titleFormat textShadow">Notes</span><br/>
           <span class="detailFormat textShadow">Jot down any notes for yourself</span>
           <hr>
-          <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count_popup(event);"><? echo $geneNotes; ?></textarea>
+          <textarea id="notes" name="notes" maxlength="65535" onkeyup="word_count_popup(event);"><? echo $notes; ?></textarea>
           <br/>
           <!-- SUBMIT BUTTON -->
           <input type="submit" value="Save" id="uploadSubmitButton" class="submitButton"/>         

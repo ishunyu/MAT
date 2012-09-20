@@ -1,26 +1,17 @@
 <?
 // Gets the feature
-$featuresQ =
-  "SELECT features
-   FROM $gene_table
-   WHERE id=$geneId";
+$q_features =
+  "SELECT id, name
+   FROM $table_features";
 
+$r_features = mysql_query($q_features);   
 
-$featuresQ = mysql_query($featuresQ);
-$featuresQ = mysql_fetch_assoc($featuresQ);    
-$features = $featuresQ['features']; // Gets the spec portion of the query
-$features = json_decode($features, true);  // Turns json into associative array
-
-unset($features['max_id']);
-
-foreach($features as $key => $item) { ?>
-  <tr class="f_row" id="row<? echo $key; ?>">
+while($feature = mysql_fetch_assoc($r_features)) { ?>
+  <tr class="row_feature" id="row<? echo $feature['id']; ?>">
     <td class="controls" style="width: 50px;">
-      <a href="#" title="remove" name="<?echo $key;?>" onclick="return remove_feature(this);">
-        <img src="../images/icons/trash_white.png" height="15" width="" /></a>
-      <!-- <a href="#" title="edit" onclick="activate_row(this)">
-        <img src="../images/icons/file_3_white.png" height="15" width="" /></a> -->
+      <!-- <a href="#" title="remove" name="<?echo $feature['id'];?>" onclick="return remove_feature(this);">
+        <img src="../images/icons/trash_white.png" height="15" width="" /></a> -->
     </td>
-    <td class="display"><? echo stripcslashes($item);?></td>
+    <td class="display"><? echo stripcslashes($feature['name']);?></td>
   </tr>
 <? } ?>

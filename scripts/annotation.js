@@ -63,8 +63,8 @@ function make_row_plain(row, params) {
     else if(child.className == "feature_s") {  // feature
       child.innerHTML = params.feature_name;
     }
-    else if(child.className == "ida") { // ida
-      child.innerHTML = params.ida;
+    else if(child.className == "name_gene") { // name_gene
+      child.innerHTML = params.name_gene;
     }
     else if(child.className == "start") { // start
       child.innerHTML = params.start;
@@ -80,7 +80,7 @@ function make_row_plain(row, params) {
 }
 
 function activate_row_helper(children) {
-  var feature, feature_name, ida, start, end, i;
+  var feature, feature_name, name_gene, start, end, i;
 
   for(i = 0;i < children.length; i++) { // bookmark
     var child = children[i];
@@ -109,9 +109,9 @@ function activate_row_helper(children) {
         }
       }
     }
-    else if(child.className == "ida") { // ida
-      ida = child.innerHTML.trim();
-      child.innerHTML = '<input type="text" class="ida edit inputBoxStyle" id="ida_edit" value="'+ida+'" onkeydown="return enter_c(event);" />';
+    else if(child.className == "name_gene") { // name_gene
+      name_gene = child.innerHTML.trim();
+      child.innerHTML = '<input type="text" class="name_gene edit inputBoxStyle" id="name_gene_edit" value="'+name_gene+'" onkeydown="return enter_c(event);" />';
     }
     else if(child.className == "start") { // start
       start = child.innerHTML.trim();
@@ -127,7 +127,7 @@ function activate_row_helper(children) {
       Will be compared later when a row is deactivated.*/ 
   PARAMS_OBJ.feature = feature;
   PARAMS_OBJ.feature_name = feature_name;
-  PARAMS_OBJ.ida = ida;
+  PARAMS_OBJ.name_gene = name_gene;
   PARAMS_OBJ.start = start;
   PARAMS_OBJ.end = end;
 }
@@ -150,7 +150,7 @@ function activate_row(edit_button) {
 }
 
 function deactivate_single_row_helper(row) {
-  var feature, feature_name, ida, start, end;
+  var feature, feature_name, name_gene, start, end;
   var i, children = row.childNodes;
   
   // Gather the information
@@ -161,8 +161,8 @@ function deactivate_single_row_helper(row) {
       feature = child.firstChild[child.firstChild.selectedIndex].value;
       feature_name = child.firstChild[child.firstChild.selectedIndex].innerHTML;
     }
-    else if(child.className == "ida") { // ida
-      ida = child.firstChild.value;
+    else if(child.className == "name_gene") { // name_gene
+      name_gene = child.firstChild.value;
     }
     else if(child.className == "start") { // start
       start = child.firstChild.value;
@@ -175,12 +175,12 @@ function deactivate_single_row_helper(row) {
   var params_obj = new Object();
       params_obj.feature = feature;
       params_obj.feature_name = feature_name;
-      params_obj.ida = ida;
+      params_obj.name_gene = name_gene;
       params_obj.start = start;
       params_obj.end = end;
 
   if(params_obj.feature == PARAMS_OBJ.feature &&
-      params_obj.ida == PARAMS_OBJ.ida &&
+      params_obj.name_gene == PARAMS_OBJ.name_gene &&
       params_obj.start == PARAMS_OBJ.start &&
       params_obj.end == PARAMS_OBJ.end)
   {
@@ -190,16 +190,10 @@ function deactivate_single_row_helper(row) {
 
 
   // Commit the change in the database
-  var geneId = document.getElementById("geneId").value;
+  var id_gene = document.getElementById("id_gene").value;
   var id = row.id.match(/\d/g).join(""); // trim away the row value
 
-  var xml;
-  if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
-    xml = new XMLHttpRequest();
-  }
-  else {  // code for IE6, IE5
-    xml = new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
@@ -213,9 +207,9 @@ function deactivate_single_row_helper(row) {
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
   var params = "id="+id
-              +"&geneId="+geneId
+              +"&id_gene="+id_gene
               +"&feature="+feature
-              +"&ida="+ida
+              +"&name_gene="+name_gene
               +"&start="+start
               +"&end="+end;
   xml.send(params);  
@@ -254,7 +248,7 @@ function add_row(obj) {
                 <a href="#" title="edit" onclick="activate_row(this)"> \
                   <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
             '<td class="feature_s">'+obj.feature + '</td>' + 
-            '<td class="ida">'+ obj.ida +'</td>' + 
+            '<td class="name_gene">'+ obj.name_gene +'</td>' + 
             '<td class="start">'+ obj.start  +'</td>' +
             '<td class="end">'+ obj.end +'</td>';
 
@@ -263,8 +257,8 @@ function add_row(obj) {
 
 // Clears the input
 function clear_input() {
-  document.getElementById("ida").value = "";
-  document.getElementById("ida").focus();
+  document.getElementById("name_gene").value = "";
+  document.getElementById("name_gene").focus();
   document.getElementById("start").value = "";
   document.getElementById("end").value = "";
 
@@ -281,14 +275,14 @@ function submit_annotation() {
   
   var feature = document.getElementById("feature")[featureIndex].value;
     // feature = encodeURI(feature);
-  var ida = document.getElementById("ida").value;
+  var name_gene = document.getElementById("name_gene").value;
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
-  var geneId = document.getElementById("geneId").value;
+  var id_gene = document.getElementById("id_gene").value;
   
-  var data = "geneId="+geneId
+  var data = "id_gene="+id_gene
               +"&feature="+feature
-              +"&ida="+ida
+              +"&name_gene="+name_gene
               +"&start="+start
               +"&end="+end;
 
@@ -304,7 +298,7 @@ function submit_annotation() {
         var params_obj = new Object();
         params_obj.id = xml.responseText;
         params_obj.feature = document.getElementById("feature")[featureIndex].innerHTML;
-        params_obj.ida = ida;
+        params_obj.name_gene = name_gene;
         params_obj.start = start;
         params_obj.end = end;
         add_row(params_obj);
@@ -324,13 +318,7 @@ function remove_row(id) {
 
 // Removes selected annotation using AJAX
 function remove_annotation(obj) {
-  var xml;
-  if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
-    xml = new XMLHttpRequest();
-  }
-  else {  // code for IE6, IE5
-    xml = new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
@@ -346,9 +334,9 @@ function remove_annotation(obj) {
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   var id = obj.name;
-  var geneId = document.getElementById("geneId").value;
+  var id_gene = document.getElementById("id_gene").value;
   
-  var params = "geneId="+geneId
+  var params = "id_gene="+id_gene
               +"&id="+id;
   xml.send(params);
 }

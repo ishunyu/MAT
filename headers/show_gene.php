@@ -1,22 +1,22 @@
 <?php
 //Variables for display
-$gene0to30 = "";
-$geneTitle = "Upload a new Gene";
-$geneId = "";
+$short_gene = '';
+$title_gene = 'You don\'t have anything. <a href="../upload/upload.php">Upload something to start!</a>';
+$id_gene = '';
 
 // Checks for get variable & its validity
-if(isset($_GET['geneId'])){
+if(isset($_GET['id_gene'])){
   // Check to see if the gene is part of member's gene lists
-  $checkQuery = 
+  $q_check = 
     "SELECT *
-     FROM $gene_table
-     WHERE memberId = '$_SESSION[id]' AND id='$_GET[geneId]'";
-  $checkQuery = mysql_query($checkQuery);
-  $num_rows_checkQuery = mysql_num_rows($checkQuery);
+     FROM $table_genes
+     WHERE m_id = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
+  $r_check = mysql_query($q_check);
+  $count = mysql_num_rows($r_check);
 
   // Checking to see how many results showed up
-  if($num_rows_checkQuery != 0) {
-    $geneId = $_GET['geneId'];
+  if($count == 1) {
+    $id_gene = $_GET['id_gene'];
   }
   else {
     header("location:../headers/easter_egg.php");
@@ -24,56 +24,56 @@ if(isset($_GET['geneId'])){
 }
 
 // In case there's no get variable
-if($geneId == "") {
+if($id_gene == '') {
   // Gets the genes according to modify time
   $dnaListQuery =
-    "SELECT id, geneName, gene
-     FROM $gene_table
-     WHERE memberId = '$_SESSION[id]'
-     ORDER BY modifyTime DESC
-     LIMIT 1";  // Getting the last gene
+    "SELECT id, name, gene
+     FROM $table_genes
+     WHERE m_id = '$_SESSION[id_user]'
+     ORDER BY t_modify DESC
+     LIMIT 1";  // Getting the lastest gene
   $dnaListQuery = mysql_query($dnaListQuery);
   $num_rows = mysql_num_rows($dnaListQuery);  // Get how many rows there are
   
   if($num_rows > 0) {
     $dnaListQuery = mysql_fetch_assoc($dnaListQuery); // Gets the array structure
-    $geneId = $dnaListQuery['id'];
+    $id_gene = $dnaListQuery['id'];
   }
   
 }
 
-if($geneId != "") {
+if($id_gene != "") {
   // Query for the working Gene
   $geneQuery = 
-    "SELECT geneName, gene 
-     FROM $gene_table
-     WHERE id='$geneId'";
+    "SELECT name, gene 
+     FROM $table_genes
+     WHERE id='$id_gene'";
   $geneQuery = mysql_query($geneQuery);
   $geneQuery = mysql_fetch_assoc($geneQuery);
   
   $gene = $geneQuery['gene'];
-  $geneTitle = $geneQuery['geneName'];
+  $title_gene = $geneQuery['name'];
   if(strlen($gene) > 30) {
-    $gene0to30 = substr($gene, 0, 30);
-    $gene0to30 = $gene0to30."...";
+    $short_gene = substr($gene, 0, 30);
+    $short_gene = $short_gene."...";
   }
   else {
-    $gene0to30 = $gene;
+    $short_gene = $gene;
   }
-  $gene0to30 = "(".$gene0to30.")";
+  $short_gene = "(".$short_gene.")";
 
-  $_SESSION['gene_id'] = $geneId;
+  $_SESSION['id_gene'] = $id_gene;
 }
 
 $updateQuery =
-  "UPDATE $gene_table
-   SET modifyTime=NOW()
-   WHERE id='$geneId'";
+  "UPDATE $table_genes
+   SET t_modify=NOW()
+   WHERE id='$id_gene'";
 $updateQuery = mysql_query($updateQuery);
 
 // FUNCTION
-function hidden_gene_value($geneId) {
-  echo "<input type=\"hidden\" id=\"geneId\" value=\"$geneId\" />";
+function hidden_gene_value($id_gene) {
+  echo "<input type=\"hidden\" id=\"id_gene\" value=\"$id_gene\" />";
 }
 
 function hidden_num_col($numCol) { // Needs this for spec of GENE class

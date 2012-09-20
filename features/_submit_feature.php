@@ -2,7 +2,7 @@
 require_once '../headers/session.php';
 
 $feature = $_POST['feature'];
-$gene_id = $_SESSION['gene_id'];
+$gene_id = $_SESSION['id_gene'];
 
 $features_q = "SELECT features FROM shunyu_genes WHERE id = '$gene_id'";
 $features_r = mysql_query($features_q);

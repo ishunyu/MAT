@@ -1,33 +1,32 @@
-<?php
+<?php /* edit_proc.php */
 require_once "../db/connectdb.php";
 require_once "../headers/session.php";
-require_once "../classes/FILES.php";
 
-$geneId = $_POST['geneId'];
-$geneName = $_POST['geneName'];
-$geneNotes = $_POST['geneNotes'];
-$id = $_SESSION['id'];
+$id_gene = $_POST['id_gene'];
+$name_gene = $_POST['name_gene'];
+$notes = $_POST['notes'];
+$id_user = $_SESSION['id_user'];
 
-// Query the gene list
-$_genes =
+// Get the list of genes
+$q_genes =
   "SELECT *
-   FROM $gene_table
-   WHERE geneName='$geneName' AND memberID='$id'";
-$_genes = mysql_query($_genes) or die("Fetching member's gene information unsuccessful.");
-if(mysql_num_rows($_genes) > 0) {
-  $_genes = mysql_fetch_assoc($_genes);
+   FROM $table_genes
+   WHERE name='$name_gene' AND m_id='$id_user'";
+$r_genes = mysql_query($q_genes) or die("Fetching member's gene information unsuccessful.");
+if(mysql_num_rows($r_genes) > 0) {
+  $gene = mysql_fetch_assoc($r_genes);
 }
 
 // Check to see if there's a gene with the same name
-if($_genes['id'] != $geneId) {
-  echo "$geneName is already in your profile."."</br>";
+if($gene['id'] != $id_gene) {
+  echo "$name_gene is already in your profile."."</br>";
 }
 else {
   // Store information into genelisttable
   $_update =
-    "UPDATE $gene_table
-     SET geneName = '$geneName', geneNotes = '$geneNotes', modifyTime = 'NOW()'
-     WHERE id = '$geneId'";
+    "UPDATE $table_genes
+     SET name_gene = '$name_gene', notes = '$notes', t_modify = 'NOW()'
+     WHERE id = '$id_gene'";
   $_update = mysql_query($_update)or die("Updating gene information unsuccessful.");
   
   header("location:../catalog/catalog.php");

@@ -2,8 +2,8 @@
 
 // Checks for file upload
 function check_edit() { 
-  var geneName = document.getElementById("geneName").value;  // Get the dna title
-  var geneId = document.getElementById('geneId').value;
+  var name_gene = document.getElementById("name_gene").value;  // Get the dna title
+  var id_gene = document.getElementById('id_gene').value;
   var xmlhttp = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
   
   xmlhttp.onreadystatechange=function() { // the Call back function
@@ -11,27 +11,27 @@ function check_edit() {
       var responseText = xmlhttp.responseText;   
 
       if(responseText == "true") { // if there is a gene with the same name!
-        responseText = geneName + " already exists!";
+        responseText = name_gene + " already exists!";
       }
       else {
         responseText = "";
         document.getElementById("geneEditForm").submit();
       }      
-      document.getElementById("geneNameWarning").innerHTML=responseText;
+      document.getElementById("name_geneWarning").innerHTML=responseText;
     }
   }
   
   xmlhttp.open("POST","_check_gene.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("geneName="+geneName+'&geneId='+geneId);
+  xmlhttp.send("name_gene="+name_gene+'&id_gene='+id_gene);
   
   return false;
 }
 
 // Updates the word count for dna notes
 function word_count_popup(event) {
-  var length = document.getElementById("geneNotes").value.length;
-  var maxlength = document.getElementById("geneNotes").getAttribute("maxlength");
+  var length = document.getElementById("notes").value.length;
+  var maxlength = document.getElementById("notes").getAttribute("maxlength");
   if(length == maxlength) {
     if(event.ctrlKey || event.shiftKey || event.altKey) {
       return;

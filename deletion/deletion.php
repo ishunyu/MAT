@@ -26,7 +26,7 @@
     <!-- CONTENT-->
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
-      <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>       
+      <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>       
         <span class="titleFormat" ><? echo $geneTitle;?></span>
         <? mutation_navbar('deletion'); ?>
         <hr>

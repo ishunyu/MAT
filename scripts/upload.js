@@ -1,19 +1,18 @@
 // ----- Upload -----
 
 // Checks for file upload
-function check_upload() { 
-  var xmlhttp;
-  var geneName = document.getElementById("geneName").value;  // Get the dna title
+function check_upload() {
+  var name_gene = document.getElementById("name_gene").value;  // Get the dna title
   var geneFile = document.getElementById("uploadedFile").value; // Get the file name
   var ext = geneFile.split('.').pop();
   ext = ext.toLowerCase();
   
-  if(geneName.length == 0 || geneFile.length < 4 || !(ext == "txt" || ext == "fasta")) { // check to see if title is in range and filename is okay
-    if(geneName.length == 0) {
-      document.getElementById("geneNameWarning").innerHTML = "Name needs to be at least 6 characters!";
+  if(name_gene.length == 0 || geneFile.length < 4 || !(ext == "txt" || ext == "fasta")) { // check to see if title is in range and filename is okay
+    if(name_gene.length == 0) {
+      document.getElementById("name_geneWarning").innerHTML = "Name needs to be at least 6 characters!";
     }
     else {
-      document.getElementById("geneNameWarning").innerHTML = "";
+      document.getElementById("name_geneWarning").innerHTML = "";
     }
     
     if(geneFile.length < 4 || (ext != "txt")) {
@@ -26,45 +25,40 @@ function check_upload() {
   }
 
     
-  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
   
-  xmlhttp.onreadystatechange=function() { // the Call back function
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      var responseText = xmlhttp.responseText;   
+  xml.onreadystatechange=function() { // the Call back function
+    if (xml.readyState==4 && xml.status==200) {
+      var responseText = xml.responseText;   
     
       if(responseText == "true") { // if there is a gene with the same name!
-        responseText = geneName + " already exists!";
+        responseText = name_gene + " already exists!";
       }
       else {
          responseText = "";
          document.getElementById("geneUploadForm").submit();
       }      
-      document.getElementById("geneNameWarning").innerHTML=responseText;
+      document.getElementById("name_geneWarning").innerHTML=responseText;
     }
   }
   
-  xmlhttp.open("POST","_check_gene.php",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("geneName="+geneName);
+  xml.open("POST","_check_gene.php",true);
+  xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xml.send("name_gene="+name_gene);
   
   return false;
 }
 
 // Updates the word count for dna notes
 function word_count() {
-  var length = document.getElementById("geneNotes").value.length;
-  length = document.getElementById("geneNotes").getAttribute("maxlength") - length;
+  var length = document.getElementById("notes").value.length;
+  length = document.getElementById("notes").getAttribute("maxlength") - length;
   document.getElementById("wordCount").innerHTML= length + " characters left";;
 }
 
 function word_count_popup(event) {
-  var length = document.getElementById("geneNotes").value.length;
-  var maxlength = document.getElementById("geneNotes").getAttribute("maxlength");
+  var length = document.getElementById("notes").value.length;
+  var maxlength = document.getElementById("notes").getAttribute("maxlength");
   if(length == maxlength) {
     if(event.ctrlKey || event.shiftKey || event.altKey) {
       return;

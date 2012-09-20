@@ -4,7 +4,7 @@ require_once "../classes/GENE.php";
 
 $gene_q =
   "SELECT gene
-   FROM $gene_table
+   FROM $table_genes
    WHERE id='$_SESSION[gene_id]'";
 $gene_r = mysql_query($gene_q) or die("Gene query unsuccessful");
 $gene_a = mysql_fetch_assoc($gene_r);

@@ -35,7 +35,7 @@ td.feature_s {
   width: 110px;
 }
 
-td.ida {
+td.name_gene {
   width: 175px;
 }
 
@@ -68,7 +68,7 @@ select.feature {
   border-radius: 5px 5px 5px 5px;
 }
 
-input.ida {
+input.name_gene {
   height: 30px;
   width: 170px;
   font-size: 20px;

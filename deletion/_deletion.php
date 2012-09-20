@@ -64,7 +64,7 @@ $distance_to_3_junction = NULL;
 
 foreach($exons as $item) {
   if($start >= $item['st'] && $start <= $item['end']) {
-    $exon = $item['ida'];
+    $exon = $item['name_gene'];
     $distance_to_5_junction = $start - $item['st'];
     $distance_to_3_junction = $item['end'] - $start;
   }

@@ -44,27 +44,22 @@ function show(link) {
 }
 
 // Sends the Ajax request
-function sendAjaxForSequence(geneId) {  
-  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+function sendAjaxForSequence(id_gene) {  
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
   
-  xmlhttp.onreadystatechange=function() { // the Call back function
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      var responseText = xmlhttp.responseText;
-      var div_outer = document.getElementById("showcaseDiv"+geneId);
+  xml.onreadystatechange=function() { // the Call back function
+    if (xml.readyState==4 && xml.status==200) {
+      var responseText = xml.responseText;
+      var div_outer = document.getElementById("showcaseDiv"+id_gene);
       div_outer.innerHTML = responseText;
     }
   }
   
-  var POSTMessage = "geneId="+geneId;
+  var msg_POST = "id_gene="+id_gene;
   
-  xmlhttp.open("POST","_show.php",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send(POSTMessage);
+  xml.open("POST","_show.php",true);
+  xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xml.send(msg_POST);
 }
 
 function del(link) {  // Adds the delete confirmation message
@@ -106,7 +101,7 @@ function del_confirm(link) {
 }
 
 
-function sendAjaxForDeletion(geneId) {  
+function sendAjaxForDeletion(id_gene) {  
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -121,9 +116,9 @@ function sendAjaxForDeletion(geneId) {
         //return false;
       
       if(responseText == true) {
-        var row = document.getElementById(geneId);  // Gets the dna row
-        var showcase = document.getElementById("showcase"+geneId);  // Gets the showcase row
-        var del = document.getElementById("del"+geneId);  // Gets the del row
+        var row = document.getElementById(id_gene);  // Gets the dna row
+        var showcase = document.getElementById("showcase"+id_gene);  // Gets the showcase row
+        var del = document.getElementById("del"+id_gene);  // Gets the del row
         var table = row.parentNode; // Gets the table
         
                
@@ -140,7 +135,7 @@ function sendAjaxForDeletion(geneId) {
     }
   }
   
-  var POSTMessage = "geneId="+geneId;
+  var POSTMessage = "id_gene="+id_gene;
   
   xmlhttp.open("POST","_delete.php",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");

@@ -28,8 +28,8 @@
           <br/>
           <span class="detailFormat">Please enter a name, number, ??? number or other ID for your sequence.<br>This is for your reference only.</span>
           <hr>
-          <input type="text" name="geneName" id="geneName"  class="inputBoxStyle" maxlength="30" />            
-          <span id="geneNameWarning" class="warningFormat"></span>
+          <input type="text" name="name_gene" id="name_gene"  class="inputBoxStyle" maxlength="30" />            
+          <span id="name_geneWarning" class="warningFormat"></span>
           <br/><br/>
           
           <span class="titleFormat">Upload</span><br/>
@@ -42,7 +42,7 @@
           <span class="titleFormat">Notes</span><br/>
           <span class="detailFormat">Jot down any notes for yourself</span>
           <hr>
-          <textarea id="geneNotes" name="geneNotes" maxlength="65535" onkeyup="word_count_popup(event);"></textarea>
+          <textarea id="notes" name="notes" maxlength="65535" onkeyup="word_count_popup(event);"></textarea>
           <br/>
           <input type="submit" value="Save" id="uploadSubmitButton" class=""/>         
         </form>

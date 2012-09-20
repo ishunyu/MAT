@@ -1,47 +1,44 @@
 <?php
 require_once "../db/connectdb.php";
 
-$firstName = mysql_real_escape_string($_POST['firstName']);
-$lastName = mysql_real_escape_string($_POST['lastName']);
+$name_first = mysql_real_escape_string($_POST['name_first']);
+$name_last = mysql_real_escape_string($_POST['name_last']);
 $password1 = md5(mysql_real_escape_string($_POST['password1']));
 $password2 = md5(mysql_real_escape_string($_POST['password2']));
 $username = mysql_real_escape_string(strtolower($_POST['username']));
 
-$userQuery =
-  "SELECT *
-   FROM $user_table
+$q_user =
+  "SELECT id
+   FROM $table_users
    WHERE username='$username'";
-$userQuery = mysql_query($userQuery);
-$count = mysql_num_rows($userQuery);
+$r_user = mysql_query($q_user);
+$count = mysql_num_rows($r_user);
 
 
 if($count == 0) {
-  $userInsertQuery =
-    "INSERT INTO $user_table(id, username, password, firstName, lastName, lastGeneId, lastPage, lastLoginTime, startTime)
-    VALUES(NULL, '$username', '$password1', '$firstName', '$lastName', NULL, NULL, NOW(), NOW())";
-  //die($connection);
-  $userInsertQuery = mysql_query($userInsertQuery) or die("Register unsuccessful");
+  $q_add_user =
+    "INSERT INTO $table_users(id, username, password, name_first, name_last, last_visited, t_login, t_start)
+    VALUES(NULL, '$username', '$password1', '$name_first', '$name_last', NULL, NOW(), NOW())";
+  $r_add_user = mysql_query($q_add_user) or die("Register unsuccessful");
 
-  if($userInsertQuery) {
-    $userQuery = "SELECT * FROM $user_table WHERE username='$username' and Password='$password1'";
-    $userQuery = mysql_query($userQuery) or die("Retrieving user information unsuccessful");
-    $userQuery = mysql_fetch_assoc($userQuery);
+  if($r_add_user) {
+    $q_user = "SELECT id
+               FROM $table_users
+               WHERE username='$username' and password='$password1'";
+    $r_user = mysql_query($q_user) or die("Retrieving user information unsuccessful");
+    $user = mysql_fetch_assoc($r_user);
     
     session_start();
-    $_SESSION['username'] = $username;
-    $_SESSION['id'] = $userQuery['id'];
-    $_SESSION['lastGeneId'] = $userQuery['lastGeneId'];
-    $_SESSION['firstName'] = $userQuery['firstName'];
-    $_SESSION['lastLoginTime'] = $userQuery['lastLoginTime'];
+    $_SESSION['id_user'] = $user['id'];
+    $_SESSION['name_first'] = $name_first;
 
     $redirectPath =
       ($_SERVER["HTTP_HOST"] == "localhost") ?
       "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
-    header($redirectPath);
+    //header($redirectPath);
   }
 }
 else {
-  die("You got here!");
   $redirectPath =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
     "location:https://localhost/mat/register/register.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/register/register.php";

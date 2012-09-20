@@ -22,7 +22,7 @@
 
     <!-- CONTENT-->
     <div class="generalContentContainer">
-    <? if($geneId != "") { // Used so that nothing displays if there's no genes exist! ?>
+    <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
       <span class="titleFormat " ><? echo $geneTitle;?></span>
       <span class="detailFormat" style="float:right"> No error checking yet! Users are responsible for correct input.</span>      
@@ -36,7 +36,7 @@
               <a href="../features/features.php">Feature</a>
               <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
-  	        <td class="ida">Name</td>
+  	        <td class="name_gene">Name</td>
   	        <td class="start">Start</td>
   	        <td class="end">End</td>
           </tr>
@@ -47,8 +47,8 @@
               <select name="feature" class="feature" id="feature" onchange="checkbox()">
                 <? require_once '+features.php';?>
               </select></td>
-            <td class="ida" onclick="deactivate_active_rows(null);">
-              <input type="text" class="ida inputBoxStyle" id="ida" onkeydown="enter(event);" /></td>
+            <td class="name_gene" onclick="deactivate_active_rows(null);">
+              <input type="text" class="name_gene inputBoxStyle" id="name_gene" onkeydown="enter(event);" /></td>
             <td class="start" onclick="deactivate_active_rows(null);">
               <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
             <td class="end" onclick="deactivate_active_rows(null);">
@@ -58,7 +58,7 @@
             <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submit_annotation();">Submit</button></td>
           </tr>
         </table>
-        <? hidden_gene_value($geneId);  hidden_num_col(5); ?>
+        <? hidden_gene_value($id_gene);  hidden_num_col(5); ?>
         <table class="annotationTable" id="annotationTable" onblur="deactivate_active_rows(null);">
           <!-- ANNOTATIONS -->                    
           <? require_once '+annotation_table.php';?>

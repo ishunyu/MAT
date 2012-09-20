@@ -2,45 +2,45 @@
 require_once "../headers/session.php";
 
 //Variables for display
-$geneName = '';
-$geneId = '';
-$geneNotes = '';
+$name_gene = '';
+$id_gene = '';
+$notes = '';
 
 // Checks for get variable & its validity
-if(isset($_GET['geneId'])){
+if(isset($_GET['id_gene'])){
   // Check to see if the gene is part of member's gene lists
   $checkQuery = 
     "SELECT *
-     FROM $gene_table
-     WHERE memberId = '$_SESSION[id]' AND id='$_GET[geneId]'";
+     FROM $table_genes
+     WHERE m_id = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
   $checkQuery = mysql_query($checkQuery);
   $num_rows_checkQuery = mysql_num_rows($checkQuery);
 
   // Checking to see how many results showed up
   if($num_rows_checkQuery != 0) {
-    $geneId = $_GET['geneId'];
+    $id_gene = $_GET['id_gene'];
   }
   else {
     header("location:../headers/easter_egg.php");
   }
 }
 
-if($geneId != '') {
+if($id_gene != '') {
   // Query for the working Gene
-  $geneQuery = 
-    "SELECT geneName, geneNotes
-     FROM $gene_table
-     WHERE id='$geneId'";
-  $geneQuery = mysql_query($geneQuery);
-  $geneQuery = mysql_fetch_assoc($geneQuery);
+  $q_gene = 
+    "SELECT name, notes
+     FROM $table_genes
+     WHERE id='$id_gene'";
+  $r_gene = mysql_query($q_gene);
+  $gene = mysql_fetch_assoc($r_gene);
 
-  $geneName = $geneQuery['geneName'];
-  $geneNotes = $geneQuery['geneNotes'];
+  $notes = $gene['name'];
+  $notes = $gene['notes'];
 
   $updateQuery =
-    "UPDATE $gene_table
-     SET modifyTime=NOW()
-     WHERE id='$geneId'";
+    "UPDATE $table_genes
+     SET t_modify=NOW()
+     WHERE id='$id_gene'";
   $updateQuery = mysql_query($updateQuery);
 }
 else {  // If there's no get variable
@@ -48,7 +48,7 @@ else {  // If there's no get variable
 }
 
 // FUNCTION
-function hidden_gene_value($geneId) {
-  echo '<input type="hidden" id="geneId" name="geneId" value="'.$geneId.'" />';
+function hidden_gene_value($id_gene) {
+  echo '<input type="hidden" id="id_gene" name="id_gene" value="'.$id_gene.'" />';
 }
 ?>

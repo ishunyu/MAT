@@ -5,8 +5,8 @@ require_once "../classes/GENE.php";
 // Retrieving the gene & annotation
 $geneQuery =
   "SELECT geneFormatted, spec
-   FROM $gene_table
-   WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
+   FROM $table_genes
+   WHERE id = '$_POST[id_gene]' AND m_id='$_SESSION[id_user]'";
 $geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
 $gene = $geneQuery['geneFormatted'];
 $anno = $geneQuery['spec'];
@@ -19,7 +19,7 @@ if(!$anno) { // If there's no annotation, make sure an array is made
 else {  // Checking for repeats
   foreach($anno as $key => $item) {
     if($key != 'max_id') {
-      if($item['ida'] == $_POST['ida']) {
+      if($item['name_gene'] == $_POST['name_gene']) {
         die('repeat');  // Stop if there's a repeat.
       }
     }
@@ -29,7 +29,7 @@ else {  // Checking for repeats
 /* Adding the annotation to the array */
 $anno[$anno['max_id']] = array(
   "ftr" => mysql_real_escape_string($_POST['feature']),
-  "ida" => mysql_real_escape_string($_POST['ida']),
+  "name_gene" => mysql_real_escape_string($_POST['name_gene']),
   "st" => (int)$_POST['start'],
   "end" => (int)$_POST['end']
 );
@@ -47,9 +47,9 @@ $j_anno = mysql_real_escape_string($j_anno);
 
 // Store the annotations
 $annoQuery =
-  "UPDATE $gene_table
-   SET spec = '$j_anno', gene = '$gene', modifyTime=NOW()
-   WHERE id = '$_POST[geneId]' AND memberId='$_SESSION[id]'";
+  "UPDATE $table_genes
+   SET spec = '$j_anno', gene = '$gene', t_modify=NOW()
+   WHERE id = '$_POST[id_gene]' AND m_id='$_SESSION[id_user]'";
 $annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
 
 echo $anno['max_id'] - 1;

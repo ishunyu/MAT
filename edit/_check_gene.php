@@ -1,23 +1,23 @@
 <?php
 require_once "../headers/session.php";
 
-$geneId = $_POST['geneId'];
-$geneName = $_POST['geneName'];
-$id = $_SESSION['id'];
+$id_gene = $_POST['id_gene'];
+$name_gene = $_POST['name_gene'];
+$id_user = $_SESSION['id_user'];
 
-$_genes =
+$q_genes =
   "SELECT id
-   FROM $gene_table
-   WHERE geneName='$geneName' AND memberId='$id'";
-$_genes = mysql_query($_genes) or die("Fetching member's gene information unsuccessful.");
-$_rows = mysql_num_rows($_genes);
+   FROM $table_genes
+   WHERE name='$name_gene' AND m_id='$id_user'";
+$r_genes = mysql_query($q_genes) or die("Fetching member's gene information unsuccessful.");
+$rows = mysql_num_rows($r_genes);
 
 // Checks for existence
-if($_rows > 0) {
-  $_genes = mysql_fetch_assoc($_genes);
+if($rows > 0) {
+  $gene = mysql_fetch_assoc($r_genes);
 
   // Must be not matching the current gene id, or else it will always be false
-  if($_genes['id'] != $geneId) {
+  if($gene['id'] != $id_gene) {
     echo 'true';
     return;
   }

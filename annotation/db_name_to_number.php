@@ -2,7 +2,7 @@
 <?
 require_once '../db/connectdb.php';
 
-$test_q = "SELECT id, spec FROM $gene_table";
+$test_q = "SELECT id, spec FROM $table_genes";
 $test_r = mysql_query($test_q);
 while($test_a = mysql_fetch_assoc($test_r)) {
   $id = $test_a['id'];
@@ -40,7 +40,7 @@ while($test_a = mysql_fetch_assoc($test_r)) {
   }
 
   $json_annotation =  mysql_real_escape_string(json_encode($test));
-  $set_annotation_q = "UPDATE $gene_table SET spec='$json_annotation' WHERE id='$id'";
+  $set_annotation_q = "UPDATE $table_genes SET spec='$json_annotation' WHERE id='$id'";
   mysql_query($set_annotation_q);
 }
 
