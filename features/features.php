@@ -2,14 +2,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
 <html>
 <head>  
-  <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+
+  <!-- STYLESHEETS -->
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/top_bar.css">
   <link rel="stylesheet" type="text/css" href="../styles/features.css">
   
+  <!-- FAVICON -->
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
+  <!-- JAVASCRIPT -->
   <script type="text/javascript" src="../scripts/features.js"></script>
 </head>
 
@@ -37,7 +41,7 @@
         <!-- INPUT BOX -->
         <tr class="" id="input_row">
           <td class="feature" colspan="2" onclick="">
-            <input type="text" class="name_gene inputBoxStyle" id="feature" onkeydown="" /></td>
+            <input type="text" class="name_gene inputBoxStyle" id="feature_user_new" onkeydown="" /></td>
         </tr>
         <tr class="submitBox" id="submitBox">
           <td colspan="2"> <button type="submit" id="feature_submit_btn" onclick="return submit_feature();">Submit</button></td>

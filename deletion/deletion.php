@@ -27,7 +27,7 @@
     <div class="generalContentContainer">
       <!-- GENE DISPLAY-->
       <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>       
-        <span class="titleFormat" ><? echo $geneTitle;?></span>
+        <span class="titleFormat" ><? echo $title_gene;?></span>
         <? mutation_navbar('deletion'); ?>
         <hr>
         

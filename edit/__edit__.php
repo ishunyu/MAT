@@ -12,7 +12,7 @@ if(isset($_GET['id_gene'])){
   $checkQuery = 
     "SELECT *
      FROM $table_genes
-     WHERE m_id = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
+     WHERE id_member = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
   $checkQuery = mysql_query($checkQuery);
   $num_rows_checkQuery = mysql_num_rows($checkQuery);
 
@@ -34,14 +34,8 @@ if($id_gene != '') {
   $r_gene = mysql_query($q_gene);
   $gene = mysql_fetch_assoc($r_gene);
 
-  $notes = $gene['name'];
+  $name_gene = $gene['name'];
   $notes = $gene['notes'];
-
-  $updateQuery =
-    "UPDATE $table_genes
-     SET t_modify=NOW()
-     WHERE id='$id_gene'";
-  $updateQuery = mysql_query($updateQuery);
 }
 else {  // If there's no get variable
   header("location:../catalog/catalog.php");

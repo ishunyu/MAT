@@ -19,7 +19,7 @@ foreach ($queries as $query) {
 
 foreach ($a_features as $key => $value) {
   $q_add_features = 
-    "INSERT INTO $table_features(id, m_id, name, global) VALUES(NULL, NULL,'".mysql_real_escape_string($value)."', TRUE)";
+    "INSERT INTO $table_features_global(id, name) VALUES(NULL, '".mysql_real_escape_string($value)."')";
   mysql_query($q_add_features);
 }
 

@@ -26,7 +26,7 @@ require_once "../headers/top_bar.php"
       <!-- CONTENT-->
       <div class="generalContentContainer">
       	<!-- EDIT FORM -->
-        <form id="geneEditForm" enctype="multipart/form-data" method="POST" action="edit_proc.php" onsubmit="return check_edit();">
+        <form id="geneEditForm" enctype="multipart/form-data" method="POST" action="process_edit.php" onsubmit="return check_edit();">
           <? echo hidden_gene_value($id_gene); ?>
           <!-- SEQUENCE IDENTIFIER -->
           <span class="titleFormat textShadow">Sequence Identifier</span><br/>

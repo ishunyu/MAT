@@ -16,7 +16,7 @@ function drawRows() {
   $geneQ =
     "SELECT id, name
      FROM $table_genes
-     WHERE m_id = $_SESSION[id_user]";
+     WHERE id_member = $_SESSION[id_user]";
   $geneQ = mysql_query($geneQ);    
   
   while($item = mysql_fetch_assoc($geneQ)) {

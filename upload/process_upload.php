@@ -12,7 +12,7 @@ $id_user = $_SESSION['id_user'];
 $q_genes =
   "SELECT *
    FROM $table_genes
-   WHERE name='$name_gene' AND m_id='$id_user'";
+   WHERE name='$name_gene' AND id_member='$id_user'";
 $r_genes = mysql_query($q_genes) or die("Fetching member's gene information unsuccessful.");
 
 // Check to see if there's a gene with the same name
@@ -26,7 +26,7 @@ else {
 
   // Store information into genelisttable
   $_insert_gene =
-    "INSERT INTO $table_genes(id, m_id, name, notes, cdna, gene, file, t_start, t_modify)
+    "INSERT INTO $table_genes(id, id_member, name, notes, cdna, gene, file, t_start, t_modify)
      VALUES(NULL, '$id_user', '$name_gene', '$notes', NULL, '$data', '$file', NOW(), NOW())";
   $_insert_gene = mysql_query($_insert_gene)or die("Inserting gene information unsuccessful.");
   

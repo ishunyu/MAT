@@ -10,7 +10,7 @@ if(isset($_GET['id_gene'])){
   $q_check = 
     "SELECT *
      FROM $table_genes
-     WHERE m_id = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
+     WHERE id_member = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
   $r_check = mysql_query($q_check);
   $count = mysql_num_rows($r_check);
 
@@ -29,7 +29,7 @@ if($id_gene == '') {
   $dnaListQuery =
     "SELECT id, name, gene
      FROM $table_genes
-     WHERE m_id = '$_SESSION[id_user]'
+     WHERE id_member = '$_SESSION[id_user]'
      ORDER BY t_modify DESC
      LIMIT 1";  // Getting the lastest gene
   $dnaListQuery = mysql_query($dnaListQuery);

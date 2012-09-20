@@ -8,7 +8,7 @@ $id_user = $_SESSION['id_user'];
 $q_genes =
   "SELECT id
    FROM $table_genes
-   WHERE name='$name_gene' AND m_id='$id_user'";
+   WHERE name='$name_gene' AND id_member='$id_user'";
 $r_genes = mysql_query($q_genes) or die("Fetching member's gene information unsuccessful.");
 $rows = mysql_num_rows($r_genes);
 
