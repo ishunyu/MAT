@@ -36,17 +36,17 @@
         <div class="ContentContainer">
           <form>
             <span class="formLabel" style="margin-left: 30px;"> Choose Base: </span>
-            <input type="text" id="index" name="index" class="inputBoxStyle text_small"  onkeyup="gene_info()"/>
+            <input type="text" id="index" name="index" class="inputBoxStyle text_small"  onkeyup="info_gene()"/>
             <br><br>
             <span class="formLabel" style="margin-left: 50px;"> Change To: </span>
-            <input type="button" class="submitButton button_small" value="A" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton button_small" value="T" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton button_small" value="G" onclick="substitution_info(this.value)"/>
-            <input type="button" class="submitButton button_small" value="C" onclick="substitution_info(this.value)"/> 
+            <input type="button" class="submitButton button_small" value="A" onclick="info_substitution(this.value)"/>
+            <input type="button" class="submitButton button_small" value="T" onclick="info_substitution(this.value)"/>
+            <input type="button" class="submitButton button_small" value="G" onclick="info_substitution(this.value)"/>
+            <input type="button" class="submitButton button_small" value="C" onclick="info_substitution(this.value)"/> 
           </form>
         </div>
         <br>
-        <table id="gene_info" style="color: white;" class="info">
+        <table id="info_gene" style="color: white;" class="info">
           <tr>
             <th>Base:</th>
             <td></td>
@@ -60,7 +60,7 @@
             <td></td>
           </tr>           
         </table><br>
-        <table id='substitution_info' style="color: white" class="info">
+        <table id='info_substitution' style="color: white" class="info">
           <tr>
             <th>New codon:</th>
             <td></td>

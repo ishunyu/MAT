@@ -10,7 +10,7 @@ if(isset($_GET['id_gene'])){
   $q_check = 
     "SELECT *
      FROM $table_genes
-     WHERE id_member = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
+     WHERE id_user = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
   $r_check = mysql_query($q_check);
   $count = mysql_num_rows($r_check);
 
@@ -26,18 +26,18 @@ if(isset($_GET['id_gene'])){
 // In case there's no get variable
 if($id_gene == '') {
   // Gets the genes according to modify time
-  $dnaListQuery =
+  $q_list_genes =
     "SELECT id, name, gene
      FROM $table_genes
-     WHERE id_member = '$_SESSION[id_user]'
+     WHERE id_user = '$_SESSION[id_user]'
      ORDER BY t_modify DESC
      LIMIT 1";  // Getting the lastest gene
-  $dnaListQuery = mysql_query($dnaListQuery);
-  $num_rows = mysql_num_rows($dnaListQuery);  // Get how many rows there are
+  $r_list_genes = mysql_query($q_list_genes);
+  $num_rows = mysql_num_rows($r_list_genes);  // Get how many rows there are
   
   if($num_rows > 0) {
-    $dnaListQuery = mysql_fetch_assoc($dnaListQuery); // Gets the array structure
-    $id_gene = $dnaListQuery['id'];
+    $a_list_genes = mysql_fetch_assoc($r_list_genes); // Gets the array structure
+    $id_gene = $a_list_genes['id'];
   }
   
 }
@@ -65,11 +65,6 @@ if($id_gene != "") {
   $_SESSION['id_gene'] = $id_gene;
 }
 
-$updateQuery =
-  "UPDATE $table_genes
-   SET t_modify=NOW()
-   WHERE id='$id_gene'";
-$updateQuery = mysql_query($updateQuery);
 
 // FUNCTION
 function hidden_gene_value($id_gene) {

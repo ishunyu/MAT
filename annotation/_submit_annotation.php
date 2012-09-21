@@ -1,6 +1,7 @@
 <?php /* _submit_annotation.php */
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
+require_once '../helpers/length_gene.php';
 
 $id_gene = $_SESSION['id_gene'];
 
@@ -10,12 +11,12 @@ $name_annotation = $_POST['name_annotation'];
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-$pattern = '/[^0-9]/';
 if( ((int)$start > (int)$end) || 
     ($name_annotation == '') || 
     !ctype_digit($start) || 
     !ctype_digit($end) || 
-    ((int)$start <= 0){
+    ((int)$start <= 0) ||
+    ((int)$end > $length_gene)) {
   die('failed');
 }
 
@@ -32,17 +33,14 @@ if($count_annotations > 0) {
   die('repeat');  // There's a repeat
 }
 
+/* Figure out the correct feature id */
+$id_feature_global = ($scope_feature == 'global') ? $id_feature : 'NULL';
+$id_feature_user = ($scope_feature == 'user') ? $id_feature : 'NULL';
+
 /* Store the annotation */
-if($scope_feature == 'global') {
-  $q_add_annotation =
-    "INSERT INTO $table_annotations(id, id_gene, id_feature_global, id_feature_user, name, start, end)
-     VALUES(NULL, '$id_gene', '$id_feature', NULL, '$name_annotation', '$start', '$end')";
-}
-else if($scope_feature == 'user') {
-  $q_add_annotation =
-    "INSERT INTO $table_annotations(id, id_gene, id_feature_global, id_feature_user, name, start, end)
-     VALUES(NULL, '$id_gene', NULL, '$id_feature', '$name_annotation', '$start', '$end')";
-}
+$q_add_annotation =
+  "INSERT INTO $table_annotations(id, id_gene, id_feature_global, id_feature_user, name, start, end)
+   VALUES(NULL, $id_gene, $id_feature_global, $id_feature_user, '$name_annotation', $start, $end)";
 
 $r_add_annotation = mysql_query($q_add_annotation) or die('Adding annotation unsuccessful! :(');
 

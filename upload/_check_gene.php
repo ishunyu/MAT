@@ -6,7 +6,7 @@ $id_user = $_SESSION['id_user'];
 
 $geneListQuery =
   "SELECT * FROM $table_genes
-   WHERE name='$name_gene' AND id_member='$id_user'";
+   WHERE name='$name_gene' AND id_user='$id_user'";
 $geneListQuery = mysql_query($geneListQuery) or die("Fetching member's gene information unsuccessful.");
 
 

@@ -53,7 +53,7 @@ else {
 }
 
 /* FIRST AFFECTED CODON */
-$first_affected_codon = $gene->get_codon_base_index($start);
+$first_affected_codon = $gene->get_codon($start);
 $codon_info = $gene->get_codon_info($start);
 $amino_acid_position = $gene->get_codon_position($start);
 

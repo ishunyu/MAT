@@ -11,7 +11,7 @@ $id_user = $_SESSION['id_user'];
 $q_genes =
   "SELECT *
    FROM $table_genes
-   WHERE name='$name_gene' AND id_member='$id_user'";
+   WHERE name='$name_gene' AND id_user='$id_user'";
 $r_genes = mysql_query($q_genes) or die("Fetching member's gene information unsuccessful.");
 if(mysql_num_rows($r_genes) > 0) {
   $gene = mysql_fetch_assoc($r_genes);
@@ -25,7 +25,7 @@ else {
   // Store information into genelisttable
   $_update =
     "UPDATE $table_genes
-     SET name = '$name_gene', notes = '$notes', t_modify = 'NOW()'
+     SET name = '$name_gene', notes = '$notes', t_modify = NOW()
      WHERE id = '$id_gene'";
   $_update = mysql_query($_update)or die("Updating gene information unsuccessful.");
   

@@ -12,7 +12,7 @@ if(isset($_GET['id_gene'])){
   $checkQuery = 
     "SELECT *
      FROM $table_genes
-     WHERE id_member = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
+     WHERE id_user = '$_SESSION[id_user]' AND id='$_GET[id_gene]'";
   $checkQuery = mysql_query($checkQuery);
   $num_rows_checkQuery = mysql_num_rows($checkQuery);
 

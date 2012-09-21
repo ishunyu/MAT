@@ -44,16 +44,16 @@
 
           <!-- INPUT BOX -->
           <tr class="" id="input_row">
-            <td class="feature" onclick="deactivate_active_rows(null);">
+            <td class="feature" onclick="deactivate_rows_active(null);">
               <!-- FEATURES -->
               <select name="id_feature" class="feature" id="id_feature">
                 <? require_once '+features.php';?>
               </select></td>
-            <td class="name_annotation" onclick="deactivate_active_rows(null);">
+            <td class="name_annotation" onclick="deactivate_rows_active(null);">
               <input type="text" class="name_annotation inputBoxStyle" id="name_annotation" onkeydown="enter(event);" /></td>
-            <td class="start" onclick="deactivate_active_rows(null);">
+            <td class="start" onclick="deactivate_rows_active(null);">
               <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
-            <td class="end" onclick="deactivate_active_rows(null);">
+            <td class="end" onclick="deactivate_rows_active(null);">
               <input type="text" class="start_end inputBoxStyle" id="end" onkeydown="enter(event); return input_check(event)"/></td>
           </tr>
           <tr class="submitBox" id="submitBox">
@@ -61,7 +61,7 @@
           </tr>
         </table>
         <? hidden_gene_value($id_gene);  hidden_num_col(5); ?>
-        <table class="annotationTable" id="annotationTable" onblur="deactivate_active_rows(null);">
+        <table class="annotationTable" id="annotationTable" onblur="deactivate_rows_active(null);">
           <!-- ANNOTATIONS -->                    
           <? require_once '+annotation_table.php';?>
         </table>

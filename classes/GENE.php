@@ -22,7 +22,7 @@ class GENE {
   }
 
   function get_codon_info($index) {
-    $codon = $this->get_codon_base_index($index);
+    $codon = $this->get_codon($index);
     return $this->lut[$codon];
   }
   
@@ -40,7 +40,7 @@ class GENE {
       return false;
     } 
     
-    $new_codon = $old_codon = $this->get_codon_base_index($index);  // Get the codon
+    $new_codon = $old_codon = $this->get_codon($index);  // Get the codon
     $new_codon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
     $old_protein = $this->lut[$old_codon]["3LetterCode"]; // Retrieve the protein
@@ -60,7 +60,7 @@ class GENE {
       return false;
     } 
     
-    $new_codon = $old_codon = $this->get_codon_base_index($index);  // Get the codon
+    $new_codon = $old_codon = $this->get_codon($index);  // Get the codon
     $new_codon[$this->get_position_in_codon($index) - 1] = $base; // Get the position within codon and change new codon
     
     $old_protein = $this->lut[$old_codon]["3LetterCode"]; // Retrieve the protein
@@ -96,7 +96,7 @@ class GENE {
   }
   
   // Finds the codon with the base index
-  function get_codon_base_index($index) {  
+  function get_codon($index) {  
     // Bounds checking
     if($index > $this->size || $index < 1) {
       return false;

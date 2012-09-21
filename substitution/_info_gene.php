@@ -2,29 +2,30 @@
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
 
-$gene_q =
-  "SELECT gene
+$id_gene = $_SESSION['id_gene'];
+$id_user = $_SESSION['id_user'];
+
+$q_gene =
+  "SELECT cdna
    FROM $table_genes
-   WHERE id='$_SESSION[gene_id]'";
-$gene_r = mysql_query($gene_q) or die("Gene query unsuccessful");
-$gene_a = mysql_fetch_assoc($gene_r);
+   WHERE id = $id_gene AND id_user = $id_user";
+$r_gene = mysql_query($q_gene) or die("Gene query unsuccessful");
+$a_gene = mysql_fetch_assoc($r_gene);
 
 $index = $_POST['index'];
 
-if(!ctype_digit($index))
+
+if(!ctype_digit($index) || ((int)$index <= 0))
   die('failed');
 
 $index = (int) $index;
-// Make sure the the variables are non-negative
-if(($index <= 0))
-  die('failed');
 
-$gene = new GENE($gene_a['gene']);
+$cdna = new GENE($a_gene['cdna']);
 
-$old_codon = $gene->get_codon_base_index($index);
-$codon_position = $gene->get_codon_position($index);
+$old_codon = $cdna->get_codon($index);
+$codon_position = $cdna->get_codon_position($index);
 
-if($index > $gene->get_size())
+if($index > $cdna->get_size())
   $index = 'Out of Bound';
 ?>
 <tr>

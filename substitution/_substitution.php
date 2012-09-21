@@ -16,7 +16,7 @@ $index = $_POST["index"];
 $base = $_POST["base"];
 $cdna = new GENE($a_gene["cdna"]);
 
-$new_codon = $cdna->get_codon_base_index($index);
+$new_codon = $cdna->get_codon($index);
 $new_codon[$cdna->get_position_in_codon($index) - 1] = $base;
 $codon_position = $cdna->get_codon_position($index);
 $rna_mutation = $cdna->rna_mutation($index, $base);

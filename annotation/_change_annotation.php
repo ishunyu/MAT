@@ -1,6 +1,7 @@
 <?php /* _change_annotation.php */
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
+require_once '../helpers/length_gene.php';
 
 /* Variables */
 $id_gene = $_SESSION['id_gene'];
@@ -13,12 +14,12 @@ $start = $_POST['start'];
 $end = $_POST['end'];
 
 /* Error Checking */
-$pattern = '/[^0-9]/';
 if( ((int)$start > (int)$end) || 
     ($name_annotation == '') || 
     !ctype_digit($start) || 
     !ctype_digit($end) || 
-    ((int)$start <= 0){
+    ((int)$start <= 0) ||
+    ((int)$end > $length_gene)) {
   die('failed');
 }
 

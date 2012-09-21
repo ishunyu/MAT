@@ -34,7 +34,7 @@ $queries[] = $q_table_users;
 $q_table_genes =
   "CREATE TABLE IF NOT EXISTS $table_genes(
     id INT NOT NULL AUTO_INCREMENT,
-    id_member INT NOT NULL,
+    id_user INT NOT NULL,
     name varchar(225),
     notes text,
     gene mediumtext,
@@ -43,7 +43,7 @@ $q_table_genes =
     t_start DATETIME,
     t_modify DATETIME,
     PRIMARY KEY(id),
-    FOREIGN KEY(id_member) REFERENCES $table_users(id) ON DELETE CASCADE
+    FOREIGN KEY(id_user) REFERENCES $table_users(id) ON DELETE CASCADE
   )";
 $queries[] = $q_table_genes;
 

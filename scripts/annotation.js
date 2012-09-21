@@ -70,7 +70,7 @@ function activate_row(button_edit) {
     return;
 
   if(row.className.contains("active")) {
-    deactivate_single_row(row);
+    deactivate_row(row);
     bool_activate = true;
     return;
   }
@@ -211,6 +211,7 @@ function submit_annotation() {
         alert("The name is already in use! Sorry!")
       }
       else {
+        return;
         location.reload();
       }
     }
