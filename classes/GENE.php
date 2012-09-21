@@ -133,27 +133,13 @@ class GENE {
     return ceil($index / 3.0);        
   }
   
-  function annotate($anno) {
-    unset($anno['max_id']);
-    
-    // Sorting the specs according to their places
-    function cmp_annotations($a, $b) {
-      if($a['st'] == $b['st']) {
-        return 0;
-      }
-      return ($a['st'] < $b['st']) ? -1 : 1;
-    }
-    usort($anno, "cmp_annotations");
-    
-    // Error checking to be done    
-
+  function annotate($exons) {   
+    // Error checking to be done
     $tmp = '';
 
     // Splicing the gene
-    foreach($anno as $item) {
-      if($item['ftr'] == '3') {
-        $tmp .= substr($this->sequence, $item['st'] - 1, $item['end']-$item['st']+1);
-      }
+    foreach($exons as $item) {
+      $tmp .= substr($this->sequence, $item['start'] - 1, $item['end']-$item['start']+1);
     }
 
     $this->sequence = $tmp;

@@ -1,50 +1,40 @@
 function show(link) {
-  var thisRow = link.parentNode.parentNode;   // Gets the row
-  var theSpan = document.getElementById("showcase"+thisRow.id);
-  var delRow = document.getElementById("del"+thisRow.id);
+  var row_this = link.parentNode.parentNode;   // Gets the row
+  var span_gene = document.getElementById("showcase"+row_this.id);
+  var delRow = document.getElementById("del"+row_this.id);
 
-  var table = thisRow.parentNode; // Gets the table
-  
+  var table = row_this.parentNode; // Gets the table
 
-  if(theSpan) { // If sequence is already shown
-    var deletionRowNumber;
-    if(delRow)
-      deletionRowNumber = thisRow.rowIndex + 2;
-    else
-      deletionRowNumber = thisRow.rowIndex + 1;
+  var number_row = delRow ? (row_this.rowIndex + 2) : (row_this.rowIndex + 1);
+
+  if(span_gene) { // If sequence is already shown    
     
-    
-    table.deleteRow(deletionRowNumber);    
+    table.deleteRow(number_row);    
     return false;
   }
-  else{
-    var insertionRowNumber;
-    if(delRow)
-      insertionRowNumber = thisRow.rowIndex + 2;
-    else
-      insertionRowNumber = thisRow.rowIndex + 1;
+  else{ 
     
-    var newRow = table.insertRow(insertionRowNumber); // Inserts a new row below
-    newRow.id = "showcase"+thisRow.id; // Debug
+    var row_new = table.insertRow(number_row); // Inserts a new row below
+    row_new.id = "showcase"+row_this.id; // Debug
     
     var td_1 = document.createElement("td");  // Creates a cell
     td_1.colSpan = 2;
     
     var div_1 = document.createElement("div");  // Creates the div for sequence
-    div_1.id = "showcaseDiv"+thisRow.id; // Adds id
+    div_1.id = "showcaseDiv"+row_this.id; // Adds id
     div_1.className = "showcase";
     
-    newRow.appendChild(td_1); 
+    row_new.appendChild(td_1); 
     td_1.appendChild(div_1); // Inserts the div in the cell
     
-    sendAjaxForSequence(thisRow.id); // Ajax for the sequence
+    send_ajax_for_gene(row_this.id); // Ajax for the sequence
     
     return false;
   }
 }
 
 // Sends the Ajax request
-function sendAjaxForSequence(id_gene) {  
+function send_ajax_for_gene(id_gene) {  
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
   
   xml.onreadystatechange=function() { // the Call back function
@@ -55,26 +45,26 @@ function sendAjaxForSequence(id_gene) {
     }
   }
   
-  var msg_POST = "id_gene="+id_gene;
+  var data = "id_gene="+id_gene;
   
   xml.open("POST","_show.php",true);
   xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xml.send(msg_POST);
+  xml.send(data);
 }
 
 function del(link) {  // Adds the delete confirmation message
-  var thisRow = link.parentNode.parentNode;   // Gets the row
-  var table = thisRow.parentNode; // Gets the table
+  var row_this = link.parentNode.parentNode;   // Gets the row
+  var table = row_this.parentNode; // Gets the table
   
-  var delRow = document.getElementById("del"+thisRow.id); // Gets the delete msg row
+  var delRow = document.getElementById("del"+row_this.id); // Gets the delete msg row
   
   if(delRow) { // If the delete msg row is there, "hide" it
-    table.deleteRow(thisRow.rowIndex+1);    
+    table.deleteRow(row_this.rowIndex+1);    
     return false;
   }
   else {  // If the delete msg row isn't there, make it
-    var newRow = table.insertRow(thisRow.rowIndex+1); // Inserts a new row below
-    newRow.id= "del"+thisRow.id;  // Creates id 
+    var newRow = table.insertRow(row_this.rowIndex+1); // Inserts a new row below
+    newRow.id= "del"+row_this.id;  // Creates id 
     newRow.className = "del"; // Creates class
     
     var td_1 = document.createElement("td");  // Creates a cell
@@ -91,17 +81,17 @@ function del(link) {  // Adds the delete confirmation message
 }
 
 function del_confirm(link) {
-  var thisRow = link.parentNode.parentNode;   // Gets the row
-  var id = thisRow.id.match(/\d/g); // Matches the numbers
+  var row_this = link.parentNode.parentNode;   // Gets the row
+  var id = row_this.id.match(/\d/g); // Matches the numbers
   id = id.join(""); // Joins the number to form the correct id
   
-  sendAjaxForDeletion(id);  // Ajax for deletion
+  send_ajax_for_deletion(id);  // Ajax for deletion
   
   return false;
 }
 
 
-function sendAjaxForDeletion(id_gene) {  
+function send_ajax_for_deletion(id_gene) {  
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -145,8 +135,8 @@ function sendAjaxForDeletion(id_gene) {
 
 
 function del_cancel(link) {
-  var thisRow = link.parentNode.parentNode;   // Gets the row
-  var table = thisRow.parentNode; // Gets the table
-  table.deleteRow(thisRow.rowIndex);  
+  var row_this = link.parentNode.parentNode;   // Gets the row
+  var table = row_this.parentNode; // Gets the table
+  table.deleteRow(row_this.rowIndex);  
   return false;
 }

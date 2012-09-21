@@ -1,6 +1,6 @@
 <?
 require_once '../headers/session.php';
-require_once '../headers/show_gene.php';
-require_once '../headers/top_bar.php';
-require_once '../headers/mutation_navbar.php';
+require_once '../headers/header_gene.php';
+require_once '../headers/navbar_top.php';
+require_once '../headers/navbar_mutation.php';
 ?>

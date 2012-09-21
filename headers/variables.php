@@ -74,7 +74,6 @@ $q_table_annotations =
     name varchar(30),
     start INT NOT NULL,
     end INT NOT NULL,
-    feature INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(id_gene) REFERENCES $table_genes(id) ON DELETE CASCADE,
     FOREIGN KEY(id_feature_global) REFERENCES $table_features_global(id) ON DELETE SET NULL,

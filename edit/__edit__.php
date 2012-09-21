@@ -21,7 +21,7 @@ if(isset($_GET['id_gene'])){
     $id_gene = $_GET['id_gene'];
   }
   else {
-    header("location:../headers/easter_egg.php");
+    header("location:../bad/bad_easter_egg.php");
   }
 }
 

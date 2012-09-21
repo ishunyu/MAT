@@ -31,12 +31,12 @@ td.controls {
   width: 40px;
 }
 
-td.feature_s {
+td.show_feature {
   width: 110px;
 }
 
-td.name_gene {
-  width: 175px;
+td.name_annotation {
+  width: 185px;
 }
 
 td.start {
@@ -68,7 +68,7 @@ select.feature {
   border-radius: 5px 5px 5px 5px;
 }
 
-input.name_gene {
+input.name_annotation {
   height: 30px;
   width: 170px;
   font-size: 20px;

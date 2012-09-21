@@ -28,7 +28,7 @@
     <div class="generalContentContainer">
       <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
-      <span class="titleFormat" ><? echo $title_gene;?></span>
+      <span class="titleFormat" ><? echo $name_gene;?></span>
       <hr>
       
       <!-- FORM -->
@@ -44,7 +44,7 @@
             <input type="text" class="name_gene inputBoxStyle" id="feature_user_new" onkeydown="" /></td>
         </tr>
         <tr class="submitBox" id="submitBox">
-          <td colspan="2"> <button type="submit" id="feature_submit_btn" onclick="return submit_feature();">Submit</button></td>
+          <td colspan="2"> <button type="submit" id="show_featureubmit_btn" onclick="return submit_feature();">Submit</button></td>
         </tr>
         <? require_once '+table_features.php'; ?>
       </table>

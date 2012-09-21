@@ -4,20 +4,20 @@ require_once "../headers/variables.php";
 
 $id_gene = $_POST['id_gene'];
 
-$_gene =
-  "SELECT gene, notes, t_modify
+$q_gene =
+  "SELECT cdna, notes, t_modify
    FROM $table_genes
    WHERE id=$id_gene";
-$_gene = mysql_query($_gene) or die("Gene query unsuccessful");
-$_gene = mysql_fetch_assoc($_gene);
+$r_gene = mysql_query($q_gene) or die("Gene query unsuccessful");
+$a_gene = mysql_fetch_assoc($r_gene);
 
-$gene = $_gene["gene"];
+$cdna = $a_gene["cdna"];
 
-echo 'Length: '.strlen($gene);
+echo 'Length: '.strlen($cdna);
 echo '<br>';
-echo 'Last modified: '.$_gene['t_modify'];
+echo 'Last modified: '.$a_gene['t_modify'];
 echo '<br>';
-echo 'Notes: '.$_gene['notes'];
+echo 'Notes: '.$a_gene['notes'];
 echo '<br><br>';
-echo $gene;
+echo $cdna;
 ?>

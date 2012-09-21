@@ -1,3 +1,4 @@
+/* feature.js */
 function remove_feature(cell) {
   var id_feature_user = cell.name.substring(cell.name.indexOf("_") + 1);  /* Gets the id only */
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));

@@ -24,7 +24,7 @@
     <div class="generalContentContainer">
     <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
-      <span class="titleFormat " ><? echo $title_gene;?></span>
+      <span class="titleFormat " ><? echo $name_gene;?></span>
       <span class="detailFormat" style="float:right"> No error checking yet! Users are responsible for correct input.</span>      
       <hr>
       
@@ -36,7 +36,7 @@
               <a href="../features/features.php">Feature</a>
               <a href="../features/features.php" class="smallLink">(edit)</a>
             </td>
-  	        <td class="name_gene">Name</td>
+  	        <td class="name_annotation">Name</td>
   	        <td class="start">Start</td>
   	        <td class="end">End</td>
           </tr>
@@ -44,11 +44,12 @@
           <!-- INPUT BOX -->
           <tr class="" id="input_row">
             <td class="feature" onclick="deactivate_active_rows(null);">
-              <select name="feature" class="feature" id="feature" onchange="checkbox()">
+              <!-- FEATURES -->
+              <select name="id_feature" class="feature" id="id_feature" onchange="checkbox()">
                 <? require_once '+features.php';?>
               </select></td>
-            <td class="name_gene" onclick="deactivate_active_rows(null);">
-              <input type="text" class="name_gene inputBoxStyle" id="name_gene" onkeydown="enter(event);" /></td>
+            <td class="name_annotation" onclick="deactivate_active_rows(null);">
+              <input type="text" class="name_annotation inputBoxStyle" id="name_annotation" onkeydown="enter(event);" /></td>
             <td class="start" onclick="deactivate_active_rows(null);">
               <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
             <td class="end" onclick="deactivate_active_rows(null);">

@@ -60,7 +60,7 @@ function make_row_plain(row, params) {
         }
       }
     }
-    else if(child.className == "feature_s") {  // feature
+    else if(child.className == "show_feature") {  // feature
       child.innerHTML = params.feature_name;
     }
     else if(child.className == "name_gene") { // name_gene
@@ -94,7 +94,7 @@ function activate_row_helper(children) {
         }
       }
     }
-    else if(child.className == "feature_s") {  // feature
+    else if(child.className == "show_feature") {  // feature
       feature_name = child.innerHTML.trim();
       console.log();
       child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange="">'+document.getElementById('feature').innerHTML+'</select>';
@@ -157,7 +157,7 @@ function deactivate_single_row_helper(row) {
   for(i = 0;i < children.length; i++) {
     child = children[i];
     
-    if(child.className == "feature_s") {  // feature
+    if(child.className == "show_feature") {  // feature
       feature = child.firstChild[child.firstChild.selectedIndex].value;
       feature_name = child.firstChild[child.firstChild.selectedIndex].innerHTML;
     }
@@ -242,23 +242,23 @@ function add_row(obj) {
   row.className = "a_row";
   row.id = "row"+obj.id;
 
-    insert ='<td class="controls"><a href="#" title="remove this annotation" name="'+ obj.id +
-                '" onclick="return remove_annotation(this);"> \
-                <img src="../images/icons/trash_white.png" height="15" width="" /></a> \
-                <a href="#" title="edit" onclick="activate_row(this)"> \
-                  <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
-            '<td class="feature_s">'+obj.feature + '</td>' + 
-            '<td class="name_gene">'+ obj.name_gene +'</td>' + 
-            '<td class="start">'+ obj.start  +'</td>' +
-            '<td class="end">'+ obj.end +'</td>';
+  insert ='<td class="controls"><a href="#" title="remove this annotation" name="'+ obj.id +
+              '" onclick="return remove_annotation(this);"> \
+              <img src="../images/icons/trash_white.png" height="15" width="" /></a> \
+              <a href="#" title="edit" onclick="activate_row(this)"> \
+                <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
+          '<td class="show_feature">'+obj.feature + '</td>' + 
+          '<td class="name_annotation">'+ obj.name_annotation +'</td>' + 
+          '<td class="start">'+ obj.start  +'</td>' +
+          '<td class="end">'+ obj.end +'</td>';
 
   row.innerHTML = insert;
 }
 
 // Clears the input
 function clear_input() {
-  document.getElementById("name_gene").value = "";
-  document.getElementById("name_gene").focus();
+  document.getElementById("name_annotation").value = "";
+  document.getElementById("name_annotation").focus();
   document.getElementById("start").value = "";
   document.getElementById("end").value = "";
 
@@ -271,18 +271,16 @@ function submit_annotation() {
   xml.open("POST","_submit_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-  var featureIndex = document.getElementById("feature").selectedIndex;
-  
-  var feature = document.getElementById("feature")[featureIndex].value;
-    // feature = encodeURI(feature);
-  var name_gene = document.getElementById("name_gene").value;
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
-  var id_gene = document.getElementById("id_gene").value;
-  
-  var data = "id_gene="+id_gene
-              +"&feature="+feature
-              +"&name_gene="+name_gene
+  var index_feature   = document.getElementById("id_feature").selectedIndex;
+  var id_feature      = document.getElementById("id_feature")[index_feature].value;
+  var scope_feature   = document.getElementById("id_feature")[index_feature].className;
+  var name_annotation = document.getElementById("name_annotation").value;
+  var start           = document.getElementById("start").value;
+  var end             = document.getElementById("end").value;
+
+  var data = "id_feature="+id_feature
+              +"&scope_feature="+scope_feature
+              +"&name_annotation="+name_annotation
               +"&start="+start
               +"&end="+end;
 
@@ -290,17 +288,26 @@ function submit_annotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      console.log(xml.responseText);
-      if(xml.responseText == "repeat") {
-        alert("The name is already in use!")
+      var r = xml.responseText;
+      console.log(r);
+      if(r == "failed") {
+        alert("There's something wrong with the input");
       }
-      else if(xml.responseText.match(/\d/)) {
+      else if(r == "repeat") {
+        alert("The name is already in use! Sorry!")
+      }
+      else if(r.match(/\d/)) {
+
+        return;
         var params_obj = new Object();
-        params_obj.id = xml.responseText;
-        params_obj.feature = document.getElementById("feature")[featureIndex].innerHTML;
-        params_obj.name_gene = name_gene;
-        params_obj.start = start;
-        params_obj.end = end;
+
+        params_obj.id               = xml.responseText;
+        params_obj.feature          = document.getElementById("feature")[index_feature].innerHTML;
+        params_obj.name_annotation  = name_annotation;
+        params_obj.start            = start;
+        params_obj.end              = end;
+        params_obj.scope_feature    = scope_feature;
+
         add_row(params_obj);
         clear_input();
       }

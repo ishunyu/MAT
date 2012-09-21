@@ -1,7 +1,7 @@
 <?php
 //Variables for display
 $short_gene = '';
-$title_gene = 'You don\'t have anything. <a href="../upload/upload.php">Upload something to start!</a>';
+$name_gene = 'You don\'t have anything. <a href="../upload/upload.php">Upload something to start!</a>';
 $id_gene = '';
 
 // Checks for get variable & its validity
@@ -19,7 +19,7 @@ if(isset($_GET['id_gene'])){
     $id_gene = $_GET['id_gene'];
   }
   else {
-    header("location:../headers/easter_egg.php");
+    header("location:../bad/bad_easter_egg.php");
   }
 }
 
@@ -44,15 +44,15 @@ if($id_gene == '') {
 
 if($id_gene != "") {
   // Query for the working Gene
-  $geneQuery = 
+  $q_gene = 
     "SELECT name, gene 
      FROM $table_genes
      WHERE id='$id_gene'";
-  $geneQuery = mysql_query($geneQuery);
-  $geneQuery = mysql_fetch_assoc($geneQuery);
+  $r_gene = mysql_query($q_gene);
+  $a_gene = mysql_fetch_assoc($r_gene);
   
-  $gene = $geneQuery['gene'];
-  $title_gene = $geneQuery['name'];
+  $gene = $a_gene['gene'];
+  $name_gene = $a_gene['name'];
   if(strlen($gene) > 30) {
     $short_gene = substr($gene, 0, 30);
     $short_gene = $short_gene."...";

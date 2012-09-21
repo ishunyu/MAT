@@ -1,6 +1,6 @@
 <? 
 require_once "__edit__.php";
-require_once "../headers/top_bar.php"
+require_once "../headers/navbar_top.php"
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
