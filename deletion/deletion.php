@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="../styles/substitution.css">
   
   <!-- JAVASCRIPT -->
+  <script type="text/javascript" src="../scripts/main.js"></script>
   <script type="text/javascript" src="../scripts/deletion.js"></script>
 </head>
 

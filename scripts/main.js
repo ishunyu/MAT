@@ -8,7 +8,7 @@ String.prototype.contains = function(s) {
 
 // Checks if the input is there and that it's a positive number
 function is_pos_num(s) {
-  if(s == "")
+  if(s == "" || s == "0")
     return false;
 
   var patt=/[^0-9]/;

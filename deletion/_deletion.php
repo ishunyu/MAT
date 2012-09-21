@@ -1,39 +1,46 @@
 <?
-require_once "../headers/session.php";
-require_once "../classes/GENE.php";
+require_once '../headers/session.php';
+require_once '../classes/GENE.php';
+require_once '../helpers/length_cdna.php';
+
+$id_gene = $_SESSION['id_gene'];
 
 $start = $_POST['start'];
 $end = $_POST['end'];
 
 /* ERROR CHECKING */
-// Make sure the variables are only of numbers
+/* Make sure the variables are only of numbers */
 if(!ctype_digit($start) || !ctype_digit($end))
   die('failed');
 
 $start = (int) $start;
 $end = (int) $end;
 
-// Make sure the the variables are non-negative and that end is at least as large as start
+/* Make sure the the variables are non-negative and that end is at least as large as start */
 if(($start <= 0) || ($end <= 0) || ($start > $end))
   die('failed');
 
-/*Retrieves the data from the database*/
-$gene_q = "SELECT gene, spec
-           FROM shunyu_genes
-           WHERE id='$_SESSION[gene_id]'";
-$gene_r = mysql_query($gene_q);
-$gene_a = mysql_fetch_assoc($gene_r);
-
-if($end > strlen($gene_a['gene']))
+if($end > $length_cdna)
   die('failed');
 
+
+$q_exons =
+  "SELECT a.start, a.end, a.name
+   FROM shunyu_annotations AS a
+   JOIN shunyu_features_global AS global
+   WHERE a.id_feature_global = global.id AND global.name = 'Exon'
+   ORDER BY a.start";
+$r_exons = mysql_query($q_exons);
+while($tmp = mysql_fetch_assoc($r_exons)) {
+  $exons[] = $tmp;
+}
+
 /* INITIATES THE NEW GENE CLASS */
-$gene = new GENE($gene_a['gene']);
-$exons = $gene->exons($gene_a['spec']);
+$cdna = new GENE($a_cdna['cdna']);
 
 /* DELETED SEQUENCE */
 $len = $end - $start + 1;
-$deleted_seq = substr($gene_a['gene'], $start - 1, $len);
+$deleted_seq = substr($a_cdna['cdna'], $start - 1, $len);
 
 /* FRAME RETENTION */
 $frame_retention = '';
@@ -53,9 +60,9 @@ else {
 }
 
 /* FIRST AFFECTED CODON */
-$first_affected_codon = $gene->get_codon($start);
-$codon_info = $gene->get_codon_info($start);
-$amino_acid_position = $gene->get_codon_position($start);
+$first_affected_codon = $cdna->get_codon($start);
+$codon_info = $cdna->get_codon_info($start);
+$amino_acid_position = $cdna->get_codon_position($start);
 
 /* EXON INFO */
 $exon = NULL;
@@ -63,9 +70,9 @@ $distance_to_5_junction = NULL;
 $distance_to_3_junction = NULL;
 
 foreach($exons as $item) {
-  if($start >= $item['st'] && $start <= $item['end']) {
-    $exon = $item['name_gene'];
-    $distance_to_5_junction = $start - $item['st'];
+  if($start >= $item['start'] && $start <= $item['end']) {
+    $exon = $item['name'];
+    $distance_to_5_junction = $start - $item['start'];
     $distance_to_3_junction = $item['end'] - $start;
   }
 }
@@ -92,25 +99,25 @@ if(($len % 3) == 0) {
     }
     else {
       // Multiple AA
-      $end_codon_info = $gene->get_codon_info($end);
-      $end_position = $gene->get_codon_position($end);
+      $end_codon_info = $cdna->get_codon_info($end);
+      $end_position = $cdna->get_codon_position($end);
       $in_frame_multiple_aa = "p.".$codon_info['3LetterCode'].$amino_acid_position."_".$end_codon_info['3LetterCode'].$end_position."del";
     }
   }
   else {
     // Non frame-shifting
-    $end_codon_info = $gene->get_codon_info($end);
-    $end_position = $gene->get_codon_position($end);
+    $end_codon_info = $cdna->get_codon_info($end);
+    $end_position = $cdna->get_codon_position($end);
     $non_frame_shifting_aa = "p.".$codon_info['3LetterCode'].$amino_acid_position."_".$end_codon_info['3LetterCode'].$end_position."delins";
     
-    $new_codon_info = $gene->get_new_codon_info($start, $end);
+    $new_codon_info = $cdna->get_new_codon_info($start, $end);
     $non_frame_shifting_aa .= $new_codon_info['3LetterCode'];
   }
 }
 else {
   // Frameshift
-  $new_codon_info = $gene->get_new_codon_info($start, $end);
-  $stop_position = $gene->stop_codon($start, $end);
+  $new_codon_info = $cdna->get_new_codon_info($start, $end);
+  $stop_position = $cdna->stop_codon($start, $end);
 
   $frame_shifting_aa = "p.".$codon_info['3LetterCode'].$amino_acid_position."fs<br>";
   $frame_shifting_aa .= "p.".$codon_info['3LetterCode'].$amino_acid_position.$new_codon_info['3LetterCode']."fsX".$stop_position;

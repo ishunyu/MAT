@@ -1,13 +1,4 @@
-// deletion.js
-
-// Checks if the input is there and that it's a positive number
-function is_pos_num(s) {
-  if(s == '' || s == '0')
-    return false;
-
-  var patt=/[^0-9]/;
-  return !s.match(patt);
-}
+/* deletion.js */
 
 // Error corrections
 function deletion_info(input) {
@@ -48,7 +39,7 @@ function _deletion_info(start, end) {
       if(xml.responseText != 'failed')
         _deletion_info_helper(xml.responseText);
       else
-        alert("Something went wrong!");
+        alert("There's something wrong with the input!");
     }
   }
 }
@@ -56,7 +47,7 @@ function _deletion_info(start, end) {
 function _deletion_info_helper(result) {
   var populate = function (key, value) {
     if(key != '') {
-      console.log('key: ' + key + ' value: ' + value);
+      //console.log('key: ' + key + ' value: ' + value);
       document.getElementById(key).innerHTML = value;
     }
   }
