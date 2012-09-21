@@ -1,15 +1,6 @@
 // substitution.js
 var stored_index = null;
 
-// Checks if the input is there and that it's a positive number
-function is_pos_num(s) {
-  if(s == "")
-    return false;
-
-  var patt=/[^0-9]/;
-  return !s.match(patt);
-}
-
 // Shows the gene info
 function substitution_info(base) {
   var index = document.getElementById("index").value;
@@ -49,7 +40,7 @@ function gene_info() {
 
   if(is_pos_num(index) && (parseInt(index) > 0)) {
     stored_index = index;
-    _gene_info(index);
+    _info_gene(index);
   }
   else {
     if(index != "") {
@@ -60,10 +51,10 @@ function gene_info() {
 }
 
 // Sends the Ajax request
-function _gene_info(index) {  
+function _info_gene(index) {  
   var xml = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); 
   
-  xml.open("POST","_gene_info.php",true);
+  xml.open("POST","_info_gene.php",true);
   xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
   var data = "index="+index;

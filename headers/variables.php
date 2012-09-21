@@ -80,5 +80,4 @@ $q_table_annotations =
     FOREIGN KEY(id_feature_user) REFERENCES $table_features_user(id) ON DELETE SET NULL
   )";
 $queries[] = $q_table_annotations;
-
 ?>

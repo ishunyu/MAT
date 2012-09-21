@@ -16,20 +16,22 @@ $r_annotations = mysql_query($q_annotations);
 $count = mysql_num_rows($r_annotations);
 
 if($count > 0){
-  while($annotation = mysql_fetch_assoc($r_annotations)) {?>
-    <tr class="a_row" id="row<? echo $annotation['id']; ?>" >
-      <td class="controls">
-        <a href="#" title="remove" name="<?echo $annotation['id'];?>" onclick="return remove_annotation(this);">
+  while($annotation = mysql_fetch_assoc($r_annotations)) {
+    $id = $annotation['id'];
+  ?>
+    <tr class="row_annotation" id="row_<? echo $id; ?>" >
+      <td class="controls" id="control_<? echo $id; ?>">
+        <a href="#" title="remove" name="<?echo $id;?>" onclick="return remove_annotation(this);">
           <img src="../images/icons/trash_white.png" height="15" width="" /></a>
-        <a href="#" title="edit" onclick="activate_row(this)">
-          <img src="../images/icons/file_3_white.png" height="15" width="" /></a>
+        <a href="#" title="edit" id="edit_<? echo $id; ?>" onclick="activate_row(this)">
+          <img id="img_edit_<? echo $id; ?>"src="../images/icons/file_3_white.png" height="15" width="" /></a>
       </td>
-      <td class="show_feature"><? echo stripcslashes($annotation['feature']);?></td>
-      <td class="name_annotation">  <? echo $annotation['name']; ?></td>
-      <td class="start"><? echo $annotation['start']; ?></td>
-      <td class="end">  <? echo $annotation['end']; ?></td>
+      <td class="feature" id="feature_<? echo $id; ?>"><? echo stripcslashes($annotation['feature']);?></td>
+      <td class="name_annotation" id="name_annotation_<? echo $id; ?>">  <? echo $annotation['name']; ?></td>
+      <td class="start" id="start_<? echo $id; ?>"><? echo $annotation['start']; ?></td>
+      <td class="end" id="end_<? echo $id; ?>">  <? echo $annotation['end']; ?></td>
     </tr>
   <?
-  } 
+  }
 }
 ?>

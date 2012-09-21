@@ -2,31 +2,15 @@
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
 
+$id_gene = $_SESSION['id_gene'];
+$id_annotation = $_POST['id_annotation'];
+
 // Retrieving the gene & annotation
-$geneQuery =
-  "SELECT geneFormatted, spec
-   FROM $table_genes
-   WHERE id = '$_POST[id_gene]' AND id_member='$_SESSION[id_user]'";
-$geneQuery = mysql_query($geneQuery); $geneQuery = mysql_fetch_assoc($geneQuery);
-$gene = $geneQuery['geneFormatted'];
-$anno = $geneQuery['spec'];
-$anno = json_decode(stripcslashes($anno), true);
+$q_remove_annotation =
+  "DELETE FROM $table_annotations
+   WHERE id = $id_annotation AND id_gene = $id_gene";
+$r_remove_annotation = mysql_query($q_remove_annotation) or die("Removing annotation unsuccessful.");
 
-unset($anno[$_POST['id']]);
-
-// Process the gene according to annotations
-$gene = new GENE($gene);
-$gene->annotate($anno);
-$gene = $gene->get_gene();
-
-$j_anno = json_encode($anno);
-
-// Store the annotations
-$annoQuery =
-  "UPDATE $table_genes
-   SET spec = '$j_anno', gene = '$gene', t_modify=NOW()
-   WHERE id = '$_POST[id_gene]' AND id_member='$_SESSION[id_user]'";
-$annoQuery = mysql_query($annoQuery) or die("Annotations could not be stored");
-
-echo "success"; 
+require_once '../helpers/update_cdna.php';
+mysql_close($connection); ob_end_flush();
 ?>

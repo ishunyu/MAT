@@ -1,15 +1,9 @@
-// ----- Annotate -----
-// Global PARAMS object, reduces database requests
-var PARAMS_OBJ = new Object();
+/* annotation.js */
+var bool_activate = true;
 
-String.prototype.contains = function(s) {
-  return this.indexOf(s) != -1;
+function get_id_annotation(row) {
+  return row.id.substring(row.id.indexOf("_") + 1);
 }
-
-function checkbox() {
-  return false;
-}
-
 // Used for submitting
 function enter(keyStroke) {
   if(keyStroke.keyCode == 13)
@@ -19,225 +13,145 @@ function enter(keyStroke) {
 // Used for while editing
 function enter_c(keyStroke) {
   if(keyStroke.keyCode == 13)
-    deactivate_active_rows(null);
+    deactivate_rows_active(null);
 }
 
 // Prevents non-numbers from typing
 function input_check(keyStroke) {
-  // alert(keyStroke.keyCode);
 
-  if((keyStroke.keyCode < 48 || keyStroke.keyCode > 58)
-     && keyStroke.keyCode != 8 // Backspace
-     && keyStroke.keyCode != 46 // Delete
-     && keyStroke.keyCode != 9  // Tab
-     && !(keyStroke.ctrlKey && 
-          (keyStroke.keyCode == 65 // ctrl + A
-          || keyStroke.keyCode == 67 // ctrl + C
-          || keyStroke.keyCode == 88 // ctrl + X
-          || keyStroke.keyCode == 86 // ctrl + V
-          )
-         )
-    ) {
-     if (keyStroke.preventDefault) {
-         keyStroke.preventDefault();
-     }    
-    return false;
-  }
 }
 
-function make_row_plain(row, params) {
-  console.log("here");
-  // Commit the change on the front end
-  var i, children = row.childNodes;
-  for(i = 0;i < children.length; i++) {
-    child = children[i];
-    if(child.className == "controls") {
-      var j;
-      for(j = 0; j < child.childNodes.length; j++) {
-        if(child.childNodes[j].title == "edit") {
-          var edit_image = child.childNodes[j].firstChild.nextSibling;
-          edit_image.src = "../images/icons/file_3_white.png";
-        }
-      }
-    }
-    else if(child.className == "show_feature") {  // feature
-      child.innerHTML = params.feature_name;
-    }
-    else if(child.className == "name_gene") { // name_gene
-      child.innerHTML = params.name_gene;
-    }
-    else if(child.className == "start") { // start
-      child.innerHTML = params.start;
-    }
-    else if(child.className == "end") { // end
-      child.innerHTML = params.end;
-    }
-  }
+/* Commit the change on the front end */
+function make_row_plain(id_annotation, obj_annotation) {
+  $("img_edit_"+id_annotation).src = "../images/icons/file_3_white.png";
+  $("feature_"+id_annotation).innerHTML = obj_annotation.name_feature;
+  $("name_annotation_"+id_annotation).innerHTML = obj_annotation.name_annotation;
+  $("start_"+id_annotation).innerHTML = obj_annotation.start;
+  $("end_"+id_annotation).innerHTML = obj_annotation.end;
 
   // Delete the active class name
-  var index_active = row.className.indexOf("active");
-  row.className = row.className.substr(0, index_active).trim();
+  var index_active = $("row_"+id_annotation).className.indexOf("active");
+  $("row_"+id_annotation).className = $("row_"+id_annotation).className.substr(0, index_active).trim();
 }
 
-function activate_row_helper(children) {
-  var feature, feature_name, name_gene, start, end, i;
+function helper_activate_single_row(id_annotation) {
+  var feature_original = $("feature_"+id_annotation).innerHTML.trim(); // Store the original feature
+  var name_annotation = $("name_annotation_"+id_annotation).innerHTML.trim();
+  var start = $("start_"+id_annotation).innerHTML.trim();
+  var end = $("end_"+id_annotation).innerHTML.trim();
 
-  for(i = 0;i < children.length; i++) { // bookmark
-    var child = children[i];
-    
-    if(child.className == "controls") { // Change edit image to confirm image
-      var j;
-      for(j = 0; j < child.childNodes.length; j++) {
-        if(child.childNodes[j].title == "edit") {
-          var edit_image = child.childNodes[j].firstChild.nextSibling;
-          edit_image.src = "../images/icons/tick_2_white.png";
-        }
-      }
-    }
-    else if(child.className == "show_feature") {  // feature
-      feature_name = child.innerHTML.trim();
-      console.log();
-      child.innerHTML = '<select name="feature_edit" class="feature edit" id="feature_edit" onchange="">'+document.getElementById('feature').innerHTML+'</select>';
-      var sel = child.firstChild;
+  /* Change the the row to editable */
+  $("img_edit_"+id_annotation).src = "../images/icons/tick_2_white.png"; // edit button -> confirm button  
+  $("feature_"+id_annotation).innerHTML =
+    '<select class="feature edit" id="edit_feature_'+id_annotation+'" onchange="">'+$('id_feature').innerHTML+'</select>';
+  $("name_annotation_"+id_annotation).innerHTML =
+    '<input type="text" class="name_annotation edit inputBoxStyle" id="edit_name_annotation_'+id_annotation+'" value="'+name_annotation+'" />';
+  $("start_"+id_annotation).innerHTML =
+    '<input type="text" class="start_end edit inputBoxStyle" id="edit_start_'+id_annotation+'" value="'+start+'" onkeydown="enter_c(event);return input_check(event);" />';
+  $("end_"+id_annotation).innerHTML =
+    '<input type="text" class="start_end edit inputBoxStyle" id="edit_end_'+id_annotation+'" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
 
-      var j;
-      for(j = 0; j < sel.length; j++) { // Loop to select the correct feature
-        if(sel[j].innerHTML == feature_name) {
-          sel[j].selected = "selected";
-          feature = sel[j].value;
-          break;
-        }
-      }
-    }
-    else if(child.className == "name_gene") { // name_gene
-      name_gene = child.innerHTML.trim();
-      child.innerHTML = '<input type="text" class="name_gene edit inputBoxStyle" id="name_gene_edit" value="'+name_gene+'" onkeydown="return enter_c(event);" />';
-    }
-    else if(child.className == "start") { // start
-      start = child.innerHTML.trim();
-      child.innerHTML = '<input type="text" class="start_end edit inputBoxStyle" id="start" value="'+start+'" onkeydown="enter_c(event);return input_check(event);" />';
-    }
-    else if(child.className == "end") { // end
-      end = child.innerHTML.trim();
-      child.innerHTML = '<input type="text" class="start_end edit inputBoxStyle" id="end" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
-    }
-  }
+  /* Change the feature to the correct one */
 
-  /* Stores row information so we don't have to unnecessarily query the database.
-      Will be compared later when a row is deactivated.*/ 
-  PARAMS_OBJ.feature = feature;
-  PARAMS_OBJ.feature_name = feature_name;
-  PARAMS_OBJ.name_gene = name_gene;
-  PARAMS_OBJ.start = start;
-  PARAMS_OBJ.end = end;
+  var children = $("edit_feature_"+id_annotation).children;
+  for(var i = 0; i < children.length; i++) {
+    if(children[i].innerHTML.trim() == feature_original) {
+      children[i].selected = "selected";
+    }
+  }  
 }
 
-// Dynamically change the annotation data
-function activate_row(edit_button) {
-  var row = edit_button.parentNode.parentNode;
+/* Activate row so user can change the annotation data */
+function activate_row(button_edit) {
+  var row = button_edit.parentNode.parentNode;
+  var id_annotation = get_id_annotation(row);  /* Retrieves the id */
+
+  if(!bool_activate && !row.className.contains("active"))  /* Some other row is still activated */
+    return;
 
   if(row.className.contains("active")) {
     deactivate_single_row(row);
+    bool_activate = true;
     return;
   }
 
-  // let's make it editable  
-  deactivate_active_rows(); // First, make other rows inactive
-  activate_row_helper(row.cells);
+  /* Let's make it editable */  
+  deactivate_rows_active(); // First, make other rows inactive
+  helper_activate_single_row(id_annotation);
+  bool_activate = false;
 
-  // Something  // Focus the selected cell input
   row.className = row.className + " active";  // Adds the active component
 }
 
-function deactivate_single_row_helper(row) {
-  var feature, feature_name, name_gene, start, end;
-  var i, children = row.childNodes;
+function helper_deactivate_row(id_annotation) {
+  var id_feature, scope_feature, name_feature, name_annotation, edit_start, edit_end;
   
-  // Gather the information
-  for(i = 0;i < children.length; i++) {
-    child = children[i];
-    
-    if(child.className == "show_feature") {  // feature
-      feature = child.firstChild[child.firstChild.selectedIndex].value;
-      feature_name = child.firstChild[child.firstChild.selectedIndex].innerHTML;
-    }
-    else if(child.className == "name_gene") { // name_gene
-      name_gene = child.firstChild.value;
-    }
-    else if(child.className == "start") { // start
-      start = child.firstChild.value;
-    }
-    else if(child.className == "end") { // end
-      end = child.firstChild.value;
-    }
-  }
-
-  var params_obj = new Object();
-      params_obj.feature = feature;
-      params_obj.feature_name = feature_name;
-      params_obj.name_gene = name_gene;
-      params_obj.start = start;
-      params_obj.end = end;
-
-  if(params_obj.feature == PARAMS_OBJ.feature &&
-      params_obj.name_gene == PARAMS_OBJ.name_gene &&
-      params_obj.start == PARAMS_OBJ.start &&
-      params_obj.end == PARAMS_OBJ.end)
-  {
-    make_row_plain(row, params_obj);
-    return;
-  }
-
+  /* Gather the information */
+  id_feature = $("edit_feature_"+id_annotation)[$("edit_feature_"+id_annotation).selectedIndex].value;
+  scope_feature = $("edit_feature_"+id_annotation)[$("edit_feature_"+id_annotation).selectedIndex].className;
+  name_feature = $("edit_feature_"+id_annotation)[$("edit_feature_"+id_annotation).selectedIndex].innerHTML.trim();
+  name_annotation = $("edit_name_annotation_"+id_annotation).value.trim();
+  edit_start = $("edit_start_"+id_annotation).value.trim();
+  edit_end = $("edit_end_"+id_annotation).value.trim();
 
   // Commit the change in the database
-  var id_gene = document.getElementById("id_gene").value;
-  var id = row.id.match(/\d/g).join(""); // trim away the row value
-
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      console.log(xml.responseText);
-      if(xml.responseText == "success") {
-        make_row_plain(row, params_obj);
+      var r = xml.responseText;
+
+      if(r == "failed") {
+        alert("There's something wrong with the input");
+      }
+      else if(r == "repeat") {
+        alert("The name is already in use! Sorry!");
+      }
+      else {
+        var obj_annotation = new Object();
+        obj_annotation.name_feature = name_feature;
+        obj_annotation.name_annotation = name_annotation;
+        obj_annotation.start = edit_start;
+        obj_annotation.end = edit_end;
+
+        make_row_plain(id_annotation, obj_annotation);
       }
     }
   }
   xml.open("POST","_change_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
-  var params = "id="+id
-              +"&id_gene="+id_gene
-              +"&feature="+feature
-              +"&name_gene="+name_gene
-              +"&start="+start
-              +"&end="+end;
+  var params = "id_annotation="+id_annotation
+              +"&id_feature="+id_feature
+              +"&scope_feature="+scope_feature
+              +"&name_annotation="+name_annotation
+              +"&start="+edit_start
+              +"&end="+edit_end;
   xml.send(params);  
 }
 
-// Deactivates the single, selected row
-function deactivate_single_row(row) {
-  if(!row.className.contains("active")) // Return if the row is inactive
+/* Deactivates the single, selected row */
+function deactivate_row(row) {
+  if(!row.className.contains("active")) /* Return if the row is inactive */
     return;
 
-  deactivate_single_row_helper(row);
+  return helper_deactivate_row(get_id_annotation(row));
 }
 
-// Deactivate all active rows
-function deactivate_active_rows() {
-  var table = document.getElementById("annotationTable");
+/* Deactivate all active rows */
+function deactivate_rows_active() {
+  var table = $("annotationTable");
   var rows = table.rows;
-  var i;
 
-  for(i = 0; i < rows.length; i++) {
+  for(var i = 0; i < rows.length; i++) {
     if(rows[i].className.contains("active"))
-      deactivate_single_row(rows[i]);    
+      deactivate_row(rows[i]);    
   }
 }
 
 // Adds a new row of annotation at the bottom of the table
 function add_row(obj) {
-  var table = document.getElementById("annotationTable");  
+  var table = $("annotationTable");  
   var row = table.insertRow(-1);
   row.className = "a_row";
   row.id = "row"+obj.id;
@@ -257,10 +171,10 @@ function add_row(obj) {
 
 // Clears the input
 function clear_input() {
-  document.getElementById("name_annotation").value = "";
-  document.getElementById("name_annotation").focus();
-  document.getElementById("start").value = "";
-  document.getElementById("end").value = "";
+  $("name_annotation").value = "";
+  $("name_annotation").focus();
+  $("start").value = "";
+  $("end").value = "";
 
 }
 
@@ -271,20 +185,20 @@ function submit_annotation() {
   xml.open("POST","_submit_annotation.php",true);
   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-  var index_feature   = document.getElementById("id_feature").selectedIndex;
-  var id_feature      = document.getElementById("id_feature")[index_feature].value;
-  var scope_feature   = document.getElementById("id_feature")[index_feature].className;
-  var name_annotation = document.getElementById("name_annotation").value;
-  var start           = document.getElementById("start").value;
-  var end             = document.getElementById("end").value;
+  var index_feature   = $("id_feature").selectedIndex;
+  var id_feature      = $("id_feature")[index_feature].value;
+  var scope_feature   = $("id_feature")[index_feature].className;
+  var name_annotation = $("name_annotation").value;
+  var start           = $("start").value;
+  var end             = $("end").value;
 
-  var data = "id_feature="+id_feature
+  var data_post = "id_feature="+id_feature
               +"&scope_feature="+scope_feature
               +"&name_annotation="+name_annotation
               +"&start="+start
               +"&end="+end;
 
-  xml.send(data);
+  xml.send(data_post);
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
@@ -296,29 +210,17 @@ function submit_annotation() {
       else if(r == "repeat") {
         alert("The name is already in use! Sorry!")
       }
-      else if(r.match(/\d/)) {
-
-        return;
-        var params_obj = new Object();
-
-        params_obj.id               = xml.responseText;
-        params_obj.feature          = document.getElementById("feature")[index_feature].innerHTML;
-        params_obj.name_annotation  = name_annotation;
-        params_obj.start            = start;
-        params_obj.end              = end;
-        params_obj.scope_feature    = scope_feature;
-
-        add_row(params_obj);
-        clear_input();
+      else {
+        location.reload();
       }
     }
   }
 }
 
 // Removes a row from the table
-function remove_row(id) {
-  var row = document.getElementById("row"+id);
-  var t = document.getElementById("annotationTable");
+function remove_row(id_annotation) {
+  var row = $("row_"+id_annotation);
+  var t = $("annotationTable");
 
   t.deleteRow(row.rowIndex);
 }
@@ -326,26 +228,27 @@ function remove_row(id) {
 // Removes selected annotation using AJAX
 function remove_annotation(obj) {
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
+  
+  xml.open("POST","_remove_annotation.php",true);
+  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  var id_annotation = get_id_annotation(obj.parentNode.parentNode);
+  
+  var data_post = "id_annotation="+id_annotation;
+  xml.send(data_post);
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      if(xml.responseText == "success") {
-        remove_row(id);
+
+      if(xml.responseText == "") {
+        remove_row(id_annotation);
       }
       else {
         alert("Removing annotation unsuccessful.")
       }
     }
   }
-  xml.open("POST","_remove_annotation.php",true);
-  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  var id = obj.name;
-  var id_gene = document.getElementById("id_gene").value;
-  
-  var params = "id_gene="+id_gene
-              +"&id="+id;
-  xml.send(params);
 }
 
 /* Start up functions*/
+window.onload = function() { $('name_annotation').focus(); }

@@ -10,6 +10,7 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon"> 
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
+  <script type="text/javascript" src="../scripts/main.js"></script>
   <script type="text/javascript" src="../scripts/annotation.js"></script>
 </head>
 
@@ -45,7 +46,7 @@
           <tr class="" id="input_row">
             <td class="feature" onclick="deactivate_active_rows(null);">
               <!-- FEATURES -->
-              <select name="id_feature" class="feature" id="id_feature" onchange="checkbox()">
+              <select name="id_feature" class="feature" id="id_feature">
                 <? require_once '+features.php';?>
               </select></td>
             <td class="name_annotation" onclick="deactivate_active_rows(null);">

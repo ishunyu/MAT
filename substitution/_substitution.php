@@ -2,22 +2,25 @@
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
 
-$gene_q =
-  "SELECT gene
+$id_gene = $_SESSION['id_gene'];
+$id_user = $_SESSION['id_user'];
+
+$q_gene =
+  "SELECT cdna
    FROM $table_genes
-   WHERE id='$_SESSION[gene_id]'";
-$gene_r = mysql_query($gene_q) or die("Gene query unsuccessful");
-$gene_a = mysql_fetch_assoc($gene_r);
+   WHERE id = $id_gene AND id_user = $id_user";
+$r_gene = mysql_query($q_gene) or die("Gene query unsuccessful");
+$a_gene = mysql_fetch_assoc($r_gene);
 
 $index = $_POST["index"];
 $base = $_POST["base"];
-$gene = new GENE($gene_a["gene"]);
+$cdna = new GENE($a_gene["cdna"]);
 
-$new_codon = $gene->get_codon_base_index($index);
-$new_codon[$gene->get_position_in_codon($index) - 1] = $base;
-$codon_position = $gene->get_codon_position($index);
-$rna_mutation = $gene->rna_mutation($index, $base);
-$protein_mutation = $gene->protein_mutation($index, $base);  
+$new_codon = $cdna->get_codon_base_index($index);
+$new_codon[$cdna->get_position_in_codon($index) - 1] = $base;
+$codon_position = $cdna->get_codon_position($index);
+$rna_mutation = $cdna->rna_mutation($index, $base);
+$protein_mutation = $cdna->protein_mutation($index, $base);  
 
 if($rna_mutation && $protein_mutation) { ?>
 <tr>

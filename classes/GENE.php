@@ -143,6 +143,7 @@ class GENE {
     }
 
     $this->sequence = $tmp;
+    return $this->sequence;
   }
 
   function exons($annotations) {
