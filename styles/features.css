@@ -2,12 +2,18 @@ table.submit {
   color: white;
 }
 
-td {
-  border-style: solid;
-  border-width: 0px;
-  border-color: black;
+table#show_features {
+  width: 100%;
 }
 
+table#show_features > tbody > tr > td {
+  width: 50%;
+  vertical-align: top;
+}
+
+td {
+  color: white;
+}
 .row_feature {
   font-size: 14px;
   color: white;

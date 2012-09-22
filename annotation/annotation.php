@@ -50,11 +50,11 @@
                 <? require_once '+features.php';?>
               </select></td>
             <td class="name_annotation" onclick="deactivate_rows_active(null);">
-              <input type="text" class="name_annotation inputBoxStyle" id="name_annotation" onkeydown="enter(event);" /></td>
+              <input type="text" class="name_annotation inputBoxStyle" id="name_annotation" onkeydown="keyboard(event, submit_annotation);" /></td>
             <td class="start" onclick="deactivate_rows_active(null);">
-              <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="enter(event);return input_check(event);"/></td>
+              <input type="text" class="start_end inputBoxStyle" id="start" onkeydown="keyboard(event, submit_annotation);"/></td>
             <td class="end" onclick="deactivate_rows_active(null);">
-              <input type="text" class="start_end inputBoxStyle" id="end" onkeydown="enter(event); return input_check(event)"/></td>
+              <input type="text" class="start_end inputBoxStyle" id="end" onkeydown="keyboard(event, submit_annotation);"/></td>
           </tr>
           <tr class="submitBox" id="submitBox">
             <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submit_annotation();">Submit</button></td>

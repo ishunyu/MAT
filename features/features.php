@@ -14,6 +14,7 @@
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
   
   <!-- JAVASCRIPT -->
+  <script type="text/javascript" src="../scripts/main.js"></script>
   <script type="text/javascript" src="../scripts/features.js"></script>
 </head>
 
@@ -41,14 +42,17 @@
         <!-- INPUT BOX -->
         <tr class="" id="input_row">
           <td class="feature" colspan="2" onclick="">
-            <input type="text" class="name_gene inputBoxStyle" id="feature_user_new" onkeydown="" /></td>
+            <input type="text" class="name_gene inputBoxStyle" id="feature_user_new" onkeydown="keyboard(event, submit_feature)" /></td>
         </tr>
         <tr class="submitBox" id="submitBox">
           <td colspan="2"> <button type="submit" id="show_featureubmit_btn" onclick="return submit_feature();">Submit</button></td>
         </tr>
-        <? require_once '+table_features.php'; ?>
       </table>
-      <? hidden_gene_value($id_gene);  hidden_num_col(5); ?>
+      <table id = "show_features">
+        <tr>
+          <? require_once '+table_features.php'; ?>
+        </tr>
+      </table>
       <? }else { ?>
       <!--For when there is no gene -->
       <a class="normalLink" href="../upload/upload.php">

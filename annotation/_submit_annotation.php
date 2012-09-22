@@ -11,27 +11,7 @@ $name_annotation = $_POST['name_annotation'];
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-if( ((int)$start > (int)$end) || 
-    ($name_annotation == '') || 
-    !ctype_digit($start) || 
-    !ctype_digit($end) || 
-    ((int)$start <= 0) ||
-    ((int)$end > $length_gene)) {
-  die('failed');
-}
-
-/* Retrieves the annotations to check for possible conflicts */
-$q_annotations =
-  "SELECT id
-   FROM $table_annotations
-   WHERE id_gene = '$id_gene' AND name = '$name_annotation'";
-
-$r_annotations = mysql_query($q_annotations);
-$count_annotations = mysql_num_rows($r_annotations);
-
-if($count_annotations > 0) {
-  die('repeat');  // There's a repeat
-}
+require_once '../helpers/validate_features.php';
 
 /* Figure out the correct feature id */
 $id_feature_global = ($scope_feature == 'global') ? $id_feature : 'NULL';
@@ -44,7 +24,10 @@ $q_add_annotation =
 
 $r_add_annotation = mysql_query($q_add_annotation) or die('Adding annotation unsuccessful! :(');
 
+/* Update the cdna only if we have an Exon */
+if(($scope_feature == 'global') && ($id_feature == 1)) {
+  require_once '../helpers/update_cdna.php';
+}
 
-require_once '../helpers/update_cdna.php';
 mysql_close($connection); ob_end_flush();
 ?>

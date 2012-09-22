@@ -13,31 +13,11 @@ $name_annotation = $_POST['name_annotation'];
 $start = $_POST['start'];
 $end = $_POST['end'];
 
-/* Error Checking */
-if( ((int)$start > (int)$end) || 
-    ($name_annotation == '') || 
-    !ctype_digit($start) || 
-    !ctype_digit($end) || 
-    ((int)$start <= 0) ||
-    ((int)$end > $length_gene)) {
-  die('failed');
-}
+require_once '../helpers/validate_features.php';
 
 /* Figure out the correct feature id */
 $id_feature_global = ($scope_feature == 'global') ? $id_feature : 'NULL';
 $id_feature_user = ($scope_feature == 'user') ? $id_feature : 'NULL';
-
-/* Check for repeats */
-$q_annotations =
-  "SELECT id
-   FROM $table_annotations
-   WHERE id != '$id_annotation' AND id_gene='$id_gene' AND name='$name_annotation'";
-$r_annotations = mysql_query($q_annotations) or die('Retrieving annotations unsuccessful.');
-$count_annotations = mysql_num_rows($r_annotations);
-
-if($count_annotations > 0) {
-  die('repeat');
-}
 
 /* Change the annotation */
 $q_change_annotation =
@@ -51,7 +31,9 @@ $q_change_annotation =
 
 $r_change_annotation = mysql_query($q_change_annotation) or die('Change annotation unsuccessful.');
 
-
-require_once '../helpers/update_cdna.php';
+/* Update the cdna only if we have an Exon */
+if(($scope_feature == 'global') && ($id_feature == 1)) {
+  require_once '../helpers/update_cdna.php';
+}
 mysql_close($connection); ob_end_flush();
 ?>

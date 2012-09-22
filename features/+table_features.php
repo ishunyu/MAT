@@ -6,6 +6,7 @@ $q_features_global =
 
 $r_features_global = mysql_query($q_features_global);
 
+echo '<td><table>';
 echo '<tr><td>Global:</td><td></td></tr>';
 while($feature_global = mysql_fetch_assoc($r_features_global)) { ?>
   <tr class="row_feature" id="global_<? echo $feature_global['id']; ?>">
@@ -14,6 +15,7 @@ while($feature_global = mysql_fetch_assoc($r_features_global)) { ?>
     <td class="display"><? echo stripcslashes($feature_global['name']);?></td>
   </tr>
 <? }
+echo '</table></td><td><table>';
 
 // User feature
 $q_features_user =
@@ -32,3 +34,7 @@ while($feature_user = mysql_fetch_assoc($r_features_user)) { ?>
     <td class="display"><? echo stripcslashes($feature_user['name']);?></td>
   </tr>
 <? }
+
+echo '</table></td>';
+
+?>

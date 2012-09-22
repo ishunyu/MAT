@@ -35,7 +35,7 @@ if($count == 0) {
     $redirectPath =
       ($_SERVER["HTTP_HOST"] == "localhost") ?
       "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
-    //header($redirectPath);
+    header($redirectPath);
   }
 }
 else {

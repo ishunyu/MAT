@@ -14,3 +14,8 @@ function is_pos_num(s) {
   var patt=/[^0-9]/;
   return !s.match(patt);
 }
+
+function keyboard(keyStroke, f) {
+  if(keyStroke.keyCode == 13)
+    f();
+}

@@ -4,21 +4,15 @@ var bool_activate = true;
 function get_id_annotation(row) {
   return row.id.substring(row.id.indexOf("_") + 1);
 }
-// Used for submitting
-function enter(keyStroke) {
-  if(keyStroke.keyCode == 13)
-    submit_annotation();
-}
 
-// Used for while editing
-function enter_c(keyStroke) {
-  if(keyStroke.keyCode == 13)
-    deactivate_rows_active(null);
-}
-
-// Prevents non-numbers from typing
-function input_check(keyStroke) {
-
+function process_xml_response(r) {
+  if(r == ""){
+    return true;  /* Went well! */
+  }
+  else {
+    alert(r);
+    return false;
+  }
 }
 
 /* Commit the change on the front end */
@@ -45,11 +39,11 @@ function helper_activate_single_row(id_annotation) {
   $("feature_"+id_annotation).innerHTML =
     '<select class="feature edit" id="edit_feature_'+id_annotation+'" onchange="">'+$('id_feature').innerHTML+'</select>';
   $("name_annotation_"+id_annotation).innerHTML =
-    '<input type="text" class="name_annotation edit inputBoxStyle" id="edit_name_annotation_'+id_annotation+'" value="'+name_annotation+'" />';
+    '<input type="text" class="name_annotation edit inputBoxStyle" id="edit_name_annotation_'+id_annotation+'" value="'+name_annotation+'" onkeydown="keyboard(event, deactivate_rows_active)"/>';
   $("start_"+id_annotation).innerHTML =
-    '<input type="text" class="start_end edit inputBoxStyle" id="edit_start_'+id_annotation+'" value="'+start+'" onkeydown="enter_c(event);return input_check(event);" />';
+    '<input type="text" class="start_end edit inputBoxStyle" id="edit_start_'+id_annotation+'" value="'+start+'" onkeydown="keyboard(event, deactivate_rows_active)" />';
   $("end_"+id_annotation).innerHTML =
-    '<input type="text" class="start_end edit inputBoxStyle" id="edit_end_'+id_annotation+'" value="'+end+'" onkeydown="enter_c(event);return input_check(event);" />';
+    '<input type="text" class="start_end edit inputBoxStyle" id="edit_end_'+id_annotation+'" value="'+end+'" onkeydown="keyboard(event, deactivate_rows_active)" />';
 
   /* Change the feature to the correct one */
 
@@ -95,19 +89,22 @@ function helper_deactivate_row(id_annotation) {
   edit_end = $("edit_end_"+id_annotation).value.trim();
 
   // Commit the change in the database
-  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
+  var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));  
+
+  xml.open("POST","_change_annotation.php",true);
+  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+  var data_post = "id_annotation="+id_annotation
+              +"&id_feature="+id_feature
+              +"&scope_feature="+scope_feature
+              +"&name_annotation="+name_annotation
+              +"&start="+edit_start
+              +"&end="+edit_end;
+  xml.send(data_post);
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      var r = xml.responseText;
-
-      if(r == "failed") {
-        alert("There's something wrong with the input");
-      }
-      else if(r == "repeat") {
-        alert("The name is already in use! Sorry!");
-      }
-      else {
+      if(process_xml_response(xml.responseText)) {
         var obj_annotation = new Object();
         obj_annotation.name_feature = name_feature;
         obj_annotation.name_annotation = name_annotation;
@@ -118,16 +115,6 @@ function helper_deactivate_row(id_annotation) {
       }
     }
   }
-  xml.open("POST","_change_annotation.php",true);
-  xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
-  var params = "id_annotation="+id_annotation
-              +"&id_feature="+id_feature
-              +"&scope_feature="+scope_feature
-              +"&name_annotation="+name_annotation
-              +"&start="+edit_start
-              +"&end="+edit_end;
-  xml.send(params);  
 }
 
 /* Deactivates the single, selected row */
@@ -149,35 +136,6 @@ function deactivate_rows_active() {
   }
 }
 
-// Adds a new row of annotation at the bottom of the table
-function add_row(obj) {
-  var table = $("annotationTable");  
-  var row = table.insertRow(-1);
-  row.className = "a_row";
-  row.id = "row"+obj.id;
-
-  insert ='<td class="controls"><a href="#" title="remove this annotation" name="'+ obj.id +
-              '" onclick="return remove_annotation(this);"> \
-              <img src="../images/icons/trash_white.png" height="15" width="" /></a> \
-              <a href="#" title="edit" onclick="activate_row(this)"> \
-                <img src="../images/icons/file_3_white.png" height="15" width="" /></a></td>'+
-          '<td class="show_feature">'+obj.feature + '</td>' + 
-          '<td class="name_annotation">'+ obj.name_annotation +'</td>' + 
-          '<td class="start">'+ obj.start  +'</td>' +
-          '<td class="end">'+ obj.end +'</td>';
-
-  row.innerHTML = insert;
-}
-
-// Clears the input
-function clear_input() {
-  $("name_annotation").value = "";
-  $("name_annotation").focus();
-  $("start").value = "";
-  $("end").value = "";
-
-}
-
 // Submits the new annotation using AJAX
 function submit_annotation() {
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : new ActiveXObject("Microsoft.XMLHTTP");
@@ -188,9 +146,9 @@ function submit_annotation() {
   var index_feature   = $("id_feature").selectedIndex;
   var id_feature      = $("id_feature")[index_feature].value;
   var scope_feature   = $("id_feature")[index_feature].className;
-  var name_annotation = $("name_annotation").value;
-  var start           = $("start").value;
-  var end             = $("end").value;
+  var name_annotation = $("name_annotation").value.trim();
+  var start           = $("start").value.trim();
+  var end             = $("end").value.trim();
 
   var data_post = "id_feature="+id_feature
               +"&scope_feature="+scope_feature
@@ -202,15 +160,7 @@ function submit_annotation() {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-      var r = xml.responseText;
-      console.log(r);
-      if(r == "failed") {
-        alert("There's something wrong with the input");
-      }
-      else if(r == "repeat") {
-        alert("The name is already in use! Sorry!")
-      }
-      else {
+      if(process_xml_response(xml.responseText)) {
         location.reload();
       }
     }
@@ -239,8 +189,8 @@ function remove_annotation(obj) {
 
   xml.onreadystatechange=function() {
     if (xml.readyState==4 && xml.status==200) {
-
-      if(xml.responseText == "") {
+      var r = xml.responseText;
+      if(r == "") {
         remove_row(id_annotation);
       }
       else {
