@@ -211,7 +211,6 @@ function submit_annotation() {
         alert("The name is already in use! Sorry!")
       }
       else {
-        return;
         location.reload();
       }
     }
