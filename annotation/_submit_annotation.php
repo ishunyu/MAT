@@ -1,7 +1,7 @@
 <?php /* _submit_annotation.php */
 require_once "../headers/session.php";
 require_once "../classes/GENE.php";
-require_once '../helpers/length_gene.php';
+
 
 $id_gene = $_SESSION['id_gene'];
 

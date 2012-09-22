@@ -15,7 +15,7 @@ while($tmp = mysql_fetch_assoc($r_exons)) {
 /* (Start1 <= End2) and (Start2 <= End1) */
 foreach ($exons as $exon) {
   if(($start <= $exon['end']) && ($exon['start'] <= $end)) {
-    die("Overlaps with Exon '".$exon['name']."'!");
+    die('Overlaps with Exon '.$exon['name'].'!');
   }
 }
 ?>
