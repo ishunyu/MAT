@@ -2,11 +2,11 @@
 
 // Checks the form before submitting for register
 function checkRegForm() {      
-  var name_first = document.getElementById("name_first").value;
-  var name_last = document.getElementById("name_last").value; 
-  var password1 = document.getElementById("password1").value;
-  var password2 = document.getElementById("password2").value;
-  var username = document.getElementById("username").value;
+  var name_first = $("name_first").value;
+  var name_last = $("name_last").value; 
+  var password1 = $("password1").value;
+  var password2 = $("password2").value;
+  var username = $("username").value;
   var returnValue = false;
   
   // Check to see if all fields are filled
@@ -41,9 +41,9 @@ function checkRegForm() {
       }
       else {
          responseText = "";
-         document.getElementById("registerForm").submit();
+         $("registerForm").submit();
       }      
-      document.getElementById("inputErrorMessage").innerHTML=responseText;
+      $("inputErrorMessage").innerHTML=responseText;
     }
   }
   
@@ -56,5 +56,5 @@ function checkRegForm() {
 
 // Show the register errors
 function showRegError(s) {
-  document.getElementById("inputErrorMessage").innerHTML = s;
+  $("inputErrorMessage").innerHTML = s;
 }

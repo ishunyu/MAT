@@ -22,7 +22,7 @@ function remove_feature(cell) {
 }
 
 function submit_feature() {
-  var feature_user_new = document.getElementById('feature_user_new').value;
+  var feature_user_new = $('feature_user_new').value;
   var xml = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
 
   xml.onreadystatechange=function() {

@@ -2,8 +2,8 @@
 
 // Checks for file upload
 function check_edit() { 
-  var name_gene = document.getElementById("name_gene").value;  // Get the dna title
-  var id_gene = document.getElementById('id_gene').value;
+  var name_gene = $("name_gene").value;  // Get the dna title
+  var id_gene = $('id_gene').value;
   var xmlhttp = window.XMLHttpRequest ? (new XMLHttpRequest()) : (new ActiveXObject("Microsoft.XMLHTTP"));
   
   xmlhttp.onreadystatechange=function() { // the Call back function
@@ -15,9 +15,9 @@ function check_edit() {
       }
       else {
         responseText = "";
-        document.getElementById("geneEditForm").submit();
+        $("geneEditForm").submit();
       }      
-      document.getElementById("name_geneWarning").innerHTML=responseText;
+      $("name_geneWarning").innerHTML=responseText;
     }
   }
   
@@ -30,8 +30,8 @@ function check_edit() {
 
 // Updates the word count for dna notes
 function word_count_popup(event) {
-  var length = document.getElementById("notes").value.length;
-  var maxlength = document.getElementById("notes").getAttribute("maxlength");
+  var length = $("notes").value.length;
+  var maxlength = $("notes").getAttribute("maxlength");
   if(length == maxlength) {
     if(event.ctrlKey || event.shiftKey || event.altKey) {
       return;

@@ -2,8 +2,8 @@
 
 // Error corrections
 function deletion_info(input) {
-  var start = document.getElementById('start_index').value;
-  var end = document.getElementById('end_index').value;
+  var start = $('start_index').value;
+  var end = $('end_index').value;
 
   if(is_pos_num(start) && is_pos_num(end)) {
     // Change the text to integer so we can compare
@@ -48,7 +48,7 @@ function _deletion_info_helper(result) {
   var populate = function (key, value) {
     if(key != '') {
       //console.log('key: ' + key + ' value: ' + value);
-      document.getElementById(key).innerHTML = value;
+      $(key).innerHTML = value;
     }
   }
 

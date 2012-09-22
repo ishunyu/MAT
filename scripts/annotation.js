@@ -5,16 +5,6 @@ function get_id_annotation(row) {
   return row.id.substring(row.id.indexOf("_") + 1);
 }
 
-function process_xml_response(r) {
-  if(r == ""){
-    return true;  /* Went well! */
-  }
-  else {
-    alert(r);
-    return false;
-  }
-}
-
 /* Commit the change on the front end */
 function make_row_plain(id_annotation, obj_annotation) {
   $("img_edit_"+id_annotation).src = "../images/icons/file_3_white.png";

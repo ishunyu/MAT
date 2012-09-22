@@ -3,7 +3,7 @@ var stored_index = null;
 
 // Shows the gene info
 function info_substitution(base) {
-  var index = document.getElementById("index").value;
+  var index = $("index").value;
 
   if(is_pos_num(index) && (parseInt(index) > 0)) {    
     _info_substitution(index, base);
@@ -24,18 +24,18 @@ function _info_substitution(index, base) {
     if (xml.readyState==4 && xml.status==200) {
       var resp = xml.responseText;
       if(resp != 'failed')
-        document.getElementById("info_substitution").innerHTML=resp;
+        $("info_substitution").innerHTML=resp;
     }
   }
 }
 
 function info_gene() {
-  var index = document.getElementById('index').value;
+  var index = $('index').value;
   if(index != stored_index)
-    document.getElementById("info_substitution").innerHTML = '<tr><th>New codon:</th><td></td></tr><tr><th>Nucleic acid level:</th><td></td></tr><tr><th>Protein level:</th><td></td></tr>';
+    $("info_substitution").innerHTML = '<tr><th>New codon:</th><td></td></tr><tr><th>Nucleic acid level:</th><td></td></tr><tr><th>Protein level:</th><td></td></tr>';
   
   if(index == '') {
-    document.getElementById("info_gene").innerHTML = '<tr><th>Base:</th><td></td></tr><tr><th>Codon Position:</th><td></td></tr><tr><th>Old codon:</th><td></td></tr> '
+    $("info_gene").innerHTML = '<tr><th>Base:</th><td></td></tr><tr><th>Codon Position:</th><td></td></tr><tr><th>Old codon:</th><td></td></tr> '
   }
 
   if(is_pos_num(index) && (parseInt(index) > 0)) {
@@ -45,7 +45,7 @@ function info_gene() {
   else {
     if(index != "") {
       alert('Enter a non-negative number please!');
-      document.getElementById('index').value = "";
+      $('index').value = "";
     }
   }
 }
@@ -66,7 +66,7 @@ function _info_gene(index) {
       
       console.log(resp);
       if(resp != 'failed')
-        document.getElementById("info_gene").innerHTML=resp;
+        $("info_gene").innerHTML=resp;
     }
   }
 }

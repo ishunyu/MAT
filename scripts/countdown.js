@@ -6,7 +6,7 @@ function countDown(){
   window.location = redirect;  
  }else{  
   count--;  
-  document.getElementById("timer").innerHTML = "This page will redirect in "+count+" seconds."  
+  $("timer").innerHTML = "This page will redirect in "+count+" seconds."  
   setTimeout("countDown()", 1000)  
  }  
 } 

@@ -16,6 +16,28 @@ if((int)$end > $length_gene)
 if((int)$start > (int)$end)
   die('Start cannot be bigger than end!');
 
+/* Check to see if the data is exactly the same */
+if(isset($id_annotation)) {
+  $q_annotation =
+    "SELECT *
+     FROM $table_annotations
+     WHERE id = $id_annotation";
+  $r_annotation = mysql_query($q_annotation) or die('Fetching annotation unsuccessful.');
+  $a_annotation = mysql_fetch_assoc($r_annotation);
+  $annotation = $a_annotation;
+
+  if(($annotation['name'] = $name_annotation) && 
+     ($annotation['start'] == (int)$start) &&
+     ($annotation['end'] == (int)$end)) {
+
+    if((($scope_feature == 'global') && ($annotation['id_feature_global'] == $id_feature)) ||
+       (($scope_feature == 'user') && ($annotation['id_feature_user'] == $id_feature))) {
+      die(''); // Do not need further processing
+    }
+  }
+}
+
+
 /*
 Differentiates between submition and changes
 For changes we need to exclude itself, thus the

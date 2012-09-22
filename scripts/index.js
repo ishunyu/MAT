@@ -18,8 +18,8 @@ function indexPageLoads() {
   var _GETArray = getUrlVars();
   
   if(_GETArray.length != 1) {
-    var usernameInput = document.getElementById("username");
-    var passwordInput = document.getElementById("password");
+    var usernameInput = $("username");
+    var passwordInput = $("password");
     
     usernameInput.style.backgroundColor = "pink";
     passwordInput.style.backgroundColor = "pink";
@@ -30,8 +30,8 @@ function indexPageLoads() {
 
 // Clear the inputs' background colors
 function clearIndexPageInputs() {
-  var usernameInput = document.getElementById("username");
-  var passwordInput = document.getElementById("password");
+  var usernameInput = $("username");
+  var passwordInput = $("password");
 
   usernameInput.style.backgroundColor = "white";
   passwordInput.style.backgroundColor = "white";

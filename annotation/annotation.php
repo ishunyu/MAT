@@ -47,7 +47,7 @@
             <td class="feature" onclick="deactivate_rows_active(null);">
               <!-- FEATURES -->
               <select name="id_feature" class="feature" id="id_feature">
-                <? require_once '+features.php';?>
+                <? require_once '+option_features.php';?>
               </select></td>
             <td class="name_annotation" onclick="deactivate_rows_active(null);">
               <input type="text" class="name_annotation inputBoxStyle" id="name_annotation" onkeydown="keyboard(event, submit_annotation);" /></td>
@@ -60,10 +60,9 @@
             <td colspan="5"> <button type="submit" id="annoSubmitButton" onclick="return submit_annotation();">Submit</button></td>
           </tr>
         </table>
-        <? hidden_gene_value($id_gene);  hidden_num_col(5); ?>
         <table class="annotationTable" id="annotationTable" onblur="deactivate_rows_active(null);">
           <!-- ANNOTATIONS -->                    
-          <? require_once '+annotation_table.php';?>
+          <? require_once '+table_annotation.php';?>
         </table>
   <? }
      else { ?>

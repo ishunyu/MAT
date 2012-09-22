@@ -2,24 +2,24 @@
 
 // Checks for file upload
 function check_upload() {
-  var name_gene = document.getElementById("name_gene").value;  // Get the dna title
-  var geneFile = document.getElementById("uploadedFile").value; // Get the file name
+  var name_gene = $("name_gene").value;  // Get the dna title
+  var geneFile = $("uploadedFile").value; // Get the file name
   var ext = geneFile.split('.').pop();
   ext = ext.toLowerCase();
   
   if(name_gene.length == 0 || geneFile.length < 4 || !(ext == "txt" || ext == "fasta")) { // check to see if title is in range and filename is okay
     if(name_gene.length == 0) {
-      document.getElementById("name_geneWarning").innerHTML = "Name needs to be at least 6 characters!";
+      $("name_geneWarning").innerHTML = "Name needs to be at least 6 characters!";
     }
     else {
-      document.getElementById("name_geneWarning").innerHTML = "";
+      $("name_geneWarning").innerHTML = "";
     }
     
     if(geneFile.length < 4 || (ext != "txt")) {
-      document.getElementById("uploadFileWarning").innerHTML = "Please choose a file with valid name and extension.";
+      $("uploadFileWarning").innerHTML = "Please choose a file with valid name and extension.";
     }
     else {
-      document.getElementById("uploadFileWarning").innerHTML = "";
+      $("uploadFileWarning").innerHTML = "";
     }
     return false;
   }
@@ -36,9 +36,9 @@ function check_upload() {
       }
       else {
          responseText = "";
-         document.getElementById("geneUploadForm").submit();
+         $("geneUploadForm").submit();
       }      
-      document.getElementById("name_geneWarning").innerHTML=responseText;
+      $("name_geneWarning").innerHTML=responseText;
     }
   }
   
@@ -51,14 +51,14 @@ function check_upload() {
 
 // Updates the word count for dna notes
 function word_count() {
-  var length = document.getElementById("notes").value.length;
-  length = document.getElementById("notes").getAttribute("maxlength") - length;
-  document.getElementById("wordCount").innerHTML= length + " characters left";;
+  var length = $("notes").value.length;
+  length = $("notes").getAttribute("maxlength") - length;
+  $("wordCount").innerHTML= length + " characters left";;
 }
 
 function word_count_popup(event) {
-  var length = document.getElementById("notes").value.length;
-  var maxlength = document.getElementById("notes").getAttribute("maxlength");
+  var length = $("notes").value.length;
+  var maxlength = $("notes").getAttribute("maxlength");
   if(length == maxlength) {
     if(event.ctrlKey || event.shiftKey || event.altKey) {
       return;

@@ -19,3 +19,13 @@ function keyboard(keyStroke, f) {
   if(keyStroke.keyCode == 13)
     f();
 }
+
+function process_xml_response(r) {
+  if(r == ""){
+    return true;  /* Went well! */
+  }
+  else {
+    alert(r);
+    return false;
+  }
+}

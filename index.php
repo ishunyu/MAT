@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="styles/index.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 
-  <script type="text/javascript" src="scripts/formChecking.js"></script>
+  <script type="text/javascript" src="scripts/main.js"></script>
   <script type="text/javascript" src="scripts/index.js"></script>
 </head>
   

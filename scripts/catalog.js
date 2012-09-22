@@ -1,7 +1,7 @@
 function show(link) {
   var row_this = link.parentNode.parentNode;   // Gets the row
-  var span_gene = document.getElementById("showcase"+row_this.id);
-  var delRow = document.getElementById("del"+row_this.id);
+  var span_gene = $("showcase"+row_this.id);
+  var delRow = $("del"+row_this.id);
 
   var table = row_this.parentNode; // Gets the table
 
@@ -40,7 +40,7 @@ function send_ajax_for_gene(id_gene) {
   xml.onreadystatechange=function() { // the Call back function
     if (xml.readyState==4 && xml.status==200) {
       var responseText = xml.responseText;
-      var div_outer = document.getElementById("showcaseDiv"+id_gene);
+      var div_outer = $("showcaseDiv"+id_gene);
       div_outer.innerHTML = responseText;
     }
   }
@@ -56,7 +56,7 @@ function del(link) {  // Adds the delete confirmation message
   var row_this = link.parentNode.parentNode;   // Gets the row
   var table = row_this.parentNode; // Gets the table
   
-  var delRow = document.getElementById("del"+row_this.id); // Gets the delete msg row
+  var delRow = $("del"+row_this.id); // Gets the delete msg row
   
   if(delRow) { // If the delete msg row is there, "hide" it
     table.deleteRow(row_this.rowIndex+1);    
@@ -106,9 +106,9 @@ function send_ajax_for_deletion(id_gene) {
         //return false;
       
       if(responseText == true) {
-        var row = document.getElementById(id_gene);  // Gets the dna row
-        var showcase = document.getElementById("showcase"+id_gene);  // Gets the showcase row
-        var del = document.getElementById("del"+id_gene);  // Gets the del row
+        var row = $(id_gene);  // Gets the dna row
+        var showcase = $("showcase"+id_gene);  // Gets the showcase row
+        var del = $("del"+id_gene);  // Gets the del row
         var table = row.parentNode; // Gets the table
         
                

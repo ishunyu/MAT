@@ -7,6 +7,8 @@
   
   <link rel="stylesheet" type="text/css" href="../styles/main.css">
   <link rel="stylesheet" type="text/css" href="../styles/register.css">
+
+  <script type="text/javascript" src="../scripts/main.js"></script>
   <script type="text/javascript" src="../scripts/register.js"></script>    
 </head>
   
