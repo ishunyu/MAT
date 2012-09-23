@@ -1,36 +1,29 @@
-td.labelColumn {
-  width: 55%;
-}
-
-table#catalogTable {
+table#catalog {
 	width: 100%;
   table-layout:fixed;
-  
-  border-width: 0px;
-  border-style: solid;
-  border-color: white;
+
+  color: white;
 }
 
-table#catalogTable  td{
-  color: white;
+table#catalog tr > th {
+  width: 45%;
 
-  border-width: 0px;
-  border-style: solid;
-  border-color: white;
+  text-align: left;
 }
 
 span.confirmMsg {
   font-weight: bold;
-
 }
-
 
 div.showcase {
   margin-left: 20px;
+
   color: white;
-  width: 500px;  
+
+  width: 600px;
+  max-height: 500px;
   
-  overflow: hidden;
+  overflow-y: auto;
   white-space: pre-wrap; /* css-3 */
 	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
 	white-space: -pre-wrap; /* Opera 4-6 */

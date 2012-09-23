@@ -31,11 +31,11 @@
 
     <!-- CONTENT-->
     <div class="generalContentContainer">
-      <!-- GENE DISPLAY-->
+      <!-- TITLE -->
       <span class="titleFormat" >Sequences</span>
-      <table id="catalogTable">
+      <table id="catalog">
       <!-- LABEL -->
-        <? drawRows(); ?>
+        <? require_once './+table_catalog.php'; ?>
       </table>
     </div>
   </div>

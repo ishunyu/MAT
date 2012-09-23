@@ -32,17 +32,17 @@ if($count == 0) {
     $_SESSION['id_user'] = $user['id'];
     $_SESSION['name_first'] = $name_first;
 
-    $redirectPath =
+    $path_redirect =
       ($_SERVER["HTTP_HOST"] == "localhost") ?
       "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
-    header($redirectPath);
+    header($path_redirect);
   }
 }
 else {
-  $redirectPath =
+  $path_redirect =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
     "location:https://localhost/mat/register/register.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/register/register.php";
-  header($redirectPath);
+  header($path_redirect);
 }
 
 

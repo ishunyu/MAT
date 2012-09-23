@@ -8,7 +8,7 @@ $id_gene = $_SESSION['id_gene'];
 $id_annotation = $_POST['id_annotation'];
 $id_feature = $_POST['id_feature'];
 $scope_feature = $_POST['scope_feature'];
-$name_annotation = $_POST['name_annotation'];
+$name_annotation = mysql_real_escape_string($_POST['name_annotation']);
 $start = $_POST['start'];
 $end = $_POST['end'];
 

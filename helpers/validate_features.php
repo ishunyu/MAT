@@ -26,26 +26,24 @@ if(isset($id_annotation)) {
   $a_annotation = mysql_fetch_assoc($r_annotation);
   $annotation = $a_annotation;
 
-  if(($annotation['name'] = $name_annotation) && 
+  if(($annotation['name'] == $name_annotation) && 
      ($annotation['start'] == (int)$start) &&
      ($annotation['end'] == (int)$end)) {
 
     if((($scope_feature == 'global') && ($annotation['id_feature_global'] == $id_feature)) ||
        (($scope_feature == 'user') && ($annotation['id_feature_user'] == $id_feature))) {
-      die(''); // Do not need further processing
+      die('success'); // Do not need further processing
     }
   }
 }
 
-
+/* Check for repeats */
 /*
 Differentiates between submition and changes
 For changes we need to exclude itself, thus the
 "id != $id_annotation AND"
 */
 $q_annotations_id_annotation = (isset($id_annotation)) ? "id != $id_annotation AND" : '';
-
-/* Check for repeats */
 $q_annotations =
   "SELECT id
    FROM $table_annotations

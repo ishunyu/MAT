@@ -1,11 +1,11 @@
 function show(link) {
   var row_this = link.parentNode.parentNode;   // Gets the row
-  var span_gene = $("showcase"+row_this.id);
-  var delRow = $("del"+row_this.id);
+  var span_gene = $("showc"+row_this.id);
+  var row_del = $("del_"+row_this.id);
 
   var table = row_this.parentNode; // Gets the table
 
-  var number_row = delRow ? (row_this.rowIndex + 2) : (row_this.rowIndex + 1);
+  var number_row = row_del ? (row_this.rowIndex + 2) : (row_this.rowIndex + 1);
 
   if(span_gene) { // If sequence is already shown    
     
@@ -15,7 +15,7 @@ function show(link) {
   else{ 
     
     var row_new = table.insertRow(number_row); // Inserts a new row below
-    row_new.id = "showcase"+row_this.id; // Debug
+    row_new.id = "showc"+row_this.id; // Debug
     
     var td_1 = document.createElement("td");  // Creates a cell
     td_1.colSpan = 2;
@@ -56,24 +56,24 @@ function del(link) {  // Adds the delete confirmation message
   var row_this = link.parentNode.parentNode;   // Gets the row
   var table = row_this.parentNode; // Gets the table
   
-  var delRow = $("del"+row_this.id); // Gets the delete msg row
+  var row_del = $("del_"+row_this.id); // Gets the delete msg row
   
-  if(delRow) { // If the delete msg row is there, "hide" it
+  if(row_del) { // If the delete msg row is there, "hide" it
     table.deleteRow(row_this.rowIndex+1);    
     return false;
   }
   else {  // If the delete msg row isn't there, make it
-    var newRow = table.insertRow(row_this.rowIndex+1); // Inserts a new row below
-    newRow.id= "del"+row_this.id;  // Creates id 
-    newRow.className = "del"; // Creates class
+    var row_new = table.insertRow(row_this.rowIndex+1); // Inserts a new row below
+    row_new.id= "del_"+row_this.id;  // Creates id 
+    row_new.className = "del"; // Creates class
     
     var td_1 = document.createElement("td");  // Creates a cell
     td_1.colSpan = 2; // Make it span 2 rows
     td_1.style.textAlign="right";
-    td_1.innerHTML="<span class=\"confirmMsg\">Are you sure?</span> <a href=\"\" onclick=\"return del_confirm(this);\">Yes</a> <a href=\"\" onclick=\"return del_cancel(this);\">No</a>";
+    td_1.innerHTML='<span class="confirmMsg">Are you sure?</span> <a href="" onclick="return del_confirm(this);">Yes</a> <a href="#" onclick="return del_cancel(this);">No</a>';
     td_1.style.paddingRight="20px";
     
-    newRow.appendChild(td_1); // Inserts the cell
+    row_new.appendChild(td_1); // Inserts the cell
     
     return false;
   }
@@ -107,8 +107,8 @@ function send_ajax_for_deletion(id_gene) {
       
       if(responseText == true) {
         var row = $(id_gene);  // Gets the dna row
-        var showcase = $("showcase"+id_gene);  // Gets the showcase row
-        var del = $("del"+id_gene);  // Gets the del row
+        var showcase = $("show_gene_"+id_gene);  // Gets the showcase row
+        var del = $("del_"+id_gene);  // Gets the del row
         var table = row.parentNode; // Gets the table
         
                

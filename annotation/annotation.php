@@ -26,7 +26,6 @@
     <? if($id_gene != "") { // Used so that nothing displays if there's no genes exist! ?>
       <!-- GENE DISPLAY-->     
       <span class="titleFormat " ><? echo $name_gene;?></span>
-      <span class="detailFormat" style="float:right"> No error checking yet! Users are responsible for correct input.</span>      
       <hr>
       
       <!-- FORM -->

@@ -42,15 +42,15 @@ if($q_user) { // Login success
   //setcookie($username, );
   
   // Redirect the user
-  $redirectPath =
+  $path_redirect =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
     "location:https://localhost/mat/upload/upload.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/upload/upload.php";
-  header($redirectPath);
+  header($path_redirect);
 }
 else {  // Redirect
-  $redirectPath =
+  $path_redirect =
     ($_SERVER["HTTP_HOST"] == "localhost") ?
     "location:https://localhost/mat/index.php" : "location:http://vis.cs.ucdavis.edu/~yus/mat/index.php";
-  header($redirectPath."?loginAttempt=1&username=$_POST[username]");
+  header($path_redirect."?loginAttempt=1&username=$_POST[username]");
 }
 ?>
